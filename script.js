@@ -1,6 +1,13 @@
 // 打开视频弹窗功能
 function openVideo(url, event) {
+    console.log('✅ openVideo 函数被调用');
+    console.log('URL:', url);
     event.preventDefault();
+    
+    if (typeof url === 'undefined') {
+        console.error('⚠️ URL 未定义');
+        return;
+    }
     
     const videoModal = document.createElement('div');
     videoModal.id = 'videoModal';
@@ -39,6 +46,7 @@ function openVideo(url, event) {
 
     const iframe = document.createElement('iframe');
     const videoId = url.split('v=')[1] || url.split('/').pop().split('?')[0];
+    console.log('🎬 提取的视频 ID:', videoId);
     const embedUrl = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0`;
     iframe.setAttribute('src', embedUrl);
     iframe.setAttribute('frameborder', '0');
@@ -81,6 +89,7 @@ function openVideo(url, event) {
     videoContainer.appendChild(closeBtn);
     videoModal.appendChild(videoContainer);
     document.body.appendChild(videoModal);
+    console.log('✅ 视频弹窗已创建并添加到 DOM');
 
     // 点击背景关闭
     videoModal.onclick = (e) => {
