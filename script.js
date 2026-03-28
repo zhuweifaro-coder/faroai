@@ -1,3 +1,112 @@
+// 打开视频弹窗功能
+function openVideo(url, event) {
+    event.preventDefault();
+    
+    const videoModal = document.createElement('div');
+    videoModal.id = 'videoModal';
+    videoModal.style.cssText = `
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,0.9);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 10001;
+        animation: fadeIn 0.3s ease;
+    `;
+
+    const videoContainer = document.createElement('div');
+    videoContainer.style.cssText = `
+        position: relative;
+        max-width: 90%;
+        max-height: 90%;
+        background: white;
+        border-radius: 16px;
+        overflow: hidden;
+        box-shadow: 0 25px 50px rgba(0,0,0,0.3);
+    `;
+
+    const videoWrapper = document.createElement('div');
+    videoWrapper.style.cssText = `
+        position: relative;
+        padding-bottom: 56.25%;
+        height: 0;
+        background: #000;
+    `;
+
+    const iframe = document.createElement('iframe');
+    const videoId = url.split('v=')[1] || url.split('/').pop().split('?')[0];
+    const embedUrl = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0`;
+    iframe.setAttribute('src', embedUrl);
+    iframe.setAttribute('frameborder', '0');
+    iframe.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture');
+    iframe.setAttribute('allowfullscreen', 'true');
+    iframe.style.cssText = `
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border: 0;
+    `;
+
+    const closeBtn = document.createElement('button');
+    closeBtn.innerHTML = '✕';
+    closeBtn.style.cssText = `
+        position: absolute;
+        top: -40px;
+        right: 0;
+        background: #ff4444;
+        color: white;
+        border: none;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        font-size: 20px;
+        cursor: pointer;
+        z-index: 10002;
+        transition: all 0.2s;
+        font-weight: bold;
+        line-height: 1;
+    `;
+    closeBtn.onmouseover = () => closeBtn.style.transform = 'scale(1.1)';
+    closeBtn.onmouseout = () => closeBtn.style.transform = 'scale(1)';
+    closeBtn.onclick = () => closeVideo();
+
+    videoWrapper.appendChild(iframe);
+    videoContainer.appendChild(videoWrapper);
+    videoContainer.appendChild(closeBtn);
+    videoModal.appendChild(videoContainer);
+    document.body.appendChild(videoModal);
+
+    // 点击背景关闭
+    videoModal.onclick = (e) => {
+        if (e.target === videoModal) {
+            closeVideo();
+        }
+    };
+
+    // ESC 键关闭
+    const closeVideo = () => {
+        videoModal.style.animation = 'fadeOut 0.3s ease';
+        setTimeout(() => {
+            if (document.body.contains(videoModal)) {
+                document.body.removeChild(videoModal);
+            }
+        }, 300);
+    };
+
+    document.addEventListener('keydown', function escListener(e) {
+        if (e.key === 'Escape') {
+            closeVideo();
+            document.removeEventListener('keydown', escListener);
+        }
+    });
+}
+
 // 平滑滚动导航
 class SmoothScroll {
     constructor() {
@@ -259,125 +368,9 @@ class ThemeManager {
     }
 }
 
-// 打开视频弹窗
-window.openVideo = function(url, event) {
-    event.preventDefault();
-    
-    const videoModal = document.createElement('div');
-    videoModal.id = 'videoModal';
-    videoModal.style.cssText = `
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0,0,0,0.9);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        z-index: 10001;
-        animation: fadeIn 0.3s ease;
-    `;
-
-    const videoContainer = document.createElement('div');
-    videoContainer.style.cssText = `
-        position: relative;
-        max-width: 90%;
-        max-height: 90%;
-        background: white;
-        border-radius: 16px;
-        overflow: hidden;
-        box-shadow: 0 25px 50px rgba(0,0,0,0.3);
-    `;
-
-    const videoWrapper = document.createElement('div');
-    videoWrapper.style.cssText = `
-        position: relative;
-        padding-bottom: 56.25%;
-        height: 0;
-        background: #000;
-    `;
-
-    const iframe = document.createElement('iframe');
-    const videoId = url.split('v=')[1] || url.split('/').pop();
-    const embedUrl = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0`;
-    iframe.setAttribute('src', embedUrl);
-    iframe.setAttribute('frameborder', '0');
-    iframe.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture');
-    iframe.setAttribute('allowfullscreen', 'true');
-    iframe.style.cssText = `
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        border: 0;
-    `;
-
-    const closeBtn = document.createElement('button');
-    closeBtn.innerHTML = '✕';
-    closeBtn.style.cssText = `
-        position: absolute;
-        top: -40px;
-        right: 0;
-        background: #ff4444;
-        color: white;
-        border: none;
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-        font-size: 20px;
-        cursor: pointer;
-        z-index: 10002;
-        transition: all 0.2s;
-    `;
-    closeBtn.onmouseover = () => closeBtn.style.transform = 'scale(1.1)';
-    closeBtn.onmouseout = () => closeBtn.style.transform = 'scale(1)';
-    closeBtn.onclick = () => closeVideo();
-
-    videoWrapper.appendChild(iframe);
-    videoContainer.appendChild(videoWrapper);
-    videoContainer.appendChild(closeBtn);
-    videoModal.appendChild(videoContainer);
-    document.body.appendChild(videoModal);
-
-    // 点击背景关闭
-    videoModal.onclick = (e) => {
-        if (e.target === videoModal) {
-            closeVideo();
-        }
-    };
-
-    // ESC 键关闭
-    const closeVideo = () => {
-        videoModal.style.animation = 'fadeOut 0.3s ease';
-        setTimeout(() => {
-            if (document.body.contains(videoModal)) {
-                document.body.removeChild(videoModal);
-            }
-        }, 300);
-    };
-
-    document.addEventListener('keydown', function escListener(e) {
-        if (e.key === 'Escape') {
-            closeVideo();
-            document.removeEventListener('keydown', escListener);
-        }
-    });
-};
-
 // 页面加载完成后的初始化
 document.addEventListener('DOMContentLoaded', () => {
     console.log('🚀 FaroAI - OpenClaw Clone 网站已加载');
-    
-    // 初始化平滑滚动
-    new SmoothScroll();
-    
-    // 初始化移动端菜单
-    new MobileMenu();
-    
-    // 初始化计数动画
-    new CounterAnimation();
     
     // 添加页面加载动画
     document.body.style.opacity = '0';
