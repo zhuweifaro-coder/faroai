@@ -368,9 +368,19 @@ class ThemeManager {
     }
 }
 
-// 页面加载完成后的初始化
+// 视频按钮点击事件处理
 document.addEventListener('DOMContentLoaded', () => {
     console.log('🚀 FaroAI - OpenClaw Clone 网站已加载');
+    
+    // 视频按钮点击处理
+    const demoBtn = document.getElementById('demoBtn');
+    if (demoBtn) {
+        demoBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            console.log('视频按钮被点击');
+            openVideo('https://youtu.be/st534T7-mdE?si=mwsBvhXpfbUbUZNj', e);
+        });
+    }
     
     // 添加页面加载动画
     document.body.style.opacity = '0';
