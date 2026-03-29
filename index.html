@@ -38,9 +38,23 @@
                     </svg>
                 </button>
             </nav>
+    <div class="container">
+        <h1>🚀 FaroAI</h1>
+        <div class="subtitle">OpenClaw Clone Demo</div>
+        
+        <button class="demo-btn" id="playDemoBtn">观看演示</button>
+        
+        <div class="status" id="statusLog"></div>
+    </div>
+    
+    <div class="video-modal" id="videoModal">
+        <div class="video-container">
+            <button class="close-btn" id="closeModal">×</button>
+            <iframe id="videoFrame" style="display:none;" frameborder="0" scrolling="no" allowfullscreen allow="autoplay; fullscreen"></iframe>
         </div>
     </header>
 
+<<<<<<< HEAD
     <!-- Hero 区域 -->
     <section class="hero">
         <div class="container">
@@ -437,5 +451,243 @@
     </footer>
 
     <script src="script.js"></script>
+    <script>
+    (function() {
+        'use strict';
+        
+        var statusLog = document.getElementById('statusLog');
+        var videoModal = document.getElementById('videoModal');
+        var videoFrame = document.getElementById('videoFrame');
+        var closeBtn = document.getElementById('closeModal');
+        var isDemoPlaying = false;
+        
+        // Bilibili 养虾指南视频 - BV1RxPQzcEQj
+        var videoBvid = 'BV1RxPQzcEQj';
+        
+        function log(message) {
+            if (statusLog) {
+                var timestamp = new Date().toLocaleTimeString();
+                statusLog.textContent += '[' + timestamp + '] ' + message + '\n';
+                statusLog.scrollTop = statusLog.scrollHeight;
+            }
+            console.log('[FaroAI ' + timestamp + '] ' + message);
+        }
+        
+        function showStatus() {
+            if (statusLog) {
+                statusLog.classList.add('show');
+            }
+        }
+        
+        function openVideo() {
+            log('🎬 打开视频：养虾指南 BV1RxPQzcEQj');
+            
+            // 使用 Bilibili 播放器链接
+            var playerUrl = 'https://player.bilibili.com/player.html?bvid=' + videoBvid + '&page=1&high_quality=1&danmaku=0&autoplay=1';
+            
+            log('✅ 播放器 URL: ' + playerUrl);
+            
+            videoFrame.src = playerUrl;
+            videoFrame.style.display = 'block';
+            videoModal.classList.add('active');
+            
+            log('✅ 视频弹窗已显示');
+            
+            // 监听加载
+            videoFrame.onload = function() {
+                log('✅ iframe 加载完成');
+            };
+            
+            videoFrame.onerror = function() {
+                log('❌ iframe 加载失败，尝试备用方案');
+                // 备用方案：打开新标签页
+                window.open('https://www.bilibili.com/video/' + videoBvid, '_blank');
+            };
+        }
+        
+        function closeVideo() {
+            videoModal.classList.remove('active');
+            videoFrame.src = '';
+            videoFrame.style.display = 'none';
+            log('🔒 视频已关闭');
+        }
+        
+        function startDemo() {
+            if (isDemoPlaying) {
+                log('⚠️ 演示已在进行中');
+                return;
+            }
+            
+            isDemoPlaying = true;
+            var demoBtn = document.getElementById('playDemoBtn');
+            if (demoBtn) {
+                demoBtn.disabled = true;
+                demoBtn.textContent = '演示中...';
+            }
+            
+            log('🚀 FaroAI - OpenClaw Clone 演示启动');
+            
+            setTimeout(function() {
+                log('✅ 演示初始化完成');
+                showStatus();
+                isDemoPlaying = false;
+                if (demoBtn) {
+                    demoBtn.disabled = false;
+                    demoBtn.textContent = '观看演示';
+                }
+            }, 1000);
+        }
+        
+        // 事件监听器
+        var demoBtn = document.getElementById('playDemoBtn');
+        if (demoBtn) {
+            demoBtn.addEventListener('click', function() {
+                log('🖱️ 按钮被点击');
+                
+                if (!isDemoPlaying) {
+                    startDemo();
+                    openVideo();
+                }
+            });
+        }
+        
+        if (closeBtn) {
+            closeBtn.addEventListener('click', closeVideo);
+        }
+        
+        if (videoModal) {
+            videoModal.addEventListener('click', function(e) {
+                if (e.target === videoModal) {
+                    closeVideo();
+                }
+            });
+        }
+        
+        // 初始化
+        log('🚀 FaroAI - OpenClaw Clone 网站已加载');
+        showStatus();
+        
+    })();
+    </script>
+=======
+    <script>
+    (function() {
+        'use strict';
+        
+        var statusLog = document.getElementById('statusLog');
+        var videoModal = document.getElementById('videoModal');
+        var videoFrame = document.getElementById('videoFrame');
+        var closeBtn = document.getElementById('closeModal');
+        var isDemoPlaying = false;
+        
+        // Bilibili 养虾指南视频 - BV1RxPQzcEQj
+        var videoBvid = 'BV1RxPQzcEQj';
+        
+        function log(message) {
+            if (statusLog) {
+                var timestamp = new Date().toLocaleTimeString();
+                statusLog.textContent += '[' + timestamp + '] ' + message + '\n';
+                statusLog.scrollTop = statusLog.scrollHeight;
+            }
+            console.log('[FaroAI ' + timestamp + '] ' + message);
+        }
+        
+        function showStatus() {
+            if (statusLog) {
+                statusLog.classList.add('show');
+            }
+        }
+        
+        function openVideo() {
+            log('🎬 打开视频：养虾指南 BV1RxPQzcEQj');
+            
+            // 使用 Bilibili 播放器链接
+            var playerUrl = 'https://player.bilibili.com/player.html?bvid=' + videoBvid + '&page=1&high_quality=1&danmaku=0&autoplay=1';
+            
+            log('✅ 播放器 URL: ' + playerUrl);
+            
+            videoFrame.src = playerUrl;
+            videoFrame.style.display = 'block';
+            videoModal.classList.add('active');
+            
+            log('✅ 视频弹窗已显示');
+            
+            // 监听加载
+            videoFrame.onload = function() {
+                log('✅ iframe 加载完成');
+            };
+            
+            videoFrame.onerror = function() {
+                log('❌ iframe 加载失败，尝试备用方案');
+                // 备用方案：打开新标签页
+                window.open('https://www.bilibili.com/video/' + videoBvid, '_blank');
+            };
+        }
+        
+        function closeVideo() {
+            videoModal.classList.remove('active');
+            videoFrame.src = '';
+            videoFrame.style.display = 'none';
+            log('🔒 视频已关闭');
+        }
+        
+        function startDemo() {
+            if (isDemoPlaying) {
+                log('⚠️ 演示已在进行中');
+                return;
+            }
+            
+            isDemoPlaying = true;
+            var demoBtn = document.getElementById('playDemoBtn');
+            if (demoBtn) {
+                demoBtn.disabled = true;
+                demoBtn.textContent = '演示中...';
+            }
+            
+            log('🚀 FaroAI - OpenClaw Clone 演示启动');
+            
+            setTimeout(function() {
+                log('✅ 演示初始化完成');
+                showStatus();
+                isDemoPlaying = false;
+                if (demoBtn) {
+                    demoBtn.disabled = false;
+                    demoBtn.textContent = '观看演示';
+                }
+            }, 1000);
+        }
+        
+        // 事件监听器
+        var demoBtn = document.getElementById('playDemoBtn');
+        if (demoBtn) {
+            demoBtn.addEventListener('click', function() {
+                log('🖱️ 按钮被点击');
+                
+                if (!isDemoPlaying) {
+                    startDemo();
+                    openVideo();
+                }
+            });
+        }
+        
+        if (closeBtn) {
+            closeBtn.addEventListener('click', closeVideo);
+        }
+        
+        if (videoModal) {
+            videoModal.addEventListener('click', function(e) {
+                if (e.target === videoModal) {
+                    closeVideo();
+                }
+            });
+        }
+        
+        // 初始化
+        log('🚀 FaroAI - OpenClaw Clone 网站已加载');
+        showStatus();
+        
+    })();
+    </script>
+>>>>>>> 6246946 (Fix: 修复视频播放问题，使用 iframe 直接播放)
 </body>
 </html>
