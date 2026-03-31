@@ -3,166 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="FaroAI - 个人博客，分享技术文章、项目经验和学习心得">
-    <meta name="keywords" content="FaroAI, 技术博客，编程，学习, OpenClaw">
-    <meta property="og:title" content="FaroAI - 个人博客">
-    <meta property="og:description" content="分享技术文章、项目经验和学习心得">
-    <meta property="og:type" content="website">
-    <title>FaroAI - 个人博客 | 技术分享与学习心得</title>
+    <meta name="description" content="FaroAI - 下一代 AI 助手平台，打造你的智能数字伴侣">
+    <meta name="keywords" content="AI 助手，数字伴侣，OpenClaw, FaroAI, 效率工具">
+    <title>FaroAI - 下一代 AI 助手平台</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <style>
-        /* Hacker News 风格博客模块 - 与首页颜色一致 */
-        .blog-section {
-            background: #f6f6ef;
-            padding: 40px 0;
-            border-top: 1px solid #eeeded;
-            border-bottom: 1px solid #eeeded;
-        }
-        
-        .blog-title {
-            font-size: 28px;
-            font-weight: bold;
-            color: #111;
-            margin-bottom: 20px;
-            font-family: 'Garamond', 'Georgia', serif;
-        }
-        
-        .blog-stats {
-            background: #fafaf9;
-            padding: 12px;
-            border: 1px solid #eeeded;
-            border-radius: 5px;
-            margin-bottom: 25px;
-            font-size: 13px;
-            color: #333;
-        }
-        
-        .blog-stats .stat-item {
-            margin-right: 15px;
-            display: inline-block;
-        }
-        
-        .blog-stats strong {
-            color: #111;
-        }
-        
-        /* Hacker News 表格风格 */
-        .blog-table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 12px;
-            font-family: Verdana, Geneva, sans-serif;
-            background: #f6f6ef;
-        }
-        
-        .blog-table thead {
-            background: #fafaf9;
-            border-bottom: 1px solid #eeeded;
-        }
-        
-        .blog-table th {
-            text-align: left;
-            padding: 8px;
-            font-weight: bold;
-            color: #333;
-        }
-        
-        .blog-table td {
-            padding: 8px;
-            vertical-align: top;
-            border-bottom: 1px solid #eeeded;
-        }
-        
-        .blog-table .rank {
-            width: 40px;
-            text-align: center;
-            color: #828282;
-            font-weight: bold;
-        }
-        
-        .blog-table .title {
-            width: 60%;
-            padding-left: 12px;
-        }
-        
-        .blog-table .meta {
-            width: 35%;
-            color: #828282;
-            font-size: 11px;
-        }
-        
-        .blog-table .points {
-            width: 60px;
-            text-align: center;
-            color: #828282;
-            font-weight: bold;
-        }
-        
-        .blog-item:hover {
-            background: #f0f0f0;
-        }
-        
-        .story-link {
-            color: #000;
-            text-decoration: none;
-            font-size: 14px;
-            font-family: Verdana, Geneva, sans-serif;
-        }
-        
-        .story-link:hover {
-            color: #ff6600;
-            text-decoration: underline;
-        }
-        
-        .author {
-            color: #828282;
-        }
-        
-        .time {
-            color: #828282;
-        }
-        
-        .domain {
-            color: #828282;
-        }
-        
-        .blog-pagination {
-            margin-top: 20px;
-            padding: 12px;
-            background: #fafaf9;
-            border: 1px solid #eeeded;
-            border-radius: 5px;
-            font-size: 12px;
-            text-align: center;
-            color: #828282;
-        }
-        
-        .page-current {
-            color: #828282;
-        }
-        
-        /* 移动端适配 */
-        @media (max-width: 768px) {
-            .blog-table {
-                font-size: 11px;
-            }
-            
-            .blog-table .title {
-                width: 70%;
-            }
-            
-            .blog-table .meta {
-                width: 25%;
-                font-size: 10px;
-            }
-            
-            .blog-title {
-                font-size: 24px;
-            }
-        }
-    </style>
 </head>
 <body>
     <!-- 导航栏 -->
@@ -179,7 +25,7 @@
                     <li><a href="#home">首页</a></li>
                     <li><a href="#features">功能</a></li>
                     <li><a href="#pricing">定价</a></li>
-                    <li><a href="#blog">博客</a></li>
+                    <li><a href="blog.html">博客</a></li>
                     <li><a href="个人概况_2026_v3.html">关于我</a></li>
                 </ul>
                 <div class="nav-actions">
@@ -218,7 +64,7 @@
                             <path d="M5 12h14M12 5l7 7-7 7"/>
                         </svg>
                     </a>
-                    <a href="#blog" class="btn btn-secondary btn-large" title="阅读博客文章">
+                    <a href="#" class="btn btn-secondary btn-large">
                         <svg viewBox="0 0 24 24" fill="currentColor">
                             <path d="M8 5v14l11-7z"/>
                         </svg>
@@ -520,127 +366,6 @@
         </div>
     </section>
 
-    <!-- 博客板块 - Hacker News 风格 -->
-    <section id="blog" class="blog-section">
-        <div class="container">
-            <h2 class="blog-title">📝 FaroAI 博客</h2>
-            <div class="blog-stats">
-                <span class="stat-item"><strong>6 篇</strong> 文章</span>
-                <span class="stat-item">最后更新 2026-03-30</span>
-                <span class="stat-item">分类：<strong>技术, AI, 项目, 硬件, 开发</strong></span>
-            </div>
-
-            <!-- 博客文章列表 - Hacker News 风格 -->
-            <table class="blog-table">
-                <thead>
-                    <tr>
-                        <th class="rank">#</th>
-                        <th class="title">标题</th>
-                        <th class="meta">元数据</th>
-                        <th class="points">分数</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <!-- 文章 1 -->
-                    <tr class="blog-item">
-                        <td class="rank">1</td>
-                        <td class="title">
-                            <a href="#" class="story-link" onclick="openArticle(1); return false;">
-                                OpenClaw 使用指南 - 智能代理系统完整教程
-                            </a>
-                        </td>
-                        <td class="meta">
-                            <span class="author">炜哥</span> 
-                            <span class="time">2026-03-30</span>
-                            <span class="domain">(技术)</span>
-                        </td>
-                        <td class="points">42</td>
-                    </tr>
-                    <!-- 文章 2 -->
-                    <tr class="blog-item">
-                        <td class="rank">2</td>
-                        <td class="title">
-                            <a href="#" class="story-link" onclick="openArticle(2); return false;">
-                                ollama 本地 LLM 模型性能优化实践
-                            </a>
-                        </td>
-                        <td class="meta">
-                            <span class="author">炜哥</span> 
-                            <span class="time">2026-03-29</span>
-                            <span class="domain">(AI)</span>
-                        </td>
-                        <td class="points">38</td>
-                    </tr>
-                    <!-- 文章 3 -->
-                    <tr class="blog-item">
-                        <td class="rank">3</td>
-                        <td class="title">
-                            <a href="#" class="story-link" onclick="openArticle(3); return false;">
-                                FaroAI 个人博客网站搭建实录
-                            </a>
-                        </td>
-                        <td class="meta">
-                            <span class="author">炜哥</span> 
-                            <span class="time">2026-03-28</span>
-                            <span class="domain">(项目)</span>
-                        </td>
-                        <td class="points">35</td>
-                    </tr>
-                    <!-- 文章 4 -->
-                    <tr class="blog-item">
-                        <td class="rank">4</td>
-                        <td class="title">
-                            <a href="#" class="story-link" onclick="openArticle(4); return false;">
-                                Apple Silicon M4 Pro 深度性能评测
-                            </a>
-                        </td>
-                        <td class="meta">
-                            <span class="author">炜哥</span> 
-                            <span class="time">2026-03-27</span>
-                            <span class="domain">(硬件)</span>
-                        </td>
-                        <td class="points">31</td>
-                    </tr>
-                    <!-- 文章 5 -->
-                    <tr class="blog-item">
-                        <td class="rank">5</td>
-                        <td class="title">
-                            <a href="#" class="story-link" onclick="openArticle(5); return false;">
-                                机器学习入门 - 从概念到实践
-                            </a>
-                        </td>
-                        <td class="meta">
-                            <span class="author">炜哥</span> 
-                            <span class="time">2026-03-26</span>
-                            <span class="domain">(AI)</span>
-                        </td>
-                        <td class="points">27</td>
-                    </tr>
-                    <!-- 文章 6 -->
-                    <tr class="blog-item">
-                        <td class="rank">6</td>
-                        <td class="title">
-                            <a href="#" class="story-link" onclick="openArticle(6); return false;">
-                                微信机器人开发实战 - Python 完整教程
-                            </a>
-                        </td>
-                        <td class="meta">
-                            <span class="author">炜哥</span> 
-                            <span class="time">2026-03-25</span>
-                            <span class="domain">(开发)</span>
-                        </td>
-                        <td class="points">24</td>
-                    </tr>
-                </tbody>
-            </table>
-
-            <!-- 分页导航 -->
-            <div class="blog-pagination">
-                <span class="page-current">第 1 页，共 1 页</span>
-            </div>
-        </div>
-    </section>
-
     <!-- 页脚 -->
     <footer class="footer">
         <div class="container">
@@ -695,7 +420,7 @@
                     <h4>公司</h4>
                     <ul>
                         <li><a href="个人概况_2026_v3.html">关于我</a></li>
-                        <li><a href="#blog">博客</a></li>
+                        <li><a href="blog.html">博客</a></li>
                         <li><a href="#">联系方式</a></li>
                         <li><a href="#">加入我们</a></li>
                     </ul>
@@ -712,85 +437,5 @@
     </footer>
 
     <script src="script.js"></script>
-    <script>
-        // 博客文章数据
-        const blogPosts = [
-            {
-                id: 1,
-                title: 'OpenClaw 使用指南 - 智能代理系统完整教程',
-                excerpt: '深入讲解 OpenClaw 的配置、部署和使用技巧，帮助你快速上手智能代理系统。涵盖模型配置、路由规则、技能系统、消息集成等核心功能。',
-                author: '炜哥',
-                date: '2026-03-30',
-                category: '技术',
-                points: 42,
-                comments: 12,
-                content: '本文详细介绍了 OpenClaw 智能代理系统的完整使用指南，包括：\n\n1. 系统安装与配置\n2. 模型选择与优化\n3. 路由规则设置\n4. 技能系统使用\n5. 消息渠道集成\n6. 性能优化技巧\n\n适合有一定技术背景的开发者。'
-            },
-            {
-                id: 2,
-                title: 'ollama 本地 LLM 模型性能优化实践',
-                excerpt: '分享本地 LLM 模型的性能优化经验，包括参数调整、内存管理、量化压缩等内容。',
-                author: '炜哥',
-                date: '2026-03-29',
-                category: 'AI',
-                points: 38,
-                comments: 8,
-                content: '深入分析 ollama 模型的性能瓶颈和优化方案：\n\n- 量化参数调整\n- 显存优化策略\n- 模型选择建议\n- 推理速度提升技巧\n\n实测提升 30%+ 推理速度。'
-            },
-            {
-                id: 3,
-                title: 'FaroAI 个人博客网站搭建实录',
-                excerpt: '记录 FaroAI 个人博客从 0 到 1 的搭建过程，包括技术选型和部署经验。',
-                author: '炜哥',
-                date: '2026-03-28',
-                category: '项目',
-                points: 35,
-                comments: 15,
-                content: '从零搭建个人博客网站的完整记录：\n\n- 技术栈选择\n- 页面设计思路\n- 部署流程\n- SEO 优化经验\n- 后续迭代计划'
-            },
-            {
-                id: 4,
-                title: 'Apple Silicon M4 Pro 深度性能评测',
-                excerpt: 'M4 Pro 芯片的性能测试和实际使用体验分享。',
-                author: '炜哥',
-                date: '2026-03-27',
-                category: '硬件',
-                points: 31,
-                comments: 6,
-                content: '全面测试 M4 Pro 芯片在各种场景下的表现：\n\n- 单核/多核性能\n- 图形处理能力\n- 能效比分析\n- 实际开发体验\n- 与 Intel 对比'
-            },
-            {
-                id: 5,
-                title: '机器学习入门 - 从概念到实践',
-                excerpt: '为初学者准备的机器学习入门教程，涵盖基本概念和常用算法。',
-                author: '炜哥',
-                date: '2026-03-26',
-                category: 'AI',
-                points: 27,
-                comments: 9,
-                content: '机器学习入门基础知识：\n\n- 监督/非监督学习\n- 常用算法介绍\n- Python 实战案例\n- 数据集选择\n- 模型评估指标'
-            },
-            {
-                id: 6,
-                title: '微信机器人开发实战 - Python 完整教程',
-                excerpt: '使用 Python 开发微信机器人的完整教程，包括 API 调用和消息处理。',
-                author: '炜哥',
-                date: '2026-03-25',
-                category: '开发',
-                points: 24,
-                comments: 11,
-                content: '微信机器人开发实战教程：\n\n- Python 环境配置\n- API 调用流程\n- 消息类型处理\n- 自动回复逻辑\n- 安全防护机制'
-            }
-        ];
-
-        // 打开文章详情
-        function openArticle(id) {
-            const post = blogPosts.find(p => p.id === id);
-            if (post) {
-                const content = `📖 ${post.title}\n\n作者：${post.author}\n日期：${post.date}\n分类：${post.category}\n\n📄 内容摘要:\n${post.excerpt}\n\n💬 完整内容:\n${post.content}\n\n💡 本文共 ${post.points} 分，${post.comments} 条评论`;
-                alert(content);
-            }
-        }
-    </script>
 </body>
 </html>
