@@ -178,9 +178,12 @@
                         无论是个人还是团队，都能在这里找到提升效率的解决方案。
                     </p>
                     <div class="hero-actions">
-                        <a href="#" class="btn btn-primary btn-large">
+                        <a href="#" class="btn btn-primary btn-large btn-play-video" aria-label="观看 OpenClaw 介绍视频">
+                            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="margin-right: 8px;">
+                                <path d="M8 5v14l11-7z"/>
+                            </svg>
                             <span>免费开始</span>
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true" style="margin-left: 8px;">
                                 <path d="M5 12h14M12 5l7 7-7 7"/>
                             </svg>
                         </a>
@@ -487,6 +490,39 @@
         </section>
     </main>
 
+    <!-- 视频模态框 -->
+    <div id="videoModal" class="video-modal" aria-hidden="true">
+        <div class="video-modal-backdrop"></div>
+        <div class="video-modal-content" role="dialog" aria-modal="true" aria-labelledby="videoModalTitle">
+            <button class="video-modal-close" aria-label="关闭视频">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
+                    <path d="M18 6L6 18M6 6l12 12"/>
+                </svg>
+            </button>
+            <div class="video-modal-body">
+                <h2 id="videoModalTitle" class="video-modal-title">OpenClaw 介绍视频</h2>
+                <div class="video-container">
+                    <!-- 推荐视频：解剖小龍蝦 — 以 OpenClaw 為例介紹 AI Agent 的運作原理 -->
+                    <iframe 
+                        src="https://www.youtube.com/embed/2rcJdFuNbZQ?rel=0&modestbranding=1" 
+                        title="OpenClaw 介绍视频" 
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen
+                        loading="lazy"
+                        referrerpolicy="strict-origin-when-cross-origin">
+                    </iframe>
+                </div>
+                <div class="video-modal-info">
+                    <p>深度解析 OpenClaw 的 AI Agent 运作原理，适合想要深入了解技术细节的观众。</p>
+                    <a href="https://www.youtube.com/watch?v=2rcJdFuNbZQ" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-small">
+                        在 YouTube 观看
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- 页脚 -->
     <footer class="footer" role="contentinfo">
         <div class="container">
@@ -557,6 +593,61 @@
         </div>
     </footer>
 
+    <!-- Video Modal Scripts -->
+    <script>
+        // 视频模态框功能
+        (function() {
+            const modal = document.getElementById('videoModal');
+            const backdrop = modal?.querySelector('.video-modal-backdrop');
+            const closeBtn = modal?.querySelector('.video-modal-close');
+            const playBtns = document.querySelectorAll('.btn-play-video');
+            
+            if (!modal) return;
+            
+            // 打开模态框
+            function openModal() {
+                modal.setAttribute('aria-hidden', 'false');
+                document.body.style.overflow = 'hidden'; // 禁止滚动
+                modal.querySelector('.video-modal-content')?.focus();
+            }
+            
+            // 关闭模态框
+            function closeModal() {
+                modal.setAttribute('aria-hidden', 'true');
+                document.body.style.overflow = ''; // 恢复滚动
+                // 停止视频播放
+                const iframe = modal.querySelector('iframe');
+                if (iframe) {
+                    const src = iframe.src;
+                    iframe.src = src;
+                }
+            }
+            
+            // 绑定事件
+            playBtns.forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    openModal();
+                });
+            });
+            
+            backdrop?.addEventListener('click', closeModal);
+            closeBtn?.addEventListener('click', closeModal);
+            
+            // ESC 键关闭
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && modal.getAttribute('aria-hidden') === 'false') {
+                    closeModal();
+                }
+            });
+            
+            // 阻止冒泡
+            modal.querySelector('.video-modal-content')?.addEventListener('click', (e) => {
+                e.stopPropagation();
+            });
+        })();
+    </script>
+    
     <!-- Optimized Scripts -->
     <script src="script.js" defer></script>
     
