@@ -12,6 +12,157 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* Hacker News 风格博客模块 - 与首页颜色一致 */
+        .blog-section {
+            background: #f6f6ef;
+            padding: 40px 0;
+            border-top: 1px solid #eeeded;
+            border-bottom: 1px solid #eeeded;
+        }
+        
+        .blog-title {
+            font-size: 28px;
+            font-weight: bold;
+            color: #111;
+            margin-bottom: 20px;
+            font-family: 'Garamond', 'Georgia', serif;
+        }
+        
+        .blog-stats {
+            background: #fafaf9;
+            padding: 12px;
+            border: 1px solid #eeeded;
+            border-radius: 5px;
+            margin-bottom: 25px;
+            font-size: 13px;
+            color: #333;
+        }
+        
+        .blog-stats .stat-item {
+            margin-right: 15px;
+            display: inline-block;
+        }
+        
+        .blog-stats strong {
+            color: #111;
+        }
+        
+        /* Hacker News 表格风格 */
+        .blog-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 12px;
+            font-family: Verdana, Geneva, sans-serif;
+            background: #f6f6ef;
+        }
+        
+        .blog-table thead {
+            background: #fafaf9;
+            border-bottom: 1px solid #eeeded;
+        }
+        
+        .blog-table th {
+            text-align: left;
+            padding: 8px;
+            font-weight: bold;
+            color: #333;
+        }
+        
+        .blog-table td {
+            padding: 8px;
+            vertical-align: top;
+            border-bottom: 1px solid #eeeded;
+        }
+        
+        .blog-table .rank {
+            width: 40px;
+            text-align: center;
+            color: #828282;
+            font-weight: bold;
+        }
+        
+        .blog-table .title {
+            width: 60%;
+            padding-left: 12px;
+        }
+        
+        .blog-table .meta {
+            width: 35%;
+            color: #828282;
+            font-size: 11px;
+        }
+        
+        .blog-table .points {
+            width: 60px;
+            text-align: center;
+            color: #828282;
+            font-weight: bold;
+        }
+        
+        .blog-item:hover {
+            background: #f0f0f0;
+        }
+        
+        .story-link {
+            color: #000;
+            text-decoration: none;
+            font-size: 14px;
+            font-family: Verdana, Geneva, sans-serif;
+        }
+        
+        .story-link:hover {
+            color: #ff6600;
+            text-decoration: underline;
+        }
+        
+        .author {
+            color: #828282;
+        }
+        
+        .time {
+            color: #828282;
+        }
+        
+        .domain {
+            color: #828282;
+        }
+        
+        .blog-pagination {
+            margin-top: 20px;
+            padding: 12px;
+            background: #fafaf9;
+            border: 1px solid #eeeded;
+            border-radius: 5px;
+            font-size: 12px;
+            text-align: center;
+            color: #828282;
+        }
+        
+        .page-current {
+            color: #828282;
+        }
+        
+        /* 移动端适配 */
+        @media (max-width: 768px) {
+            .blog-table {
+                font-size: 11px;
+            }
+            
+            .blog-table .title {
+                width: 70%;
+            }
+            
+            .blog-table .meta {
+                width: 25%;
+                font-size: 10px;
+            }
+            
+            .blog-title {
+                font-size: 24px;
+            }
+        }
+    </style>
 </head>
 <body>
     <!-- 导航栏 -->
@@ -369,27 +520,123 @@
         </div>
     </section>
 
-    <!-- 博客板块 -->
+    <!-- 博客板块 - Hacker News 风格 -->
     <section id="blog" class="blog-section">
         <div class="container">
-            <div class="section-header">
-                <span class="section-label">博客</span>
-                <h2 class="section-title">📝 FaroAI 博客</h2>
-                <p class="section-description">
-                    分享技术文章、项目经验和学习心得
-                </p>
-                <div class="search-bar">
-                    <input type="text" class="search-input" id="searchInput" placeholder="搜索文章...">
-                    <span class="search-icon">🔍</span>
-                </div>
+            <h2 class="blog-title">📝 FaroAI 博客</h2>
+            <div class="blog-stats">
+                <span class="stat-item"><strong>6 篇</strong> 文章</span>
+                <span class="stat-item">最后更新 2026-03-30</span>
+                <span class="stat-item">分类：<strong>技术, AI, 项目, 硬件, 开发</strong></span>
             </div>
 
-            <div class="blog-grid" id="blogGrid">
-                <!-- 文章列表将通过 JS 动态生成 -->
-            </div>
+            <!-- 博客文章列表 - Hacker News 风格 -->
+            <table class="blog-table">
+                <thead>
+                    <tr>
+                        <th class="rank">#</th>
+                        <th class="title">标题</th>
+                        <th class="meta">元数据</th>
+                        <th class="points">分数</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- 文章 1 -->
+                    <tr class="blog-item">
+                        <td class="rank">1</td>
+                        <td class="title">
+                            <a href="#" class="story-link" onclick="openArticle(1); return false;">
+                                OpenClaw 使用指南 - 智能代理系统完整教程
+                            </a>
+                        </td>
+                        <td class="meta">
+                            <span class="author">炜哥</span> 
+                            <span class="time">2026-03-30</span>
+                            <span class="domain">(技术)</span>
+                        </td>
+                        <td class="points">42</td>
+                    </tr>
+                    <!-- 文章 2 -->
+                    <tr class="blog-item">
+                        <td class="rank">2</td>
+                        <td class="title">
+                            <a href="#" class="story-link" onclick="openArticle(2); return false;">
+                                ollama 本地 LLM 模型性能优化实践
+                            </a>
+                        </td>
+                        <td class="meta">
+                            <span class="author">炜哥</span> 
+                            <span class="time">2026-03-29</span>
+                            <span class="domain">(AI)</span>
+                        </td>
+                        <td class="points">38</td>
+                    </tr>
+                    <!-- 文章 3 -->
+                    <tr class="blog-item">
+                        <td class="rank">3</td>
+                        <td class="title">
+                            <a href="#" class="story-link" onclick="openArticle(3); return false;">
+                                FaroAI 个人博客网站搭建实录
+                            </a>
+                        </td>
+                        <td class="meta">
+                            <span class="author">炜哥</span> 
+                            <span class="time">2026-03-28</span>
+                            <span class="domain">(项目)</span>
+                        </td>
+                        <td class="points">35</td>
+                    </tr>
+                    <!-- 文章 4 -->
+                    <tr class="blog-item">
+                        <td class="rank">4</td>
+                        <td class="title">
+                            <a href="#" class="story-link" onclick="openArticle(4); return false;">
+                                Apple Silicon M4 Pro 深度性能评测
+                            </a>
+                        </td>
+                        <td class="meta">
+                            <span class="author">炜哥</span> 
+                            <span class="time">2026-03-27</span>
+                            <span class="domain">(硬件)</span>
+                        </td>
+                        <td class="points">31</td>
+                    </tr>
+                    <!-- 文章 5 -->
+                    <tr class="blog-item">
+                        <td class="rank">5</td>
+                        <td class="title">
+                            <a href="#" class="story-link" onclick="openArticle(5); return false;">
+                                机器学习入门 - 从概念到实践
+                            </a>
+                        </td>
+                        <td class="meta">
+                            <span class="author">炜哥</span> 
+                            <span class="time">2026-03-26</span>
+                            <span class="domain">(AI)</span>
+                        </td>
+                        <td class="points">27</td>
+                    </tr>
+                    <!-- 文章 6 -->
+                    <tr class="blog-item">
+                        <td class="rank">6</td>
+                        <td class="title">
+                            <a href="#" class="story-link" onclick="openArticle(6); return false;">
+                                微信机器人开发实战 - Python 完整教程
+                            </a>
+                        </td>
+                        <td class="meta">
+                            <span class="author">炜哥</span> 
+                            <span class="time">2026-03-25</span>
+                            <span class="domain">(开发)</span>
+                        </td>
+                        <td class="points">24</td>
+                    </tr>
+                </tbody>
+            </table>
 
-            <div class="pagination" id="pagination">
-                <!-- 分页按钮将通过 JS 动态生成 -->
+            <!-- 分页导航 -->
+            <div class="blog-pagination">
+                <span class="page-current">第 1 页，共 1 页</span>
             </div>
         </div>
     </section>
@@ -466,209 +713,84 @@
 
     <script src="script.js"></script>
     <script>
-    (function() {
-        'use strict';
-        
         // 博客文章数据
         const blogPosts = [
             {
                 id: 1,
-                title: 'OpenClaw 使用指南',
-                excerpt: '深入讲解 OpenClaw 的配置、部署和使用技巧，帮助你快速上手智能代理系统。',
-                category: '技术',
-                date: '2026-03-30',
+                title: 'OpenClaw 使用指南 - 智能代理系统完整教程',
+                excerpt: '深入讲解 OpenClaw 的配置、部署和使用技巧，帮助你快速上手智能代理系统。涵盖模型配置、路由规则、技能系统、消息集成等核心功能。',
                 author: '炜哥',
-                image: '🤖',
-                content: '完整文章内容...'
+                date: '2026-03-30',
+                category: '技术',
+                points: 42,
+                comments: 12,
+                content: '本文详细介绍了 OpenClaw 智能代理系统的完整使用指南，包括：\n\n1. 系统安装与配置\n2. 模型选择与优化\n3. 路由规则设置\n4. 技能系统使用\n5. 消息渠道集成\n6. 性能优化技巧\n\n适合有一定技术背景的开发者。'
             },
             {
                 id: 2,
-                title: 'ollama 模型优化实践',
-                excerpt: '分享本地 LLM 模型的性能优化经验，包括参数调整、内存管理等内容。',
-                category: 'AI',
-                date: '2026-03-29',
+                title: 'ollama 本地 LLM 模型性能优化实践',
+                excerpt: '分享本地 LLM 模型的性能优化经验，包括参数调整、内存管理、量化压缩等内容。',
                 author: '炜哥',
-                image: '🧠',
-                content: '完整文章内容...'
+                date: '2026-03-29',
+                category: 'AI',
+                points: 38,
+                comments: 8,
+                content: '深入分析 ollama 模型的性能瓶颈和优化方案：\n\n- 量化参数调整\n- 显存优化策略\n- 模型选择建议\n- 推理速度提升技巧\n\n实测提升 30%+ 推理速度。'
             },
             {
                 id: 3,
-                title: 'FaroAI 网站建设心得',
+                title: 'FaroAI 个人博客网站搭建实录',
                 excerpt: '记录 FaroAI 个人博客从 0 到 1 的搭建过程，包括技术选型和部署经验。',
-                category: '项目',
-                date: '2026-03-28',
                 author: '炜哥',
-                image: '🚀',
-                content: '完整文章内容...'
+                date: '2026-03-28',
+                category: '项目',
+                points: 35,
+                comments: 15,
+                content: '从零搭建个人博客网站的完整记录：\n\n- 技术栈选择\n- 页面设计思路\n- 部署流程\n- SEO 优化经验\n- 后续迭代计划'
             },
             {
                 id: 4,
-                title: 'Apple Silicon 性能评测',
+                title: 'Apple Silicon M4 Pro 深度性能评测',
                 excerpt: 'M4 Pro 芯片的性能测试和实际使用体验分享。',
-                category: '硬件',
-                date: '2026-03-27',
                 author: '炜哥',
-                image: '💻',
-                content: '完整文章内容...'
+                date: '2026-03-27',
+                category: '硬件',
+                points: 31,
+                comments: 6,
+                content: '全面测试 M4 Pro 芯片在各种场景下的表现：\n\n- 单核/多核性能\n- 图形处理能力\n- 能效比分析\n- 实际开发体验\n- 与 Intel 对比'
             },
             {
                 id: 5,
-                title: '机器学习入门指南',
+                title: '机器学习入门 - 从概念到实践',
                 excerpt: '为初学者准备的机器学习入门教程，涵盖基本概念和常用算法。',
-                category: 'AI',
-                date: '2026-03-26',
                 author: '炜哥',
-                image: '📚',
-                content: '完整文章内容...'
+                date: '2026-03-26',
+                category: 'AI',
+                points: 27,
+                comments: 9,
+                content: '机器学习入门基础知识：\n\n- 监督/非监督学习\n- 常用算法介绍\n- Python 实战案例\n- 数据集选择\n- 模型评估指标'
             },
             {
                 id: 6,
-                title: '微信机器人开发实战',
+                title: '微信机器人开发实战 - Python 完整教程',
                 excerpt: '使用 Python 开发微信机器人的完整教程，包括 API 调用和消息处理。',
-                category: '开发',
-                date: '2026-03-25',
                 author: '炜哥',
-                image: '🤖',
-                content: '完整文章内容...'
+                date: '2026-03-25',
+                category: '开发',
+                points: 24,
+                comments: 11,
+                content: '微信机器人开发实战教程：\n\n- Python 环境配置\n- API 调用流程\n- 消息类型处理\n- 自动回复逻辑\n- 安全防护机制'
             }
         ];
 
-        // 状态变量
-        let currentPage = 1;
-        const postsPerPage = 6;
-        let filteredPosts = [...blogPosts];
-
-        // DOM 元素
-        const blogGrid = document.getElementById('blogGrid');
-        const pagination = document.getElementById('pagination');
-        const searchInput = document.getElementById('searchInput');
-
-        // 渲染文章列表
-        function renderPosts() {
-            blogGrid.innerHTML = '';
-            
-            const startIndex = (currentPage - 1) * postsPerPage;
-            const endIndex = startIndex + postsPerPage;
-            const paginatedPosts = filteredPosts.slice(startIndex, endIndex);
-
-            if (paginatedPosts.length === 0) {
-                blogGrid.innerHTML = '<div style="grid-column: 1/-1; text-align: center; padding: 60px; color: #666;">暂无文章</div>';
-                return;
-            }
-
-            paginatedPosts.forEach(post => {
-                const card = document.createElement('div');
-                card.className = 'blog-card';
-                card.innerHTML = `
-                    <div class="blog-card-image">${post.image}</div>
-                    <div class="blog-card-content">
-                        <h2 class="blog-card-title">${post.title}</h2>
-                        <p class="blog-card-excerpt">${post.excerpt}</p>
-                        <div class="blog-card-meta">
-                            <span class="blog-card-date">📅 ${post.date}</span>
-                            <span class="blog-card-category">${post.category}</span>
-                        </div>
-                        <a href="#" class="blog-card-cta" onclick="openArticle(${post.id}); return false;">
-                            阅读全文 →
-                        </a>
-                    </div>
-                `;
-                card.addEventListener('click', () => openArticle(post.id));
-                blogGrid.appendChild(card);
-            });
-        }
-
-        // 渲染分页
-        function renderPagination() {
-            pagination.innerHTML = '';
-            const totalPages = Math.ceil(filteredPosts.length / postsPerPage);
-
-            if (totalPages <= 1) return;
-
-            // 上一页
-            const prevBtn = document.createElement('button');
-            prevBtn.className = 'pagination-btn';
-            prevBtn.textContent = '← 上一页';
-            prevBtn.disabled = currentPage === 1;
-            prevBtn.onclick = () => {
-                if (currentPage > 1) {
-                    currentPage--;
-                    renderPosts();
-                    renderPagination();
-                    window.scrollTo({ top: document.getElementById('blog').offsetTop - 50, behavior: 'smooth' });
-                }
-            };
-            pagination.appendChild(prevBtn);
-
-            // 页码
-            for (let i = 1; i <= totalPages; i++) {
-                if (i === 1 || i === totalPages || (i >= currentPage - 1 && i <= currentPage + 1)) {
-                    const pageBtn = document.createElement('button');
-                    pageBtn.className = 'pagination-btn' + (i === currentPage ? ' active' : '');
-                    pageBtn.textContent = i;
-                    pageBtn.onclick = () => {
-                        currentPage = i;
-                        renderPosts();
-                        renderPagination();
-                        window.scrollTo({ top: document.getElementById('blog').offsetTop - 50, behavior: 'smooth' });
-                    };
-                    pagination.appendChild(pageBtn);
-                } else if (i === currentPage - 2 || i === currentPage + 2) {
-                    const ellipsis = document.createElement('span');
-                    ellipsis.className = 'pagination-btn';
-                    ellipsis.textContent = '...';
-                    ellipsis.disabled = true;
-                    pagination.appendChild(ellipsis);
-                }
-            }
-
-            // 下一页
-            const nextBtn = document.createElement('button');
-            nextBtn.className = 'pagination-btn';
-            nextBtn.textContent = '下一页 →';
-            nextBtn.disabled = currentPage === totalPages;
-            nextBtn.onclick = () => {
-                if (currentPage < totalPages) {
-                    currentPage++;
-                    renderPosts();
-                    renderPagination();
-                    window.scrollTo({ top: document.getElementById('blog').offsetTop - 50, behavior: 'smooth' });
-                }
-            };
-            pagination.appendChild(nextBtn);
-        }
-
-        // 打开文章
+        // 打开文章详情
         function openArticle(id) {
             const post = blogPosts.find(p => p.id === id);
             if (post) {
-                alert(`📖 ${post.title}\n\n${post.excerpt}\n\n完整内容将在未来版本中显示！`);
+                const content = `📖 ${post.title}\n\n作者：${post.author}\n日期：${post.date}\n分类：${post.category}\n\n📄 内容摘要:\n${post.excerpt}\n\n💬 完整内容:\n${post.content}\n\n💡 本文共 ${post.points} 分，${post.comments} 条评论`;
+                alert(content);
             }
         }
-
-        // 搜索功能
-        function searchPosts(query) {
-            query = query.toLowerCase().trim();
-            filteredPosts = blogPosts.filter(post => 
-                post.title.toLowerCase().includes(query) ||
-                post.excerpt.toLowerCase().includes(query) ||
-                post.category.toLowerCase().includes(query)
-            );
-            currentPage = 1;
-            renderPosts();
-            renderPagination();
-        }
-
-        // 事件监听器
-        searchInput.addEventListener('input', (e) => {
-            searchPosts(e.target.value);
-        });
-
-        // 初始化
-        renderPosts();
-        renderPagination();
-
-    })();
     </script>
 </body>
 </html>
