@@ -178,7 +178,7 @@
                         无论是个人还是团队，都能在这里找到提升效率的解决方案。
                     </p>
                     <div class="hero-actions">
-                        <a href="#" class="btn btn-primary btn-large btn-play-video" aria-label="观看 OpenClaw 介绍视频">
+                        <button type="button" class="btn btn-primary btn-large btn-play-video" aria-label="观看 OpenClaw 介绍视频">
                             <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="margin-right: 8px;">
                                 <path d="M8 5v14l11-7z"/>
                             </svg>
@@ -186,13 +186,13 @@
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true" style="margin-left: 8px;">
                                 <path d="M5 12h14M12 5l7 7-7 7"/>
                             </svg>
-                        </a>
-                        <a href="#" class="btn btn-secondary btn-large" aria-label="观看演示视频">
+                        </button>
+                        <button type="button" class="btn btn-secondary btn-large btn-watch-demo" aria-label="观看 OpenClaw 定制工具演示">
                             <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                                 <path d="M8 5v14l11-7z"/>
                             </svg>
                             <span>观看演示</span>
-                        </a>
+                        </button>
                     </div>
                     <div class="hero-stats" aria-label="统计数据">
                         <div class="stat" data-count="10000" data-suffix="+">
@@ -490,7 +490,7 @@
         </section>
     </main>
 
-    <!-- 视频模态框 -->
+    <!-- 视频模态框 - 介绍视频 -->
     <div id="videoModal" class="video-modal" aria-hidden="true">
         <div class="video-modal-backdrop"></div>
         <div class="video-modal-content" role="dialog" aria-modal="true" aria-labelledby="videoModalTitle">
@@ -516,6 +516,39 @@
                 <div class="video-modal-info">
                     <p>深度解析 OpenClaw 的 AI Agent 运作原理，适合想要深入了解技术细节的观众。</p>
                     <a href="https://www.youtube.com/watch?v=2rcJdFuNbZQ" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-small">
+                        在 YouTube 观看
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 视频模态框 - 演示视频 -->
+    <div id="demoModal" class="video-modal" aria-hidden="true">
+        <div class="video-modal-backdrop"></div>
+        <div class="video-modal-content" role="dialog" aria-modal="true" aria-labelledby="demoModalTitle">
+            <button class="video-modal-close" aria-label="关闭视频">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
+                    <path d="M18 6L6 18M6 6l12 12"/>
+                </svg>
+            </button>
+            <div class="video-modal-body">
+                <h2 id="demoModalTitle" class="video-modal-title">OpenClaw 定制工具演示</h2>
+                <div class="video-container">
+                    <!-- 推荐视频：爆肝 10 亿 token，我给 OpenClaw 做了个龙虾管家 Qclaw！ -->
+                    <iframe 
+                        src="https://www.youtube.com/embed/5kO-XEDhNgM?rel=0&modestbranding=1" 
+                        title="OpenClaw 定制工具演示" 
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen
+                        loading="lazy"
+                        referrerpolicy="strict-origin-when-cross-origin">
+                    </iframe>
+                </div>
+                <div class="video-modal-info">
+                    <p>介绍 OpenClaw 的定制化工具 Qclaw（龙虾管家），探索其强大功能和使用场景。</p>
+                    <a href="https://www.youtube.com/watch?v=5kO-XEDhNgM" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-small">
                         在 YouTube 观看
                     </a>
                 </div>
@@ -595,26 +628,31 @@
 
     <!-- Video Modal Scripts -->
     <script>
-        // 视频模态框功能
+        // 视频模态框功能 - 支持多个模态框
         (function() {
-            const modal = document.getElementById('videoModal');
-            const backdrop = modal?.querySelector('.video-modal-backdrop');
-            const closeBtn = modal?.querySelector('.video-modal-close');
+            // 第一个模态框：介绍视频
+            const videoModal = document.getElementById('videoModal');
+            const videoBackdrop = videoModal?.querySelector('.video-modal-backdrop');
+            const videoCloseBtn = videoModal?.querySelector('.video-modal-close');
             const playBtns = document.querySelectorAll('.btn-play-video');
             
-            if (!modal) return;
+            // 第二个模态框：演示视频
+            const demoModal = document.getElementById('demoModal');
+            const demoBackdrop = demoModal?.querySelector('.video-modal-backdrop');
+            const demoCloseBtn = demoModal?.querySelector('.video-modal-close');
+            const demoBtn = document.querySelector('.btn-watch-demo');
             
-            // 打开模态框
-            function openModal() {
+            // 打开模态框函数
+            function openModal(modal) {
                 modal.setAttribute('aria-hidden', 'false');
-                document.body.style.overflow = 'hidden'; // 禁止滚动
+                document.body.style.overflow = 'hidden';
                 modal.querySelector('.video-modal-content')?.focus();
             }
             
-            // 关闭模态框
-            function closeModal() {
+            // 关闭模态框函数
+            function closeModal(modal) {
                 modal.setAttribute('aria-hidden', 'true');
-                document.body.style.overflow = ''; // 恢复滚动
+                document.body.style.overflow = '';
                 // 停止视频播放
                 const iframe = modal.querySelector('iframe');
                 if (iframe) {
@@ -623,28 +661,49 @@
                 }
             }
             
-            // 绑定事件
-            playBtns.forEach(btn => {
-                btn.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    openModal();
+            // 第一个模态框事件绑定
+            if (videoModal) {
+                playBtns.forEach(btn => {
+                    btn.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        openModal(videoModal);
+                    });
                 });
-            });
+                
+                videoBackdrop?.addEventListener('click', () => closeModal(videoModal));
+                videoCloseBtn?.addEventListener('click', () => closeModal(videoModal));
+                
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === 'Escape' && videoModal.getAttribute('aria-hidden') === 'false') {
+                        closeModal(videoModal);
+                    }
+                });
+                
+                videoModal.querySelector('.video-modal-content')?.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                });
+            }
             
-            backdrop?.addEventListener('click', closeModal);
-            closeBtn?.addEventListener('click', closeModal);
-            
-            // ESC 键关闭
-            document.addEventListener('keydown', (e) => {
-                if (e.key === 'Escape' && modal.getAttribute('aria-hidden') === 'false') {
-                    closeModal();
-                }
-            });
-            
-            // 阻止冒泡
-            modal.querySelector('.video-modal-content')?.addEventListener('click', (e) => {
-                e.stopPropagation();
-            });
+            // 第二个模态框事件绑定
+            if (demoModal && demoBtn) {
+                demoBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    openModal(demoModal);
+                });
+                
+                demoBackdrop?.addEventListener('click', () => closeModal(demoModal));
+                demoCloseBtn?.addEventListener('click', () => closeModal(demoModal));
+                
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === 'Escape' && demoModal.getAttribute('aria-hidden') === 'false') {
+                        closeModal(demoModal);
+                    }
+                });
+                
+                demoModal.querySelector('.video-modal-content')?.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                });
+            }
         })();
     </script>
     
