@@ -626,6 +626,63 @@
         </div>
     </footer>
 
+    <!-- 登录注册模态框 -->
+    <div id="authModal" class="auth-modal" aria-hidden="true">
+        <div class="auth-modal-backdrop"></div>
+        <div class="auth-modal-content" role="dialog" aria-modal="true" aria-labelledby="authModalTitle">
+            <button class="auth-modal-close" aria-label="关闭">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
+                    <path d="M18 6L6 18M6 6l12 12"/>
+                </svg>
+            </button>
+            <div class="auth-tabs">
+                <button class="auth-tab active" data-tab="login">登录</button>
+                <button class="auth-tab" data-tab="signup">注册</button>
+            </div>
+            <form id="loginForm" class="auth-form">
+                <h2 id="authModalTitle" class="auth-title">欢迎回来</h2>
+                <div class="form-group">
+                    <label for="loginEmail" class="form-label">邮箱</label>
+                    <input type="email" id="loginEmail" class="form-input" placeholder="your@email.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="loginPassword" class="form-label">密码</label>
+                    <input type="password" id="loginPassword" class="form-input" placeholder="••••••••" required>
+                </div>
+                <div class="form-actions">
+                    <a href="#" class="forgot-link">忘记密码？</a>
+                </div>
+                <button type="submit" class="btn btn-primary btn-full btn-login">登录</button>
+            </form>
+            <form id="signupForm" class="auth-form" style="display: none;">
+                <h2 class="auth-title">创建账户</h2>
+                <div class="form-group">
+                    <label for="signupName" class="form-label">姓名</label>
+                    <input type="text" id="signupName" class="form-input" placeholder="您的姓名" required>
+                </div>
+                <div class="form-group">
+                    <label for="signupEmail" class="form-label">邮箱</label>
+                    <input type="email" id="signupEmail" class="form-input" placeholder="your@email.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="signupPassword" class="form-label">密码</label>
+                    <input type="password" id="signupPassword" class="form-input" placeholder="至少 8 个字符" required minlength="8">
+                </div>
+                <div class="form-group">
+                    <label for="signupConfirm" class="form-label">确认密码</label>
+                    <input type="password" id="signupConfirm" class="form-input" placeholder="再次输入密码" required>
+                </div>
+                <div class="form-note">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                    </svg>
+                    <span>通过创建账户，您同意我们的服务条款和隐私政策</span>
+                </div>
+                <button type="submit" class="btn btn-primary btn-full btn-signup">注册账户</button>
+            </form>
+        </div>
+    </div>
+
     <!-- Video Modal Scripts -->
     <script>
         // 视频模态框功能 - 支持多个模态框
@@ -705,6 +762,163 @@
                 });
             }
         })();
+    </script>
+
+    <!-- 登录注册功能 -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const authModal = document.getElementById('authModal');
+            const authBackdrop = authModal?.querySelector('.auth-modal-backdrop');
+            const authCloseBtn = authModal?.querySelector('.auth-modal-close');
+            const authTabs = authModal?.querySelectorAll('.auth-tab');
+            const loginForm = document.getElementById('loginForm');
+            const signupForm = document.getElementById('signupForm');
+            const navLoginBtn = document.querySelector('.btn-login');
+            const navSignupBtn = document.querySelector('.btn-signup');
+            
+            if (!authModal) return;
+            
+            // 打开模态框
+            function openAuthModal() {
+                authModal.setAttribute('aria-hidden', 'false');
+                document.body.style.overflow = 'hidden';
+            }
+            
+            // 关闭模态框
+            function closeAuthModal() {
+                authModal.setAttribute('aria-hidden', 'true');
+                document.body.style.overflow = '';
+            }
+            
+            // 切换标签
+            authTabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    const tabName = this.dataset.tab;
+                    
+                    // 更新激活状态
+                    authTabs.forEach(t => t.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // 显示对应表单
+                    if (tabName === 'login') {
+                        loginForm.style.display = 'block';
+                        signupForm.style.display = 'none';
+                    } else {
+                        loginForm.style.display = 'none';
+                        signupForm.style.display = 'block';
+                    }
+                });
+            });
+            
+            // 导航按钮触发
+            if (navLoginBtn) {
+                navLoginBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    openAuthModal();
+                });
+            }
+            
+            if (navSignupBtn) {
+                navSignupBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    openAuthModal();
+                    // 自动切换到注册标签
+                    const signupTab = authModal.querySelector('[data-tab="signup"]');
+                    if (signupTab) signupTab.click();
+                });
+            }
+            
+            // 关闭事件
+            authBackdrop?.addEventListener('click', closeAuthModal);
+            authCloseBtn?.addEventListener('click', closeAuthModal);
+            
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && authModal.getAttribute('aria-hidden') === 'false') {
+                    closeAuthModal();
+                }
+            });
+            
+            // 阻止冒泡
+            authModal.querySelector('.auth-modal-content')?.addEventListener('click', (e) => {
+                e.stopPropagation();
+            });
+            
+            // 登录表单提交
+            if (loginForm) {
+                loginForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    const email = document.getElementById('loginEmail').value;
+                    const password = document.getElementById('loginPassword').value;
+                    
+                    // 模拟登录（实际项目应连接后端 API）
+                    console.log('登录尝试:', { email, password });
+                    
+                    // 显示加载状态
+                    const submitBtn = this.querySelector('.btn-login');
+                    submitBtn.textContent = '登录中...';
+                    submitBtn.disabled = true;
+                    
+                    // 模拟网络请求
+                    setTimeout(() => {
+                        // 这里可以添加实际登录逻辑
+                        alert('登录功能已准备就绪！连接后端 API 后可正常登录。');
+                        submitBtn.textContent = '登录';
+                        submitBtn.disabled = false;
+                    }, 1000);
+                });
+            }
+            
+            // 注册表单提交
+            if (signupForm) {
+                signupForm.addEventListener('submit', function(e) => {
+                    e.preventDefault();
+                    
+                    const name = document.getElementById('signupName').value;
+                    const email = document.getElementById('signupEmail').value;
+                    const password = document.getElementById('signupPassword').value;
+                    const confirm = document.getElementById('signupConfirm').value;
+                    
+                    // 验证密码匹配
+                    if (password !== confirm) {
+                        alert('两次输入的密码不一致，请重新输入。');
+                        return;
+                    }
+                    
+                    // 验证密码强度
+                    if (password.length < 8) {
+                        alert('密码至少需要 8 个字符。');
+                        return;
+                    }
+                    
+                    // 模拟注册（实际项目应连接后端 API）
+                    console.log('注册尝试:', { name, email, password });
+                    
+                    // 显示加载状态
+                    const submitBtn = this.querySelector('.btn-signup');
+                    submitBtn.textContent = '注册中...';
+                    submitBtn.disabled = true;
+                    
+                    // 模拟网络请求
+                    setTimeout(() => {
+                        // 这里可以添加实际注册逻辑
+                        alert('注册功能已准备就绪！连接后端 API 后可正常注册。');
+                        submitBtn.textContent = '注册账户';
+                        submitBtn.disabled = false;
+                        
+                        // 切换到登录标签
+                        const loginTab = authModal.querySelector('[data-tab="login"]');
+                        if (loginTab) loginTab.click();
+                    }, 1000);
+                });
+            }
+            
+            // 密码可见性切换（可选功能）
+            const passwordInputs = document.querySelectorAll('input[type="password"]');
+            passwordInputs.forEach(input => {
+                // 可以添加密码可见性切换按钮
+            });
+        });
     </script>
     
     <!-- Optimized Scripts -->
