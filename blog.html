@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FaroAI 博客 - 技术见解与更新</title>
+    <meta name="description" content="FaroAI 官方博客，分享 AI 技术见解、产品更新和开发经验。">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="blog.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- 导航栏 -->
+    <header class="header" role="banner">
+        <div class="container">
+            <nav class="navbar" role="navigation" aria-label="主导航">
+                <a href="index.html" class="logo" aria-label="FaroAI 首页">
+                    <svg class="logo-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                    </svg>
+                    <span class="logo-text">FaroAI</span>
+                </a>
+                <ul class="nav-menu">
+                    <li><a href="index.html#home">首页</a></li>
+                    <li><a href="index.html#features">功能</a></li>
+                    <li><a href="index.html#pricing">定价</a></li>
+                    <li><a href="blog.html">博客</a></li>
+                    <li><a href="个人概况_2026_v3.html">关于我</a></li>
+                </ul>
+                <div class="nav-actions">
+                    <a href="#login" class="btn btn-outline">登录</a>
+                    <a href="#signup" class="btn btn-primary">开始使用</a>
+                </div>
+                <button class="mobile-menu-btn" aria-label="菜单" aria-expanded="false" aria-controls="mobile-menu">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
+                        <path d="M3 12h18M3 6h18M3 18h18"/>
+                    </svg>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <main id="main">
+        <!-- 博客首页 -->
+        <section class="blog-hero">
+            <div class="container">
+                <div class="blog-hero-content">
+                    <h1 class="blog-title">博客</h1>
+                    <p class="blog-description">分享 AI 技术见解、产品更新和开发经验</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 博客列表 -->
+        <section class="blog-list">
+            <div class="container">
+                <!-- 筛选和排序 -->
+                <div class="blog-filters">
+                    <div class="filter-group">
+                        <button class="filter-btn active" data-category="all">全部</button>
+                        <button class="filter-btn" data-category="product">产品更新</button>
+                        <button class="filter-btn" data-category="technical">技术文章</button>
+                        <button class="filter-btn" data-category="tutorial">教程</button>
+                        <button class="filter-btn" data-category="news">行业动态</button>
+                    </div>
+                    <div class="sort-group">
+                        <span class="sort-label">排序:</span>
+                        <select class="sort-select">
+                            <option value="date">最新优先</option>
+                            <option value="popular">最受欢迎</option>
+                            <option value="comments">评论最多</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- 文章列表 -->
+                <div class="articles" id="articles">
+                    <!-- 文章 1 -->
+                    <article class="article-card featured" data-category="technical" data-upvotes="156" data-comments="48">
+                        <div class="article-vote">
+                            <button class="vote-btn up" aria-label="赞同">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
+                                    <path d="M12 19V5M5 12l7-7 7 7"/>
+                                </svg>
+                            </button>
+                            <span class="vote-count">156</span>
+                            <button class="vote-btn down" aria-label="反对">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
+                                    <path d="M12 5v14M19 12l-7 7-7-7"/>
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="article-content">
+                            <div class="article-header">
+                                <a href="#" class="article-title">OpenClaw Level 8 智能调度系统正式发布</a>
+                                <span class="article-category category-technical">技术文章</span>
+                            </div>
+                            <p class="article-excerpt">
+                                我们自豪地宣布 OpenClaw Level 8 智能调度系统正式发布！该系统采用三层模型架构，实现 0 延迟模型切换、自动性能优化和预测性响应。
+                            </p>
+                            <div class="article-meta">
+                                <a href="#" class="article-author">炜哥</a>
+                                <span class="article-date">2026-04-01</span>
+                                <a href="#comments" class="article-comments">48 条评论</a>
+                                <div class="article-tags">
+                                    <span class="tag">AI 调度</span>
+                                    <span class="tag">性能优化</span>
+                                    <span class="tag">智能路由</span>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- 文章 2 -->
+                    <article class="article-card featured" data-category="product" data-upvotes="89" data-comments="32">
+                        <div class="article-vote">
+                            <button class="vote-btn up" aria-label="赞同">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
+                                    <path d="M12 19V5M5 12l7-7 7 7"/>
+                                </svg>
+                            </button>
+                            <span class="vote-count">89</span>
+                            <button class="vote-btn down" aria-label="反对">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
+                                    <path d="M12 5v14M19 12l-7 7-7-7"/>
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="article-content">
+                            <div class="article-header">
+                                <a href="#" class="article-title">视频模态框功能上线：沉浸式观看体验</a>
+                                <span class="article-category category-product">产品更新</span>
+                            </div>
+                            <p class="article-excerpt">
+                                新增视频模态框功能，支持全屏播放、自动停止、响应式设计。现在可以在网站内直接观看 OpenClaw 介绍视频，无需跳转到 YouTube。
+                            </p>
+                            <div class="article-meta">
+                                <a href="#" class="article-author">炜哥</a>
+                                <span class="article-date">2026-03-30</span>
+                                <a href="#comments" class="article-comments">32 条评论</a>
+                                <div class="article-tags">
+                                    <span class="tag">UI 更新</span>
+                                    <span class="tag">用户体验</span>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- 文章 3 -->
+                    <article class="article-card" data-category="tutorial" data-upvotes="67" data-comments="24">
+                        <div class="article-vote">
+                            <button class="vote-btn up" aria-label="赞同">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
+                                    <path d="M12 19V5M5 12l7-7 7 7"/>
+                                </svg>
+                            </button>
+                            <span class="vote-count">67</span>
+                            <button class="vote-btn down" aria-label="反对">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
+                                    <path d="M12 5v14M19 12l-7 7-7-7"/>
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="article-content">
+                            <div class="article-header">
+                                <a href="#" class="article-title">OpenClaw Skill 系统完整指南：从零到精通</a>
+                                <span class="article-category category-tutorial">教程</span>
+                            </div>
+                            <p class="article-excerpt">
+                                本文详细介绍 OpenClaw Skill 系统的核心概念、创建流程、最佳实践和高级技巧。适合所有水平的开发者。
+                            </p>
+                            <div class="article-meta">
+                                <a href="#" class="article-author">炜哥</a>
+                                <span class="article-date">2026-03-29</span>
+                                <a href="#comments" class="article-comments">24 条评论</a>
+                                <div class="article-tags">
+                                    <span class="tag">教程</span>
+                                    <span class="tag">Skill 系统</span>
+                                    <span class="tag">开发指南</span>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- 文章 4 -->
+                    <article class="article-card" data-category="technical" data-upvotes="54" data-comments="18">
+                        <div class="article-vote">
+                            <button class="vote-btn up" aria-label="赞同">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
+                                    <path d="M12 19V5M5 12l7-7 7 7"/>
+                                </svg>
+                            </button>
+                            <span class="vote-count">54</span>
+                            <button class="vote-btn down" aria-label="反对">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
+                                    <path d="M12 5v14M19 12l-7 7-7-7"/>
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="article-content">
+                            <div class="article-header">
+                                <a href="#" class="article-title">本地 LLM 部署实践：Ollama 优化技巧分享</a>
+                                <span class="article-category category-technical">技术文章</span>
+                            </div>
+                            <p class="article-excerpt">
+                                分享本地部署 LLM 的完整经验，包括模型选择、参数调优、性能监控和常见问题解决。100% 本地部署，零隐私风险。
+                            </p>
+                            <div class="article-meta">
+                                <a href="#" class="article-author">炜哥</a>
+                                <span class="article-date">2026-03-28</span>
+                                <a href="#comments" class="article-comments">18 条评论</a>
+                                <div class="article-tags">
+                                    <span class="tag">LLM</span>
+                                    <span class="tag">Ollama</span>
+                                    <span class="tag">本地部署</span>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- 文章 5 -->
+                    <article class="article-card" data-category="product" data-updates="42" data-comments="15">
+                        <div class="article-vote">
+                            <button class="vote-btn up" aria-label="赞同">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
+                                    <path d="M12 19V5M5 12l7-7 7 7"/>
+                                </svg>
+                            </button>
+                            <span class="vote-count">42</span>
+                            <button class="vote-btn down" aria-label="反对">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
+                                    <path d="M12 5v14M19 12l-7 7-7-7"/>
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="article-content">
+                            <div class="article-header">
+                                <a href="#" class="article-title">FaroAI 2.0 版本发布：全新特性一览</a>
+                                <span class="article-category category-product">产品更新</span>
+                            </div>
+                            <p class="article-excerpt">
+                                FaroAI 2.0 正式发布！包括新的智能路由引擎、预测性响应系统、自适应学习机制和安全隔离沙箱环境。
+                            </p>
+                            <div class="article-meta">
+                                <a href="#" class="article-author">炜哥</a>
+                                <span class="article-date">2026-03-27</span>
+                                <a href="#comments" class="article-comments">15 条评论</a>
+                                <div class="article-tags">
+                                    <span class="tag">版本更新</span>
+                                    <span class="tag">新功能</span>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- 文章 6 -->
+                    <article class="article-card" data-category="news" data-upvotes="38" data-comments="12">
+                        <div class="article-vote">
+                            <button class="vote-btn up" aria-label="赞同">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
+                                    <path d="M12 19V5M5 12l7-7 7 7"/>
+                                </svg>
+                            </button>
+                            <span class="vote-count">38</span>
+                            <button class="vote-btn down" aria-label="反对">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
+                                    <path d="M12 5v14M19 12l-7 7-7-7"/>
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="article-content">
+                            <div class="article-header">
+                                <a href="#" class="article-title">AI 助手市场趋势分析：2026 年展望</a>
+                                <span class="article-category category-news">行业动态</span>
+                            </div>
+                            <p class="article-excerpt">
+                                分析 AI 助手市场最新趋势，包括本地化部署需求增长、多模态 AI 普及、自动化工作流需求增加等关键洞察。
+                            </p>
+                            <div class="article-meta">
+                                <a href="#" class="article-author">炜哥</a>
+                                <span class="article-date">2026-03-26</span>
+                                <a href="#comments" class="article-comments">12 条评论</a>
+                                <div class="article-tags">
+                                    <span class="tag">市场分析</span>
+                                    <span class="tag">行业趋势</span>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+
+                <!-- 分页 -->
+                <div class="blog-pagination">
+                    <button class="page-btn prev" disabled>上一页</button>
+                    <button class="page-btn active">1</button>
+                    <button class="page-btn">2</button>
+                    <button class="page-btn">3</button>
+                    <span class="page-ellipsis">...</span>
+                    <button class="page-btn">10</button>
+                    <button class="page-btn next">下一页</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- 相关文章 -->
+        <section class="related-posts">
+            <div class="container">
+                <h2 class="section-title">相关文章</h2>
+                <div class="related-grid">
+                    <a href="#" class="related-card">
+                        <div class="related-content">
+                            <h3 class="related-title">OpenClaw 用户指南：快速开始</h3>
+                            <p class="related-excerpt">如何快速上手 OpenClaw？本文为你提供详细的入门指南。</p>
+                            <span class="related-meta">2026-03-25</span>
+                        </div>
+                    </a>
+                    <a href="#" class="related-card">
+                        <div class="related-content">
+                            <h3 class="related-title">API 集成最佳实践</h3>
+                            <p class="related-excerpt">通过 RESTful API 和 Webhook 与现有系统无缝集成。</p>
+                            <span class="related-meta">2026-03-24</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- 页脚 -->
+    <footer class="footer" role="contentinfo">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <a href="index.html" class="logo" aria-label="FaroAI 首页">
+                        <svg class="logo-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                        </svg>
+                        <span class="logo-text">OpenClaw</span>
+                    </a>
+                    <p class="footer-description">下一代 AI 助手平台，打造你的智能数字伴侣。</p>
+                    <div class="social-links" role="navigation" aria-label="社交媒体链接">
+                        <a href="#" aria-label="GitHub">
+                            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.231.961-.267 1.986-.4 3.001-.4 1.016.001 2.04.133 3.001.4 2.291-1.553 3.297-1.231 3.297-1.231.653 1.652.242 2.873.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                            </svg>
+                        </a>
+                        <a href="#" aria-label="Twitter">
+                            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/>
+                            </svg>
+                        </a>
+                        <a href="#" aria-label="Discord">
+                            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h4>产品</h4>
+                    <ul>
+                        <li><a href="index.html#features">功能特性</a></li>
+                        <li><a href="index.html#pricing">定价方案</a></li>
+                        <li><a href="#">Changelog</a></li>
+                        <li><a href="#">Roadmap</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>资源</h4>
+                    <ul>
+                        <li><a href="#">文档</a></li>
+                        <li><a href="#">API 参考</a></li>
+                        <li><a href="#">社区</a></li>
+                        <li><a href="#">帮助支持</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>公司</h4>
+                    <ul>
+                        <li><a href="个人概况_2026_v3.html">关于我</a></li>
+                        <li><a href="blog.html">博客</a></li>
+                        <li><a href="#">联系方式</a></li>
+                        <li><a href="#">加入我们</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-copyright">
+                    <span>&copy; 2026 OpenClaw. All rights reserved.</span>
+                    <a href="#">隐私政策</a>
+                    <a href="#">服务条款</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- 博客脚本 -->
+    <script src="blog.js" defer></script>
+</body>
+</html>
