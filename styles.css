@@ -193,6 +193,17 @@ a:hover {
 }
 
 .logo-text {
+    display: inline-block;
+    font-weight: 700;
+    font-size: 1.5rem;
+}
+
+.logo-text-red {
+    color: #E60000;
+    font-weight: 700;
+}
+
+.logo-text-gradient {
     background: var(--gradient-primary);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
