@@ -148,7 +148,12 @@
                     <li><a href="个人概况_2026_v3.html">关于我</a></li>
                 </ul>
                 <div class="nav-actions">
-                    <a href="#login" class="btn btn-outline">登录</a>
+                    <button type="button" class="btn btn-outline btn-login-trigger" aria-label="登录" aria-expanded="false" aria-controls="loginModal">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true" style="margin-right: 6px; width: 18px; height: 18px;">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                        </svg>
+                        <span>登录</span>
+                    </button>
                     <a href="#signup" class="btn btn-primary">开始使用</a>
                 </div>
                 <button class="mobile-menu-btn" aria-label="菜单" aria-expanded="false" aria-controls="mobile-menu">
@@ -489,6 +494,140 @@
             </div>
         </section>
     </main>
+
+    <!-- 登录模态框 -->
+    <div id="loginModal" class="modal" aria-hidden="true">
+        <div class="modal-backdrop" aria-label="登录弹窗背景"></div>
+        <div class="modal-content modal-login" role="dialog" aria-modal="true" aria-labelledby="loginModalTitle">
+            <button class="modal-close" aria-label="关闭登录弹窗">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
+                    <path d="M18 6L6 18M6 6l12 12"/>
+                </svg>
+            </button>
+            
+            <div class="modal-header">
+                <h2 id="loginModalTitle" class="modal-title">欢迎回来</h2>
+                <p class="modal-subtitle">登录 OpenClaw 继续你的智能之旅</p>
+            </div>
+            
+            <form id="loginForm" class="login-form" novalidate>
+                <div class="form-group">
+                    <label for="loginEmail" class="form-label">邮箱地址</label>
+                    <div class="input-wrapper">
+                        <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
+                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                            <polyline points="22,6 12,13 2,6"/>
+                        </svg>
+                        <input type="email" id="loginEmail" name="email" class="form-input" placeholder="your@email.com" required aria-describedby="emailError" autocomplete="email">
+                    </div>
+                    <span id="emailError" class="form-error" role="alert" hidden></span>
+                </div>
+                
+                <div class="form-group">
+                    <div class="label-wrapper">
+                        <label for="loginPassword" class="form-label">密码</label>
+                        <button type="button" class="password-toggle" aria-label="切换密码显示">
+                            <svg class="eye-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
+                                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                                <circle cx="12" cy="12" r="3"/>
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="input-wrapper">
+                        <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
+                            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+                            <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+                        </svg>
+                        <input type="password" id="loginPassword" name="password" class="form-input" placeholder="••••••••" required aria-describedby="passwordError" autocomplete="current-password">
+                    </div>
+                    <span id="passwordError" class="form-error" role="alert" hidden></span>
+                </div>
+                
+                <div class="form-options">
+                    <label class="checkbox-wrapper">
+                        <input type="checkbox" id="rememberMe" name="rememberMe">
+                        <span class="checkbox-label">记住我</span>
+                    </label>
+                    <a href="#" class="link-forgot" id="forgotPasswordLink">忘记密码？</a>
+                </div>
+                
+                <button type="submit" class="btn btn-primary btn-full btn-login-submit">
+                    <span>登录</span>
+                    <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </button>
+            </form>
+            
+            <div class="login-divider">
+                <span class="divider-text">或使用以下方式登录</span>
+            </div>
+            
+            <div class="social-login">
+                <button type="button" class="btn btn-social btn-github" aria-label="使用 GitHub 登录">
+                    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                        <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.231.961-.267 1.986-.4 3.001-.4 1.016.001 2.04.133 3.001.4 2.291-1.553 3.297-1.231 3.297-1.231.653 1.652.242 2.873.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                    </svg>
+                    GitHub
+                </button>
+                <button type="button" class="btn btn-social btn-google" aria-label="使用 Google 登录">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+                        <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+                        <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
+                        <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+                    </svg>
+                    Google
+                </button>
+            </div>
+            
+            <div class="modal-footer">
+                <p class="footer-text">还没有账号？ <a href="#signup" class="link-signup">立即注册</a></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 忘记密码模态框 -->
+    <div id="forgotPasswordModal" class="modal" aria-hidden="true">
+        <div class="modal-backdrop"></div>
+        <div class="modal-content modal-forgot" role="dialog" aria-modal="true" aria-labelledby="forgotModalTitle">
+            <button class="modal-close" aria-label="关闭忘记密码弹窗">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
+                    <path d="M18 6L6 18M6 6l12 12"/>
+                </svg>
+            </button>
+            
+            <div class="modal-header">
+                <h2 id="forgotModalTitle" class="modal-title">忘记密码</h2>
+                <p class="modal-subtitle">输入你的邮箱地址，我们将发送重置链接</p>
+            </div>
+            
+            <form id="forgotForm" class="forgot-form" novalidate>
+                <div class="form-group">
+                    <label for="forgotEmail" class="form-label">邮箱地址</label>
+                    <div class="input-wrapper">
+                        <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
+                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                            <polyline points="22,6 12,13 2,6"/>
+                        </svg>
+                        <input type="email" id="forgotEmail" name="email" class="form-input" placeholder="your@email.com" required aria-describedby="forgotError" autocomplete="email">
+                    </div>
+                    <span id="forgotError" class="form-error" role="alert" hidden></span>
+                </div>
+                
+                <button type="submit" class="btn btn-primary btn-full btn-forgot-submit">
+                    <span>发送重置链接</span>
+                    <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
+                        <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/>
+                    </svg>
+                </button>
+            </form>
+            
+            <div class="modal-footer">
+                <p class="footer-text">记得密码了？ <a href="#" class="link-back-login" aria-controls="loginModal" aria-expanded="false">返回登录</a></p>
+            </div>
+        </div>
+    </div>
 
     <!-- 视频模态框 - 介绍视频 -->
     <div id="videoModal" class="video-modal" aria-hidden="true">

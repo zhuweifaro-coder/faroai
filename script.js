@@ -113,6 +113,276 @@ function openVideo(url, event) {
     console.log('✅ 视频弹窗已创建并添加到 DOM');
 }
 
+// 登录模态框功能
+class LoginModal {
+    constructor() {
+        this.loginModal = document.getElementById('loginModal');
+        this.forgotModal = document.getElementById('forgotPasswordModal');
+        this.loginTrigger = document.querySelector('.btn-login-trigger');
+        this.loginForm = document.getElementById('loginForm');
+        this.forgotForm = document.getElementById('forgotForm');
+        this.passwordToggle = document.querySelector('.password-toggle');
+        this.forgotPasswordLink = document.getElementById('forgotPasswordLink');
+        this.backLoginLink = document.querySelector('.link-back-login');
+        
+        this.init();
+    }
+
+    init() {
+        // 打开登录模态框
+        if (this.loginTrigger) {
+            this.loginTrigger.addEventListener('click', (e) => {
+                e.preventDefault();
+                this.openLogin();
+            });
+        }
+
+        // 表单提交
+        if (this.loginForm) {
+            this.loginForm.addEventListener('submit', (e) => this.handleLoginSubmit(e));
+        }
+
+        if (this.forgotForm) {
+            this.forgotForm.addEventListener('submit', (e) => this.handleForgotSubmit(e));
+        }
+
+        // 关闭模态框
+        this.setupCloseButtons();
+
+        // 切换到忘记密码
+        if (this.forgotPasswordLink) {
+            this.forgotPasswordLink.addEventListener('click', (e) => {
+                e.preventDefault();
+                this.openForgot();
+            });
+        }
+
+        // 返回登录
+        if (this.backLoginLink) {
+            this.backLoginLink.addEventListener('click', (e) => {
+                e.preventDefault();
+                this.backToLogin();
+            });
+        }
+
+        // 密码切换
+        if (this.passwordToggle) {
+            this.setupPasswordToggle();
+        }
+
+        // ESC 键关闭
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                this.closeAll();
+            }
+        });
+    }
+
+    openLogin() {
+        if (this.loginModal) {
+            this.loginModal.setAttribute('aria-hidden', 'false');
+            this.loginTrigger.setAttribute('aria-expanded', 'true');
+            document.body.style.overflow = 'hidden';
+            
+            // 聚焦邮箱输入框
+            setTimeout(() => {
+                const emailInput = document.getElementById('loginEmail');
+                if (emailInput) emailInput.focus();
+            }, 100);
+        }
+    }
+
+    openForgot() {
+        if (this.loginModal) {
+            this.loginModal.setAttribute('aria-hidden', 'true');
+        }
+        if (this.forgotModal) {
+            this.forgotModal.setAttribute('aria-hidden', 'false');
+            document.body.style.overflow = 'hidden';
+            
+            setTimeout(() => {
+                const emailInput = document.getElementById('forgotEmail');
+                if (emailInput) emailInput.focus();
+            }, 100);
+        }
+    }
+
+    backToLogin() {
+        if (this.forgotModal) {
+            this.forgotModal.setAttribute('aria-hidden', 'true');
+        }
+        if (this.loginModal) {
+            this.loginModal.setAttribute('aria-hidden', 'false');
+            this.loginTrigger.setAttribute('aria-expanded', 'true');
+            
+            setTimeout(() => {
+                const emailInput = document.getElementById('loginEmail');
+                if (emailInput) emailInput.focus();
+            }, 100);
+        }
+    }
+
+    closeAll() {
+        if (this.loginModal) {
+            this.loginModal.setAttribute('aria-hidden', 'true');
+            this.loginTrigger.setAttribute('aria-expanded', 'false');
+        }
+        if (this.forgotModal) {
+            this.forgotModal.setAttribute('aria-hidden', 'true');
+        }
+        document.body.style.overflow = '';
+    }
+
+    setupCloseButtons() {
+        const closeButtons = document.querySelectorAll('.modal-close');
+        closeButtons.forEach(btn => {
+            btn.addEventListener('click', () => this.closeAll());
+        });
+
+        const backdrops = document.querySelectorAll('.modal-backdrop');
+        backdrops.forEach(backdrop => {
+            backdrop.addEventListener('click', () => this.closeAll());
+        });
+    }
+
+    setupPasswordToggle() {
+        this.passwordToggle.addEventListener('click', () => {
+            const passwordInput = document.getElementById('loginPassword');
+            if (passwordInput) {
+                const isPassword = passwordInput.type === 'password';
+                passwordInput.type = isPassword ? 'text' : 'password';
+                
+                const eyeIcon = this.passwordToggle.querySelector('.eye-icon');
+                if (eyeIcon) {
+                    if (!isPassword) {
+                        eyeIcon.innerHTML = '<path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.44 18.44 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24M1 1l22 22"/>';
+                    } else {
+                        eyeIcon.innerHTML = '<path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/>';
+                    }
+                }
+            }
+        });
+    }
+
+    handleLoginSubmit(e) {
+        e.preventDefault();
+        
+        const email = document.getElementById('loginEmail');
+        const password = document.getElementById('loginPassword');
+        const rememberMe = document.getElementById('rememberMe');
+        
+        let hasError = false;
+        
+        // 验证邮箱
+        if (!this.validateEmail(email.value)) {
+            this.showError('emailError', '请输入有效的邮箱地址');
+            email.classList.add('invalid');
+            hasError = true;
+        } else {
+            this.hideError('emailError');
+            email.classList.remove('invalid');
+        }
+        
+        // 验证密码
+        if (!password.value || password.value.length < 6) {
+            this.showError('passwordError', '密码至少需要 6 个字符');
+            password.classList.add('invalid');
+            hasError = true;
+        } else {
+            this.hideError('passwordError');
+            password.classList.remove('invalid');
+        }
+        
+        if (hasError) return;
+        
+        // 模拟登录请求
+        const submitBtn = e.target.querySelector('.btn-login-submit');
+        const originalText = submitBtn.innerHTML;
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = '<span>登录中...</span>';
+        
+        // 模拟 API 调用
+        setTimeout(() => {
+            // 这里应该调用实际的登录 API
+            console.log('🔐 登录尝试:', {
+                email: email.value,
+                remember: rememberMe.checked
+            });
+            
+            // 模拟成功登录
+            alert('登录成功！(模拟演示)');
+            
+            // 记住登录状态
+            if (rememberMe.checked) {
+                localStorage.setItem('faroai_remembered_email', email.value);
+            } else {
+                localStorage.removeItem('faroai_remembered_email');
+            }
+            
+            this.closeAll();
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = originalText;
+            
+            // 重置表单
+            e.target.reset();
+            
+            // 重定向到仪表盘（如果有）
+            // window.location.href = '/dashboard';
+        }, 1500);
+    }
+
+    handleForgotSubmit(e) {
+        e.preventDefault();
+        
+        const email = document.getElementById('forgotEmail');
+        
+        if (!this.validateEmail(email.value)) {
+            this.showError('forgotError', '请输入有效的邮箱地址');
+            email.classList.add('invalid');
+            return;
+        }
+        
+        this.hideError('forgotError');
+        email.classList.remove('invalid');
+        
+        // 模拟发送重置链接
+        const submitBtn = e.target.querySelector('.btn-forgot-submit');
+        const originalText = submitBtn.innerHTML;
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = '<span>发送中...</span>';
+        
+        setTimeout(() => {
+            alert('重置链接已发送到：' + email.value + '\n(模拟演示)');
+            
+            this.backToLogin();
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = originalText;
+            e.target.reset();
+        }, 1500);
+    }
+
+    validateEmail(email) {
+        const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return re.test(email);
+    }
+
+    showError(elementId, message) {
+        const errorEl = document.getElementById(elementId);
+        if (errorEl) {
+            errorEl.textContent = message;
+            errorEl.removeAttribute('hidden');
+        }
+    }
+
+    hideError(elementId) {
+        const errorEl = document.getElementById(elementId);
+        if (errorEl) {
+            errorEl.textContent = '';
+            errorEl.setAttribute('hidden', 'true');
+        }
+    }
+}
+
 // 平滑滚动导航
 class SmoothScroll {
     constructor() {
@@ -227,6 +497,9 @@ class MobileMenu {
 // 页面加载完成后的初始化
 document.addEventListener('DOMContentLoaded', function() {
     console.log('🚀 FaroAI - OpenClaw Clone 网站已加载');
+    
+    // 初始化登录模态框
+    new LoginModal();
     
     // 视频按钮点击处理
     var demoBtn = document.getElementById('demoBtn');
