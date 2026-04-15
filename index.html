@@ -1,21 +1,281 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="zh-CN">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="FaroAI - 现代化 AI 服务，提供先进的 AI 解决方案和技术支持" />
-    <meta name="keywords" content="AI, 人工智能，机器学习，FaroAI, 技术解决方案" />
-    <meta name="author" content="FaroAI Team" />
-    <meta property="og:title" content="FaroAI - 现代化 AI 服务" />
-    <meta property="og:description" content="FaroAI - 现代化 AI 服务，提供先进的 AI 解决方案和技术支持" />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://www.faroai.net" />
-    <meta name="theme-color" content="#3b82f6" />
-    <title>FaroAI - 现代化 AI 服务</title>
-  </head>
-  <body>
-    <div id="app"></div>
-    <script type="module" src="/src/main.js"></script>
-  </body>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FaroAI - 下一代 AI 助手平台 | 智能数字伴侣</title>
+    <meta name="description" content="FaroAI 是下一代 AI 助手平台，提供多模态 AI、自动化工作流、知识库管理等强大功能，打造你的智能数字伴侣。">
+    <meta name="keywords" content="AI 助手，智能数字伴侣，自动化工作流，知识库管理，多模态 AI，OpenClaw">
+    
+    <!-- Open Graph / 社交媒体分享 -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.faroai.net/">
+    <meta property="og:title" content="FaroAI - 下一代 AI 助手平台">
+    <meta property="og:description" content="打造你的智能数字伴侣 | 多模态 AI 自动化工作流平台">
+    <meta property="og:image" content="https://www.faroai.net/assets/og-image.jpg">
+    
+    <!-- Canontical URL -->
+    <link rel="canonical" href="https://www.faroai.net/">
+    
+    <!-- Preload Critical Resources -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Schema.org JSON-LD -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "FaroAI",
+        "url": "https://www.faroai.net/",
+        "description": "下一代 AI 助手平台，打造智能数字伴侣",
+        "publisher": {
+            "@type": "Organization",
+            "name": "FaroAI Team"
+        },
+        "potentialAction": {
+            "@type": "SearchAction",
+            "target": "https://www.faroai.net/search?q={search_term_string}",
+            "query-input": "required name=search_term_string"
+        }
+    }
+    </script>
+    
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        :root {
+            --primary-color: #6366f1;
+            --secondary-color: #4f46e5;
+            --text-color: #1f2937;
+            --bg-color: #ffffff;
+            --card-bg: #f9fafb;
+            --border-color: #e5e7eb;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Inter', sans-serif;
+            color: var(--text-color);
+            background: var(--bg-color);
+            line-height: 1.6;
+        }
+        
+        .hero {
+            text-align: center;
+            padding: 80px 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 32px;
+            background: white;
+            color: var(--primary-color);
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+        
+        .features {
+            max-width: 1200px;
+            margin: 60px auto;
+            padding: 0 20px;
+        }
+        
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .feature-card {
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            background: white;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="#" class="logo">FaroAI</a>
+        <ul>
+            <li><a href="#features">功能特性</a></li>
+            <li><a href="#pricing">定价方案</a></li>
+            <li><a href="#about">关于我们</a></li>
+        </ul>
+    </nav>
+    
+    <main>
+        <section class="hero">
+            <h1>✨ v2.0 全新发布</h1>
+            <h2>下一代 AI 助手平台</h2>
+            <p>打造你的智能数字伴侣，开启高效工作新时代</p>
+            <a href="#features" class="btn">开始使用</a>
+        </section>
+        
+        <section id="features" class="features">
+            <h2 style="text-align: center; font-size: 2.5rem; margin-bottom: 20px;">核心功能</h2>
+            <div class="feature-grid">
+                <article class="feature-card">
+                    <h3>🎯 多模态 AI</h3>
+                    <p>支持文本、图像、语音多模态交互，智能处理各种任务。</p>
+                </article>
+                
+                <article class="feature-card">
+                    <h3>⚡ 自动化工作流</h3>
+                    <p>智能自动化工作流，无需手动操作，提升效率 10 倍。</p>
+                </article>
+                
+                <article class="feature-card">
+                    <h3>📚 知识库管理</h3>
+                    <p>强大的知识库管理系统，智能整理和检索信息。</p>
+                </article>
+            </div>
+        </section>
+        
+        <section id="pricing" style="text-align: center; padding: 60px 20px;">
+            <h2 style="font-size: 2.5rem; margin-bottom: 40px;">选择您的方案</h2>
+            <div class="pricing-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; max-width: 1200px; margin: 0 auto;">
+                <div style="padding: 30px; border: 1px solid var(--border-color); border-radius: 12px;">
+                    <h3>免费版</h3>
+                    <p style="font-size: 2rem; font-weight: bold; color: var(--primary-color);">¥0</p>
+                    <p>适合个人用户试用</p>
+                </div>
+                
+                <div style="padding: 30px; border: 2px solid var(--primary-color); border-radius: 12px; background: var(--card-bg);">
+                    <h3>专业版</h3>
+                    <p style="font-size: 2rem; font-weight: bold; color: var(--primary-color);">¥99/月</p>
+                    <p>适合专业用户和团队</p>
+                </div>
+                
+                <div style="padding: 30px; border: 1px solid var(--border-color); border-radius: 12px;">
+                    <h3>企业版</h3>
+                    <p style="font-size: 2rem; font-weight: bold; color: var(--primary-color);">定制</p>
+                    <p>适合企业级应用</p>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <footer style="background: var(--text-color); color: white; text-align: center; padding: 40px 20px; margin-top: 60px;">
+        <p>© 2026 FaroAI. All rights reserved.</p>
+        <p>打造你的智能数字伴侣</p>
+    </footer>
+<<<<<<< HEAD
+=======
+
+    <!-- Video Modal Scripts -->
+    <script>
+        // 视频模态框功能 - 支持多个模态框
+        (function() {
+            // 第一个模态框：介绍视频
+            const videoModal = document.getElementById('videoModal');
+            const videoBackdrop = videoModal?.querySelector('.video-modal-backdrop');
+            const videoCloseBtn = videoModal?.querySelector('.video-modal-close');
+            const playBtns = document.querySelectorAll('.btn-play-video');
+            
+            // 第二个模态框：演示视频
+            const demoModal = document.getElementById('demoModal');
+            const demoBackdrop = demoModal?.querySelector('.video-modal-backdrop');
+            const demoCloseBtn = demoModal?.querySelector('.video-modal-close');
+            const demoBtn = document.querySelector('.btn-watch-demo');
+            
+            // 打开模态框函数
+            function openModal(modal) {
+                modal.setAttribute('aria-hidden', 'false');
+                document.body.style.overflow = 'hidden';
+                modal.querySelector('.video-modal-content')?.focus();
+            }
+            
+            // 关闭模态框函数
+            function closeModal(modal) {
+                modal.setAttribute('aria-hidden', 'true');
+                document.body.style.overflow = '';
+                // 停止视频播放
+                const iframe = modal.querySelector('iframe');
+                if (iframe) {
+                    const src = iframe.src;
+                    iframe.src = src;
+                }
+            }
+            
+            // 第一个模态框事件绑定
+            if (videoModal) {
+                playBtns.forEach(btn => {
+                    btn.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        openModal(videoModal);
+                    });
+                });
+                
+                videoBackdrop?.addEventListener('click', () => closeModal(videoModal));
+                videoCloseBtn?.addEventListener('click', () => closeModal(videoModal));
+                
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === 'Escape' && videoModal.getAttribute('aria-hidden') === 'false') {
+                        closeModal(videoModal);
+                    }
+                });
+                
+                videoModal.querySelector('.video-modal-content')?.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                });
+            }
+            
+            // 第二个模态框事件绑定
+            if (demoModal && demoBtn) {
+                demoBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    openModal(demoModal);
+                });
+                
+                demoBackdrop?.addEventListener('click', () => closeModal(demoModal));
+                demoCloseBtn?.addEventListener('click', () => closeModal(demoModal));
+                
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === 'Escape' && demoModal.getAttribute('aria-hidden') === 'false') {
+                        closeModal(demoModal);
+                    }
+                });
+                
+                demoModal.querySelector('.video-modal-content')?.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                });
+            }
+        })();
+    </script>
+>>>>>>> parent of 4d80b0b (feat: 添加完整登录注册功能)
+    
+    <script src="script.js"></script>
+</body>
 </html>
+
