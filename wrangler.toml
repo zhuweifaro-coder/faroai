@@ -1,0 +1,17 @@
+name = "faroai-email"
+main = "worker.js"
+compatibility_date = "2024-01-01"
+
+# Cloudflare 区域配置
+[vars]
+ENVIRONMENT = "production"
+
+# 环境变量（通过 wrangler secret 设置）
+# 运行以下命令设置:
+# wrangler secret put RESEND_API_KEY
+# wrangler secret put SENDGRID_API_KEY  
+# wrangler secret put WECHAT_WEBHOOK_URL
+
+# Email Routing - 需要手动在 Cloudflare Dashboard 配置
+# 前往: Cloudflare Dashboard → Email → Routes → Add Route
+# 格式: *@faroai.net  →  转发到 Worker

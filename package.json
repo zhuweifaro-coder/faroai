@@ -1,0 +1,14 @@
+{
+  "name": "faroai-email-system",
+  "version": "1.0.0",
+  "description": "Email system integrated with WeChat bot",
+  "main": "worker.js",
+  "scripts": {
+    "deploy": "wrangler deploy",
+    "dev": "wrangler dev",
+    "secret:set": "wrangler secret put"
+  },
+  "devDependencies": {
+    "wrangler": "^3.0.0"
+  }
+}
