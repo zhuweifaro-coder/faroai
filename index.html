@@ -84,8 +84,8 @@
         }
         
         .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            transform: translateY(-5px);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
         }
         
         .features {
@@ -190,92 +190,7 @@
         <p>© 2026 FaroAI. All rights reserved.</p>
         <p>打造你的智能数字伴侣</p>
     </footer>
-<<<<<<< HEAD
-=======
-
-    <!-- Video Modal Scripts -->
-    <script>
-        // 视频模态框功能 - 支持多个模态框
-        (function() {
-            // 第一个模态框：介绍视频
-            const videoModal = document.getElementById('videoModal');
-            const videoBackdrop = videoModal?.querySelector('.video-modal-backdrop');
-            const videoCloseBtn = videoModal?.querySelector('.video-modal-close');
-            const playBtns = document.querySelectorAll('.btn-play-video');
-            
-            // 第二个模态框：演示视频
-            const demoModal = document.getElementById('demoModal');
-            const demoBackdrop = demoModal?.querySelector('.video-modal-backdrop');
-            const demoCloseBtn = demoModal?.querySelector('.video-modal-close');
-            const demoBtn = document.querySelector('.btn-watch-demo');
-            
-            // 打开模态框函数
-            function openModal(modal) {
-                modal.setAttribute('aria-hidden', 'false');
-                document.body.style.overflow = 'hidden';
-                modal.querySelector('.video-modal-content')?.focus();
-            }
-            
-            // 关闭模态框函数
-            function closeModal(modal) {
-                modal.setAttribute('aria-hidden', 'true');
-                document.body.style.overflow = '';
-                // 停止视频播放
-                const iframe = modal.querySelector('iframe');
-                if (iframe) {
-                    const src = iframe.src;
-                    iframe.src = src;
-                }
-            }
-            
-            // 第一个模态框事件绑定
-            if (videoModal) {
-                playBtns.forEach(btn => {
-                    btn.addEventListener('click', (e) => {
-                        e.preventDefault();
-                        openModal(videoModal);
-                    });
-                });
-                
-                videoBackdrop?.addEventListener('click', () => closeModal(videoModal));
-                videoCloseBtn?.addEventListener('click', () => closeModal(videoModal));
-                
-                document.addEventListener('keydown', (e) => {
-                    if (e.key === 'Escape' && videoModal.getAttribute('aria-hidden') === 'false') {
-                        closeModal(videoModal);
-                    }
-                });
-                
-                videoModal.querySelector('.video-modal-content')?.addEventListener('click', (e) => {
-                    e.stopPropagation();
-                });
-            }
-            
-            // 第二个模态框事件绑定
-            if (demoModal && demoBtn) {
-                demoBtn.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    openModal(demoModal);
-                });
-                
-                demoBackdrop?.addEventListener('click', () => closeModal(demoModal));
-                demoCloseBtn?.addEventListener('click', () => closeModal(demoModal));
-                
-                document.addEventListener('keydown', (e) => {
-                    if (e.key === 'Escape' && demoModal.getAttribute('aria-hidden') === 'false') {
-                        closeModal(demoModal);
-                    }
-                });
-                
-                demoModal.querySelector('.video-modal-content')?.addEventListener('click', (e) => {
-                    e.stopPropagation();
-                });
-            }
-        })();
-    </script>
->>>>>>> parent of 4d80b0b (feat: 添加完整登录注册功能)
     
     <script src="script.js"></script>
 </body>
 </html>
-
