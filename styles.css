@@ -1205,3 +1205,44 @@ body.modal-open { overflow: hidden; }
 @media (max-width: 900px) {
     .blog-preview-grid { grid-template-columns: 1fr; }
 }
+
+/* feature-card 改为可点击链接，去掉默认下划线 + 加底部"了解详情" */
+a.feature-card {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    cursor: pointer;
+}
+a.feature-card:hover .feature-title {
+    color: var(--primary-color);
+}
+.feature-readmore {
+    display: inline-block;
+    margin-top: 1rem;
+    color: var(--primary-color);
+    font-weight: 600;
+    font-size: 0.9rem;
+    opacity: 0;
+    transform: translateX(-4px);
+    transition: opacity 0.2s, transform 0.2s;
+}
+a.feature-card:hover .feature-readmore {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* use-case-card 改为可点击链接 */
+a.use-case-card {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+a.use-case-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+}
+a.use-case-card:hover .use-case-title {
+    color: var(--primary-color);
+}
