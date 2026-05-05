@@ -653,114 +653,6 @@ a:hover {
 }
 
 /* 定价区域 */
-.pricing {
-    padding: 100px 0;
-    background: var(--bg-primary);
-}
-
-.pricing-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2rem;
-    margin-top: 3rem;
-}
-
-.pricing-card {
-    padding: 2.5rem;
-    border-radius: var(--radius-xl);
-    background: var(--bg-secondary);
-    border: 1px solid var(--border-color);
-    position: relative;
-    transition: all var(--transition-base);
-}
-
-.pricing-card:hover {
-    transform: translateY(-4px);
-    box-shadow: var(--shadow-lg);
-}
-
-.pricing-card.featured {
-    border-color: var(--primary-color);
-    box-shadow: var(--shadow-lg);
-    transform: scale(1.05);
-}
-
-.pricing-card.featured:hover {
-    transform: scale(1.05) translateY(-4px);
-}
-
-.pricing-badge {
-    position: absolute;
-    top: -12px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: var(--gradient-primary);
-    color: white;
-    padding: 0.5rem 1.5rem;
-    border-radius: var(--radius-full);
-    font-size: 0.85rem;
-    font-weight: 600;
-}
-
-.pricing-header {
-    margin-bottom: 2rem;
-}
-
-.pricing-title {
-    font-size: 1.5rem;
-    font-weight: 700;
-    margin-bottom: 0.5rem;
-    color: var(--text-primary);
-}
-
-.pricing-subtitle {
-    color: var(--text-secondary);
-    font-size: 0.95rem;
-}
-
-.pricing-price {
-    display: flex;
-    align-items: baseline;
-    margin-bottom: 2rem;
-}
-
-.price-currency {
-    font-size: 2rem;
-    font-weight: 700;
-    color: var(--text-primary);
-}
-
-.price-amount {
-    font-size: 3.5rem;
-    font-weight: 800;
-    line-height: 1;
-    color: var(--text-primary);
-}
-
-.price-period {
-    font-size: 1rem;
-    color: var(--text-secondary);
-    margin-left: 0.25rem;
-}
-
-.pricing-features {
-    list-style: none;
-    margin-bottom: 2rem;
-}
-
-.pricing-features li {
-    padding: 0.75rem 0;
-    border-bottom: 1px solid var(--border-color);
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    color: var(--text-secondary);
-}
-
-.pricing-features li:last-child {
-    border-bottom: none;
-}
-
 /* 页脚 */
 .footer {
     padding: 80px 0 30px;
@@ -964,7 +856,7 @@ a:hover {
 
 .feature-card,
 .use-case-card,
-.pricing-card {
+.blog-preview-card {
     animation: fadeInUp 0.6s ease-out;
 }
 
@@ -1234,7 +1126,7 @@ body.modal-open { overflow: hidden; }
 /* ─────────── 博客预览 section（替代旧 pricing 区段）─────────── */
 .blog-preview-section {
     padding: 100px 0;
-    background: var(--bg-secondary);
+    background: var(--bg-primary);
 }
 .blog-preview-grid {
     display: grid;
