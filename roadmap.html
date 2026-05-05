@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+           <meta charset="UTF-8">
+           <meta name="viewport" content="width=device-width, initial-scale=1.0">
+           <meta name="description" content="FaroAI 产品路线图 - 查看我们正在开发的新功能和未来规划。">
+           <meta name="author" content="FaroAI Team">
+           <meta name="theme-color" content="#667eea">
+           <title>FaroAI 产品路线图 - 未来规划</title>
+           <link rel="preconnect" href="https://fonts.googleapis.com">
+           <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+           <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+           <link rel="stylesheet" href="styles.css">
+           <style>
+               .page-hero { padding: 160px 0 80px; background: var(--gradient-primary); color: white; text-align: center; position: relative; overflow: hidden; }
+               .page-hero::before { content: ''; position: absolute; top: -50%; left: -25%; width: 150%; height: 200%; background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 60%); z-index: 0; }
+               .page-hero * { position: relative; z-index: 1; }
+               .page-hero h1 { font-size: 3rem; font-weight: 800; margin-bottom: 1rem; letter-spacing: -0.02em; }
+               .page-hero p { font-size: 1.25rem; opacity: 0.9; max-width: 600px; margin: 0 auto; line-height: 1.7; }
+               .roadmap { padding: 80px 0; }
+               .quarter-section { margin-bottom: 4rem; }
+               .quarter-header { display: flex; align-items: center; gap: 1rem; margin-bottom: 2rem; padding-bottom: 1rem; border-bottom: 2px solid var(--border-color); }
+               .quarter-badge { padding: 0.35rem 1rem; border-radius: var(--radius-full); font-size: 0.85rem; font-weight: 700; }
+               .q-current { background: #d1fae5; color: #059669; }
+               .q-planned { background: var(--primary-light); color: var(--primary-color); }
+               .q-future { background: #fef3c7; color: #d97706; }
+               .quarter-title { font-size: 1.75rem; font-weight: 800; color: var(--text-primary); }
+               .quarter-desc { color: var(--text-muted); font-size: 0.95rem; }
+               .features-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
+               .feature-item { background: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: 1.5rem; transition: all var(--transition-base); }
+               .feature-item:hover { border-color: var(--primary-color); box-shadow: var(--shadow-md); transform: translateY(-2px); }
+               .feature-item .icon { font-size: 2rem; margin-bottom: 1rem; display: block; }
+               .feature-item h4 { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.5rem; color: var(--text-primary); }
+               .feature-item p { color: var(--text-secondary); font-size: 0.95rem; line-height: 1.6; }
+               .feature-status { display: inline-block; padding: 0.2rem 0.6rem; border-radius: var(--radius-sm); font-size: 0.75rem; font-weight: 700; margin-top: 0.75rem; }
+               .status-done { background: #d1fae5; color: #059669; }
+               .status-progress { background: #dbeafe; color: #2563eb; }
+               .status-planned { background: #fef3c7; color: #d97706; }
+               .status-idea { background: #f3e8ff; color: #7c3aed; }
+               .roadmap-note { background: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: 2rem; margin-top: 3rem; text-align: center; }
+               .roadmap-note p { color: var(--text-secondary); line-height: 1.7; }
+               .cta-section { padding: 80px 0; text-align: center; background: var(--gradient-primary); color: white; }
+               .cta-section h2 { font-size: 2.5rem; font-weight: 800; margin-bottom: 1rem; }
+               .cta-section p { font-size: 1.2rem; opacity: 0.9; margin-bottom: 2rem; }
+               .cta-section .btn { background: white; color: var(--primary-color); font-weight: 700; }
+               .cta-section .btn:hover { transform: translateY(-2px); box-shadow: var(--shadow-lg); }
+               @media (max-width: 768px) { .page-hero h1 { font-size: 2.25rem; } .features-list { grid-template-columns: 1fr; } .quarter-title { font-size: 1.4rem; } }
+           </style>
+</head>
+<body>
+           <a href="#main" class="sr-only skip-link">跳转到主要内容</a>
+           <header class="header" role="banner">
+               <div class="container">
+                   <nav class="navbar" role="navigation" aria-label="主导航">
+                       <a href="index.html" class="logo" aria-label="FaroAI 首页"><svg class="logo-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg><span class="logo-text"><span class="logo-text-red">Fa</span><span class="logo-text-gradient">ro</span><span class="logo-text-red">AI</span></span></a>
+                       <ul class="nav-menu"><li><a href="index.html#home">首页</a></li><li><a href="features.html">功能</a></li><li><a href="pricing.html">定价</a></li><li><a href="blog.html">博客</a></li><li><a href="个人概况_2026_v3.html">关于我</a></li></ul>
+                       <div class="nav-actions"><a href="contact.html" class="btn btn-outline">联系我们</a><a href="index.html" class="btn btn-primary">开始使用</a></div>
+                       <button class="mobile-menu-btn" aria-label="菜单" aria-expanded="false" aria-controls="mobile-menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="M3 12h18M3 6h18M3 18h18"/></svg></button>
+                   </nav>
+               </div>
+           </header>
+           <main id="main">
+               <section class="page-hero">
+                   <div class="container">
+                       <h1>产品路线图</h1>
+                       <p>我们的愿景和规划——每一步都致力于让 AI 助手更智能、更易用、更强大。</p>
+                   </div>
+               </section>
+
+               <section class="roadmap">
+                   <div class="container">
+                       <div class="quarter-section">
+                           <div class="quarter-header">
+                               <span class="quarter-badge q-current">进行中</span>
+                               <span class="quarter-title">2026 Q2</span>
+                               <span class="quarter-desc">当前季度</span>
+                           </div>
+                           <div class="features-list">
+                               <div class="feature-item">
+                                   <span class="icon">🎨</span>
+                                   <h4>多模态增强</h4>
+                                   <p>图像生成与编辑、语音输入输出、视频理解能力，打造全感官 AI 交互体验。</p>
+                                   <span class="feature-status status-progress">开发中</span>
+                               </div>
+                               <div class="feature-item">
+                                   <span class="icon">🏪</span>
+                                   <h4>插件市场</h4>
+                                   <p>上线社区插件市场，支持第三方插件的发布、安装和管理，构建开放生态。</p>
+                                   <span class="feature-status status-progress">开发中</span>
+                               </div>
+                               <div class="feature-item">
+                                   <span class="icon">📱</span>
+                                   <h4>移动端 App</h4>
+                                   <p>iOS 和 Android 原生应用，随时随地使用 AI 助手，支持离线模式和推送通知。</p>
+                                   <span class="feature-status status-progress">开发中</span>
+                               </div>
+                           </div>
+                       </div>
+
+                       <div class="quarter-section">
+                           <div class="quarter-header">
+                               <span class="quarter-badge q-planned">计划中</span>
+                               <span class="quarter-title">2026 Q3</span>
+                               <span class="quarter-desc">2026 年 7 月 - 9 月</span>
+                           </div>
+                           <div class="features-list">
+                               <div class="feature-item">
+                                   <span class="icon">🛡️</span>
+                                   <h4>企业级安全</h4>
+                                   <p>SSO 单点登录、SOC 2 合规、数据驻留选择、私有化部署方案，满足企业安全合规要求。</p>
+                                   <span class="feature-status status-planned">计划中</span>
+                               </div>
+                               <div class="feature-item">
+                                   <span class="icon">🌍</span>
+                                   <h4>多语言支持</h4>
+                                   <p>全面支持英文、日文、韩文等主要语言的界面本地化和 AI 交互，服务全球用户。</p>
+                                   <span class="feature-status status-planned">计划中</span>
+                               </div>
+                               <div class="feature-item">
+                                   <span class="icon">🌐</span>
+                                   <h4>开放 API 生态</h4>
+                                   <p>发布开发者门户，完善 API 文档和示例，开放更多能力接口，支持合作伙伴集成。</p>
+                                   <span class="feature-status status-planned">计划中</span>
+                               </div>
+                           </div>
+                       </div>
+
+                       <div class="quarter-section">
+                           <div class="quarter-header">
+                               <span class="quarter-badge q-planned">计划中</span>
+                               <span class="quarter-title">2026 Q4</span>
+                               <span class="quarter-desc">2026 年 10 月 - 12 月</span>
+                           </div>
+                           <div class="features-list">
+                               <div class="feature-item">
+                                   <span class="icon">🤝</span>
+                                   <h4>Agent 协作网络</h4>
+                                   <p>多个智能体之间可以自主协作，分工完成复杂任务，实现「AI 团队」概念。</p>
+                                   <span class="feature-status status-planned">计划中</span>
+                               </div>
+                               <div class="feature-item">
+                                   <span class="icon">🧪</span>
+                                   <h4>自定义模型训练</h4>
+                                   <p>允许用户上传自有数据微调模型，打造个性化的专属 AI 助手。</p>
+                                   <span class="feature-status status-planned">计划中</span>
+                               </div>
+                               <div class="feature-item">
+                                   <span class="icon">🏗️</span>
+                                   <h4>行业解决方案</h4>
+                                   <p>针对金融、医疗、教育等行业推出定制化方案，内置行业知识库和合规流程。</p>
+                                   <span class="feature-status status-planned">计划中</span>
+                               </div>
+                           </div>
+                       </div>
+
+                       <div class="quarter-section">
+                           <div class="quarter-header">
+                               <span class="quarter-badge q-future">探索中</span>
+                               <span class="quarter-title">2027 Q1</span>
+                               <span class="quarter-desc">2027 年 1 月 - 3 月</span>
+                           </div>
+                           <div class="features-list">
+                               <div class="feature-item">
+                                   <span class="icon">🧠</span>
+                                   <h4>自主规划能力</h4>
+                                   <p>AI 智能体具备自主规划能力，可以将模糊的目标拆解为可执行的步骤并独立完成。</p>
+                                   <span class="feature-status status-idea">探索中</span>
+                               </div>
+                               <div class="feature-item">
+                                   <span class="icon">🔄</span>
+                                   <h4>跨平台智能体</h4>
+                                   <p>智能体可以跨平台运行，在 Web、移动端、桌面端之间无缝切换，保持一致体验。</p>
+                                   <span class="feature-status status-idea">探索中</span>
+                               </div>
+                               <div class="feature-item">
+                                   <span class="icon">🚀</span>
+                                   <h4>开发者平台 2.0</h4>
+                                   <p>全新开发者平台，提供更强大的沙箱环境、调试工具、性能分析和部署管道。</p>
+                                   <span class="feature-status status-idea">探索中</span>
+                               </div>
+                           </div>
+                       </div>
+
+                       <div class="roadmap-note">
+                           <p>📋 产品路线图会根据用户反馈和市场需求持续调整，以上规划仅供参考。如果你有任何想法或建议，欢迎通过 <a href="contact.html">联系我们</a> 或参与 <a href="community.html">社区讨论</a>。</p>
+                       </div>
+                   </div>
+               </section>
+
+               <section class="cta-section">
+                   <div class="container">
+                       <h2>一起定义未来</h2>
+                       <p>加入社区，告诉我们你最期待的功能。</p>
+                       <a href="community.html" class="btn btn-large">加入社区</a>
+                   </div>
+               </section>
+           </main>
+
+           <footer class="footer" role="contentinfo">
+               <div class="container">
+                   <div class="footer-content">
+                       <div class="footer-brand"><a href="index.html" class="logo" aria-label="FaroAI 首页"><svg class="logo-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg><span class="logo-text">FaroAI</span></a><p class="footer-description">下一代 AI 助手平台，打造你的智能数字伴侣。</p></div>
+                       <div class="footer-links"><h4>产品</h4><ul><li><a href="features.html">功能特性</a></li><li><a href="pricing.html">定价方案</a></li><li><a href="changelog.html">Changelog</a></li><li><a href="roadmap.html">Roadmap</a></li></ul></div>
+                       <div class="footer-links"><h4>资源</h4><ul><li><a href="docs.html">文档</a></li><li><a href="api.html">API 参考</a></li><li><a href="community.html">社区</a></li><li><a href="contact.html">帮助支持</a></li></ul></div>
+                       <div class="footer-links"><h4>公司</h4><ul><li><a href="个人概况_2026_v3.html">关于我</a></li><li><a href="blog.html">博客</a></li><li><a href="contact.html">联系方式</a></li></ul></div>
+                   </div>
+                   <div class="footer-bottom"><div class="footer-copyright"><span>&copy; 2026 FaroAI. All rights reserved.</span><a href="privacy.html">隐私政策</a><a href="terms.html">服务条款</a></div></div>
+               </div>
+           </footer>
+       </body>
+       </html>

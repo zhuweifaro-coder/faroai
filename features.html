@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="FaroAI 功能特性 - 多模态AI支持、自动化工作流、安全加密、团队协作、快速集成、智能分析，全方位提升你的工作效率。">
+    <meta name="keywords" content="AI功能, 多模态AI, 自动化工作流, 安全加密, 团队协作, FaroAI">
+    <meta name="author" content="FaroAI Team">
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#667eea">
+    <title>FaroAI 功能特性 - 全方位 AI 助手能力</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .page-hero {
+            padding: 160px 0 80px;
+            background: var(--gradient-primary);
+            color: white;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .page-hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -25%;
+            width: 150%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 60%);
+            z-index: 0;
+        }
+        .page-hero * { position: relative; z-index: 1; }
+        .page-hero h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            letter-spacing: -0.02em;
+        }
+        .page-hero p {
+            font-size: 1.25rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+        .features-overview {
+            padding: 80px 0;
+            background: var(--bg-primary);
+        }
+        .features-overview-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+        .feature-overview-card {
+            padding: 2rem;
+            border-radius: var(--radius-xl);
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            transition: all var(--transition-base);
+            cursor: pointer;
+        }
+        .feature-overview-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--primary-color);
+        }
+        .feature-overview-icon {
+            width: 64px;
+            height: 64px;
+            background: var(--gradient-primary);
+            border-radius: var(--radius-lg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            font-size: 2rem;
+        }
+        .feature-overview-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+            color: var(--text-primary);
+        }
+        .feature-overview-desc {
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+        .feature-overview-link {
+            color: var(--primary-color);
+            font-weight: 600;
+            font-size: 0.95rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+        .feature-detail-section {
+            padding: 80px 0;
+        }
+        .feature-detail-section:nth-child(even) {
+            background: var(--bg-secondary);
+        }
+        .feature-detail {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+        .feature-detail.reverse {
+            direction: rtl;
+        }
+        .feature-detail.reverse > * {
+            direction: ltr;
+        }
+        .feature-detail-content h2 {
+            font-size: 2.25rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            color: var(--text-primary);
+            letter-spacing: -0.02em;
+        }
+        .feature-detail-content p {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            font-size: 1.05rem;
+        }
+        .feature-detail-list {
+            list-style: none;
+        }
+        .feature-detail-list li {
+            padding: 0.75rem 0;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            color: var(--text-secondary);
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+        .feature-detail-list li::before {
+            content: '✓';
+            color: var(--primary-color);
+            font-weight: 700;
+            font-size: 1.1rem;
+            flex-shrink: 0;
+            margin-top: 0.1rem;
+        }
+        .feature-detail-visual {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-xl);
+            padding: 2rem;
+            min-height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .feature-detail.reverse .feature-detail-visual {
+            background: var(--bg-primary);
+        }
+        .feature-visual-placeholder {
+            text-align: center;
+            color: var(--text-muted);
+        }
+        .feature-visual-placeholder .icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+        .cta-section {
+            padding: 80px 0;
+            text-align: center;
+            background: var(--gradient-primary);
+            color: white;
+        }
+        .cta-section h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+        .cta-section p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 2rem;
+        }
+        .cta-section .btn {
+            background: white;
+            color: var(--primary-color);
+            font-weight: 700;
+        }
+        .cta-section .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+        @media (max-width: 1024px) {
+            .features-overview-grid { grid-template-columns: repeat(2, 1fr); }
+            .feature-detail { grid-template-columns: 1fr; gap: 2rem; }
+            .feature-detail.reverse { direction: ltr; }
+        }
+        @media (max-width: 768px) {
+            .page-hero h1 { font-size: 2.25rem; }
+            .features-overview-grid { grid-template-columns: 1fr; }
+            .feature-detail-content h2 { font-size: 1.75rem; }
+        }
+    </style>
+</head>
+<body>
+    <a href="#main" class="sr-only skip-link">跳转到主要内容</a>
+
+    <header class="header" role="banner">
+        <div class="container">
+            <nav class="navbar" role="navigation" aria-label="主导航">
+                <a href="index.html" class="logo" aria-label="FaroAI 首页">
+                    <svg class="logo-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                    <span class="logo-text"><span class="logo-text-red">Fa</span><span class="logo-text-gradient">ro</span><span class="logo-text-red">AI</span></span>
+                </a>
+                <ul class="nav-menu">
+                    <li><a href="index.html#home">首页</a></li>
+                    <li><a href="features.html" class="active">功能</a></li>
+                    <li><a href="pricing.html">定价</a></li>
+                    <li><a href="blog.html">博客</a></li>
+                    <li><a href="个人概况_2026_v3.html">关于我</a></li>
+                </ul>
+                <div class="nav-actions">
+                    <a href="contact.html" class="btn btn-outline">联系我们</a>
+                    <a href="index.html" class="btn btn-primary">开始使用</a>
+                </div>
+                <button class="mobile-menu-btn" aria-label="菜单" aria-expanded="false" aria-controls="mobile-menu">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <main id="main">
+        <section class="page-hero" aria-label="功能特性标题">
+            <div class="container">
+                <h1>强大功能，一站搞定</h1>
+                <p>FaroAI 提供了从多模态 AI 处理到自动化工作流的完整功能体系，让你的智能助手真正发挥生产力。</p>
+            </div>
+        </section>
+
+        <section class="features-overview" aria-label="功能概览">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-label">功能总览</span>
+                    <h2 class="section-title">六大核心能力</h2>
+                    <p class="section-description">每一项功能都经过精心设计，旨在为你的工作流带来真正的效率提升。</p>
+                </div>
+                <div class="features-overview-grid">
+                    <a href="#multi-modal" class="feature-overview-card">
+                        <div class="feature-overview-icon">🧠</div>
+                        <h3 class="feature-overview-title">多模态 AI 支持</h3>
+                        <p class="feature-overview-desc">文本、图像、语音、代码，全模态输入输出，一个平台搞定所有 AI 交互。</p>
+                        <span class="feature-overview-link">了解详情 →</span>
+                    </a>
+                    <a href="#workflow" class="feature-overview-card">
+                        <div class="feature-overview-icon">⚡</div>
+                        <h3 class="feature-overview-title">自动化工作流</h3>
+                        <p class="feature-overview-desc">可视化拖拽搭建，触发器→动作→条件判断，一键部署到生产环境。</p>
+                        <span class="feature-overview-link">了解详情 →</span>
+                    </a>
+                    <a href="#security" class="feature-overview-card">
+                        <div class="feature-overview-icon">🔒</div>
+                        <h3 class="feature-overview-title">安全加密</h3>
+                        <p class="feature-overview-desc">端到端加密传输，数据本地存储，企业级权限管理，守护你的数据安全。</p>
+                        <span class="feature-overview-link">了解详情 →</span>
+                    </a>
+                    <a href="#collaboration" class="feature-overview-card">
+                        <div class="feature-overview-icon">👥</div>
+                        <h3 class="feature-overview-title">团队协作</h3>
+                        <p class="feature-overview-desc">实时协同编辑，角色权限控制，操作审计日志，让团队协作更高效。</p>
+                        <span class="feature-overview-link">了解详情 →</span>
+                    </a>
+                    <a href="#integration" class="feature-overview-card">
+                        <div class="feature-overview-icon">🔗</div>
+                        <h3 class="feature-overview-title">快速集成</h3>
+                        <p class="feature-overview-desc">50+ 预置连接器，REST API，Webhook，OAuth2.0，与你的工具链无缝对接。</p>
+                        <span class="feature-overview-link">了解详情 →</span>
+                    </a>
+                    <a href="#analytics" class="feature-overview-card">
+                        <div class="feature-overview-icon">📊</div>
+                        <h3 class="feature-overview-title">智能分析</h3>
+                        <p class="feature-overview-desc">使用数据洞察，ROI 计算，效率提升报告，量化你的 AI 投资回报。</p>
+                        <span class="feature-overview-link">了解详情 →</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section class="feature-detail-section" id="multi-modal" aria-label="多模态AI支持详情">
+            <div class="container">
+                <div class="feature-detail">
+                    <div class="feature-detail-content">
+                        <span class="section-label">核心能力</span>
+                        <h2>多模态 AI 支持</h2>
+                        <p>FaroAI 集成了业界最先进的多模态 AI 能力，支持文本、图像、语音、代码等多种输入输出方式。你可以用任何方式与 AI 交互，无需切换工具。</p>
+                        <p>平台深度集成了 GPT-4、Claude、Gemini 等顶级模型，自动选择最优模型完成任务，确保每次交互都能获得最佳结果。</p>
+                        <ul class="feature-detail-list">
+                            <li>支持文本、图像、语音、视频、代码五种模态输入输出</li>
+                            <li>集成 GPT-4、Claude、Gemini 等主流顶级 AI 模型</li>
+                            <li>智能模型路由，自动选择最优模型处理任务</li>
+                            <li>上下文感知对话，支持长上下文和多轮交互</li>
+                            <li>流式输出，实时响应，无需等待完整结果</li>
+                        </ul>
+                    </div>
+                    <div class="feature-detail-visual">
+                        <div class="feature-visual-placeholder">
+                            <span class="icon">🧠</span>
+                            <p>多模态 AI 引擎</p>
+                            <p style="font-size:0.85rem; margin-top:0.5rem;">文本 · 图像 · 语音 · 代码 · 视频</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="feature-detail-section" id="workflow" aria-label="自动化工作流详情">
+            <div class="container">
+                <div class="feature-detail reverse">
+                    <div class="feature-detail-content">
+                        <span class="section-label">效率引擎</span>
+                        <h2>自动化工作流</h2>
+                        <p>通过直观的可视化编辑器，你可以轻松搭建复杂的自动化工作流。从触发器设置到动作编排，再到条件判断和异常处理，一切尽在掌握。</p>
+                        <p>工作流一旦搭建完成，即可一键部署到生产环境，7×24 小时自动运行，解放你的双手，让重复性工作自动完成。</p>
+                        <ul class="feature-detail-list">
+                            <li>可视化拖拽式工作流编辑器，无需编写代码</li>
+                            <li>支持多种触发器：定时任务、Webhook、事件驱动、手动触发</li>
+                            <li>丰富的动作库：AI 调用、HTTP 请求、数据处理、消息推送</li>
+                            <li>条件判断与分支逻辑，处理复杂业务场景</li>
+                            <li>版本管理与回滚，安全无忧地迭代工作流</li>
+                        </ul>
+                    </div>
+                    <div class="feature-detail-visual">
+                        <div class="feature-visual-placeholder">
+                            <span class="icon">⚡</span>
+                            <p>可视化工作流引擎</p>
+                            <p style="font-size:0.85rem; margin-top:0.5rem;">触发器 → 动作 → 条件 → 输出</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="feature-detail-section" id="security" aria-label="安全加密详情">
+            <div class="container">
+                <div class="feature-detail">
+                    <div class="feature-detail-content">
+                        <span class="section-label">安全可靠</span>
+                        <h2>安全加密</h2>
+                        <p>数据安全是我们的首要关切。FaroAI 采用行业领先的安全标准，确保你的数据在传输、存储和使用过程中始终受到保护。</p>
+                        <p>所有数据通信采用 TLS 1.3 端到端加密，敏感数据支持本地存储模式，让数据永不离开你的控制范围。企业级权限管理体系，精细化到每个操作。</p>
+                        <ul class="feature-detail-list">
+                            <li>TLS 1.3 端到端加密，数据传输全程保护</li>
+                            <li>敏感数据支持本地加密存储，密钥自行管理</li>
+                            <li>企业级 RBAC 权限管理，精细化到资源级别</li>
+                            <li>操作审计日志，所有操作可追溯、可审计</li>
+                            <li>定期安全扫描与渗透测试，持续加固</li>
+                        </ul>
+                    </div>
+                    <div class="feature-detail-visual">
+                        <div class="feature-visual-placeholder">
+                            <span class="icon">🔒</span>
+                            <p>企业级安全防护</p>
+                            <p style="font-size:0.85rem; margin-top:0.5rem;">端到端加密 · 本地存储 · 权限管理</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="feature-detail-section" id="collaboration" aria-label="团队协作详情">
+            <div class="container">
+                <div class="feature-detail reverse">
+                    <div class="feature-detail-content">
+                        <span class="section-label">协同效率</span>
+                        <h2>团队协作</h2>
+                        <p>FaroAI 不仅是个人助手，更是团队的效率引擎。支持多用户实时协同编辑、角色权限精细化管理，以及完整的操作审计日志。</p>
+                        <p>无论是小团队的日常协作，还是大组织的复杂项目管理，FaroAI 都能提供恰到好处的协作体验。</p>
+                        <ul class="feature-detail-list">
+                            <li>实时协同编辑，多人同时编辑知识库和工作流</li>
+                            <li>精细化的角色权限体系：管理员、编辑者、查看者</li>
+                            <li>完整的操作审计日志，所有变更可追溯</li>
+                            <li>团队知识库共享，加速新人上手</li>
+                            <li>评论与@提及功能，高效沟通与协作</li>
+                        </ul>
+                    </div>
+                    <div class="feature-detail-visual">
+                        <div class="feature-visual-placeholder">
+                            <span class="icon">👥</span>
+                            <p>实时团队协作</p>
+                            <p style="font-size:0.85rem; margin-top:0.5rem;">协同编辑 · 权限控制 · 审计日志</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="feature-detail-section" id="integration" aria-label="快速集成详情">
+            <div class="container">
+                <div class="feature-detail">
+                    <div class="feature-detail-content">
+                        <span class="section-label">无缝连接</span>
+                        <h2>快速集成</h2>
+                        <p>FaroAI 提供丰富的集成方式，让你将 AI 能力无缝嵌入现有的工作流和工具链中。无论你的技术栈是什么，都能快速对接。</p>
+                        <p>50+ 预置连接器覆盖主流服务和工具，配合灵活的 REST API 和 Webhook 机制，满足各种集成场景。</p>
+                        <ul class="feature-detail-list">
+                            <li>50+ 预置连接器：GitHub、Slack、Notion、飞书、钉钉等</li>
+                            <li>完整的 REST API，支持所有核心功能编程化操作</li>
+                            <li>Webhook 事件推送，实时接收状态变更通知</li>
+                            <li>OAuth 2.0 标准认证，安全授权第三方应用</li>
+                            <li>SDK 支持 Python、Node.js、Go 等主流语言</li>
+                        </ul>
+                    </div>
+                    <div class="feature-detail-visual">
+                        <div class="feature-visual-placeholder">
+                            <span class="icon">🔗</span>
+                            <p>50+ 预置连接器</p>
+                            <p style="font-size:0.85rem; margin-top:0.5rem;">API · Webhook · OAuth · SDK</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="feature-detail-section" id="analytics" aria-label="智能分析详情">
+            <div class="container">
+                <div class="feature-detail reverse">
+                    <div class="feature-detail-content">
+                        <span class="section-label">数据驱动</span>
+                        <h2>智能分析</h2>
+                        <p>FaroAI 内置强大的数据分析面板，帮助你全面了解 AI 使用情况、效果评估和投资回报，用数据驱动持续优化。</p>
+                        <p>从使用频率到任务完成率，从响应时间到用户满意度，一切关键指标一目了然，助你做出更明智的决策。</p>
+                        <ul class="feature-detail-list">
+                            <li>实时数据看板，总览 AI 使用情况与性能指标</li>
+                            <li>ROI 自动计算，量化 AI 带来的效率提升和成本节省</li>
+                            <li>效率提升报告，定期生成月度/季度分析摘要</li>
+                            <li>趋势分析，识别使用规律和潜在优化点</li>
+                            <li>自定义报表，灵活配置满足特定分析需求</li>
+                        </ul>
+                    </div>
+                    <div class="feature-detail-visual">
+                        <div class="feature-visual-placeholder">
+                            <span class="icon">📊</span>
+                            <p>智能数据分析</p>
+                            <p style="font-size:0.85rem; margin-top:0.5rem;">数据洞察 · ROI · 效率报告</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="cta-section" aria-label="行动号召">
+            <div class="container">
+                <h2>准备好开始了吗？</h2>
+                <p>立即注册 FaroAI，免费体验全部核心功能，开启你的 AI 助手之旅。</p>
+                <a href="index.html" class="btn btn-large">免费开始使用</a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer" role="contentinfo">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <a href="index.html" class="logo" aria-label="FaroAI 首页">
+                        <svg class="logo-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                        <span class="logo-text">FaroAI</span>
+                    </a>
+                    <p class="footer-description">下一代 AI 助手平台，打造你的智能数字伴侣。</p>
+                </div>
+                <div class="footer-links">
+                    <h4>产品</h4>
+                    <ul>
+                        <li><a href="features.html">功能特性</a></li>
+                        <li><a href="pricing.html">定价方案</a></li>
+                        <li><a href="changelog.html">Changelog</a></li>
+                        <li><a href="roadmap.html">Roadmap</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>资源</h4>
+                    <ul>
+                        <li><a href="docs.html">文档</a></li>
+                        <li><a href="api.html">API 参考</a></li>
+                        <li><a href="community.html">社区</a></li>
+                        <li><a href="contact.html">帮助支持</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>公司</h4>
+                    <ul>
+                        <li><a href="个人概况_2026_v3.html">关于我</a></li>
+                        <li><a href="blog.html">博客</a></li>
+                        <li><a href="contact.html">联系方式</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-copyright">
+                    <span>&copy; 2026 FaroAI. All rights reserved.</span>
+                    <a href="privacy.html">隐私政策</a>
+                    <a href="terms.html">服务条款</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

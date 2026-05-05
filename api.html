@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="FaroAI API 参考文档 - REST API 端点、SDK 集成、Webhook 配置，助力开发者快速集成。">
+        <meta name="keywords" content="FaroAI API, REST API, SDK, Webhook, 开发者文档">
+        <meta name="author" content="FaroAI Team">
+        <meta name="theme-color" content="#667eea">
+        <title>FaroAI API 参考 - 开发者集成指南</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="styles.css">
+        <style>
+            .page-hero { padding: 160px 0 80px; background: var(--gradient-primary); color: white; text-align: center; position: relative; overflow: hidden; }
+            .page-hero::before { content: ''; position: absolute; top: -50%; left: -25%; width: 150%; height: 200%; background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 60%); z-index: 0; }
+            .page-hero * { position: relative; z-index: 1; }
+            .page-hero h1 { font-size: 3rem; font-weight: 800; margin-bottom: 1rem; letter-spacing: -0.02em; }
+            .page-hero p { font-size: 1.25rem; opacity: 0.9; max-width: 600px; margin: 0 auto; line-height: 1.7; }
+            .api-section { padding: 80px 0; }
+            .api-section:nth-child(even) { background: var(--bg-secondary); }
+            .api-section h2 { font-size: 2rem; font-weight: 800; margin-bottom: 1.5rem; color: var(--text-primary); letter-spacing: -0.02em; display: flex; align-items: center; gap: 0.75rem; }
+            .api-section h3 { font-size: 1.3rem; font-weight: 700; margin: 2rem 0 1rem; color: var(--text-primary); }
+            .api-section p, .api-section li { color: var(--text-secondary); line-height: 1.7; }
+            .code-block { background: #1e293b; color: #e2e8f0; padding: 1.5rem; border-radius: var(--radius-lg); font-family: 'SF Mono', 'Fira Code', monospace; font-size: 0.9rem; line-height: 1.6; overflow-x: auto; margin: 1rem 0; }
+            .code-block .method { color: #10b981; font-weight: 700; }
+            .code-block .url { color: #60a5fa; }
+            .code-block .key { color: #f472b6; }
+            .code-block .string { color: #fbbf24; }
+            .api-endpoints { display: grid; gap: 1.5rem; }
+            .endpoint-card { background: var(--bg-primary); border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: 1.5rem; transition: all var(--transition-base); }
+            .endpoint-card:hover { border-color: var(--primary-color); box-shadow: var(--shadow-md); }
+            .endpoint-method { display: inline-block; padding: 0.25rem 0.75rem; border-radius: var(--radius-sm); font-size: 0.8rem; font-weight: 700; margin-right: 0.75rem; }
+            .method-get { background: #dbeafe; color: #2563eb; }
+            .method-post { background: #d1fae5; color: #059669; }
+            .method-put { background: #fef3c7; color: #d97706; }
+            .method-delete { background: #fee2e2; color: #dc2626; }
+            .endpoint-path { font-family: 'SF Mono', 'Fira Code', monospace; font-size: 0.95rem; color: var(--text-primary); font-weight: 600; }
+            .endpoint-desc { margin-top: 0.75rem; color: var(--text-secondary); font-size: 0.95rem; }
+            .sdk-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin: 2rem 0; }
+            .sdk-card { background: var(--bg-primary); border: 1px solid var(--border-color); border-radius: var(--radius-xl); padding: 2rem; text-align: center; transition: all var(--transition-base); }
+            .sdk-card:hover { border-color: var(--primary-color); box-shadow: var(--shadow-md); transform: translateY(-2px); }
+            .sdk-icon { font-size: 3rem; margin-bottom: 1rem; display: block; }
+            .sdk-card h4 { font-size: 1.15rem; font-weight: 700; margin-bottom: 0.5rem; color: var(--text-primary); }
+            .sdk-card p { color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 1rem; }
+            .rate-limit-table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; }
+            .rate-limit-table th, .rate-limit-table td { padding: 0.75rem 1rem; text-align: left; border-bottom: 1px solid var(--border-color); }
+            .rate-limit-table th { background: var(--bg-secondary); font-weight: 700; color: var(--text-primary); }
+            .rate-limit-table td { color: var(--text-secondary); }
+            .cta-section { padding: 80px 0; text-align: center; background: var(--gradient-primary); color: white; }
+            .cta-section h2 { font-size: 2.5rem; font-weight: 800; margin-bottom: 1rem; color: white; }
+            .cta-section p { font-size: 1.2rem; opacity: 0.9; margin-bottom: 2rem; }
+            .cta-section .btn { background: white; color: var(--primary-color); font-weight: 700; }
+            .cta-section .btn:hover { transform: translateY(-2px); box-shadow: var(--shadow-lg); }
+            @media (max-width: 768px) {
+                .page-hero h1 { font-size: 2.25rem; }
+                .api-section h2 { font-size: 1.5rem; }
+                .sdk-grid { grid-template-columns: 1fr; }
+            }
+        </style>
+</head>
+<body>
+        <a href="#main" class="sr-only skip-link">跳转到主要内容</a>
+        <header class="header" role="banner">
+            <div class="container">
+                <nav class="navbar" role="navigation" aria-label="主导航">
+                    <a href="index.html" class="logo" aria-label="FaroAI 首页"><svg class="logo-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg><span class="logo-text"><span class="logo-text-red">Fa</span><span class="logo-text-gradient">ro</span><span class="logo-text-red">AI</span></span></a>
+                    <ul class="nav-menu"><li><a href="index.html#home">首页</a></li><li><a href="features.html">功能</a></li><li><a href="pricing.html">定价</a></li><li><a href="blog.html">博客</a></li><li><a href="个人概况_2026_v3.html">关于我</a></li></ul>
+                    <div class="nav-actions"><a href="contact.html" class="btn btn-outline">联系我们</a><a href="index.html" class="btn btn-primary">开始使用</a></div>
+                    <button class="mobile-menu-btn" aria-label="菜单" aria-expanded="false" aria-controls="mobile-menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="M3 12h18M3 6h18M3 18h18"/></svg></button>
+                </nav>
+            </div>
+        </header>
+        <main id="main">
+            <section class="page-hero">
+                <div class="container">
+                    <h1>API 参考文档</h1>
+                    <p>通过强大的 REST API 和 SDK，将 FaroAI 的 AI 能力集成到你的应用中。</p>
+                </div>
+            </section>
+
+            <section class="api-section">
+                <div class="container">
+                    <h2>🔑 认证方式</h2>
+                    <p>FaroAI API 使用 Bearer Token 进行认证。所有 API 请求需要在 Header 中携带有效的 API Key。</p>
+                    <div class="code-block">
+<span class="method">Authorization</span>: <span class="string">Bearer your-api-key-here</span>
+                    </div>
+                    <p>你可以在控制台 → API 管理中创建和管理 API Key。建议为不同用途创建不同的 Key，并定期轮换以确保安全。</p>
+                    <h3>速率限制</h3>
+                    <p>所有 API 请求都有速率限制，具体如下：</p>
+                    <table class="rate-limit-table">
+                        <thead><tr><th>方案</th><th>请求/分钟</th><th>请求/天</th><th>并发连接</th></tr></thead>
+                        <tbody>
+                            <tr><td>个人版</td><td>10</td><td>500</td><td>2</td></tr>
+                            <tr><td>专业版</td><td>60</td><td>10,000</td><td>10</td></tr>
+                            <tr><td>企业版</td><td>不限</td><td>不限</td><td>专属配额</td></tr>
+                        </tbody>
+                    </table>
+                    <p>当超过速率限制时，API 会返回 HTTP 429 状态码，并在响应头中包含 <code>Retry-After</code> 字段，指示下次可重试的时间。</p>
+                </div>
+            </section>
+
+            <section class="api-section">
+                <div class="container">
+                    <h2>📡 端点列表</h2>
+                    <h3>智能体管理 (Agents)</h3>
+                    <div class="api-endpoints">
+                        <div class="endpoint-card">
+                            <span class="endpoint-method method-post">POST</span>
+                            <span class="endpoint-path">/v1/agents</span>
+                            <p class="endpoint-desc">创建新的 AI 智能体。支持配置名称、模型、系统提示词、知识库关联等参数。</p>
+                        </div>
+                        <div class="endpoint-card">
+                            <span class="endpoint-method method-get">GET</span>
+                            <span class="endpoint-path">/v1/agents</span>
+                            <p class="endpoint-desc">列出所有智能体。支持分页和过滤，可按名称、状态、创建时间排序。</p>
+                        </div>
+                        <div class="endpoint-card">
+                            <span class="endpoint-method method-get">GET</span>
+                            <span class="endpoint-path">/v1/agents/:id</span>
+                            <p class="endpoint-desc">获取指定智能体的详细信息，包括配置、状态和最近活动记录。</p>
+                        </div>
+                        <div class="endpoint-card">
+                            <span class="endpoint-method method-put">PUT</span>
+                            <span class="endpoint-path">/v1/agents/:id</span>
+                            <p class="endpoint-desc">更新智能体配置，支持修改名称、模型、系统提示词、知识库等。</p>
+                        </div>
+                        <div class="endpoint-card">
+                            <span class="endpoint-method method-delete">DELETE</span>
+                            <span class="endpoint-path">/v1/agents/:id</span>
+                            <p class="endpoint-desc">删除指定智能体。删除后不可恢复，同时会清除关联的工作流和数据。</p>
+                        </div>
+                    </div>
+
+                    <h3>消息收发 (Messages)</h3>
+                    <div class="api-endpoints">
+                        <div class="endpoint-card">
+                            <span class="endpoint-method method-post">POST</span>
+                            <span class="endpoint-path">/v1/agents/:id/messages</span>
+                            <p class="endpoint-desc">向指定智能体发送消息。支持文本、图像等多模态输入，返回流式或非流式响应。</p>
+                        </div>
+                        <div class="endpoint-card">
+                            <span class="endpoint-method method-get">GET</span>
+                            <span class="endpoint-path">/v1/agents/:id/messages</span>
+                            <p class="endpoint-desc">获取智能体的消息历史记录，支持分页和时间范围过滤。</p>
+                        </div>
+                    </div>
+
+                    <h3>工作流管理 (Workflows)</h3>
+                    <div class="api-endpoints">
+                        <div class="endpoint-card">
+                            <span class="endpoint-method method-post">POST</span>
+                            <span class="endpoint-path">/v1/workflows</span>
+                            <p class="endpoint-desc">创建新的自动化工作流，定义触发器、动作序列和条件逻辑。</p>
+                        </div>
+                        <div class="endpoint-card">
+                            <span class="endpoint-method method-post">POST</span>
+                            <span class="endpoint-path">/v1/workflows/:id/run</span>
+                            <p class="endpoint-desc">手动触发执行指定工作流，可选择传入自定义参数。</p>
+                        </div>
+                        <div class="endpoint-card">
+                            <span class="endpoint-method method-get">GET</span>
+                            <span class="endpoint-path">/v1/workflows/:id/status</span>
+                            <p class="endpoint-desc">查询工作流执行状态和进度，支持实时流式更新。</p>
+                        </div>
+                    </div>
+
+                    <h3>知识库管理 (Knowledge Bases)</h3>
+                    <div class="api-endpoints">
+                        <div class="endpoint-card">
+                            <span class="endpoint-method method-post">POST</span>
+                            <span class="endpoint-path">/v1/knowledge-bases</span>
+                            <p class="endpoint-desc">创建新的知识库，支持设置名称、描述、关联智能体等。</p>
+                        </div>
+                        <div class="endpoint-card">
+                            <span class="endpoint-method method-post">POST</span>
+                            <span class="endpoint-path">/v1/knowledge-bases/:id/documents</span>
+                            <p class="endpoint-desc">向知识库添加文档。支持上传文件（PDF、Markdown、TXT、Word）或直接提交文本内容。</p>
+                        </div>
+                        <div class="endpoint-card">
+                            <span class="endpoint-method method-get">GET</span>
+                            <span class="endpoint-path">/v1/knowledge-bases/:id/search</span>
+                            <p class="endpoint-desc">在知识库中进行语义搜索，返回最相关的文档片段和相似度评分。</p>
+                        </div>
+                        <div class="endpoint-card">
+                            <span class="endpoint-method method-delete">DELETE</span>
+                            <span class="endpoint-path">/v1/knowledge-bases/:id</span>
+                            <p class="endpoint-desc">删除知识库及其所有文档。操作不可逆，请谨慎使用。</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="api-section">
+                <div class="container">
+                    <h2>📦 SDK</h2>
+                    <p>FaroAI 提供多语言 SDK，让你用最熟悉的语言快速集成 AI 能力。</p>
+                    <div class="sdk-grid">
+                        <div class="sdk-card">
+                            <span class="sdk-icon">🐍</span>
+                            <h4>Python SDK</h4>
+                            <p>完整的 Python 客户端，支持同步和异步调用</p>
+                            <div class="code-block" style="text-align:left; font-size:0.85rem;">
+pip install faroai<br><br><span class="key">from</span> faroai <span class="key">import</span> FaroAI<br>client = FaroAI(<span class="string">"your-api-key"</span>)<br>response = client.chat.<span class="string">messages</span>.<span class="string">create</span>(<br>&nbsp;&nbsp;model=<span class="string">"gpt-4"</span>,<br>&nbsp;&nbsp;messages=[{<span class="string">"role"</span>: <span class="string">"user"</span>, <span class="string">"content"</span>: <span class="string">"你好"</span>}]<br>)
+                            </div>
+                        </div>
+                        <div class="sdk-card">
+                            <span class="sdk-icon">💚</span>
+                            <h4>Node.js SDK</h4>
+                            <p>JavaScript/TypeScript 客户端，支持 Promises 和 async/await</p>
+                            <div class="code-block" style="text-align:left; font-size:0.85rem;">
+npm install faroai<br><br><span class="key">import</span> FaroAI <span class="key">from</span> <span class="string">'faroai'</span>;<br><span class="key">const</span> client = <span class="key">new</span> FaroAI({<br>&nbsp;&nbsp;apiKey: <span class="string">'your-api-key'</span><br>});<br><span class="key">const</span> res = <span class="key">await</span> client<br>&nbsp;&nbsp;.chat.messages.create({<br>&nbsp;&nbsp;&nbsp;&nbsp;model: <span class="string">'gpt-4'</span>,<br>&nbsp;&nbsp;&nbsp;&nbsp;messages: [{role: <span class="string">'user'</span>, content: <span class="string">'你好'</span>}]<br>&nbsp;&nbsp;});
+                            </div>
+                        </div>
+                        <div class="sdk-card">
+                            <span class="sdk-icon">🔵</span>
+                            <h4>Go SDK</h4>
+                            <p>高性能 Go 客户端，原生支持并发和流式响应</p>
+                            <div class="code-block" style="text-align:left; font-size:0.85rem;">
+go get github.com/faroai/go-sdk<br><br><span class="key">import</span> <span class="string">"github.com/faroai/go-sdk"</span><br>client := faroai.<span class="string">New</span>(<span class="string">"your-api-key"</span>)<br>resp, err := client.Chat().<br>&nbsp;&nbsp;Messages().<span class="string">Create</span>(ctx, faroai.ChatRequest{<br>&nbsp;&nbsp;&nbsp;&nbsp;Model:    <span class="string">"gpt-4"</span>,<br>&nbsp;&nbsp;&nbsp;&nbsp;Messages: []faroai.Message{{Role: <span class="string">"user"</span>, Content: <span class="string">"你好"</span>}},<br>&nbsp;&nbsp;})
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="api-section">
+                <div class="container">
+                    <h2>🪝 Webhook 配置</h2>
+                    <p>Webhook 允许你在关键事件发生时收到实时通知。你可以在控制台配置 Webhook URL，FaroAI 会以 POST 请求方式推送事件数据。</p>
+                    <h3>支持的事件类型</h3>
+                    <div class="code-block">
+<span class="key">workflow.completed</span>  - 工作流执行完成<br>
+<span class="key">workflow.failed</span>    - 工作流执行失败<br>
+<span class="key">message.received</span>   - 收到新消息<br>
+<span class="key">agent.updated</span>     - 智能体配置变更<br>
+<span class="key">kb.document.indexed</span> - 知识库文档索引完成<br>
+<span class="key">rate_limit.warning</span>  - 接近速率限制阈值
+                    </div>
+                    <h3>Webhook 请求格式</h3>
+                    <div class="code-block">
+<span class="method">POST</span> <span class="url">https://your-server.com/webhook</span><br><br>
+{<br>
+&nbsp;&nbsp;<span class="string">"event"</span>: <span class="string">"workflow.completed"</span>,<br>
+&nbsp;&nbsp;<span class="string">"timestamp"</span>: <span class="string">"2026-05-05T06:00:00Z"</span>,<br>
+&nbsp;&nbsp;<span class="string">"data"</span>: {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="string">"workflow_id"</span>: <span class="string">"wf_123456"</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="string">"status"</span>: <span class="string">"success"</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="string">"duration_ms"</span>: <span class="string">3200</span><br>
+&nbsp;&nbsp;}<br>
+}
+                    </div>
+                    <p>所有 Webhook 请求都携带签名头 <code>X-FaroAI-Signature</code>，用于验证请求来源。建议在服务端验证签名以确保安全性。Webhook 会进行最多 5 次重试，重试间隔分别为 1 分钟、5 分钟、15 分钟、30 分钟和 1 小时。</p>
+                </div>
+            </section>
+
+            <section class="cta-section">
+                <div class="container">
+                    <h2>开始使用 API</h2>
+                    <p>注册即可获得 API Key，立即开始集成。</p>
+                    <a href="index.html" class="btn btn-large">免费注册</a>
+                </div>
+            </section>
+        </main>
+
+        <footer class="footer" role="contentinfo">
+            <div class="container">
+                <div class="footer-content">
+                    <div class="footer-brand"><a href="index.html" class="logo" aria-label="FaroAI 首页"><svg class="logo-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg><span class="logo-text">FaroAI</span></a><p class="footer-description">下一代 AI 助手平台，打造你的智能数字伴侣。</p></div>
+                    <div class="footer-links"><h4>产品</h4><ul><li><a href="features.html">功能特性</a></li><li><a href="pricing.html">定价方案</a></li><li><a href="changelog.html">Changelog</a></li><li><a href="roadmap.html">Roadmap</a></li></ul></div>
+                    <div class="footer-links"><h4>资源</h4><ul><li><a href="docs.html">文档</a></li><li><a href="api.html">API 参考</a></li><li><a href="community.html">社区</a></li><li><a href="contact.html">帮助支持</a></li></ul></div>
+                    <div class="footer-links"><h4>公司</h4><ul><li><a href="个人概况_2026_v3.html">关于我</a></li><li><a href="blog.html">博客</a></li><li><a href="contact.html">联系方式</a></li></ul></div>
+                </div>
+                <div class="footer-bottom"><div class="footer-copyright"><span>&copy; 2026 FaroAI. All rights reserved.</span><a href="privacy.html">隐私政策</a><a href="terms.html">服务条款</a></div></div>
+            </div>
+        </footer>
+    </body>
+    </html>
