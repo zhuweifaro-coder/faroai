@@ -199,6 +199,19 @@ a:hover {
     background-clip: text;
 }
 
+.logo-text-red {
+    color: #e74c3c;
+     -webkit-text-fill-color: #e74c3c;
+    font-weight: 700;
+}
+
+.logo-text-gradient {
+    background: var(--gradient-primary);
+     -webkit-background-clip: text;
+     -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
 .nav-menu {
     display: flex;
     gap: 2rem;
