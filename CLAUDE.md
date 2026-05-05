@@ -131,3 +131,24 @@ sleep 90 && curl -s https://www.faroai.net/blog.html | grep "<你刚加的关键
 ---
 
 最后更新：2026-05-04
+
+
+---
+
+## 七、🚨 index.html 保护铁律（2026-05-05 加）
+
+**因为发生过多次 "AI 把主页简化" 的事故，新增以下绝对禁令：**
+
+1. **index.html 是经过精心设计的完整版**（约 880 行，含：6 个核心功能卡 / 4 个使用场景 / 3 个定价 / 团队介绍 / 登录模态框）。**这个版本是 canonical，永远不要"简化"它。**
+
+2. 修改 blog.html 时，**严格禁止**任何对 index.html 的"顺手优化"、"清理冗余"、"改进结构"等行为。即使你觉得 index.html 有"问题"——**忽略它**。
+
+3. 改 blog.html 后 push 前必跑：
+   ```bash
+   git diff origin/main -- index.html
+   ```
+   如果有任何输出（不论多少），**立即 git checkout origin/main -- index.html 还原**，不要 push 包含 index.html 改动的 commit。
+
+4. 用户**只有明确说**「修改主页 / 改 index.html / 调整 hero 区 / 改主页定价」时，才能动 index.html。其它一切情况都不许碰。
+
+5. 如果模型自己觉得 "我应该顺便整理一下 index.html"——**这是幻觉，立即停下**。
