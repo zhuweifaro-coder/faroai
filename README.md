@@ -8,11 +8,21 @@
 
 ```
 faroai/
-├── index.html           # 主页面
-├── styles.css           # CSS 样式文件
-├── script.js            # JavaScript 交互
-└── README.md            # 项目说明
+├── index.html                # 主页 (https://www.faroai.net/)
+├── blog.html                 # 博客页 (https://www.faroai.net/blog.html)
+├── styles.css                # 全站共用样式
+├── blog.css                  # 博客专属样式
+├── script.js                 # 主页交互
+├── blog.js                   # 博客交互
+├── 个人概况_2026_v3.html     # 个人简历附件页
+├── deploy-to-cloudflare.sh   # Cloudflare Pages 部署脚本
+├── deploy.sh                 # Git push 辅助
+├── CLAUDE.md                 # ★ AI 助手操作手册（必读）
+└── README.md                 # 项目说明
 ```
+
+> ⚠️ **AI Agent 注意**：修改本项目前请先读 [CLAUDE.md](./CLAUDE.md)
+> —— 那里有"博客 vs 主页"的明确路径映射规则，避免误改。
 
 ## 🚀 快速开始
 
