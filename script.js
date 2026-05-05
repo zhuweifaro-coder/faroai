@@ -348,3 +348,22 @@ document.head.appendChild(style);
         });
     });
 })();
+
+/* ─────────── 修复：GitHub / Google OAuth 按钮事件绑定 ─────────── */
+(function bindOAuth() {
+    const oauthButtons = document.querySelectorAll('.btn-social');
+    oauthButtons.forEach(btn => {
+        btn.addEventListener('click', e => {
+            e.preventDefault();
+            const provider = btn.classList.contains('btn-github') ? 'GitHub'
+                          : btn.classList.contains('btn-google') ? 'Google'
+                          : '第三方';
+            // 简洁的内嵌提示，比 alert 优雅
+            const tip = document.createElement('div');
+            tip.style.cssText = 'position:fixed;top:80px;left:50%;transform:translateX(-50%);background:rgba(15,23,42,.95);color:white;padding:12px 24px;border-radius:8px;font-size:14px;z-index:10001;box-shadow:0 10px 25px rgba(0,0,0,.2);animation:fadeIn .2s';
+            tip.textContent = `${provider} OAuth 后端尚未接入，敬请期待 🦞`;
+            document.body.appendChild(tip);
+            setTimeout(() => tip.remove(), 2500);
+        });
+    });
+})();
