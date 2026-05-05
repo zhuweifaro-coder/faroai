@@ -519,3 +519,91 @@
 .article-card:nth-child(6) {
     animation-delay: 0.5s;
 }
+
+/* ─────────── P2 #14: 博客侧边目录 TOC ─────────── */
+
+.blog-layout {
+    display: grid;
+    grid-template-columns: 1fr 240px;
+    gap: 2rem;
+    align-items: start;
+}
+
+.articles-wrap {
+    min-width: 0;  /* 防 grid 子项被内容撑爆 */
+}
+
+.blog-toc {
+    position: sticky;
+    top: 100px;  /* 留出 header 高度 */
+    max-height: calc(100vh - 120px);
+    overflow-y: auto;
+}
+
+.blog-toc-inner {
+    background: var(--bg-secondary, #f8fafc);
+    border: 1px solid var(--border-color, #e2e8f0);
+    border-radius: 0.75rem;
+    padding: 1.25rem 1rem;
+}
+
+.blog-toc-title {
+    font-size: 0.95rem;
+    font-weight: 600;
+    margin: 0 0 0.75rem;
+    color: var(--text-primary, #0f172a);
+}
+
+.blog-toc-nav ol {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    counter-reset: toc-counter;
+}
+
+.blog-toc-nav li {
+    counter-increment: toc-counter;
+    margin: 0.25rem 0;
+}
+
+.blog-toc-nav a {
+    display: block;
+    padding: 0.4rem 0.5rem;
+    color: var(--text-secondary, #64748b);
+    text-decoration: none;
+    font-size: 0.83rem;
+    line-height: 1.4;
+    border-radius: 0.4rem;
+    transition: background 0.15s, color 0.15s;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+.blog-toc-nav a::before {
+    content: counter(toc-counter) ". ";
+    color: var(--primary-color, #6366f1);
+    font-weight: 600;
+}
+
+.blog-toc-nav a:hover {
+    background: var(--primary-light, #e0e7ff);
+    color: var(--primary-color, #6366f1);
+}
+
+.blog-toc-nav a.active {
+    background: var(--primary-color, #6366f1);
+    color: white;
+}
+
+/* 移动端：隐藏 sidebar，恢复单列 */
+@media (max-width: 900px) {
+    .blog-layout {
+        grid-template-columns: 1fr;
+    }
+    .blog-toc {
+        display: none;
+    }
+}

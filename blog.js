@@ -165,3 +165,59 @@ document.addEventListener('DOMContentLoaded', function() {
         }, index * 100);
     });
 });
+
+/* ─────────── P2 #14: 自动生成博客目录 ─────────── */
+(function buildTOC() {
+    const tocNav = document.getElementById('tocNav');
+    if (!tocNav) return;
+    const articles = document.querySelectorAll('.article-card');
+    if (articles.length === 0) return;
+
+    const ol = document.createElement('ol');
+    const links = [];
+
+    articles.forEach((article, idx) => {
+        // 给每个 article 一个稳定 id 用于锚点跳转
+        if (!article.id) article.id = 'article-' + (idx + 1);
+
+        const titleEl = article.querySelector('.article-title');
+        if (!titleEl) return;
+
+        const li = document.createElement('li');
+        const a = document.createElement('a');
+        a.href = '#' + article.id;
+        a.textContent = titleEl.textContent.trim();
+        a.title = titleEl.textContent.trim();
+
+        a.addEventListener('click', (e) => {
+            e.preventDefault();
+            const target = document.getElementById(article.id);
+            if (target) {
+                const top = target.getBoundingClientRect().top + window.pageYOffset - 90;
+                window.scrollTo({ top, behavior: 'smooth' });
+                history.replaceState(null, '', '#' + article.id);
+            }
+        });
+
+        li.appendChild(a);
+        ol.appendChild(li);
+        links.push({ a, article });
+    });
+
+    tocNav.appendChild(ol);
+
+    // 滚动同步：当前可视的文章对应 toc 链接高亮
+    if ('IntersectionObserver' in window) {
+        const obs = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const id = entry.target.id;
+                    links.forEach(({a, article}) => {
+                        a.classList.toggle('active', article.id === id);
+                    });
+                }
+            });
+        }, { rootMargin: '-100px 0px -60% 0px' });
+        articles.forEach(a => obs.observe(a));
+    }
+})();
