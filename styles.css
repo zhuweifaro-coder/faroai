@@ -1157,3 +1157,14 @@ a:hover {
     align-items: center;
     justify-content: center;
 }
+
+/* ─────────── 修复：未定义尺寸的 inline SVG（默认会撑满父容器）─────────── */
+.input-icon { width: 18px; height: 18px; }
+.btn-icon { width: 18px; height: 18px; }
+.eye-icon { width: 20px; height: 20px; }
+
+/* 全局兜底：任何没显式设 width 的 inline SVG 不超过 1.5em */
+svg:not([width]):not([class~="logo-icon"]):not([class~="feature-icon"]):not(.team-avatar > svg):not(.social-links svg):not(.video-modal-close svg):not(.mobile-menu-btn svg) {
+    max-width: 1.5em;
+    max-height: 1.5em;
+}
