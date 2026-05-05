@@ -1230,3 +1230,86 @@ svg:not([width]):not([class~="logo-icon"]):not([class~="feature-icon"]):not(.tea
 .modal-title { font-size: 1.5rem; font-weight: 700; margin: 0 0 0.5rem; color: var(--text-primary); }
 .modal-subtitle { color: var(--text-secondary); font-size: 0.95rem; margin: 0; }
 body.modal-open { overflow: hidden; }
+
+/* ─────────── 博客预览 section（替代旧 pricing 区段）─────────── */
+.blog-preview-section {
+    padding: 100px 0;
+    background: var(--bg-secondary);
+}
+.blog-preview-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-top: 3rem;
+}
+.blog-preview-card {
+    background: var(--bg-primary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-xl);
+    padding: 1.75rem;
+    box-shadow: var(--shadow-sm);
+    transition: transform 0.2s, box-shadow 0.2s;
+    display: flex;
+    flex-direction: column;
+}
+.blog-preview-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+}
+.blog-preview-meta-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+.blog-preview-tag {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    background: var(--primary-light);
+    color: var(--primary-color);
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+.blog-preview-date {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+.blog-preview-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin: 0 0 0.75rem;
+    line-height: 1.5;
+}
+.blog-preview-title a {
+    color: var(--text-primary);
+    text-decoration: none;
+}
+.blog-preview-title a:hover { color: var(--primary-color); }
+.blog-preview-excerpt {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    line-height: 1.65;
+    margin: 0 0 1.25rem;
+    flex: 1;
+    display: -webkit-box;
+    -webkit-line-clamp: 5;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+.blog-preview-readmore {
+    display: inline-block;
+    color: var(--primary-color);
+    font-weight: 600;
+    font-size: 0.9rem;
+    text-decoration: none;
+}
+.blog-preview-readmore:hover { text-decoration: underline; }
+.blog-preview-cta {
+    text-align: center;
+    margin-top: 3rem;
+}
+@media (max-width: 900px) {
+    .blog-preview-grid { grid-template-columns: 1fr; }
+}
