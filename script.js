@@ -263,3 +263,88 @@ document.addEventListener('DOMContentLoaded', function() {
 var style = document.createElement('style');
 style.textContent = '@keyframes fadeIn{from{opacity:0}to{opacity:1}}@keyframes fadeOut{from{opacity:1}to{opacity:0}}';
 document.head.appendChild(style);
+
+/* ─────────── 修复：登录/忘记密码模态框事件绑定 ─────────── */
+(function bindAuthModals() {
+    const loginModal = document.getElementById('loginModal');
+    const forgotModal = document.getElementById('forgotPasswordModal');
+    if (!loginModal) return;
+
+    function openModal(m) {
+        document.querySelectorAll('.modal').forEach(x => x.setAttribute('aria-hidden', 'true'));
+        m.setAttribute('aria-hidden', 'false');
+        document.body.classList.add('modal-open');
+        const firstInput = m.querySelector('input, button');
+        firstInput && firstInput.focus();
+    }
+    function closeModal(m) {
+        m.setAttribute('aria-hidden', 'true');
+        document.body.classList.remove('modal-open');
+    }
+    function closeAll() {
+        document.querySelectorAll('.modal[aria-hidden="false"]').forEach(closeModal);
+    }
+
+    // 登录触发器（header + 任何 .btn-login-trigger）
+    document.querySelectorAll('.btn-login-trigger').forEach(btn => {
+        btn.addEventListener('click', e => {
+            e.preventDefault();
+            openModal(loginModal);
+        });
+    });
+
+    // "立即注册" link 也跳到 pricing.html (a 标签自然处理) 或者切到登录
+    // 这里不做特殊处理（href="pricing.html" 已是真页面）
+
+    // "忘记密码" → forgot 模态
+    const forgotLink = document.getElementById('forgotPasswordLink');
+    if (forgotLink && forgotModal) {
+        forgotLink.addEventListener('click', e => {
+            e.preventDefault();
+            closeModal(loginModal);
+            openModal(forgotModal);
+        });
+    }
+    // "返回登录" link
+    document.querySelectorAll('.link-back-login').forEach(l => {
+        l.addEventListener('click', e => {
+            e.preventDefault();
+            if (forgotModal) closeModal(forgotModal);
+            openModal(loginModal);
+        });
+    });
+
+    // 关闭：close button / backdrop / ESC
+    document.querySelectorAll('.modal').forEach(m => {
+        m.querySelector('.modal-close')?.addEventListener('click', () => closeModal(m));
+        m.querySelector('.modal-backdrop')?.addEventListener('click', () => closeModal(m));
+    });
+    document.addEventListener('keydown', e => {
+        if (e.key === 'Escape') closeAll();
+    });
+
+    // 密码可见性切换
+    document.querySelectorAll('.password-toggle').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const input = btn.closest('.form-group')?.querySelector('input[type="password"], input[type="text"]');
+            if (!input) return;
+            input.type = input.type === 'password' ? 'text' : 'password';
+        });
+    });
+
+    // 表单提交：显示"功能开发中"占位提示
+    ['loginForm', 'forgotForm'].forEach(id => {
+        const form = document.getElementById(id);
+        form?.addEventListener('submit', e => {
+            e.preventDefault();
+            const errorEl = form.querySelector('.form-error');
+            if (errorEl) {
+                errorEl.textContent = '后端登录服务尚未上线，敬请期待 🦞';
+                errorEl.hidden = false;
+                errorEl.style.color = 'var(--primary-color, #6366f1)';
+            } else {
+                alert('后端登录服务尚未上线，敬请期待 🦞');
+            }
+        });
+    });
+})();
