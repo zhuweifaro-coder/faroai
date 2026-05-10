@@ -46,7 +46,7 @@
         <section class="blog-hero">
             <div class="container">
                 <div class="blog-hero-content">
-                    <span class="blog-kicker">FaroAI Notes</span>
+                    <span class="blog-kicker"><span class="brand-word"><span class="brand-red">Fa</span><span class="brand-mid">ro</span><span class="brand-red">AI</span></span> Notes</span>
                     <h1 class="blog-title">博客</h1>
                     <p class="blog-description">跟踪 OpenClaw 最新动态、OpenAI 官方技术资料，以及把 AI 接入微信、本地模型和自动化工作流的实践记录。</p>
                 </div>
@@ -93,7 +93,7 @@
                                 <span class="article-category category-product">产品更新</span>
                             </div>
                             <p class="article-excerpt">
-                                这次我把本机 OpenClaw 升级并重启 Gateway 后，确认最新 npm 版本为 2026.5.7。实际体验最值得关注的是三件事：插件安装记录与注册表更严格，微信通道需要加载编译后的 dist 入口；默认 OpenAI 模型可使用 openai/chat-latest 这类面向最新模型的路由；Cron 与 Channels CLI 的 JSON 输出、session 修复和权限提示更适合自动化巡检。对 FaroAI 来说，这意味着“先验证 Gateway，再验证模型，再验证微信通道”的部署顺序更重要。
+                                这次我把本机 OpenClaw 升级并重启 Gateway 后，确认最新 npm 版本为 2026.5.7。实际体验最值得关注的是三件事：插件安装记录与注册表更严格，微信通道需要加载编译后的 dist 入口；默认 OpenAI 模型可使用 openai/chat-latest 这类面向最新模型的路由；Cron 与 Channels CLI 的 JSON 输出、session 修复和权限提示更适合自动化巡检。对 <span class="brand-word"><span class="brand-red">Fa</span><span class="brand-mid">ro</span><span class="brand-red">AI</span></span> 来说，这意味着“先验证 Gateway，再验证模型，再验证微信通道”的部署顺序更重要。
                             </p>
                             <p class="article-source">资料来源：<a href="https://www.npmjs.com/package/openclaw" target="_blank" rel="noopener noreferrer">npm openclaw</a>、<a href="https://docs.openclaw.ai/cli/update" target="_blank" rel="noopener noreferrer">OpenClaw 更新文档</a></p>
                             <div class="article-meta">
@@ -118,11 +118,11 @@
                         </div>
                         <div class="article-content">
                             <div class="article-header">
-                                <a href="https://developers.openai.com/api/docs/guides/latest-model" target="_blank" rel="noopener noreferrer" class="article-title">OpenAI 模型选型更新：gpt-5.5、gpt-5.5-codex 与 gpt-image-2 怎么放进 FaroAI</a>
+                                <a href="https://developers.openai.com/api/docs/guides/latest-model" target="_blank" rel="noopener noreferrer" class="article-title">OpenAI 模型选型更新：gpt-5.5、gpt-5.5-codex 与 gpt-image-2 怎么放进 <span class="brand-word"><span class="brand-red">Fa</span><span class="brand-mid">ro</span><span class="brand-red">AI</span></span></a>
                                 <span class="article-category category-technical">技术文章</span>
                             </div>
                             <p class="article-excerpt">
-                                OpenAI 官方最新模型指南把 gpt-5.5 标为面向复杂任务的旗舰模型，gpt-5.5-codex 适合长时间编码、调试和代理式软件工程，gpt-5.4/mini/nano 则覆盖日常与低延迟场景。对 FaroAI 的模型路由来说，可以把“复杂分析/代码任务”交给强模型，把“微信日常问答/摘要/分类”交给更快模型，同时将图像生成单独路由到 gpt-image-2。
+                                OpenAI 官方最新模型指南把 gpt-5.5 标为面向复杂任务的旗舰模型，gpt-5.5-codex 适合长时间编码、调试和代理式软件工程，gpt-5.4/mini/nano 则覆盖日常与低延迟场景。对 <span class="brand-word"><span class="brand-red">Fa</span><span class="brand-mid">ro</span><span class="brand-red">AI</span></span> 的模型路由来说，可以把“复杂分析/代码任务”交给强模型，把“微信日常问答/摘要/分类”交给更快模型，同时将图像生成单独路由到 gpt-image-2。
                             </p>
                             <p class="article-source">资料来源：<a href="https://developers.openai.com/api/docs/guides/latest-model" target="_blank" rel="noopener noreferrer">OpenAI Latest model guide</a>、<a href="https://developers.openai.com/api/docs/guides/image-generation" target="_blank" rel="noopener noreferrer">OpenAI Image generation guide</a></p>
                             <div class="article-meta">
@@ -151,7 +151,7 @@
                                 <span class="article-category category-tutorial">教程</span>
                             </div>
                             <p class="article-excerpt">
-                                Responses API 是 OpenAI 推荐的统一响应接口，适合需要多轮状态、工具调用、多模态输入和代理式执行的应用。对 FaroAI 来说，落地路线很清晰：用 Responses 承载模型回复，用 File Search/Code Interpreter/Web Search 等工具处理资料和计算，用 MCP 连接外部系统，再由 OpenClaw Gateway 负责通道、权限和任务触发。
+                                Responses API 是 OpenAI 推荐的统一响应接口，适合需要多轮状态、工具调用、多模态输入和代理式执行的应用。对 <span class="brand-word"><span class="brand-red">Fa</span><span class="brand-mid">ro</span><span class="brand-red">AI</span></span> 来说，落地路线很清晰：用 Responses 承载模型回复，用 File Search/Code Interpreter/Web Search 等工具处理资料和计算，用 MCP 连接外部系统，再由 OpenClaw Gateway 负责通道、权限和任务触发。
                             </p>
                             <p class="article-source">资料来源：<a href="https://developers.openai.com/api/docs/guides/migrate-to-responses" target="_blank" rel="noopener noreferrer">OpenAI Responses API guide</a>、<a href="https://developers.openai.com/api/docs/guides/tools" target="_blank" rel="noopener noreferrer">OpenAI Tools guide</a></p>
                             <div class="article-meta">
@@ -179,8 +179,8 @@
                                 <a href="https://developers.openai.com/api/docs/guides/realtime" target="_blank" rel="noopener noreferrer" class="article-title">OpenAI Realtime 2、Translate 与 Whisper：语音型 AI 助手的新接口组合</a>
                                 <span class="article-category category-technical">技术文章</span>
                             </div>
-                            <p class="article-excerpt">
-                                OpenAI 官方音频文档显示，Realtime API 适合低延迟语音交互，最新音频能力还包含面向翻译的模型和 Whisper 转写接口。FaroAI 后续如果做“微信语音消息 -> 转写 -> 总结/回复”的链路，可以把语音输入、实时对话和文本任务拆开：转写走专用接口，实时会话走 Realtime，长文本整理再回到通用模型。
+                            <p class="article-excerpt">>>
+                                OpenAI 官方音频文档显示，Realtime API 适合低延迟语音交互，最新音频能力还包含面向翻译的模型和 Whisper 转写接口。<span class="brand-word"><span class="brand-red">Fa</span><span class="brand-mid">ro</span><span class="brand-red">AI</span></span> 后续如果做“微信语音消息 - 转写 - 总结/回复”的链路，可以把语音输入、实时对话和文本任务拆开：转写走专用接口，实时会话走 Realtime，长文本整理再回到通用模型。
                             </p>
                             <p class="article-source">资料来源：<a href="https://developers.openai.com/api/docs/guides/realtime" target="_blank" rel="noopener noreferrer">OpenAI Realtime guide</a>、<a href="https://developers.openai.com/api/docs/guides/speech-to-text" target="_blank" rel="noopener noreferrer">OpenAI Speech to text guide</a></p>
                             <div class="article-meta">
@@ -253,8 +253,8 @@
 	                                <a href="docs.html#workflows" class="article-title">OpenClaw v2026.4.28 更新观察：子智能体上下文继承与本地工作流</a>
                                 <span class="article-category category-product">产品更新</span>
                             </div>
-                            <p class="article-excerpt">
-                                这版更新最适合放在本地 AI 工作流语境下理解：子智能体上下文继承让复杂任务更容易拆分，Active Memory 让长期协作更连续，MLX/本地模型能力则让部分任务可以留在本机处理。FaroAI 后续会把这些能力整理成更清晰的“微信触发 -> agent 执行 -> 结果回传”流程。
+                            <p class="article-excerpt">>>
+                                这版更新最适合放在本地 AI 工作流语境下理解：子智能体上下文继承让复杂任务更容易拆分，Active Memory 让长期协作更连续，MLX/本地模型能力则让部分任务可以留在本机处理。<span class="brand-word"><span class="brand-red">Fa</span><span class="brand-mid">ro</span><span class="brand-red">AI</span></span> 后续会把这些能力整理成更清晰的“微信触发 - agent 执行 - 结果回传”流程。
                             </p>
                             <div class="article-meta">
                                 <a href="个人概况_2026_v3.html" class="article-author">炜哥</a>
@@ -291,7 +291,7 @@
                                 <span class="article-category category-news">行业动态</span>
                             </div>
                             <p class="article-excerpt">
-                                与其只追逐“最大模型”，更实用的做法是按任务路由：复杂推理和深度分析使用旗舰模型，代码修复与长时间软件工程使用 Codex 系列，日常微信回复和轻量摘要使用更快更便宜的模型。FaroAI 的目标是把这些选择做成规则，让用户只描述任务，不必记模型名。
+                                与其只追逐“最大模型”，更实用的做法是按任务路由：复杂推理和深度分析使用旗舰模型，代码修复与长时间软件工程使用 Codex 系列，日常微信回复和轻量摘要使用更快更便宜的模型。<span class="brand-word"><span class="brand-red">Fa</span><span class="brand-mid">ro</span><span class="brand-red">AI</span></span> 的目标是把这些选择做成规则，让用户只描述任务，不必记模型名。
                             </p>
                             <div class="article-meta">
                                 <a href="个人概况_2026_v3.html" class="article-author">炜哥</a>
@@ -327,7 +327,7 @@
                                 <span class="article-category category-product">产品更新</span>
                             </div>
                             <p class="article-excerpt">
-                                这次更新让 OpenClaw 更像一个“模型能力路由器”：图像、语音、文本、记忆、子智能体逐渐进入同一套工作流。对 FaroAI 来说，重点不是堆功能，而是把不同模型能力映射到真实任务：图片理解、语音转写、技术问答、长文总结和微信回复。
+                                这次更新让 OpenClaw 更像一个“模型能力路由器”：图像、语音、文本、记忆、子智能体逐渐进入同一套工作流。对 <span class="brand-word"><span class="brand-red">Fa</span><span class="brand-mid">ro</span><span class="brand-red">AI</span></span> 来说，重点不是堆功能，而是把不同模型能力映射到真实任务：图片理解、语音转写、技术问答、长文总结和微信回复。
                             </p>
                             <div class="article-meta">
                                 <a href="个人概况_2026_v3.html" class="article-author">炜哥</a>
@@ -363,7 +363,7 @@
                                 <span class="article-category category-technical">技术文章</span>
                             </div>
                             <p class="article-excerpt">
-                                Agent 应用的难点不是一次问答，而是状态、工具、文件、搜索、权限和多轮上下文。Responses API 把这些能力放到统一接口里，更适合作为 FaroAI 这类工作台的模型层入口；OpenClaw Gateway 则负责本地通道、插件和执行环境。
+                                Agent 应用的难点不是一次问答，而是状态、工具、文件、搜索、权限和多轮上下文。Responses API 把这些能力放到统一接口里，更适合作为 <span class="brand-word"><span class="brand-red">Fa</span><span class="brand-mid">ro</span><span class="brand-red">AI</span></span> 这类工作台的模型层入口；OpenClaw Gateway 则负责本地通道、插件和执行环境。
                             </p>
                             <div class="article-meta">
                                 <a href="个人概况_2026_v3.html" class="article-author">炜哥</a>
@@ -399,7 +399,7 @@
                                 <span class="article-category category-tutorial">教程</span>
                             </div>
                             <p class="article-excerpt">
-                                从零开始部署本地 LLM：先确认 Ollama 可用，再把模型登记到 OpenClaw/FaroAI，最后用最小 prompt 验证 Gateway 到模型的链路。隐私敏感、成本可控的任务优先本地跑，实时新闻、联网检索和多模态任务再按需接云端能力。
+                                从零开始部署本地 LLM：先确认 Ollama 可用，再把模型登记到 OpenClaw/<span class="brand-word"><span class="brand-red">Fa</span><span class="brand-mid">ro</span><span class="brand-red">AI</span></span>，最后用最小 prompt 验证 Gateway 到模型的链路。隐私敏感、成本可控的任务优先本地跑，实时新闻、联网检索和多模态任务再按需接云端能力。
                             </p>
                             <div class="article-meta">
                                 <a href="个人概况_2026_v3.html" class="article-author">炜哥</a>
@@ -432,18 +432,18 @@
                         </div>
                         <div class="article-content">
                             <div class="article-header">
-                                <a href="docs.html#wechat" class="article-title">FaroAI 实践：把微信机器人、本地模型和 OpenClaw Gateway 跑通</a>
+                                <a href="docs.html#wechat" class="article-title"><span class="brand-word"><span class="brand-red">Fa</span><span class="brand-mid">ro</span><span class="brand-red">AI</span></span> 实践：把微信机器人、本地模型和 OpenClaw Gateway 跑通</a>
                                 <span class="article-category category-product">产品更新</span>
                             </div>
                             <p class="article-excerpt">
-                                这篇记录 FaroAI 当前最实用的一条链路：微信消息进入 openclaw-weixin 通道，Gateway 负责会话和权限，Ollama 本地模型处理日常问答，复杂任务再按规则路由。重点不是炫技，而是让 AI 真的出现在每天使用的入口里。
+                                这篇记录 <span class="brand-word"><span class="brand-red">Fa</span><span class="brand-mid">ro</span><span class="brand-red">AI</span></span> 当前最实用的一条链路：微信消息进入 openclaw-weixin 通道，Gateway 负责会话和权限，Ollama 本地模型处理日常问答，复杂任务再按规则路由。重点不是炫技，而是让 AI 真的出现在每天使用的入口里。
                             </p>
                             <div class="article-meta">
                                 <a href="个人概况_2026_v3.html" class="article-author">炜哥</a>
                                 <span class="article-date">2026-03-26</span>
                                 <a href="#comments" class="article-comments">29 条评论</a>
                                 <div class="article-tags">
-                                    <span class="tag">FaroAI</span>
+                                    <span class="tag"><span class="brand-word"><span class="brand-red">Fa</span><span class="brand-mid">ro</span><span class="brand-red">AI</span></span></span>
                                     <span class="tag">微信机器人</span>
                                     <span class="tag">OpenClaw Gateway</span>
                                 </div>
@@ -516,7 +516,7 @@
                 <div class="related-grid">
                     <a href="docs.html#quickstart" class="related-card">
                         <div class="related-content">
-                            <h3 class="related-title">FaroAI 文档：从 Gateway 到微信机器人</h3>
+                            <h3 class="related-title"><span class="brand-word"><span class="brand-red">Fa</span><span class="brand-mid">ro</span><span class="brand-red">AI</span></span> 文档：从 Gateway 到微信机器人</h3>
                             <p class="related-excerpt">按真实部署顺序配置 OpenClaw、Ollama、Gateway 与微信通道。</p>
                             <span class="related-meta">2026-05-10</span>
                         </div>
@@ -592,7 +592,7 @@
             </div>
             <div class="footer-bottom">
                 <div class="footer-copyright">
-                    <span>&copy; 2026 FaroAI. All rights reserved.</span>
+                    <span>&copy; 2026 <span class="brand-word"><span class="brand-red">Fa</span><span class="brand-mid">ro</span><span class="brand-red">AI</span></span>. All rights reserved.</span>
                     <a href="privacy.html">隐私政策</a>
                     <a href="terms.html">服务条款</a>
                 </div>

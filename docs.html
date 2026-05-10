@@ -407,9 +407,9 @@
         <section class="docs-hero">
             <div class="container">
                 <div class="docs-hero-inner">
-                    <span class="docs-eyebrow">FaroAI Docs</span>
+                    <span class="docs-eyebrow"><span class="brand-word"><span class="brand-red">Fa</span><span class="brand-mid">ro</span><span class="brand-red">AI</span></span> Docs</span>
                     <h1>文档中心</h1>
-                    <p>从安装 OpenClaw、启动本地网关、接入微信机器人，到配置 Ollama 模型、知识库和自动化任务流。这里按真实落地顺序整理 FaroAI 的使用路径。</p>
+                    <p>从安装 OpenClaw、启动本地网关、接入微信机器人，到配置 Ollama 模型、知识库和自动化任务流。这里按真实落地顺序整理 <span class="brand-word"><span class="brand-red">Fa</span><span class="brand-mid">ro</span><span class="brand-red">AI</span></span> 的使用路径。</p>
                     <div class="docs-hero-actions">
                         <a href="#quickstart" class="btn btn-large">5 分钟快速上手</a>
                         <a href="#wechat" class="btn btn-secondary btn-large">配置微信机器人</a>
@@ -444,7 +444,7 @@
                     <div class="docs-content">
                         <section id="quickstart" class="docs-section" data-doc-section>
                             <h2>快速开始</h2>
-                            <p>FaroAI 推荐从一个可运行的本地网关开始，再逐步接入模型、微信通道和自动化规则。这样每一步都能被验证，出问题时也容易定位。</p>
+                            <p><span class="brand-word"><span class="brand-red">Fa</span><span class="brand-mid">ro</span><span class="brand-red">AI</span></span> 推荐从一个可运行的本地网关开始，再逐步接入模型、微信通道和自动化规则。这样每一步都能被验证，出问题时也容易定位。</p>
                             <div class="step-list">
                                 <div class="step-item">
                                     <div>
@@ -457,7 +457,7 @@ openclaw doctor</code></pre>
                                 <div class="step-item">
                                     <div>
                                         <h3>启动 Gateway</h3>
-                                        <p>Gateway 是 FaroAI 的本地中枢，负责连接模型、通道和任务调用。</p>
+                                        <p>Gateway 是 <span class="brand-word"><span class="brand-red">Fa</span><span class="brand-mid">ro</span><span class="brand-red">AI</span></span> 的本地中枢，负责连接模型、通道和任务调用。</p>
                                         <pre class="command-block"><code>openclaw gateway install
 openclaw gateway restart
 openclaw gateway status</code></pre>
@@ -498,7 +498,7 @@ openclaw gateway restart</code></pre>
 
                         <section id="gateway" class="docs-section" data-doc-section>
                             <h2>网关 Gateway</h2>
-                            <p>Gateway 是 FaroAI 的运行核心。你可以把它理解为一个本地 AI 总线：微信机器人、网页、CLI、模型 provider、工具调用都会经过这里协调。</p>
+                            <p>Gateway 是 <span class="brand-word"><span class="brand-red">Fa</span><span class="brand-mid">ro</span><span class="brand-red">AI</span></span> 的运行核心。你可以把它理解为一个本地 AI 总线：微信机器人、网页、CLI、模型 provider、工具调用都会经过这里协调。</p>
                             <div class="doc-grid">
                                 <div class="doc-card">
                                     <h3>常用健康检查</h3>
@@ -518,12 +518,12 @@ http://127.0.0.1:18789/</code></pre>
 
                         <section id="wechat" class="docs-section" data-doc-section>
                             <h2>微信机器人接入</h2>
-                            <p>微信通道让 FaroAI 进入你的日常聊天入口。接入后，你可以通过微信触发总结、搜索、长文整理、日程辅助和自动化任务。</p>
+                            <p>微信通道让 <span class="brand-word"><span class="brand-red">Fa</span><span class="brand-mid">ro</span><span class="brand-red">AI</span></span> 进入你的日常聊天入口。接入后，你可以通过微信触发总结、搜索、长文整理、日程辅助和自动化任务。</p>
                             <div class="step-list">
                                 <div class="step-item">
                                     <div>
                                         <h3>安装微信插件</h3>
-                                        <p>当前 FaroAI 使用 OpenClaw 插件机制加载微信通道。</p>
+                                        <p>当前 <span class="brand-word"><span class="brand-red">Fa</span><span class="brand-mid">ro</span><span class="brand-red">AI</span></span> 使用 OpenClaw 插件机制加载微信通道。</p>
                                         <pre class="command-block"><code>openclaw plugins install @tencent-weixin/openclaw-weixin --force
 openclaw plugins inspect openclaw-weixin --runtime --json</code></pre>
                                     </div>
@@ -549,7 +549,7 @@ openclaw agents list</code></pre>
 
                         <section id="models" class="docs-section" data-doc-section>
                             <h2>模型配置</h2>
-                            <p>FaroAI 支持本地优先的模型策略。简单问题可以走快速模型，复杂分析、长文写作和代码任务可以路由到更强模型。</p>
+                            <p><span class="brand-word"><span class="brand-red">Fa</span><span class="brand-mid">ro</span><span class="brand-red">AI</span></span> 支持本地优先的模型策略。简单问题可以走快速模型，复杂分析、长文写作和代码任务可以路由到更强模型。</p>
                             <div class="doc-grid">
                                 <div class="doc-card">
                                     <h3>Ollama 本地模型</h3>
@@ -583,11 +583,11 @@ openclaw models list</code></pre>
 
                         <section id="workflows" class="docs-section" data-doc-section>
                             <h2>自动化任务流</h2>
-                            <p>当一个任务反复出现，就可以把它从聊天指令沉淀成任务流。FaroAI 的目标是让 AI 不只是回答，还能持续执行、跟进和复盘。</p>
+                            <p>当一个任务反复出现，就可以把它从聊天指令沉淀成任务流。<span class="brand-word"><span class="brand-red">Fa</span><span class="brand-mid">ro</span><span class="brand-red">AI</span></span> 的目标是让 AI 不只是回答，还能持续执行、跟进和复盘。</p>
                             <div class="doc-grid">
                                 <div class="doc-card">
                                     <h3>新闻与资料摘要</h3>
-                                    <p>微信发起主题，FaroAI 搜索资料、抽取重点、生成摘要，并按固定格式回复。</p>
+                                    <p>微信发起主题，<span class="brand-word"><span class="brand-red">Fa</span><span class="brand-mid">ro</span><span class="brand-red">AI</span></span> 搜索资料、抽取重点、生成摘要，并按固定格式回复。</p>
                                 </div>
                                 <div class="doc-card">
                                     <h3>技术排障助手</h3>
@@ -606,7 +606,7 @@ openclaw models list</code></pre>
 
                         <section id="troubleshooting" class="docs-section" data-doc-section>
                             <h2>故障排查</h2>
-                            <p>优先按“网关是否在线 -> 插件是否加载 -> 通道是否运行 -> 模型是否可调用”的顺序排查。</p>
+                            <p>>>>优先按“网关是否在线 - 插件是否加载 - 通道是否运行 - 模型是否可调用”的顺序排查。</p>
                             <div class="faq-list">
                                 <div class="faq-item">
                                     <h3>Gateway 显示 not reachable 怎么办？</h3>
@@ -622,7 +622,7 @@ openclaw models list</code></pre>
                                 </div>
                                 <div class="faq-item">
                                     <h3>页面登录为什么显示即将开放？</h3>
-                                    <p>当前网站是静态展示站，Google/GitHub OAuth 后端还未接入。现在可先通过文档配置本地 FaroAI，或通过联系方式申请试用。</p>
+                                    <p>当前网站是静态展示站，Google/GitHub OAuth 后端还未接入。现在可先通过文档配置本地 <span class="brand-word"><span class="brand-red">Fa</span><span class="brand-mid">ro</span><span class="brand-red">AI</span></span>，或通过联系方式申请试用。</p>
                                 </div>
                             </div>
                         </section>
@@ -682,7 +682,7 @@ openclaw models list</code></pre>
             </div>
             <div class="footer-bottom">
                 <div class="footer-copyright">
-                    <span>&copy; 2026 FaroAI. All rights reserved.</span>
+                    <span>&copy; 2026 <span class="brand-word"><span class="brand-red">Fa</span><span class="brand-mid">ro</span><span class="brand-red">AI</span></span>. All rights reserved.</span>
                     <a href="privacy.html">隐私政策</a>
                     <a href="terms.html">服务条款</a>
                 </div>
