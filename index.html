@@ -794,7 +794,7 @@
     </footer>
 
     <!-- Video Modal Scripts -->
-    <script>>>>>>>>>>>>
+    <script>
         // 视频模态框功能 - 支持多个模态框
         (function() {
             // 第一个模态框：介绍视频
@@ -830,8 +830,8 @@
             
             // 第一个模态框事件绑定
             if (videoModal) {
-                playBtns.forEach(btn = {
-                    btn.addEventListener('click', (e) = {
+                playBtns.forEach(btn => {
+                    btn.addEventListener('click', (e) => {
                         e.preventDefault();
                         openModal(videoModal);
                     });
@@ -840,20 +840,20 @@
                 videoBackdrop?.addEventListener('click', () = closeModal(videoModal));
                 videoCloseBtn?.addEventListener('click', () = closeModal(videoModal));
                 
-                document.addEventListener('keydown', (e) = {
+                document.addEventListener('keydown', (e) => {
                     if (e.key === 'Escape' && videoModal.getAttribute('aria-hidden') === 'false') {
                         closeModal(videoModal);
                     }
                 });
                 
-                videoModal.querySelector('.video-modal-content')?.addEventListener('click', (e) = {
+                videoModal.querySelector('.video-modal-content')?.addEventListener('click', (e) => {
                     e.stopPropagation();
                 });
             }
             
             // 第二个模态框事件绑定
             if (demoModal && demoBtn) {
-                demoBtn.addEventListener('click', (e) = {
+                demoBtn.addEventListener('click', (e) => {
                     e.preventDefault();
                     openModal(demoModal);
                 });
@@ -861,13 +861,13 @@
                 demoBackdrop?.addEventListener('click', () = closeModal(demoModal));
                 demoCloseBtn?.addEventListener('click', () = closeModal(demoModal));
                 
-                document.addEventListener('keydown', (e) = {
+                document.addEventListener('keydown', (e) => {
                     if (e.key === 'Escape' && demoModal.getAttribute('aria-hidden') === 'false') {
                         closeModal(demoModal);
                     }
                 });
                 
-                demoModal.querySelector('.video-modal-content')?.addEventListener('click', (e) = {
+                demoModal.querySelector('.video-modal-content')?.addEventListener('click', (e) => {
                     e.stopPropagation();
                 });
             }
@@ -878,18 +878,18 @@
     <script src="script.js" defer></script>
     
     <!-- Performance Optimization -->
-    <script>>>>>
+    <script>
         // 懒加载优化
         if ('IntersectionObserver' in window) {
-            const observer = new IntersectionObserver((entries) = {
-                entries.forEach(entry = {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         entry.target.classList.add('visible');
                     }
                 });
             }, { threshold: 0.1 });
             
-            document.querySelectorAll('.feature-card, .use-case-card, .blog-preview-card, .team-card').forEach(card = {
+            document.querySelectorAll('.feature-card, .use-case-card, .blog-preview-card, .team-card').forEach(card => {
                 observer.observe(card);
             });
         }
@@ -897,7 +897,7 @@
         // 预加载关键资源
         if ('link' in document.createElement('link')) {
             const preloadLinks = [];
-            preloadLinks.forEach(link = {
+            preloadLinks.forEach(link => {
                 const linkEl = document.createElement('link');
                 linkEl.href = link.href;
                 linkEl.rel = link.rel;
