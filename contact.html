@@ -37,7 +37,8 @@
                         .contact-method-icon { font-size: 2rem; flex-shrink: 0; width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; background: var(--primary-light); border-radius: var(--radius-lg); }
                         .contact-method h4 { font-size: 1rem; font-weight: 700; color: var(--text-primary); margin-bottom: 0.25rem; }
                         .contact-method p { color: var(--text-secondary); font-size: 0.95rem; line-height: 1.6; }
-                        .qr-placeholder { width: 150px; height: 150px; background: var(--bg-primary); border: 2px dashed var(--border-color); border-radius: var(--radius-lg); display: flex; align-items: center; justify-content: center; color: var(--text-muted); font-size: 0.85rem; margin-top: 0.75rem; }
+                        .wechat-qr { width: 150px; height: 150px; display: block; margin-top: 0.75rem; border: 1px solid var(--border-color); border-radius: var(--radius-lg); background: white; object-fit: contain; box-shadow: var(--shadow-sm); }
+                        .wechat-tip { margin-top: 0.5rem; font-size: 0.85rem; color: var(--text-muted); }
                         .quick-help { padding: 80px 0; background: var(--bg-secondary); }
                         .quick-help-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; max-width: 900px; margin: 0 auto; }
                         .quick-help-card { background: var(--bg-primary); border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: 1.5rem; text-align: center; transition: all var(--transition-base); cursor: pointer; }
@@ -117,7 +118,8 @@
                                             <div>
                                                 <h4>微信</h4>
                                                 <p>扫描下方二维码添加助手</p>
-                                                <div class="qr-placeholder">二维码占位</div>
+                                                <img class="wechat-qr" src="assets/wechat-qr.jpg" alt="FaroAI 微信联系方式二维码" width="150" height="150" loading="lazy">
+                                                <p class="wechat-tip">添加时请备注：FaroAI</p>
                                             </div>
                                         </div>
                                         <div class="contact-method">
