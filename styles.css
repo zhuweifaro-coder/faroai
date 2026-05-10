@@ -762,18 +762,21 @@ a:hover {
 .team-avatar {
     width: 100px;
     height: 100px;
-    background: var(--secondary-light);
+    box-sizing: border-box;
     border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     margin: 0 auto 2rem;
-    color: var(--secondary-color);
+    overflow: hidden;
+    border: 4px solid var(--secondary-light);
+    background: var(--secondary-light);
+    box-shadow: 0 12px 28px rgba(15, 23, 42, 0.14);
 }
 
-.team-avatar svg {
-    width: 50px;
-    height: 50px;
+.team-avatar img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    object-position: center;
 }
 
 .team-name {
