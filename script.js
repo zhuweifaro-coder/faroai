@@ -198,35 +198,21 @@ class MobileMenu {
     toggle() {
         this.navMenu.classList.toggle('active');
         this.navActions.classList.toggle('active');
+        const isOpen = this.navMenu.classList.contains('active');
+        this.menuToggle.setAttribute('aria-expanded', String(isOpen));
         
-        if (this.navMenu.classList.contains('active')) {
+        if (isOpen) {
             this.menuToggle.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>';
-            this.navMenu.style.display = 'flex';
-            this.navMenu.style.flexDirection = 'column';
-            this.navMenu.style.position = 'absolute';
-            this.navMenu.style.top = '70px';
-            this.navMenu.style.left = '0';
-            this.navMenu.style.right = '0';
-            this.navMenu.style.background = 'white';
-            this.navMenu.style.padding = '1rem';
-            this.navMenu.style.boxShadow = '0 4px 6px rgba(0,0,0,0.1)';
-            this.navMenu.style.borderRadius = '0 0 12px 12px';
         } else {
             this.menuToggle.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>';
-            this.navMenu.style.display = 'flex';
-            this.navMenu.style.flexDirection = 'row';
-            this.navMenu.style.position = 'static';
-            this.navMenu.style.background = 'none';
-            this.navMenu.style.padding = '0';
-            this.navMenu.style.boxShadow = 'none';
-            this.navMenu.style.borderRadius = '0';
         }
     }
 }
 
 // 页面加载完成后的初始化
 document.addEventListener('DOMContentLoaded', function() {
-    console.log('🚀 FaroAI - OpenClaw Clone 网站已加载');
+    new SmoothScroll();
+    new MobileMenu();
     
     // 视频按钮点击处理
     var demoBtn = document.getElementById('demoBtn');
@@ -237,13 +223,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // 添加页面加载动画
-    document.body.style.opacity = '0';
-    setTimeout(function() {
-        document.body.style.opacity = '1';
-        document.body.style.transition = 'opacity 0.3s ease-in';
-    }, 100);
-    
     // 响应式导航优化
     window.addEventListener('resize', function() {
         if (window.innerWidth > 768) {
@@ -253,6 +232,7 @@ document.addEventListener('DOMContentLoaded', function() {
             if (navActions) navActions.classList.remove('active');
             var menuBtn = document.querySelector('.mobile-menu-btn');
             if (menuBtn) {
+                menuBtn.setAttribute('aria-expanded', 'false');
                 menuBtn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>';
             }
         }
