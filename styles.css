@@ -1395,6 +1395,173 @@ svg:not([width]):not([class~="logo-icon"]):not([class~="feature-icon"]):not(.tea
 .modal-subtitle { color: var(--text-secondary); font-size: 0.95rem; margin: 0; }
 body.modal-open { overflow: hidden; }
 
+.login-form,
+.forgot-form {
+    display: grid;
+    gap: 1rem;
+}
+
+.form-group {
+    display: grid;
+    gap: 0.45rem;
+}
+
+.label-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.form-label {
+    color: var(--text-primary);
+    font-size: 0.9rem;
+    font-weight: 700;
+}
+
+.input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.input-wrapper .input-icon {
+    position: absolute;
+    left: 0.875rem;
+    color: var(--text-muted);
+    pointer-events: none;
+}
+
+.form-input {
+    width: 100%;
+    min-height: 46px;
+    padding: 0.75rem 0.875rem 0.75rem 2.7rem;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    font: inherit;
+    line-height: 1.4;
+    transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.form-input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.14);
+}
+
+.password-toggle {
+    width: 32px;
+    height: 32px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 0;
+    border-radius: var(--radius-sm);
+    background: transparent;
+    color: var(--text-secondary);
+    cursor: pointer;
+}
+
+.password-toggle:hover {
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+}
+
+.form-error,
+.auth-status {
+    display: block;
+    color: var(--primary-color);
+    font-size: 0.86rem;
+    line-height: 1.55;
+}
+
+.form-options {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+.checkbox-wrapper {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+}
+
+.link-forgot,
+.link-signup,
+.link-back-login {
+    font-weight: 700;
+}
+
+.login-divider {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin: 1.35rem 0 0.85rem;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+}
+
+.login-divider::before,
+.login-divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border-color);
+}
+
+.social-login {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.75rem;
+}
+
+.btn-social {
+    background: var(--bg-secondary);
+    border-color: var(--border-color);
+    color: var(--text-primary);
+    padding-inline: 0.9rem;
+    font-size: 0.9rem;
+}
+
+.btn-social svg {
+    width: 18px;
+    height: 18px;
+    flex: 0 0 auto;
+}
+
+.btn-social:disabled {
+    cursor: not-allowed;
+    opacity: 0.68;
+    filter: grayscale(0.2);
+    transform: none;
+    box-shadow: none;
+}
+
+.auth-status {
+    margin: 0.8rem 0 0;
+    padding: 0.75rem 0.9rem;
+    border: 1px solid rgba(37, 99, 235, 0.18);
+    border-radius: var(--radius-md);
+    background: #eff6ff;
+}
+
+.modal-footer {
+    margin-top: 1.25rem;
+    text-align: center;
+}
+
+.footer-text {
+    margin: 0;
+    color: var(--text-secondary);
+    font-size: 0.92rem;
+}
+
 /* ─────────── 博客预览 section（替代旧 pricing 区段）─────────── */
 .blog-preview-section {
     padding: 100px 0;

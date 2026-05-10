@@ -312,38 +312,34 @@ document.head.appendChild(style);
         });
     });
 
-    // 表单提交：显示"功能开发中"占位提示
+    // 表单提交：显示账号系统接入说明
     ['loginForm', 'forgotForm'].forEach(id => {
         const form = document.getElementById(id);
         form?.addEventListener('submit', e => {
             e.preventDefault();
             const errorEl = form.querySelector('.form-error');
+            const message = '账号系统正在接入中，请先查看配置文档或通过联系方式申请试用。';
             if (errorEl) {
-                errorEl.textContent = '后端登录服务尚未上线，敬请期待 🦞';
+                errorEl.textContent = message;
                 errorEl.hidden = false;
-                errorEl.style.color = 'var(--primary-color, #6366f1)';
+                errorEl.style.color = 'var(--primary-color, #2563eb)';
             } else {
-                alert('后端登录服务尚未上线，敬请期待 🦞');
+                alert(message);
             }
         });
     });
 })();
 
-/* ─────────── 修复：GitHub / Google OAuth 按钮事件绑定 ─────────── */
+/* ─────────── GitHub / Google OAuth 状态提示 ─────────── */
 (function bindOAuth() {
     const oauthButtons = document.querySelectorAll('.btn-social');
     oauthButtons.forEach(btn => {
         btn.addEventListener('click', e => {
             e.preventDefault();
-            const provider = btn.classList.contains('btn-github') ? 'GitHub'
-                          : btn.classList.contains('btn-google') ? 'Google'
-                          : '第三方';
-            // 简洁的内嵌提示，比 alert 优雅
-            const tip = document.createElement('div');
-            tip.style.cssText = 'position:fixed;top:80px;left:50%;transform:translateX(-50%);background:rgba(15,23,42,.95);color:white;padding:12px 24px;border-radius:8px;font-size:14px;z-index:10001;box-shadow:0 10px 25px rgba(0,0,0,.2);animation:fadeIn .2s';
-            tip.textContent = `${provider} OAuth 后端尚未接入，敬请期待 🦞`;
-            document.body.appendChild(tip);
-            setTimeout(() => tip.remove(), 2500);
+            const status = document.getElementById('authStatus');
+            if (status) {
+                status.textContent = 'Google/GitHub 登录正在接入中，当前不会发起 OAuth 授权请求。';
+            }
         });
     });
 })();
