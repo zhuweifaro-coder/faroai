@@ -27,10 +27,6 @@
     <!-- 主题色 -->
     <meta name="theme-color" content="#2563eb">
     
-    <!-- PWA -->
-    <link rel="manifest" href="/manifest.json">
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-    
     <!-- Title -->
     <title>FaroAI - 本地优先的 AI 助手工作台 | 微信机器人与自动化工作流</title>
     
@@ -169,15 +165,15 @@
             <div class="container">
                 <div class="hero-content">
                     <div class="hero-badge">
-                        <span class="badge-icon">Live</span>
-                        <span>微信机器人 + 本地模型链路已上线</span>
+                        <span class="badge-icon">2026.5</span>
+                        <span>OpenClaw Gateway + 微信机器人 + 本地模型实践站</span>
                     </div>
                     <h1 class="hero-title">
                         <span class="gradient-text"><span class="brand-word"><span class="brand-red">Fa</span><span class="brand-mid">ro</span><span class="brand-red">AI</span></span></span>
                         <span class="subtitle">把 AI 接进你的微信、知识库和自动化工作流</span>
                     </h1>
                     <p class="hero-description">
-                        基于 OpenClaw 打造的本地优先 AI 助手工作台。它可以连接 Ollama、本地文件、网页搜索和微信机器人，让 AI 不只回答问题，也能帮你整理、检索、执行和持续跟进。
+                        这里展示的是可落地的本地 AI 工作流：用 OpenClaw Gateway 连接模型、工具和微信入口；用文档说明真实配置方式；用联系方式承接试用与部署支持。
                     </p>
                     <div class="hero-actions">
                         <a href="docs.html" class="btn btn-primary btn-large" aria-label="查看 FaroAI 配置文档">
@@ -194,9 +190,9 @@
                         </button>
                     </div>
                     <div class="hero-proof" aria-label="核心能力">
-                        <div class="proof-item">微信机器人接入</div>
-                        <div class="proof-item">Ollama 本地模型</div>
-                        <div class="proof-item">Cloudflare Pages 部署</div>
+                        <div class="proof-item">静态站已上线</div>
+                        <div class="proof-item">OpenClaw 2026.5.7</div>
+                        <div class="proof-item">账号系统接入中</div>
                     </div>
                     <div class="hero-stats" aria-label="平台状态">
                         <div class="stat">
@@ -208,8 +204,8 @@
                             <span class="stat-label">微信、网页、CLI 可扩展</span>
                         </div>
                         <div class="stat">
-                            <span class="stat-number">Agent-ready</span>
-                            <span class="stat-label">支持工具调用与任务流</span>
+                            <span class="stat-number">Trial-ready</span>
+                            <span class="stat-label">通过邮件或微信申请配置</span>
                         </div>
                     </div>
                 </div>
@@ -233,14 +229,14 @@
                                 <div class="preview-stat">
                                     <span class="stat-icon">AI</span>
                                     <div>
-                                        <div class="stat-value">qwen3.6</div>
-                                        <div class="stat-label">默认模型</div>
+                                        <div class="stat-value">OpenAI / Ollama</div>
+                                        <div class="stat-label">可配置模型</div>
                                     </div>
                                 </div>
                                 <div class="preview-stat">
                                     <span class="stat-icon">WX</span>
                                     <div>
-                                        <div class="stat-value">Running</div>
+                                        <div class="stat-value">按需部署</div>
                                         <div class="stat-label">微信通道</div>
                                     </div>
                                 </div>
@@ -387,6 +383,36 @@
             </div>
         </section>
 
+        <!-- 当前状态 -->
+        <section class="site-status" aria-label="当前功能状态">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-label">当前状态</span>
+                    <h2 class="section-title">功能边界说清楚，体验才可靠</h2>
+                    <p class="section-description">
+                        本站是静态展示与配置文档站，已经上线的入口都能点击使用；需要后端账号、API Key 或企业部署的能力，会明确引导到文档或联系方式。
+                    </p>
+                </div>
+                <div class="status-grid">
+                    <article class="status-card is-live">
+                        <span class="status-badge">已上线</span>
+                        <h3>网站、文档、博客、联系方式</h3>
+                        <p>Cloudflare Pages 静态站已可访问，文档与博客可直接阅读，联系方式页可通过邮件或微信继续沟通。</p>
+                    </article>
+                    <article class="status-card is-config">
+                        <span class="status-badge">可配置</span>
+                        <h3>OpenClaw Gateway 与微信机器人</h3>
+                        <p>按文档完成本机 OpenClaw、模型 provider、微信通道和自动化任务配置后，可在本地环境运行。</p>
+                    </article>
+                    <article class="status-card is-pending">
+                        <span class="status-badge">接入中</span>
+                        <h3>Google/GitHub 登录、云端 API 与控制台</h3>
+                        <p>当前不伪装成可用 SaaS 后端。相关按钮会给出状态提示，试用与部署请走邮件或微信。</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
         <!-- 使用场景 -->
         <section class="use-cases" aria-label="使用场景">
             <div class="container">
@@ -444,38 +470,38 @@
                             <time class="blog-preview-date">2026-05-05</time>
                         </div>
                         <h3 class="blog-preview-title">
-                            <a href="blog.html#article-1">OpenClaw v2026.5.4-beta.1：插件安全扫描、QQBot 流式命令、Talk 会话恢复 🦞</a>
+                            <a href="blog.html#article-openclaw-2026-5-7">OpenClaw 2026.5.7 实测：升级、Gateway 与微信机器人链路</a>
                         </h3>
                         <p class="blog-preview-excerpt">
-                            聚焦插件安全与用户体验：加固后端消息路由，新增 QQBot 流式命令认证；插件安全扫描全面升级——忽略注释中误报、拒绝空 runtimeExtensions、自动清理孤儿安装记录；Control UI Talk 会话失败可手动关闭并自动重试……
+                            记录本机升级到 OpenClaw 2026.5.7 后的验证顺序：先确认 Gateway，再验证模型 provider，最后检查微信机器人通道。
                         </p>
-                        <a href="blog.html#article-1" class="blog-preview-readmore">阅读全文 →</a>
+                        <a href="blog.html#article-openclaw-2026-5-7" class="blog-preview-readmore">阅读全文 →</a>
                     </article>
                     <article class="blog-preview-card">
                         <div class="blog-preview-meta-top">
-                            <span class="blog-preview-tag">产品更新</span>
-                            <time class="blog-preview-date">2026-05-04</time>
+                            <span class="blog-preview-tag">OpenAI 技术资料</span>
+                            <time class="blog-preview-date">2026-05-10</time>
                         </div>
                         <h3 class="blog-preview-title">
-                            <a href="blog.html#article-2">OpenClaw v2026.5.3：文件传输插件、Google Meet 语音集成、WeCom 目录适配</a>
+                            <a href="blog.html#article-openai-models">OpenAI 模型与 Responses API：2026 年 5 月配置建议</a>
                         </h3>
                         <p class="blog-preview-excerpt">
-                            新增内置 file-transfer 插件，提供 file_fetch、dir_list、dir_fetch、file_write 四大文件操作工具；Google Meet 语音集成全面升级——自动获取媒体权限、实时字幕、音频响应修复；WeCom 目录适配……
+                            参考 OpenAI 官方模型页与 Responses API 文档，整理复杂分析、代码任务、日常摘要、语音和图像任务的路由建议。
                         </p>
-                        <a href="blog.html#article-2" class="blog-preview-readmore">阅读全文 →</a>
+                        <a href="blog.html#article-openai-models" class="blog-preview-readmore">阅读全文 →</a>
                     </article>
                     <article class="blog-preview-card">
                         <div class="blog-preview-meta-top">
-                            <span class="blog-preview-tag">产品更新</span>
-                            <time class="blog-preview-date">2026-05-03</time>
+                            <span class="blog-preview-tag">实践指南</span>
+                            <time class="blog-preview-date">2026-05-10</time>
                         </div>
                         <h3 class="blog-preview-title">
-                            <a href="blog.html#article-3">OpenClaw v2026.5.2 正式版发布：插件体系全面重构，300+ 项修复 🦞</a>
+                            <a href="docs.html#wechat">把微信机器人、本地模型和自动化任务跑通</a>
                         </h3>
                         <p class="blog-preview-excerpt">
-                            本次更新由 200+ 开发者共同完成，主打稳定性与性能。插件生态从 npm 全面迁移至 ClawHub，支持 ClawPack 解析器、完整性校验、beta 渠道自动回退。新增 xAI Grok 4.3 作为默认 xAI 聊天模型……
+                            从安装、启动 Gateway、配置模型、接入微信到排查任务超时，按真实落地顺序把关键节点拆开验证。
                         </p>
-                        <a href="blog.html#article-3" class="blog-preview-readmore">阅读全文 →</a>
+                        <a href="docs.html#wechat" class="blog-preview-readmore">查看文档 →</a>
                     </article>
                 </div>
                 <div class="blog-preview-cta">

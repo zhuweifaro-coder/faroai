@@ -69,8 +69,6 @@
                         <span class="sort-label">排序:</span>
                         <select class="sort-select">
                             <option value="date">最新优先</option>
-                            <option value="popular">最受欢迎</option>
-                            <option value="comments">评论最多</option>
                         </select>
                     </div>
                 </div>
@@ -81,25 +79,20 @@
                 <!-- 文章列表 -->
                 <div class="articles" id="articles">
                     <!-- 置顶文章：OpenClaw 与 OpenAI 最新资料 -->
-                    <article class="article-card featured" data-category="product" data-upvotes="28" data-comments="6">
-                        <div class="article-vote">
-                            <button class="vote-btn up" aria-label="赞同"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
-                            <span class="vote-count">28</span>
-                            <button class="vote-btn down" aria-label="反对"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></button>
-                        </div>
+                    <article id="article-openclaw-2026-5-7" class="article-card featured" data-category="product">
                         <div class="article-content">
                             <div class="article-header">
                                 <a href="docs.html#install" class="article-title">OpenClaw 2026.5.7 升级观察：插件安装、默认模型与 Gateway 稳定性</a>
                                 <span class="article-category category-product">产品更新</span>
                             </div>
                             <p class="article-excerpt">
-                                这次我把本机 OpenClaw 升级并重启 Gateway 后，确认最新 npm 版本为 2026.5.7。实际体验最值得关注的是三件事：插件安装记录与注册表更严格，微信通道需要加载编译后的 dist 入口；默认 OpenAI 模型可使用 openai/chat-latest 这类面向最新模型的路由；Cron 与 Channels CLI 的 JSON 输出、session 修复和权限提示更适合自动化巡检。对 <span class="brand-word"><span class="brand-red">Fa</span><span class="brand-mid">ro</span><span class="brand-red">AI</span></span> 来说，这意味着“先验证 Gateway，再验证模型，再验证微信通道”的部署顺序更重要。
+                                这次我把本机 OpenClaw 升级并重启 Gateway 后，确认本机版本为 2026.5.7。实际体验最值得关注的是三件事：先确认 Gateway 能启动，再验证模型 provider 能回复，最后检查微信通道是否正确加载。对 <span class="brand-word"><span class="brand-red">Fa</span><span class="brand-mid">ro</span><span class="brand-red">AI</span></span> 来说，这意味着部署顺序要从“能打开页面”推进到“链路逐段可验证”。
                             </p>
                             <p class="article-source">资料来源：<a href="https://www.npmjs.com/package/openclaw" target="_blank" rel="noopener noreferrer">npm openclaw</a>、<a href="https://docs.openclaw.ai/cli/update" target="_blank" rel="noopener noreferrer">OpenClaw 更新文档</a></p>
                             <div class="article-meta">
                                 <a href="个人概况_2026_v3.html" class="article-author">炜哥</a>
                                 <span class="article-date">2026-05-10</span>
-                                <a href="#comments" class="article-comments">6 条评论</a>
+                                <span class="article-note">技术笔记</span>
                                 <div class="article-tags">
                                     <span class="tag">OpenClaw</span>
                                     <span class="tag">2026.5.7</span>
@@ -110,28 +103,23 @@
                         </div>
                     </article>
 
-                    <article class="article-card featured" data-category="technical" data-upvotes="36" data-comments="9">
-                        <div class="article-vote">
-                            <button class="vote-btn up" aria-label="赞同"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
-                            <span class="vote-count">36</span>
-                            <button class="vote-btn down" aria-label="反对"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></button>
-                        </div>
+                    <article id="article-openai-models" class="article-card featured" data-category="technical">
                         <div class="article-content">
                             <div class="article-header">
-                                <a href="https://developers.openai.com/api/docs/guides/latest-model" target="_blank" rel="noopener noreferrer" class="article-title">OpenAI 模型选型更新：gpt-5.5、gpt-5.5-codex 与 gpt-image-2 怎么放进 <span class="brand-word"><span class="brand-red">Fa</span><span class="brand-mid">ro</span><span class="brand-red">AI</span></span></a>
+                                <a href="https://developers.openai.com/api/docs/guides/latest-model" target="_blank" rel="noopener noreferrer" class="article-title">OpenAI 模型选型更新：官方模型页、Responses API 与多模态路由怎么放进 <span class="brand-word"><span class="brand-red">Fa</span><span class="brand-mid">ro</span><span class="brand-red">AI</span></span></a>
                                 <span class="article-category category-technical">技术文章</span>
                             </div>
                             <p class="article-excerpt">
-                                OpenAI 官方最新模型指南把 gpt-5.5 标为面向复杂任务的旗舰模型，gpt-5.5-codex 适合长时间编码、调试和代理式软件工程，gpt-5.4/mini/nano 则覆盖日常与低延迟场景。对 <span class="brand-word"><span class="brand-red">Fa</span><span class="brand-mid">ro</span><span class="brand-red">AI</span></span> 的模型路由来说，可以把“复杂分析/代码任务”交给强模型，把“微信日常问答/摘要/分类”交给更快模型，同时将图像生成单独路由到 gpt-image-2。
+                                OpenAI 官方最新模型指南把 GPT-5.5 标为面向复杂任务的旗舰模型，GPT-5.5-Codex 适合长时间编码、调试和代理式软件工程，GPT-5.4 / mini / nano 则覆盖日常与低延迟场景。对 <span class="brand-word"><span class="brand-red">Fa</span><span class="brand-mid">ro</span><span class="brand-red">AI</span></span> 的模型路由来说，可以把“复杂分析/代码任务”交给强模型，把“微信日常问答/摘要/分类”交给更快模型，同时将图像生成单独路由到 gpt-image-2。
                             </p>
                             <p class="article-source">资料来源：<a href="https://developers.openai.com/api/docs/guides/latest-model" target="_blank" rel="noopener noreferrer">OpenAI Latest model guide</a>、<a href="https://developers.openai.com/api/docs/guides/image-generation" target="_blank" rel="noopener noreferrer">OpenAI Image generation guide</a></p>
                             <div class="article-meta">
                                 <a href="个人概况_2026_v3.html" class="article-author">炜哥</a>
                                 <span class="article-date">2026-05-10</span>
-                                <a href="#comments" class="article-comments">9 条评论</a>
+                                <span class="article-note">技术笔记</span>
                                 <div class="article-tags">
                                     <span class="tag">OpenAI</span>
-                                    <span class="tag">gpt-5.5</span>
+                                    <span class="tag">OpenAI Models</span>
                                     <span class="tag">Codex</span>
                                     <span class="tag">gpt-image-2</span>
                                 </div>
@@ -139,12 +127,7 @@
                         </div>
                     </article>
 
-                    <article class="article-card featured" data-category="tutorial" data-upvotes="31" data-comments="7">
-                        <div class="article-vote">
-                            <button class="vote-btn up" aria-label="赞同"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
-                            <span class="vote-count">31</span>
-                            <button class="vote-btn down" aria-label="反对"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></button>
-                        </div>
+                    <article class="article-card featured" data-category="tutorial">
                         <div class="article-content">
                             <div class="article-header">
                                 <a href="docs.html#quickstart" class="article-title">把 OpenAI Responses API 接进 Agent 工作流：工具调用、文件检索与 MCP 的落地路线</a>
@@ -157,7 +140,7 @@
                             <div class="article-meta">
                                 <a href="个人概况_2026_v3.html" class="article-author">炜哥</a>
                                 <span class="article-date">2026-05-10</span>
-                                <a href="#comments" class="article-comments">7 条评论</a>
+                                <span class="article-note">技术笔记</span>
                                 <div class="article-tags">
                                     <span class="tag">Responses API</span>
                                     <span class="tag">Tools</span>
@@ -168,12 +151,7 @@
                         </div>
                     </article>
 
-                    <article class="article-card featured" data-category="technical" data-upvotes="24" data-comments="5">
-                        <div class="article-vote">
-                            <button class="vote-btn up" aria-label="赞同"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
-                            <span class="vote-count">24</span>
-                            <button class="vote-btn down" aria-label="反对"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></button>
-                        </div>
+                    <article class="article-card featured" data-category="technical">
                         <div class="article-content">
                             <div class="article-header">
                                 <a href="https://developers.openai.com/api/docs/guides/realtime" target="_blank" rel="noopener noreferrer" class="article-title">OpenAI Realtime 2、Translate 与 Whisper：语音型 AI 助手的新接口组合</a>
@@ -186,7 +164,7 @@
                             <div class="article-meta">
                                 <a href="个人概况_2026_v3.html" class="article-author">炜哥</a>
                                 <span class="article-date">2026-05-10</span>
-                                <a href="#comments" class="article-comments">5 条评论</a>
+                                <span class="article-note">技术笔记</span>
                                 <div class="article-tags">
                                     <span class="tag">Realtime API</span>
                                     <span class="tag">Speech</span>
@@ -199,20 +177,7 @@
 
 				<!-- 旧文章 -->
 
-                    <article class="article-card featured" data-category="product" data-upvotes="0" data-comments="0">
-                        <div class="article-vote">
-                            <button class="vote-btn up" aria-label="赞同">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
-                                    <path d="M12 19V5M5 12l7-7 7 7"/>
-                                </svg>
-                            </button>
-                            <span class="vote-count">0</span>
-                            <button class="vote-btn down" aria-label="反对">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
-                                    <path d="M12 5v14M19 12l-7 7-7-7"/>
-                                </svg>
-                            </button>
-                        </div>
+                    <article class="article-card featured" data-category="product">
                         <div class="article-content">
                             <div class="article-header">
                                 <a href="docs.html#gateway" class="article-title">2026 年 4 月 OpenClaw 版本汇总：多提供者、Memory 与 Gateway 稳定性</a>
@@ -224,7 +189,7 @@
                             <div class="article-meta">
                                 <a href="个人概况_2026_v3.html" class="article-author">炜哥</a>
                                 <span class="article-date">2026-04-29</span>
-                                <a href="#comments" class="article-comments">0 条评论</a>
+                                <span class="article-note">技术笔记</span>
                                 <div class="article-tags">
                                     <span class="tag">OpenClaw</span>
                                     <span class="tag">v4.3</span>
@@ -234,20 +199,7 @@
                             </div>
                         </div>
                     </article>
-                    <article class="article-card featured" data-category="product" data-upvotes="0" data-comments="0">
-                        <div class="article-vote">
-                            <button class="vote-btn up" aria-label="赞同">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
-                                    <path d="M12 19V5M5 12l7-7 7 7"/>
-                                </svg>
-                            </button>
-                            <span class="vote-count">0</span>
-                            <button class="vote-btn down" aria-label="反对">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
-                                    <path d="M12 5v14M19 12l-7 7-7-7"/>
-                                </svg>
-                            </button>
-                        </div>
+                    <article class="article-card featured" data-category="product">
                         <div class="article-content">
                             <div class="article-header">
 	                                <a href="docs.html#workflows" class="article-title">OpenClaw v2026.4.28 更新观察：子智能体上下文继承与本地工作流</a>
@@ -259,7 +211,7 @@
                             <div class="article-meta">
                                 <a href="个人概况_2026_v3.html" class="article-author">炜哥</a>
                                 <span class="article-date">2026-04-28</span>
-                                <a href="#comments" class="article-comments">0 条评论</a>
+                                <span class="article-note">技术笔记</span>
                                 <div class="article-tags">
                                     <span class="tag">OpenClaw</span>
                                     <span class="tag">子智能体</span>
@@ -271,20 +223,7 @@
                     </article>
 
                     <!-- 文章 2 -->
-                    <article class="article-card featured" data-category="news" data-upvotes="389" data-comments="102">
-                        <div class="article-vote">
-                            <button class="vote-btn up" aria-label="赞同">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
-                                    <path d="M12 19V5M5 12l7-7 7 7"/>
-                                </svg>
-                            </button>
-                            <span class="vote-count">389</span>
-                            <button class="vote-btn down" aria-label="反对">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
-                                    <path d="M12 5v14M19 12l-7 7-7-7"/>
-                                </svg>
-                            </button>
-                        </div>
+                    <article class="article-card featured" data-category="news">
                         <div class="article-content">
                             <div class="article-header">
                                  <a href="https://developers.openai.com/api/docs/guides/latest-model" target="_blank" rel="noopener noreferrer" class="article-title">OpenAI 最新模型指南速读：如何为复杂任务、代码任务和日常回复选模型</a>
@@ -296,9 +235,9 @@
                             <div class="article-meta">
                                 <a href="个人概况_2026_v3.html" class="article-author">炜哥</a>
                                 <span class="article-date">2026-04-25</span>
-                                <a href="#comments" class="article-comments">102 条评论</a>
+                                <span class="article-note">技术笔记</span>
                                 <div class="article-tags">
-                                    <span class="tag">GPT-5.5</span>
+                                    <span class="tag">OpenAI Models</span>
                                     <span class="tag">OpenAI</span>
                                     <span class="tag">模型路由</span>
                                 </div>
@@ -307,20 +246,7 @@
                     </article>
 
                     <!-- 文章 2 -->
-                    <article class="article-card featured" data-category="product" data-upvotes="312" data-comments="87">
-                        <div class="article-vote">
-                            <button class="vote-btn up" aria-label="赞同">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
-                                    <path d="M12 19V5M5 12l7-7 7 7"/>
-                                </svg>
-                            </button>
-                            <span class="vote-count">312</span>
-                            <button class="vote-btn down" aria-label="反对">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
-                                    <path d="M12 5v14M19 12l-7 7-7-7"/>
-                                </svg>
-                            </button>
-                        </div>
+                    <article class="article-card featured" data-category="product">
                         <div class="article-content">
                             <div class="article-header">
                                   <a href="docs.html#models" class="article-title">OpenClaw v2026.4.23 回顾：图像、多模型提供者与本地模型路线</a>
@@ -332,7 +258,7 @@
                             <div class="article-meta">
                                 <a href="个人概况_2026_v3.html" class="article-author">炜哥</a>
                                 <span class="article-date">2026-04-24</span>
-                                <a href="#comments" class="article-comments">87 条评论</a>
+                                <span class="article-note">技术笔记</span>
                                 <div class="article-tags">
                                     <span class="tag">OpenClaw</span>
                                     <span class="tag">图像生成</span>
@@ -343,20 +269,7 @@
                     </article>
 
                     <!-- 文章 3 -->
-                    <article class="article-card featured" data-category="technical" data-upvotes="278" data-comments="64">
-                        <div class="article-vote">
-                            <button class="vote-btn up" aria-label="赞同">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
-                                    <path d="M12 19V5M5 12l7-7 7 7"/>
-                                </svg>
-                            </button>
-                            <span class="vote-count">278</span>
-                            <button class="vote-btn down" aria-label="反对">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
-                                    <path d="M12 5v14M19 12l-7 7-7-7"/>
-                                </svg>
-                            </button>
-                        </div>
+                    <article class="article-card featured" data-category="technical">
                         <div class="article-content">
                             <div class="article-header">
                                    <a href="https://developers.openai.com/api/docs/guides/migrate-to-responses" target="_blank" rel="noopener noreferrer" class="article-title">技术选型：为什么 Agent 应用越来越适合用 Responses API 做中枢</a>
@@ -368,7 +281,7 @@
                             <div class="article-meta">
                                 <a href="个人概况_2026_v3.html" class="article-author">炜哥</a>
                                 <span class="article-date">2026-04-22</span>
-                                <a href="#comments" class="article-comments">64 条评论</a>
+                                <span class="article-note">技术笔记</span>
                                 <div class="article-tags">
                                     <span class="tag">Responses API</span>
                                     <span class="tag">Agent</span>
@@ -379,20 +292,7 @@
                     </article>
 
                     <!-- 文章 4 -->
-                    <article class="article-card" data-category="tutorial" data-upvotes="143" data-comments="38">
-                        <div class="article-vote">
-                            <button class="vote-btn up" aria-label="赞同">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
-                                    <path d="M12 19V5M5 12l7-7 7 7"/>
-                                </svg>
-                            </button>
-                            <span class="vote-count">143</span>
-                            <button class="vote-btn down" aria-label="反对">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
-                                    <path d="M12 5v14M19 12l-7 7-7-7"/>
-                                </svg>
-                            </button>
-                        </div>
+                    <article class="article-card" data-category="tutorial">
                         <div class="article-content">
                             <div class="article-header">
                                 <a href="docs.html#models" class="article-title">本地 LLM 部署指南：Ollama、模型路由与隐私边界</a>
@@ -404,7 +304,7 @@
                             <div class="article-meta">
                                 <a href="个人概况_2026_v3.html" class="article-author">炜哥</a>
                                 <span class="article-date">2026-03-30</span>
-                                <a href="#comments" class="article-comments">38 条评论</a>
+                                <span class="article-note">技术笔记</span>
                                 <div class="article-tags">
                                     <span class="tag">本地部署</span>
                                     <span class="tag">LLM</span>
@@ -416,20 +316,7 @@
                     </article>
 
                     <!-- 文章 5 -->
-                    <article class="article-card" data-category="product" data-upvotes="127" data-comments="29">
-                        <div class="article-vote">
-                            <button class="vote-btn up" aria-label="赞同">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
-                                    <path d="M12 19V5M5 12l7-7 7 7"/>
-                                </svg>
-                            </button>
-                            <span class="vote-count">42</span>
-                            <button class="vote-btn down" aria-label="反对">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
-                                    <path d="M12 5v14M19 12l-7 7-7-7"/>
-                                </svg>
-                            </button>
-                        </div>
+                    <article class="article-card" data-category="product">
                         <div class="article-content">
                             <div class="article-header">
                                 <a href="docs.html#wechat" class="article-title"><span class="brand-word"><span class="brand-red">Fa</span><span class="brand-mid">ro</span><span class="brand-red">AI</span></span> 实践：把微信机器人、本地模型和 OpenClaw Gateway 跑通</a>
@@ -441,7 +328,7 @@
                             <div class="article-meta">
                                 <a href="个人概况_2026_v3.html" class="article-author">炜哥</a>
                                 <span class="article-date">2026-03-26</span>
-                                <a href="#comments" class="article-comments">29 条评论</a>
+                                <span class="article-note">技术笔记</span>
                                 <div class="article-tags">
                                     <span class="tag"><span class="brand-word"><span class="brand-red">Fa</span><span class="brand-mid">ro</span><span class="brand-red">AI</span></span></span>
                                     <span class="tag">微信机器人</span>
@@ -452,20 +339,7 @@
                     </article>
 
                     <!-- 文章 6 -->
-                    <article class="article-card" data-category="news" data-upvotes="95" data-comments="50">
-                        <div class="article-vote">
-                            <button class="vote-btn up" aria-label="赞同">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
-                                    <path d="M12 19V5M5 12l7-7 7 7"/>
-                                </svg>
-                            </button>
-                            <span class="vote-count">95</span>
-                            <button class="vote-btn down" aria-label="反对">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
-                                    <path d="M12 5v14M19 12l-7 7-7-7"/>
-                                </svg>
-                            </button>
-                        </div>
+                    <article class="article-card" data-category="news">
                         <div class="article-content">
                             <div class="article-header">
                                 <a href="docs.html#knowledge" class="article-title">AI 助手趋势观察：本地优先、个人知识库和通道化入口</a>
@@ -477,7 +351,7 @@
                             <div class="article-meta">
                                 <a href="个人概况_2026_v3.html" class="article-author">炜哥</a>
                                 <span class="article-date">2026-04-15</span>
-                                <a href="#comments" class="article-comments">50 条评论</a>
+                                <span class="article-note">技术笔记</span>
                                 <div class="article-tags">
                                     <span class="tag">本地优先</span>
                                     <span class="tag">知识库</span>

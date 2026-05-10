@@ -149,7 +149,7 @@
 
 /* 投票按钮 */
 .article-vote {
-    display: flex;
+    display: none;
     flex-direction: column;
     align-items: center;
     gap: 0.25rem;
@@ -295,7 +295,8 @@
     color: var(--text-muted);
 }
 
-.article-comments {
+.article-comments,
+.article-note {
     font-size: 0.85rem;
     color: var(--text-secondary);
     text-decoration: none;
@@ -304,7 +305,8 @@
     gap: 0.25rem;
 }
 
-.article-comments:hover {
+.article-comments:hover,
+.article-note:hover {
     color: var(--primary-color);
 }
 

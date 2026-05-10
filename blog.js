@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // 文章排序
     const sortSelect = document.querySelector('.sort-select');
     
-    sortSelect.addEventListener('change', function() {
+    sortSelect?.addEventListener('change', function() {
         const container = document.querySelector('.articles');
         const articles = Array.from(container.querySelectorAll('.article-card'));
         const sortBy = this.value;
@@ -37,50 +37,12 @@ document.addEventListener('DOMContentLoaded', function() {
                     const dateA = new Date(a.querySelector('.article-date').textContent);
                     const dateB = new Date(b.querySelector('.article-date').textContent);
                     return dateB - dateA;
-                case 'popular':
-                    const upvotesA = parseInt(a.dataset.upvotes);
-                    const upvotesB = parseInt(b.dataset.upvotes);
-                    return upvotesB - upvotesA;
-                case 'comments':
-                    const commentsA = parseInt(a.dataset.comments);
-                    const commentsB = parseInt(b.dataset.comments);
-                    return commentsB - commentsA;
                 default:
                     return 0;
             }
         });
         
         articles.forEach(article => container.appendChild(article));
-    });
-    
-    // 投票功能
-    const voteBtns = document.querySelectorAll('.vote-btn');
-    
-    voteBtns.forEach(btn => {
-        btn.addEventListener('click', function(e) {
-            e.stopPropagation();
-            
-            const voteBtn = this;
-            const voteContainer = this.closest('.article-vote');
-            const voteCount = voteContainer.querySelector('.vote-count');
-            let count = parseInt(voteCount.textContent);
-            
-            if (voteBtn.classList.contains('up')) {
-                count++;
-                voteContainer.querySelector('.down').style.opacity = '0.5';
-            } else {
-                count--;
-                voteContainer.querySelector('.up').style.opacity = '0.5';
-            }
-            
-            voteCount.textContent = count;
-            
-            // 添加点击动画
-            voteBtn.style.transform = 'scale(1.2)';
-            setTimeout(() => {
-                voteBtn.style.transform = 'scale(1)';
-            }, 200);
-        });
     });
     
     // 移动端菜单
@@ -98,7 +60,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     articleCards.forEach(card => {
         card.addEventListener('click', function(e) {
-            if (!e.target.closest('.vote-btn') && !e.target.closest('.article-tags .tag') && !e.target.closest('a')) {
+            if (!e.target.closest('.article-tags .tag') && !e.target.closest('a')) {
                 const title = this.querySelector('.article-title');
                 if (title) {
                     window.location.href = title.getAttribute('href');
@@ -118,25 +80,6 @@ document.addEventListener('DOMContentLoaded', function() {
                     block: 'start'
                 });
             }
-        });
-    });
-    
-    // 文章计数初始化
-    const commentLinks = document.querySelectorAll('.article-comments');
-    
-    commentLinks.forEach(link => {
-        link.addEventListener('click', function(e) {
-            e.preventDefault();
-            e.stopPropagation();
-            
-            // 显示评论数量动画
-            const container = this.closest('.article-meta');
-            const count = this.textContent.split(' ')[0];
-            
-            this.style.transform = 'scale(1.1)';
-            setTimeout(() => {
-                this.style.transform = 'scale(1)';
-            }, 200);
         });
     });
     

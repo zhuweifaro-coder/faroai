@@ -273,9 +273,6 @@ document.head.appendChild(style);
         });
     });
 
-    // "立即注册" link 也跳到 pricing.html (a 标签自然处理) 或者切到登录
-    // 这里不做特殊处理（href="pricing.html" 已是真页面）
-
     // "忘记密码" → forgot 模态
     const forgotLink = document.getElementById('forgotPasswordLink');
     if (forgotLink && forgotModal) {
@@ -327,6 +324,42 @@ document.head.appendChild(style);
                 alert(message);
             }
         });
+    });
+})();
+
+/* ─────────── 联系表单：静态站使用 mailto 发送 ─────────── */
+(function bindContactForm() {
+    const form = document.getElementById('contactForm');
+    if (!form) return;
+
+    form.addEventListener('submit', e => {
+        e.preventDefault();
+        const name = form.querySelector('#contactName')?.value.trim();
+        const email = form.querySelector('#contactEmail')?.value.trim();
+        const subjectValue = form.querySelector('#contactSubject')?.value || 'other';
+        const message = form.querySelector('#contactMessage')?.value.trim();
+
+        if (!name || !email || !message) {
+            alert('请填写姓名、邮箱和内容。');
+            return;
+        }
+
+        const subjectMap = {
+            bug: '问题反馈',
+            feature: '功能建议',
+            business: '商务合作',
+            billing: '费用咨询',
+            other: '其他'
+        };
+        const subject = `FaroAI 联系表单 - ${subjectMap[subjectValue] || '其他'}`;
+        const body = [
+            `姓名：${name}`,
+            `邮箱：${email}`,
+            `主题：${subjectMap[subjectValue] || '其他'}`,
+            '',
+            message
+        ].join('\n');
+        window.location.href = `mailto:faro@vip.163.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
     });
 })();
 

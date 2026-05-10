@@ -3,11 +3,11 @@
 <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="FaroAI API 参考文档 - REST API 端点、SDK 集成、Webhook 配置，助力开发者快速集成。">
-        <meta name="keywords" content="FaroAI API, REST API, SDK, Webhook, 开发者文档">
+        <meta name="description" content="FaroAI 本地集成说明：当前静态站不提供公网 SaaS API，推荐通过 OpenClaw Gateway、OpenAI 官方 SDK 和联系方式完成真实部署。">
+        <meta name="keywords" content="FaroAI 集成, OpenClaw Gateway, OpenAI SDK, 本地 AI, 微信机器人">
         <meta name="author" content="FaroAI Team">
         <meta name="theme-color" content="#667eea">
-        <title>FaroAI API 参考 - 开发者集成指南</title>
+        <title>FaroAI 集成说明 - OpenClaw Gateway 与 OpenAI SDK</title>
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -66,7 +66,7 @@
             <div class="container">
                 <nav class="navbar" role="navigation" aria-label="主导航">
                     <a href="index.html" class="logo" aria-label="FaroAI 首页"><svg class="logo-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg><span class="logo-text"><span class="logo-text-red">Fa</span><span class="logo-text-gradient">ro</span><span class="logo-text-red">AI</span></span></a>
-                    <ul class="nav-menu"><li><a href="index.html#home">首页</a></li><li><a href="features.html">功能</a></li><li><a href="pricing.html">定价</a></li><li><a href="blog.html">博客</a></li><li><a href="个人概况_2026_v3.html">关于我</a></li></ul>
+                    <ul class="nav-menu"><li><a href="index.html#home">首页</a></li><li><a href="features.html">功能</a></li><li><a href="docs.html">文档</a></li><li><a href="blog.html">博客</a></li><li><a href="个人概况_2026_v3.html">关于我</a></li></ul>
                     <div class="nav-actions"><a href="contact.html" class="btn btn-outline">联系我们</a><a href="index.html" class="btn btn-primary">开始使用</a></div>
                     <button class="mobile-menu-btn" aria-label="菜单" aria-expanded="false" aria-controls="mobile-menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="M3 12h18M3 6h18M3 18h18"/></svg></button>
                 </nav>
@@ -75,119 +75,46 @@
         <main id="main">
             <section class="page-hero">
                 <div class="container">
-                    <h1>API 参考文档</h1>
-                    <p>通过强大的 REST API 和 SDK，将 <span class="brand-word"><span class="brand-red">Fa</span><span class="brand-mid">ro</span><span class="brand-red">AI</span></span> 的 AI 能力集成到你的应用中。</p>
+                    <h1>集成说明</h1>
+                    <p>当前网站是静态展示与配置文档站，不提供公开 SaaS API。真实集成建议通过 OpenClaw Gateway、OpenAI 官方 SDK 和本地模型配置完成。</p>
                 </div>
             </section>
 
             <section class="api-section">
                 <div class="container">
-                    <h2>🔑 认证方式</h2>
-                    <p><span class="brand-word"><span class="brand-red">Fa</span><span class="brand-mid">ro</span><span class="brand-red">AI</span></span> API 使用 Bearer Token 进行认证。所有 API 请求需要在 Header 中携带有效的 API Key。</p>
-                    <div class="code-block">
-<span class="method">Authorization</span>: <span class="string">Bearer your-api-key-here</span>
-                    </div>
-                    <p>你可以在控制台 → API 管理中创建和管理 API Key。建议为不同用途创建不同的 Key，并定期轮换以确保安全。</p>
-                    <h3>速率限制</h3>
-                    <p>所有 API 请求都有速率限制，具体如下：</p>
+                    <h2>✅ 当前真实状态</h2>
+                    <p>为避免误导，本站不再展示未上线的公网 REST API、虚构 SDK 包或套餐限额。现在可用的集成路径如下：</p>
                     <table class="rate-limit-table">
-                        <thead><tr><th>方案</th><th>请求/分钟</th><th>请求/天</th><th>并发连接</th></tr></thead>
+                        <thead><tr><th>能力</th><th>状态</th><th>入口</th></tr></thead>
                         <tbody>
-                            <tr><td>个人版</td><td>10</td><td>500</td><td>2</td></tr>
-                            <tr><td>专业版</td><td>60</td><td>10,000</td><td>10</td></tr>
-                            <tr><td>企业版</td><td>不限</td><td>不限</td><td>专属配额</td></tr>
+                            <tr><td>静态网站、文档、博客</td><td>已上线</td><td><a href="docs.html">查看文档</a></td></tr>
+                            <tr><td>OpenClaw Gateway</td><td>本地可配置</td><td><a href="docs.html#gateway">网关配置</a></td></tr>
+                            <tr><td>微信机器人</td><td>按本机环境部署</td><td><a href="docs.html#wechat">微信配置</a></td></tr>
+                            <tr><td>云端账号、API Key、控制台</td><td>接入中</td><td><a href="contact.html">联系站长</a></td></tr>
                         </tbody>
                     </table>
-                    <p>当超过速率限制时，API 会返回 HTTP 429 状态码，并在响应头中包含 <code>Retry-After</code> 字段，指示下次可重试的时间。</p>
+                    <div class="code-block"><span class="method">openclaw</span> --version<br><span class="method">openclaw</span> gateway start</div>
                 </div>
             </section>
 
             <section class="api-section">
                 <div class="container">
-                    <h2>📡 端点列表</h2>
-                    <h3>智能体管理 (Agents)</h3>
+                    <h2>🧭 推荐集成路线</h2>
                     <div class="api-endpoints">
                         <div class="endpoint-card">
-                            <span class="endpoint-method method-post">POST</span>
-                            <span class="endpoint-path">/v1/agents</span>
-                            <p class="endpoint-desc">创建新的 AI 智能体。支持配置名称、模型、系统提示词、知识库关联等参数。</p>
+                            <span class="endpoint-method method-post">01</span>
+                            <span class="endpoint-path">选择模型 provider</span>
+                            <p class="endpoint-desc">日常摘要和轻量问答可用本地 Ollama；复杂推理、代码任务和多模态任务可按需接入 OpenAI 官方模型。</p>
                         </div>
                         <div class="endpoint-card">
-                            <span class="endpoint-method method-get">GET</span>
-                            <span class="endpoint-path">/v1/agents</span>
-                            <p class="endpoint-desc">列出所有智能体。支持分页和过滤，可按名称、状态、创建时间排序。</p>
+                            <span class="endpoint-method method-post">02</span>
+                            <span class="endpoint-path">启动 OpenClaw Gateway</span>
+                            <p class="endpoint-desc">Gateway 负责统一通道、模型路由、工具调用和权限提示，是微信机器人与自动化任务的本地中枢。</p>
                         </div>
                         <div class="endpoint-card">
-                            <span class="endpoint-method method-get">GET</span>
-                            <span class="endpoint-path">/v1/agents/:id</span>
-                            <p class="endpoint-desc">获取指定智能体的详细信息，包括配置、状态和最近活动记录。</p>
-                        </div>
-                        <div class="endpoint-card">
-                            <span class="endpoint-method method-put">PUT</span>
-                            <span class="endpoint-path">/v1/agents/:id</span>
-                            <p class="endpoint-desc">更新智能体配置，支持修改名称、模型、系统提示词、知识库等。</p>
-                        </div>
-                        <div class="endpoint-card">
-                            <span class="endpoint-method method-delete">DELETE</span>
-                            <span class="endpoint-path">/v1/agents/:id</span>
-                            <p class="endpoint-desc">删除指定智能体。删除后不可恢复，同时会清除关联的工作流和数据。</p>
-                        </div>
-                    </div>
-
-                    <h3>消息收发 (Messages)</h3>
-                    <div class="api-endpoints">
-                        <div class="endpoint-card">
-                            <span class="endpoint-method method-post">POST</span>
-                            <span class="endpoint-path">/v1/agents/:id/messages</span>
-                            <p class="endpoint-desc">向指定智能体发送消息。支持文本、图像等多模态输入，返回流式或非流式响应。</p>
-                        </div>
-                        <div class="endpoint-card">
-                            <span class="endpoint-method method-get">GET</span>
-                            <span class="endpoint-path">/v1/agents/:id/messages</span>
-                            <p class="endpoint-desc">获取智能体的消息历史记录，支持分页和时间范围过滤。</p>
-                        </div>
-                    </div>
-
-                    <h3>工作流管理 (Workflows)</h3>
-                    <div class="api-endpoints">
-                        <div class="endpoint-card">
-                            <span class="endpoint-method method-post">POST</span>
-                            <span class="endpoint-path">/v1/workflows</span>
-                            <p class="endpoint-desc">创建新的自动化工作流，定义触发器、动作序列和条件逻辑。</p>
-                        </div>
-                        <div class="endpoint-card">
-                            <span class="endpoint-method method-post">POST</span>
-                            <span class="endpoint-path">/v1/workflows/:id/run</span>
-                            <p class="endpoint-desc">手动触发执行指定工作流，可选择传入自定义参数。</p>
-                        </div>
-                        <div class="endpoint-card">
-                            <span class="endpoint-method method-get">GET</span>
-                            <span class="endpoint-path">/v1/workflows/:id/status</span>
-                            <p class="endpoint-desc">查询工作流执行状态和进度，支持实时流式更新。</p>
-                        </div>
-                    </div>
-
-                    <h3>知识库管理 (Knowledge Bases)</h3>
-                    <div class="api-endpoints">
-                        <div class="endpoint-card">
-                            <span class="endpoint-method method-post">POST</span>
-                            <span class="endpoint-path">/v1/knowledge-bases</span>
-                            <p class="endpoint-desc">创建新的知识库，支持设置名称、描述、关联智能体等。</p>
-                        </div>
-                        <div class="endpoint-card">
-                            <span class="endpoint-method method-post">POST</span>
-                            <span class="endpoint-path">/v1/knowledge-bases/:id/documents</span>
-                            <p class="endpoint-desc">向知识库添加文档。支持上传文件（PDF、Markdown、TXT、Word）或直接提交文本内容。</p>
-                        </div>
-                        <div class="endpoint-card">
-                            <span class="endpoint-method method-get">GET</span>
-                            <span class="endpoint-path">/v1/knowledge-bases/:id/search</span>
-                            <p class="endpoint-desc">在知识库中进行语义搜索，返回最相关的文档片段和相似度评分。</p>
-                        </div>
-                        <div class="endpoint-card">
-                            <span class="endpoint-method method-delete">DELETE</span>
-                            <span class="endpoint-path">/v1/knowledge-bases/:id</span>
-                            <p class="endpoint-desc">删除知识库及其所有文档。操作不可逆，请谨慎使用。</p>
+                            <span class="endpoint-method method-post">03</span>
+                            <span class="endpoint-path">接入微信与自动化任务</span>
+                            <p class="endpoint-desc">先用最小消息验证链路，再逐步增加知识库、定时任务、网页检索和文件处理。</p>
                         </div>
                     </div>
                 </div>
@@ -195,72 +122,36 @@
 
             <section class="api-section">
                 <div class="container">
-                    <h2>📦 SDK</h2>
-                    <p><span class="brand-word"><span class="brand-red">Fa</span><span class="brand-mid">ro</span><span class="brand-red">AI</span></span> 提供多语言 SDK，让你用最熟悉的语言快速集成 AI 能力。</p>
+                    <h2>📦 SDK 与 API 建议</h2>
+                    <p>如果需要直接调用 OpenAI，请优先使用 OpenAI 官方 SDK 和 Responses API；如果需要连接本地通道，请把 OpenClaw Gateway 作为编排层。本站不会提供未经验证的 <code>pip install faroai</code> 或 <code>npm install faroai</code> 示例。</p>
                     <div class="sdk-grid">
                         <div class="sdk-card">
                             <span class="sdk-icon">🐍</span>
-                            <h4>Python SDK</h4>
-                            <p>完整的 Python 客户端，支持同步和异步调用</p>
-                            <div class="code-block" style="text-align:left; font-size:0.85rem;">
-pip install faroai<br><br><span class="key">from</span> faroai <span class="key">import</span> <span class="brand-word"><span class="brand-red">Fa</span><span class="brand-mid">ro</span><span class="brand-red">AI</span></span><br>client = <span class="brand-word"><span class="brand-red">Fa</span><span class="brand-mid">ro</span><span class="brand-red">AI</span></span>(<span class="string">"your-api-key"</span>)<br>response = client.chat.<span class="string">messages</span>.<span class="string">create</span>(<br>&nbsp;&nbsp;model=<span class="string">"gpt-4"</span>,<br>&nbsp;&nbsp;messages=[{<span class="string">"role"</span>: <span class="string">"user"</span>, <span class="string">"content"</span>: <span class="string">"你好"</span>}]<br>)
-                            </div>
+                            <h4>Python</h4>
+                            <p>适合脚本、数据处理和自动化任务。</p>
+                            <div class="code-block" style="text-align:left; font-size:0.85rem;">pip install openai<br><br>from openai import OpenAI<br>client = OpenAI()</div>
                         </div>
                         <div class="sdk-card">
-                            <span class="sdk-icon">💚</span>
-                            <h4>Node.js SDK</h4>
-                            <p>JavaScript/TypeScript 客户端，支持 Promises 和 async/await</p>
-                            <div class="code-block" style="text-align:left; font-size:0.85rem;">
-npm install faroai<br><br><span class="key">import</span> <span class="brand-word"><span class="brand-red">Fa</span><span class="brand-mid">ro</span><span class="brand-red">AI</span></span> <span class="key">from</span> <span class="string">'faroai'</span>;<br><span class="key">const</span> client = <span class="key">new</span> <span class="brand-word"><span class="brand-red">Fa</span><span class="brand-mid">ro</span><span class="brand-red">AI</span></span>({<br>&nbsp;&nbsp;apiKey: <span class="string">'your-api-key'</span><br>});<br><span class="key">const</span> res = <span class="key">await</span> client<br>&nbsp;&nbsp;.chat.messages.create({<br>&nbsp;&nbsp;&nbsp;&nbsp;model: <span class="string">'gpt-4'</span>,<br>&nbsp;&nbsp;&nbsp;&nbsp;messages: [{role: <span class="string">'user'</span>, content: <span class="string">'你好'</span>}]<br>&nbsp;&nbsp;});
-                            </div>
+                            <span class="sdk-icon">🟦</span>
+                            <h4>Node.js</h4>
+                            <p>适合网页服务、Webhook 和工具网关。</p>
+                            <div class="code-block" style="text-align:left; font-size:0.85rem;">npm install openai<br><br>import OpenAI from "openai";<br>const client = new OpenAI();</div>
                         </div>
                         <div class="sdk-card">
-                            <span class="sdk-icon">🔵</span>
-                            <h4>Go SDK</h4>
-                            <p>高性能 Go 客户端，原生支持并发和流式响应</p>
-                            <div class="code-block" style="text-align:left; font-size:0.85rem;">
-go get github.com/faroai/go-sdk<br><br><span class="key">import</span> <span class="string">"github.com/faroai/go-sdk"</span><br>client := faroai.<span class="string">New</span>(<span class="string">"your-api-key"</span>)<br>resp, err := client.Chat().<br>&nbsp;&nbsp;Messages().<span class="string">Create</span>(ctx, faroai.ChatRequest{<br>&nbsp;&nbsp;&nbsp;&nbsp;Model:    <span class="string">"gpt-4"</span>,<br>&nbsp;&nbsp;&nbsp;&nbsp;Messages: []faroai.Message{{Role: <span class="string">"user"</span>, Content: <span class="string">"你好"</span>}},<br>&nbsp;&nbsp;})
-                            </div>
+                            <span class="sdk-icon">🧩</span>
+                            <h4>OpenClaw</h4>
+                            <p>适合把模型、微信、文件和自动化任务串起来。</p>
+                            <div class="code-block" style="text-align:left; font-size:0.85rem;">openclaw --version<br>openclaw gateway start</div>
                         </div>
                     </div>
-                </div>
-            </section>
-
-            <section class="api-section">
-                <div class="container">
-                    <h2>🪝 Webhook 配置</h2>
-                    <p>Webhook 允许你在关键事件发生时收到实时通知。你可以在控制台配置 Webhook URL，<span class="brand-word"><span class="brand-red">Fa</span><span class="brand-mid">ro</span><span class="brand-red">AI</span></span> 会以 POST 请求方式推送事件数据。</p>
-                    <h3>支持的事件类型</h3>
-                    <div class="code-block">
-<span class="key">workflow.completed</span>  - 工作流执行完成<br>
-<span class="key">workflow.failed</span>    - 工作流执行失败<br>
-<span class="key">message.received</span>   - 收到新消息<br>
-<span class="key">agent.updated</span>     - 智能体配置变更<br>
-<span class="key">kb.document.indexed</span> - 知识库文档索引完成<br>
-<span class="key">rate_limit.warning</span>  - 接近速率限制阈值
-                    </div>
-                    <h3>Webhook 请求格式</h3>
-                    <div class="code-block">
-<span class="method">POST</span> <span class="url">https://your-server.com/webhook</span><br><br>
-{<br>
-&nbsp;&nbsp;<span class="string">"event"</span>: <span class="string">"workflow.completed"</span>,<br>
-&nbsp;&nbsp;<span class="string">"timestamp"</span>: <span class="string">"2026-05-05T06:00:00Z"</span>,<br>
-&nbsp;&nbsp;<span class="string">"data"</span>: {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="string">"workflow_id"</span>: <span class="string">"wf_123456"</span>,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="string">"status"</span>: <span class="string">"success"</span>,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="string">"duration_ms"</span>: <span class="string">3200</span><br>
-&nbsp;&nbsp;}<br>
-}
-                    </div>
-                    <p>所有 Webhook 请求都携带签名头 <code>X-<span class="brand-word"><span class="brand-red">Fa</span><span class="brand-mid">ro</span><span class="brand-red">AI</span></span>-Signature</code>，用于验证请求来源。建议在服务端验证签名以确保安全性。Webhook 会进行最多 5 次重试，重试间隔分别为 1 分钟、5 分钟、15 分钟、30 分钟和 1 小时。</p>
                 </div>
             </section>
 
             <section class="cta-section">
                 <div class="container">
-                    <h2>开始使用 API</h2>
-                    <p>注册即可获得 API Key，立即开始集成。</p>
-                    <a href="index.html" class="btn btn-large">免费注册</a>
+                    <h2>需要真实部署？</h2>
+                    <p>请通过邮件或微信说明使用场景，我会按你的机器环境、模型选择和微信通道状态给出配置建议。</p>
+                    <a href="contact.html" class="btn btn-large">联系站长</a>
                 </div>
             </section>
         </main>
@@ -269,7 +160,7 @@ go get github.com/faroai/go-sdk<br><br><span class="key">import</span> <span cla
             <div class="container">
                 <div class="footer-content">
                     <div class="footer-brand"><a href="index.html" class="logo" aria-label="FaroAI 首页"><svg class="logo-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg><span class="logo-text"><span class="brand-word"><span class="brand-red">Fa</span><span class="brand-mid">ro</span><span class="brand-red">AI</span></span></span></a><p class="footer-description">下一代 AI 助手平台，打造你的智能数字伴侣。</p></div>
-                    <div class="footer-links"><h4>产品</h4><ul><li><a href="features.html">功能特性</a></li><li><a href="pricing.html">定价方案</a></li><li><a href="changelog.html">Changelog</a></li><li><a href="roadmap.html">Roadmap</a></li></ul></div>
+                    <div class="footer-links"><h4>产品</h4><ul><li><a href="features.html">功能特性</a></li><li><a href="docs.html">文档中心</a></li><li><a href="changelog.html">Changelog</a></li><li><a href="roadmap.html">Roadmap</a></li></ul></div>
                     <div class="footer-links"><h4>资源</h4><ul><li><a href="docs.html">文档</a></li><li><a href="api.html">API 参考</a></li><li><a href="community.html">社区</a></li><li><a href="contact.html">帮助支持</a></li></ul></div>
                     <div class="footer-links"><h4>公司</h4><ul><li><a href="个人概况_2026_v3.html">关于我</a></li><li><a href="blog.html">博客</a></li><li><a href="contact.html">联系方式</a></li></ul></div>
                 </div>
