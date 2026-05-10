@@ -2,9 +2,12 @@
 
 /* 博客英雄区域 */
 .blog-hero {
-    padding: 80px 0 40px;
-    background: linear-gradient(180deg, var(--bg-secondary) 0%, var(--bg-primary) 100%);
+    padding: 116px 0 56px;
+    background:
+        linear-gradient(135deg, rgba(37, 99, 235, 0.96), rgba(15, 118, 110, 0.94)),
+        var(--primary-color);
     border-bottom: 1px solid var(--border-color);
+    color: white;
 }
 
 .blog-hero-content {
@@ -12,17 +15,32 @@
 }
 
 .blog-title {
-    font-size: 2.5rem;
+    font-size: clamp(2.4rem, 5vw, 4rem);
     font-weight: 800;
     margin-bottom: 1rem;
-    color: var(--text-primary);
+    color: white;
+    letter-spacing: 0;
 }
 
 .blog-description {
-    font-size: 1.1rem;
-    color: var(--text-secondary);
-    max-width: 600px;
+    font-size: 1.16rem;
+    color: rgba(255, 255, 255, 0.86);
+    max-width: 760px;
     margin: 0 auto;
+    line-height: 1.75;
+}
+
+.blog-kicker {
+    display: inline-flex;
+    align-items: center;
+    min-height: 32px;
+    padding: 0.25rem 0.85rem;
+    margin-bottom: 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 999px;
+    color: rgba(255, 255, 255, 0.88);
+    font-weight: 700;
+    font-size: 0.86rem;
 }
 
 /* 博客列表区域 */
@@ -150,10 +168,11 @@
     color: var(--text-secondary);
     cursor: pointer;
     transition: all 150ms ease;
-    svg {
-        width: 16px;
-        height: 16px;
-    }
+}
+
+.vote-btn svg {
+    width: 16px;
+    height: 16px;
 }
 
 .vote-btn:hover {
@@ -237,6 +256,18 @@
     color: var(--text-secondary);
     line-height: 1.6;
     margin-bottom: 1rem;
+}
+
+.article-source {
+    margin: -0.35rem 0 1rem;
+    color: var(--text-muted);
+    font-size: 0.86rem;
+    line-height: 1.6;
+}
+
+.article-source a {
+    color: var(--primary-color);
+    font-weight: 700;
 }
 
 .article-meta {
@@ -401,7 +432,7 @@
 /* 响应式设计 */
 @media (max-width: 768px) {
     .blog-hero {
-        padding: 60px 0 30px;
+        padding: 96px 0 44px;
     }
     
     .blog-title {
@@ -420,6 +451,7 @@
     
     .article-card {
         flex-direction: column;
+        cursor: default;
     }
     
     .article-vote {

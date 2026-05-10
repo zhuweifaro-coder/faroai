@@ -3,11 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FaroAI 博客 - 技术见解与更新</title>
-    <meta name="description" content="FaroAI 官方博客，分享 AI 技术见解、产品更新和开发经验。">
+    <title>FaroAI 博客 - OpenClaw 新闻、OpenAI 技术资料与本地 AI 实践</title>
+    <meta name="description" content="FaroAI 博客：跟踪 OpenClaw 最新版本、OpenAI 官方模型与 API 更新，并分享微信机器人、本地模型和 AI 工作流实践。">
+    <meta name="keywords" content="FaroAI 博客, OpenClaw 新闻, OpenAI 技术资料, GPT-5.5, Responses API, Realtime API, 微信机器人, Ollama">
+    <link rel="canonical" href="https://www.faroai.net/blog.html">
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="blog.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <!-- 导航栏 -->
@@ -23,6 +24,7 @@
                 <ul class="nav-menu">
                     <li><a href="index.html#home">首页</a></li>
                     <li><a href="features.html">功能</a></li>
+                    <li><a href="docs.html">文档</a></li>
                     <li><a href="blog.html">博客</a></li>
                     <li><a href="个人概况_2026_v3.html">关于我</a></li>
                 </ul>
@@ -44,8 +46,9 @@
         <section class="blog-hero">
             <div class="container">
                 <div class="blog-hero-content">
+                    <span class="blog-kicker">FaroAI Notes</span>
                     <h1 class="blog-title">博客</h1>
-                    <p class="blog-description">分享 AI 技术见解、产品更新和开发经验</p>
+                    <p class="blog-description">跟踪 OpenClaw 最新动态、OpenAI 官方技术资料，以及把 AI 接入微信、本地模型和自动化工作流的实践记录。</p>
                 </div>
             </div>
         </section>
@@ -77,193 +80,122 @@
                   <div class="articles-wrap">
                 <!-- 文章列表 -->
                 <div class="articles" id="articles">
-                    <!-- 最新文章 1 -->
+                    <!-- 置顶文章：OpenClaw 与 OpenAI 最新资料 -->
+                    <article class="article-card featured" data-category="product" data-upvotes="28" data-comments="6">
+                        <div class="article-vote">
+                            <button class="vote-btn up" aria-label="赞同"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
+                            <span class="vote-count">28</span>
+                            <button class="vote-btn down" aria-label="反对"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></button>
+                        </div>
+                        <div class="article-content">
+                            <div class="article-header">
+                                <a href="docs.html#install" class="article-title">OpenClaw 2026.5.7 升级观察：插件安装、默认模型与 Gateway 稳定性</a>
+                                <span class="article-category category-product">产品更新</span>
+                            </div>
+                            <p class="article-excerpt">
+                                这次我把本机 OpenClaw 升级并重启 Gateway 后，确认最新 npm 版本为 2026.5.7。实际体验最值得关注的是三件事：插件安装记录与注册表更严格，微信通道需要加载编译后的 dist 入口；默认 OpenAI 模型可使用 openai/chat-latest 这类面向最新模型的路由；Cron 与 Channels CLI 的 JSON 输出、session 修复和权限提示更适合自动化巡检。对 FaroAI 来说，这意味着“先验证 Gateway，再验证模型，再验证微信通道”的部署顺序更重要。
+                            </p>
+                            <p class="article-source">资料来源：<a href="https://www.npmjs.com/package/openclaw" target="_blank" rel="noopener noreferrer">npm openclaw</a>、<a href="https://docs.openclaw.ai/cli/update" target="_blank" rel="noopener noreferrer">OpenClaw 更新文档</a></p>
+                            <div class="article-meta">
+                                <a href="个人概况_2026_v3.html" class="article-author">炜哥</a>
+                                <span class="article-date">2026-05-10</span>
+                                <a href="#comments" class="article-comments">6 条评论</a>
+                                <div class="article-tags">
+                                    <span class="tag">OpenClaw</span>
+                                    <span class="tag">2026.5.7</span>
+                                    <span class="tag">Gateway</span>
+                                    <span class="tag">微信机器人</span>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
 
-                    <!-- 最新文章 -->								<!-- 最新热点 1 - OpenClaw v2026.5.4-beta.1 -->
-				<article class="article-card featured" data-category="product" data-upvotes="0" data-comments="0">
-					<div class="article-vote">
-						<button class="vote-btn up" aria-label="赞同">
-							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
-								<path d="M12 19V5M5 12l7-7 7 7"/>
-							</svg>
-						</button>
-						<span class="vote-count">0</span>
-						<button class="vote-btn down" aria-label="反对">
-							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
-								<path d="M12 5v14M19 12l-7 7-7-7"/>
-							</svg>
-						</button>
-					</div>
-					<div class="article-content">
-						<div class="article-header">
-							<a href="#" class="article-title">OpenClaw v2026.5.4-beta.1：插件安全扫描、QQBot 流式命令、Talk 会话恢复🦞</a>
-							<span class="article-category category-product">产品更新</span>
-						</div>
-						<p class="article-excerpt">
-						  OpenClaw v2026.5.4-beta.1 聚焦插件安全与用户体验：加固后端消息路由，新增 QQBot 流式命令认证；插件安全扫描全面升级——忽略注释中误报、拒绝空 runtimeExtensions、自动清理孤儿安装记录；Control UI Talk 会话失败可手动关闭并自动重试；Google Chat 隔离认证传输、Canvas 保留 TLS 协议；Web 搜索/抓取支持运行时动态开关。200+ 项改进。
-						</p>
-						<div class="article-meta">
-							<a href="#" class="article-author">炜哥</a>
-							<span class="article-date">2026-05-05</span>
-							<a href="#comments" class="article-comments">0 条评论</a>
-							<div class="article-tags">
-								<span class="tag">OpenClaw</span>
-								<span class="tag">v2026.5.4-beta.1</span>
-								<span class="tag">插件安全</span>
-								<span class="tag">QQBot</span>
-								<span class="tag">Google Chat</span>
-							</div>
-						</div>
-					</div>
-				</article>
+                    <article class="article-card featured" data-category="technical" data-upvotes="36" data-comments="9">
+                        <div class="article-vote">
+                            <button class="vote-btn up" aria-label="赞同"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
+                            <span class="vote-count">36</span>
+                            <button class="vote-btn down" aria-label="反对"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></button>
+                        </div>
+                        <div class="article-content">
+                            <div class="article-header">
+                                <a href="https://developers.openai.com/api/docs/guides/latest-model" target="_blank" rel="noopener noreferrer" class="article-title">OpenAI 模型选型更新：gpt-5.5、gpt-5.5-codex 与 gpt-image-2 怎么放进 FaroAI</a>
+                                <span class="article-category category-technical">技术文章</span>
+                            </div>
+                            <p class="article-excerpt">
+                                OpenAI 官方最新模型指南把 gpt-5.5 标为面向复杂任务的旗舰模型，gpt-5.5-codex 适合长时间编码、调试和代理式软件工程，gpt-5.4/mini/nano 则覆盖日常与低延迟场景。对 FaroAI 的模型路由来说，可以把“复杂分析/代码任务”交给强模型，把“微信日常问答/摘要/分类”交给更快模型，同时将图像生成单独路由到 gpt-image-2。
+                            </p>
+                            <p class="article-source">资料来源：<a href="https://developers.openai.com/api/docs/guides/latest-model" target="_blank" rel="noopener noreferrer">OpenAI Latest model guide</a>、<a href="https://developers.openai.com/api/docs/guides/image-generation" target="_blank" rel="noopener noreferrer">OpenAI Image generation guide</a></p>
+                            <div class="article-meta">
+                                <a href="个人概况_2026_v3.html" class="article-author">炜哥</a>
+                                <span class="article-date">2026-05-10</span>
+                                <a href="#comments" class="article-comments">9 条评论</a>
+                                <div class="article-tags">
+                                    <span class="tag">OpenAI</span>
+                                    <span class="tag">gpt-5.5</span>
+                                    <span class="tag">Codex</span>
+                                    <span class="tag">gpt-image-2</span>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
 
-				<!-- 最新热点 2 - OpenClaw v2026.5.3 -->
-				<article class="article-card featured" data-category="product" data-upvotes="0" data-comments="0">
-					<div class="article-vote">
-						<button class="vote-btn up" aria-label="赞同">
-							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
-								<path d="M12 19V5M5 12l7-7 7 7"/>
-							</svg>
-						</button>
-						<span class="vote-count">0</span>
-						<button class="vote-btn down" aria-label="反对">
-							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
-								<path d="M12 5v14M19 12l-7 7-7-7"/>
-							</svg>
-						</button>
-					</div>
-					<div class="article-content">
-						<div class="article-header">
-							<a href="#" class="article-title">OpenClaw v2026.5.3：文件传输插件、Google Meet 语音集成、WeCom 目录适配</a>
-							<span class="article-category category-product">产品更新</span>
-						</div>
-						<p class="article-excerpt">
-						  OpenClaw v2026.5.3 正式发布！新增内置 file-transfer 插件，提供 file_fetch、dir_list、dir_fetch、file_write 四大文件操作工具；Google Meet 语音集成全面升级——自动获取媒体权限、实时字幕、音频响应修复；WeCom/元宝插件目录适配，修复第三方 npm manifest 滞后问题；WhatsApp Signal 依赖修复、Gateway systemd 密钥管理、LanceDB apache-arrow 依赖修复、CLI 设备配对自动恢复。又一个密集更新。
-						</p>
-						<div class="article-meta">
-							<a href="#" class="article-author">炜哥</a>
-							<span class="article-date">2026-05-04</span>
-							<a href="#comments" class="article-comments">0 条评论</a>
-							<div class="article-tags">
-								<span class="tag">OpenClaw</span>
-								<span class="tag">v2026.5.3</span>
-								<span class="tag">文件传输</span>
-								<span class="tag">Google Meet</span>
-							</div>
-						</div>
-					</div>
-				</article>
+                    <article class="article-card featured" data-category="tutorial" data-upvotes="31" data-comments="7">
+                        <div class="article-vote">
+                            <button class="vote-btn up" aria-label="赞同"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
+                            <span class="vote-count">31</span>
+                            <button class="vote-btn down" aria-label="反对"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></button>
+                        </div>
+                        <div class="article-content">
+                            <div class="article-header">
+                                <a href="docs.html#quickstart" class="article-title">把 OpenAI Responses API 接进 Agent 工作流：工具调用、文件检索与 MCP 的落地路线</a>
+                                <span class="article-category category-tutorial">教程</span>
+                            </div>
+                            <p class="article-excerpt">
+                                Responses API 是 OpenAI 推荐的统一响应接口，适合需要多轮状态、工具调用、多模态输入和代理式执行的应用。对 FaroAI 来说，落地路线很清晰：用 Responses 承载模型回复，用 File Search/Code Interpreter/Web Search 等工具处理资料和计算，用 MCP 连接外部系统，再由 OpenClaw Gateway 负责通道、权限和任务触发。
+                            </p>
+                            <p class="article-source">资料来源：<a href="https://developers.openai.com/api/docs/guides/migrate-to-responses" target="_blank" rel="noopener noreferrer">OpenAI Responses API guide</a>、<a href="https://developers.openai.com/api/docs/guides/tools" target="_blank" rel="noopener noreferrer">OpenAI Tools guide</a></p>
+                            <div class="article-meta">
+                                <a href="个人概况_2026_v3.html" class="article-author">炜哥</a>
+                                <span class="article-date">2026-05-10</span>
+                                <a href="#comments" class="article-comments">7 条评论</a>
+                                <div class="article-tags">
+                                    <span class="tag">Responses API</span>
+                                    <span class="tag">Tools</span>
+                                    <span class="tag">MCP</span>
+                                    <span class="tag">Agent</span>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
 
-<!-- 最新文章 1 - OpenClaw v2026.5.2 -->
-				<article class="article-card featured" data-category="product" data-upvotes="0" data-comments="0">
-					<div class="article-vote">
-						<button class="vote-btn up" aria-label="赞同">
-							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
-								<path d="M12 19V5M5 12l7-7 7 7"/>
-							</svg>
-						</button>
-						<span class="vote-count">0</span>
-						<button class="vote-btn down" aria-label="反对">
-							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
-								<path d="M12 5v14M19 12l-7 7-7-7"/>
-							</svg>
-						</button>
-					</div>
-					<div class="article-content">
-						<div class="article-header">
-							<a href="#" class="article-title">OpenClaw v2026.5.2 正式版发布：插件体系全面重构，300+ 项修复🦞</a>
-							<span class="article-category category-product">产品更新</span>
-						</div>
-						<p class="article-excerpt">
-						  OpenClaw 2026.5.2 正式发布！本次更新由 200+ 开发者共同完成，主打稳定性与性能。插件生态从 npm 全面迁移至 ClawHub，支持 ClawPack npm-pack 解析器、完整性校验、beta 渠道自动回退。新增 xAI Grok 4.3 作为默认 xAI 聊天模型；网关启动扇出上限控制、会话列表缓存优化、终端生命周期修复；Docker Bun 1.3.13 版本固定、iOS PWA 安全区域适配、Google Meet 实时字幕健康检测；修复 Discord/Slack/Telegram/WhatsApp 等主流通讯平台消息路由问题。这是 OpenClaw 有史以来最全面的稳定性和可靠性更新。
-						</p>
-						<div class="article-meta">
-							<a href="#" class="article-author">炜哥</a>
-							<span class="article-date">2026-05-03</span>
-							<a href="#comments" class="article-comments">0 条评论</a>
-							<div class="article-tags">
-								<span class="tag">OpenClaw</span>
-								<span class="tag">v2026.5.2</span>
-								<span class="tag">ClawHub</span>
-								<span class="tag">Grok 4.3</span>
-							</div>
-						</div>
-					</div>
-				</article>
-
-				<!-- 最新文章 2 - OpenAI 向 OpenClaw 开放 ChatGPT 订阅 -->
-				<article class="article-card featured" data-category="news" data-upvotes="0" data-comments="0">
-					<div class="article-vote">
-						<button class="vote-btn up" aria-label="赞同">
-							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
-								<path d="M12 19V5M5 12l7-7 7 7"/>
-							</svg>
-						</button>
-						<span class="vote-count">0</span>
-						<button class="vote-btn down" aria-label="反对">
-							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
-								<path d="M12 5v14M19 12l-7 7-7-7"/>
-							</svg>
-						</button>
-					</div>
-					<div class="article-content">
-						<div class="article-header">
-							<a href="#" class="article-title">OpenAI 向 OpenClaw 320 万用户开放 ChatGPT 订阅授权</a>
-							<span class="article-category category-news">行业动态</span>
-						</div>
-						<p class="article-excerpt">
-						  OpenAI 正式向 OpenClaw 开放 ChatGPT 订阅授权！OpenClaw 是目前 GitHub 上最热门的开源 AI Agent 框架（368K stars，320 万用户）。这意味着 OpenClaw 用户可以直接使用 ChatGPT 订阅来运行自动化 AI Agent，通过 Codex OAuth 实现工具调用、代码生成和记忆功能。此前 Anthropic 封锁了 Claude 对 OpenClaw 的访问，OpenAI 的这一举措被视为重大战略转向，标志着 OpenClaw 成为 AI Agent 框架领域的事实标准。
-						</p>
-						<div class="article-meta">
-							<a href="#" class="article-author">炜哥</a>
-							<span class="article-date">2026-05-02</span>
-							<a href="#comments" class="article-comments">0 条评论</a>
-							<div class="article-tags">
-								<span class="tag">OpenAI</span>
-								<span class="tag">OpenClaw</span>
-								<span class="tag">ChatGPT 订阅</span>
-								<span class="tag">行业大事</span>
-							</div>
-						</div>
-					</div>
-				</article>
-
-				<!-- 最新文章 3 - v2026.4.29 -->
-				<article class="article-card featured" data-category="product" data-upvotes="0" data-comments="0">
-					<div class="article-vote">
-						<button class="vote-btn up" aria-label="赞同">
-							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
-								<path d="M12 19V5M5 12l7-7 7 7"/>
-							</svg>
-						</button>
-						<span class="vote-count">0</span>
-						<button class="vote-btn down" aria-label="反对">
-							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
-								<path d="M12 5v14M19 12l-7 7-7-7"/>
-							</svg>
-						</button>
-					</div>
-					<div class="article-content">
-						<div class="article-header">
-							<a href="#" class="article-title">OpenClaw v2026.4.29：Memory Wiki、NVIDIA 提供商集成与消息队列革命</a>
-							<span class="article-category category-product">产品更新</span>
-						</div>
-						<p class="article-excerpt">
-						  OpenClaw v2026.4.29 带来多项重磅更新：Memory 进化为 People Wiki，支持人物关系图谱、来源追踪和隐私报告；新增 NVIDIA 原生提供商集成，支持 API Key 配置和模型目录；消息队列引入 steer 模式和 500ms 防抖，子智能体路由新增 spawnedBy 元数据；Active Memory 支持按对话过滤和超时部分召回；Bedrock Opus 4.7 thinking 对等支持；安全方面引入 OpenGrep 扫描；ClawHub 插件搜索功能上线。这是 OpenClaw 智能体能力的一次全面跃升。
-						</p>
-						<div class="article-meta">
-							<a href="#" class="article-author">炜哥</a>
-							<span class="article-date">2026-04-30</span>
-							<a href="#comments" class="article-comments">0 条评论</a>
-							<div class="article-tags">
-								<span class="tag">OpenClaw</span>
-								<span class="tag">v2026.4.29</span>
-								<span class="tag">Memory Wiki</span>
-								<span class="tag">NVIDIA</span>
-							</div>
-						</div>
-					</div>
-				</article>
+                    <article class="article-card featured" data-category="technical" data-upvotes="24" data-comments="5">
+                        <div class="article-vote">
+                            <button class="vote-btn up" aria-label="赞同"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
+                            <span class="vote-count">24</span>
+                            <button class="vote-btn down" aria-label="反对"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></button>
+                        </div>
+                        <div class="article-content">
+                            <div class="article-header">
+                                <a href="https://developers.openai.com/api/docs/guides/realtime" target="_blank" rel="noopener noreferrer" class="article-title">OpenAI Realtime 2、Translate 与 Whisper：语音型 AI 助手的新接口组合</a>
+                                <span class="article-category category-technical">技术文章</span>
+                            </div>
+                            <p class="article-excerpt">
+                                OpenAI 官方音频文档显示，Realtime API 适合低延迟语音交互，最新音频能力还包含面向翻译的模型和 Whisper 转写接口。FaroAI 后续如果做“微信语音消息 -> 转写 -> 总结/回复”的链路，可以把语音输入、实时对话和文本任务拆开：转写走专用接口，实时会话走 Realtime，长文本整理再回到通用模型。
+                            </p>
+                            <p class="article-source">资料来源：<a href="https://developers.openai.com/api/docs/guides/realtime" target="_blank" rel="noopener noreferrer">OpenAI Realtime guide</a>、<a href="https://developers.openai.com/api/docs/guides/speech-to-text" target="_blank" rel="noopener noreferrer">OpenAI Speech to text guide</a></p>
+                            <div class="article-meta">
+                                <a href="个人概况_2026_v3.html" class="article-author">炜哥</a>
+                                <span class="article-date">2026-05-10</span>
+                                <a href="#comments" class="article-comments">5 条评论</a>
+                                <div class="article-tags">
+                                    <span class="tag">Realtime API</span>
+                                    <span class="tag">Speech</span>
+                                    <span class="tag">Whisper</span>
+                                    <span class="tag">语音助手</span>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
 
 				<!-- 旧文章 -->
 
@@ -283,14 +215,14 @@
                         </div>
                         <div class="article-content">
                             <div class="article-header">
-                                <a href="#" class="article-title">2026 年 4 ��� OpenClaw 版本汇总：v4.3 多提供者引擎、Claude 订阅断流应对与 v2026.4.26 功能亮点</a>
+                                <a href="docs.html#gateway" class="article-title">2026 年 4 月 OpenClaw 版本汇总：多提供者、Memory 与 Gateway 稳定性</a>
                                 <span class="article-category category-product">产品更新</span>
                             </div>
                             <p class="article-excerpt">
-                               2026 年 4 月 OpenClaw 经历密集更新：4 月 4 日 Anthropic 切断 Claude 订阅适配后，4 月 14 日发布 v4.3 重写提供者路由层（providers.toml 统一配置、Fallback 链、预算上限、推理 Token 独立计费）。4 月 26 日 v2026.4.26 新增 Cerebras 原生适配、Memory 异构嵌入端点、Control UI 语音会话实时传输、子智能体可选上下文继承、Matrix 端到端加密、Config 自我保护（防 Agent 自我修改）等 60+ 项改进和修复。完整 4 月更新汇总。
+                               2026 年 4 月 OpenClaw 的主线是把“能跑”推进到“稳定可管”：模型提供者配置更统一，Gateway 与 channel 的诊断能力持续增强，Memory/知识检索、语音会话、子智能体上下文继承等能力逐步补齐。对个人站点来说，这些更新最直接的价值是把微信机器人、模型路由和任务流放进同一个可观测链路里。
                             </p>
                             <div class="article-meta">
-                                <a href="#" class="article-author">炜哥</a>
+                                <a href="个人概况_2026_v3.html" class="article-author">炜哥</a>
                                 <span class="article-date">2026-04-29</span>
                                 <a href="#comments" class="article-comments">0 条评论</a>
                                 <div class="article-tags">
@@ -318,14 +250,14 @@
                         </div>
                         <div class="article-content">
                             <div class="article-header">
-                                <a href="#" class="article-title">OpenClaw v2026.4.28 更新：子智能体上下文继承与分布式集群优化</a>
+	                                <a href="docs.html#workflows" class="article-title">OpenClaw v2026.4.28 更新观察：子智能体上下文继承与本地工作流</a>
                                 <span class="article-category category-product">产品更新</span>
                             </div>
                             <p class="article-excerpt">
-                                OpenClaw 最新版本发布！新增子智能体可选上下文继承（fork context），支持 Mac Studio + Mac Mini 分布式 AI 集群调度，MLX 本地语音合成优化，Active Memory 插件系统上线。多机协同能力全面提升，成本降低 60%。
+                                这版更新最适合放在本地 AI 工作流语境下理解：子智能体上下文继承让复杂任务更容易拆分，Active Memory 让长期协作更连续，MLX/本地模型能力则让部分任务可以留在本机处理。FaroAI 后续会把这些能力整理成更清晰的“微信触发 -> agent 执行 -> 结果回传”流程。
                             </p>
                             <div class="article-meta">
-                                <a href="#" class="article-author">炜哥</a>
+                                <a href="个人概况_2026_v3.html" class="article-author">炜哥</a>
                                 <span class="article-date">2026-04-28</span>
                                 <a href="#comments" class="article-comments">0 条评论</a>
                                 <div class="article-tags">
@@ -355,20 +287,20 @@
                         </div>
                         <div class="article-content">
                             <div class="article-header">
-                                 <a href="#" class="article-title">GPT-5.5 正式发布：OpenAI 定义新一代智能体能力</a>
+                                 <a href="https://developers.openai.com/api/docs/guides/latest-model" target="_blank" rel="noopener noreferrer" class="article-title">OpenAI 最新模型指南速读：如何为复杂任务、代码任务和日常回复选模型</a>
                                 <span class="article-category category-news">行业动态</span>
                             </div>
                             <p class="article-excerpt">
-                                OpenAI 于 4 月 24 日发布 GPT-5.5 和 GPT-5.5 Pro，同步上线 API。ChatGPT 与 Codex 全面升级，引入更强大的工具调用、图像生成能力和原生 Web Search。Codex Desktop App 支持 macOS 后台操作、记忆预览及 90+ 插件生态。
+                                与其只追逐“最大模型”，更实用的做法是按任务路由：复杂推理和深度分析使用旗舰模型，代码修复与长时间软件工程使用 Codex 系列，日常微信回复和轻量摘要使用更快更便宜的模型。FaroAI 的目标是把这些选择做成规则，让用户只描述任务，不必记模型名。
                             </p>
                             <div class="article-meta">
-                                <a href="#" class="article-author">炜哥</a>
+                                <a href="个人概况_2026_v3.html" class="article-author">炜哥</a>
                                 <span class="article-date">2026-04-25</span>
                                 <a href="#comments" class="article-comments">102 条评论</a>
                                 <div class="article-tags">
                                     <span class="tag">GPT-5.5</span>
                                     <span class="tag">OpenAI</span>
-                                    <span class="tag">Codex</span>
+                                    <span class="tag">模型路由</span>
                                 </div>
                             </div>
                         </div>
@@ -391,14 +323,14 @@
                         </div>
                         <div class="article-content">
                             <div class="article-header">
-                                  <a href="#" class="article-title">OpenClaw v2026.4.23 重大更新：图像生成、xAI 支持与子智能体继承</a>
+                                  <a href="docs.html#models" class="article-title">OpenClaw v2026.4.23 回顾：图像、多模型提供者与本地模型路线</a>
                                 <span class="article-category category-product">产品更新</span>
                             </div>
                             <p class="article-excerpt">
-                                OpenClaw 4 月 23 日大版本发布！新增通过 Codex OAuth 的图像生成和参考图编辑能力、xAI Grok 图像/TTS/STT 全套支持、子智能体可选上下文继承（fork context）、本地 MLX 语音合成、Active Memory 主动记忆插件。
+                                这次更新让 OpenClaw 更像一个“模型能力路由器”：图像、语音、文本、记忆、子智能体逐渐进入同一套工作流。对 FaroAI 来说，重点不是堆功能，而是把不同模型能力映射到真实任务：图片理解、语音转写、技术问答、长文总结和微信回复。
                             </p>
                             <div class="article-meta">
-                                <a href="#" class="article-author">炜哥</a>
+                                <a href="个人概况_2026_v3.html" class="article-author">炜哥</a>
                                 <span class="article-date">2026-04-24</span>
                                 <a href="#comments" class="article-comments">87 条评论</a>
                                 <div class="article-tags">
@@ -427,20 +359,20 @@
                         </div>
                         <div class="article-content">
                             <div class="article-header">
-                                   <a href="#" class="article-title">2026 AI 三巨头横评：GPT-5.4 / Claude 4.6 / Gemini 3.1 Pro，谁更适合你？</a>
+                                   <a href="https://developers.openai.com/api/docs/guides/migrate-to-responses" target="_blank" rel="noopener noreferrer" class="article-title">技术选型：为什么 Agent 应用越来越适合用 Responses API 做中枢</a>
                                 <span class="article-category category-technical">技术文章</span>
                             </div>
                             <p class="article-excerpt">
-                                4 月最新的模型天梯榜单揭晓：GPT-5.4、Claude Opus 4.7、Gemini 3.1 Pro、DeepSeek-R1 全面对决。从推理能力、代码生成、工具调用、响应速度和成本五个维度横向对比，帮你找到最适合的 AI 助手。
+                                Agent 应用的难点不是一次问答，而是状态、工具、文件、搜索、权限和多轮上下文。Responses API 把这些能力放到统一接口里，更适合作为 FaroAI 这类工作台的模型层入口；OpenClaw Gateway 则负责本地通道、插件和执行环境。
                             </p>
                             <div class="article-meta">
-                                <a href="#" class="article-author">炜哥</a>
+                                <a href="个人概况_2026_v3.html" class="article-author">炜哥</a>
                                 <span class="article-date">2026-04-22</span>
                                 <a href="#comments" class="article-comments">64 条评论</a>
                                 <div class="article-tags">
-                                    <span class="tag">GPT-5.4</span>
-                                    <span class="tag">Claude 4.6</span>
-                                    <span class="tag">Gemini 3.1</span>
+                                    <span class="tag">Responses API</span>
+                                    <span class="tag">Agent</span>
+                                    <span class="tag">工具调用</span>
                                 </div>
                             </div>
                         </div>
@@ -463,14 +395,14 @@
                         </div>
                         <div class="article-content">
                             <div class="article-header">
-                                <a href="#" class="article-title">本地 LLM 部署指南：2026 年最新最佳实践</a>
+                                <a href="docs.html#models" class="article-title">本地 LLM 部署指南：Ollama、模型路由与隐私边界</a>
                                 <span class="article-category category-tutorial">教程</span>
                             </div>
                             <p class="article-excerpt">
-                                从零开始部署本地 LLM 的完整指南。涵盖模型选择、配置优化、性能调优、常见问题排查。100% 本地运行，完全隐私保护，成本仅为云端 1/10。
+                                从零开始部署本地 LLM：先确认 Ollama 可用，再把模型登记到 OpenClaw/FaroAI，最后用最小 prompt 验证 Gateway 到模型的链路。隐私敏感、成本可控的任务优先本地跑，实时新闻、联网检索和多模态任务再按需接云端能力。
                             </p>
                             <div class="article-meta">
-                                <a href="#" class="article-author">炜哥</a>
+                                <a href="个人概况_2026_v3.html" class="article-author">炜哥</a>
                                 <span class="article-date">2026-03-30</span>
                                 <a href="#comments" class="article-comments">38 条评论</a>
                                 <div class="article-tags">
@@ -500,20 +432,20 @@
                         </div>
                         <div class="article-content">
                             <div class="article-header">
-                                <a href="#" class="article-title">FaroAI 3.0 发布：智能数字伴侣全新定义</a>
+                                <a href="docs.html#wechat" class="article-title">FaroAI 实践：把微信机器人、本地模型和 OpenClaw Gateway 跑通</a>
                                 <span class="article-category category-product">产品更新</span>
                             </div>
                             <p class="article-excerpt">
-                                FaroAI 3.0 震撼发布！122B 参数巨型模型本地运行、分布式集群调度、多模态深度融合、记忆系统重构。性能提升 3 倍，成本降低 80%。
+                                这篇记录 FaroAI 当前最实用的一条链路：微信消息进入 openclaw-weixin 通道，Gateway 负责会话和权限，Ollama 本地模型处理日常问答，复杂任务再按规则路由。重点不是炫技，而是让 AI 真的出现在每天使用的入口里。
                             </p>
                             <div class="article-meta">
-                                <a href="#" class="article-author">炜哥</a>
+                                <a href="个人概况_2026_v3.html" class="article-author">炜哥</a>
                                 <span class="article-date">2026-03-26</span>
                                 <a href="#comments" class="article-comments">29 条评论</a>
                                 <div class="article-tags">
-                                    <span class="tag">FaroAI 3.0</span>
-                                    <span class="tag">122B 模型</span>
-                                    <span class="tag">分布式计算</span>
+                                    <span class="tag">FaroAI</span>
+                                    <span class="tag">微信机器人</span>
+                                    <span class="tag">OpenClaw Gateway</span>
                                 </div>
                             </div>
                         </div>
@@ -536,20 +468,20 @@
                         </div>
                         <div class="article-content">
                             <div class="article-header">
-                                <a href="#" class="article-title">2026 AI 助手市场报告：本地化趋势主导增长</a>
+                                <a href="docs.html#knowledge" class="article-title">AI 助手趋势观察：本地优先、个人知识库和通道化入口</a>
                                 <span class="article-category category-news">行业动态</span>
                             </div>
                             <p class="article-excerpt">
-                                2026 年 AI 助手市场深度分析：本地部署爆发式增长、多模态能力成标配、企业级应用加速落地、开源生态持续繁荣。谁能脱颖而出？
+                                个人 AI 助手正在从“网页聊天框”变成“通道化工作台”：微信、邮件、文件、终端、浏览器都可能成为入口。本地优先让敏感数据更可控，知识库让长期上下文可沉淀，自动化任务流让 AI 从回答问题走向持续执行。
                             </p>
                             <div class="article-meta">
-                                <a href="#" class="article-author">炜哥</a>
+                                <a href="个人概况_2026_v3.html" class="article-author">炜哥</a>
                                 <span class="article-date">2026-04-15</span>
                                 <a href="#comments" class="article-comments">50 条评论</a>
                                 <div class="article-tags">
-                                    <span class="tag">2026 趋势</span>
-                                    <span class="tag">市场分析</span>
-                                    <span class="tag">行业报告</span>
+                                    <span class="tag">本地优先</span>
+                                    <span class="tag">知识库</span>
+                                    <span class="tag">自动化</span>
                                 </div>
                             </div>
                         </div>
@@ -582,18 +514,18 @@
             <div class="container">
                 <h2 class="section-title">相关文章</h2>
                 <div class="related-grid">
-                    <a href="#" class="related-card">
+                    <a href="docs.html#quickstart" class="related-card">
                         <div class="related-content">
-                            <h3 class="related-title">OpenClaw 用户指南：快速开始</h3>
-                            <p class="related-excerpt">如何快速上手 OpenClaw？本文为你提供详细的入门指南。</p>
-                            <span class="related-meta">2026-03-25</span>
+                            <h3 class="related-title">FaroAI 文档：从 Gateway 到微信机器人</h3>
+                            <p class="related-excerpt">按真实部署顺序配置 OpenClaw、Ollama、Gateway 与微信通道。</p>
+                            <span class="related-meta">2026-05-10</span>
                         </div>
                     </a>
-                    <a href="#" class="related-card">
+                    <a href="api.html" class="related-card">
                         <div class="related-content">
-                            <h3 class="related-title">API 集成最佳实践</h3>
-                            <p class="related-excerpt">通过 RESTful API 和 Webhook 与现有系统无缝集成。</p>
-                            <span class="related-meta">2026-03-24</span>
+                            <h3 class="related-title">OpenAI + OpenClaw：Agent 接口怎么选</h3>
+                            <p class="related-excerpt">Responses API、工具调用、MCP 与本地 Gateway 的分工方式。</p>
+                            <span class="related-meta">2026-05-10</span>
                         </div>
                     </a>
                 </div>
@@ -610,21 +542,21 @@
                         <svg class="logo-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                             <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
                         </svg>
-                        <span class="logo-text">OpenClaw</span>
+                        <span class="logo-text"><span class="logo-text-red">Fa</span><span class="logo-text-gradient">ro</span><span class="logo-text-red">AI</span></span>
                     </a>
-                    <p class="footer-description">下一代 AI 助手平台，打造你的智能数字伴侣。</p>
+                    <p class="footer-description">本地优先的 AI 助手工作台，连接微信、模型、知识库和自动化任务。</p>
                     <div class="social-links" role="navigation" aria-label="社交媒体链接">
-                        <a href="#" aria-label="GitHub">
+                        <a href="https://github.com/zhuweifaro-coder/faroai" target="_blank" rel="noopener noreferrer" aria-label="GitHub 仓库">
                             <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                                 <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.231.961-.267 1.986-.4 3.001-.4 1.016.001 2.04.133 3.001.4 2.291-1.553 3.297-1.231 3.297-1.231.653 1.652.242 2.873.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
                             </svg>
                         </a>
-                        <a href="#" aria-label="Twitter">
+                        <a href="contact.html" aria-label="联系方式">
                             <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                                 <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/>
                             </svg>
                         </a>
-                        <a href="#" aria-label="Discord">
+                        <a href="community.html" aria-label="社区">
                             <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                                 <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/>
                             </svg>
@@ -635,17 +567,17 @@
                     <h4>产品</h4>
                     <ul>
                         <li><a href="index.html#features">功能特性</a></li>
-                        <li><a href="#">Changelog</a></li>
-                        <li><a href="#">Roadmap</a></li>
+                        <li><a href="changelog.html">Changelog</a></li>
+                        <li><a href="roadmap.html">Roadmap</a></li>
                     </ul>
                 </div>
                 <div class="footer-links">
                     <h4>资源</h4>
                     <ul>
-                        <li><a href="#">文档</a></li>
-                        <li><a href="#">API 参考</a></li>
-                        <li><a href="#">社区</a></li>
-                        <li><a href="#">帮助支持</a></li>
+                        <li><a href="docs.html">文档</a></li>
+                        <li><a href="api.html">API 参考</a></li>
+                        <li><a href="community.html">社区</a></li>
+                        <li><a href="contact.html">帮助支持</a></li>
                     </ul>
                 </div>
                 <div class="footer-links">
@@ -653,16 +585,16 @@
                     <ul>
                         <li><a href="个人概况_2026_v3.html">关于我</a></li>
                         <li><a href="blog.html">博客</a></li>
-                        <li><a href="#">联系方式</a></li>
-                        <li><a href="#">加入我们</a></li>
+                        <li><a href="contact.html">联系方式</a></li>
+                        <li><a href="community.html">加入社区</a></li>
                     </ul>
                 </div>
             </div>
             <div class="footer-bottom">
                 <div class="footer-copyright">
-                    <span>&copy; 2026 OpenClaw. All rights reserved.</span>
-                    <a href="#">隐私政策</a>
-                    <a href="#">服务条款</a>
+                    <span>&copy; 2026 FaroAI. All rights reserved.</span>
+                    <a href="privacy.html">隐私政策</a>
+                    <a href="terms.html">服务条款</a>
                 </div>
             </div>
         </div>

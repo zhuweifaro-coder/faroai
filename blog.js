@@ -98,7 +98,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     articleCards.forEach(card => {
         card.addEventListener('click', function(e) {
-            if (!e.target.closest('.vote-btn') && !e.target.closest('.article-tags .tag')) {
+            if (!e.target.closest('.vote-btn') && !e.target.closest('.article-tags .tag') && !e.target.closest('a')) {
                 const title = this.querySelector('.article-title');
                 if (title) {
                     window.location.href = title.getAttribute('href');
