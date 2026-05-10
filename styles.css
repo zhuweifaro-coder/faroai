@@ -431,12 +431,12 @@ a:hover {
     box-shadow: var(--shadow-xl);
     max-width: 600px;
     backdrop-filter: blur(14px);
-    transform: rotate(-1deg);
+    transition: transform var(--transition-base), box-shadow var(--transition-base);
 }
 
 .dashboard-preview:hover {
-    transform: rotate(0deg) translateY(-2px);
-    transition: transform var(--transition-base);
+    transform: translateY(-2px);
+    box-shadow: 0 24px 42px rgba(15, 23, 42, 0.12);
 }
 
 .preview-header {
