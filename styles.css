@@ -423,6 +423,17 @@ a:hover {
     margin-top: 0;
 }
 
+.hero-visual::before {
+    content: '';
+    position: absolute;
+    inset: 18px -12px -16px 18px;
+    border-radius: var(--radius-lg);
+    background: linear-gradient(135deg, rgba(37, 99, 235, 0.12), rgba(15, 118, 110, 0.1));
+    border: 1px solid rgba(37, 99, 235, 0.12);
+    transform: rotate(4deg);
+    z-index: -1;
+}
+
 .dashboard-preview {
     background: rgba(255, 255, 255, 0.86);
     border: 1px solid rgba(37, 99, 235, 0.16);
@@ -431,12 +442,14 @@ a:hover {
     box-shadow: var(--shadow-xl);
     max-width: 600px;
     backdrop-filter: blur(14px);
+    transform: rotate(-4deg);
+    transform-origin: center center;
     transition: transform var(--transition-base), box-shadow var(--transition-base);
 }
 
 .dashboard-preview:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 24px 42px rgba(15, 23, 42, 0.12);
+    transform: rotate(-3deg) translateY(-4px);
+    box-shadow: 0 26px 46px rgba(15, 23, 42, 0.14);
 }
 
 .preview-header {
