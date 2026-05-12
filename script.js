@@ -1,14 +1,10 @@
 // 打开视频弹窗功能
 function openVideo(url, event) {
-    console.log('✅ openVideo 函数被调用');
-    console.log('URL:', url);
-    
     if (event && event.preventDefault) {
         event.preventDefault();
     }
     
     if (!url) {
-        console.error('⚠️ URL 未定义');
         alert('视频链接无效');
         return;
     }
@@ -21,8 +17,6 @@ function openVideo(url, event) {
         var lastPart = url.split('/').pop();
         videoId = lastPart.split('?')[0];
     }
-    
-    console.log('🎬 提取的视频 ID:', videoId);
     
     var videoModal = document.createElement('div');
     videoModal.setAttribute('id', 'videoModal');
@@ -110,7 +104,6 @@ function openVideo(url, event) {
     videoContainer.appendChild(closeBtn);
     videoModal.appendChild(videoContainer);
     document.body.appendChild(videoModal);
-    console.log('✅ 视频弹窗已创建并添加到 DOM');
 }
 
 // 平滑滚动导航
@@ -162,7 +155,7 @@ class SmoothScroll {
 
         var desc = document.createElement('p');
         desc.style.cssText = 'color: #64748b; margin-bottom: 1.5rem;';
-        desc.textContent = '此功能正在开发中，敬请期待！';
+        desc.textContent = '账号系统正在接入中，请先查看配置文档，或通过联系方式申请试用。';
 
         var closeBtn = document.createElement('button');
         closeBtn.style.cssText = 'background: #6366f1; color: white; border: none; padding: 0.75rem 1.5rem; border-radius: 0.5rem; cursor: pointer; font-weight: 600;';
@@ -218,7 +211,6 @@ document.addEventListener('DOMContentLoaded', function() {
     var demoBtn = document.getElementById('demoBtn');
     if (demoBtn) {
         demoBtn.addEventListener('click', function(e) {
-            console.log('视频按钮被点击');
             openVideo('https://youtu.be/st534T7-mdE?si=mwsBvhXpfbUbUZNj', e);
         });
     }

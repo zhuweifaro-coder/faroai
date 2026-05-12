@@ -147,54 +147,6 @@
     border-color: var(--primary-color);
 }
 
-/* 投票按钮 */
-.article-vote {
-    display: none;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.25rem;
-    min-width: 50px;
-}
-
-.vote-btn {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 32px;
-    height: 32px;
-    background: var(--bg-secondary);
-    border: 1px solid var(--border-color);
-    border-radius: 4px;
-    color: var(--text-secondary);
-    cursor: pointer;
-    transition: all 150ms ease;
-}
-
-.vote-btn svg {
-    width: 16px;
-    height: 16px;
-}
-
-.vote-btn:hover {
-    background: var(--primary-light);
-    border-color: var(--primary-color);
-    color: var(--primary-color);
-}
-
-.vote-btn.up:hover svg {
-    transform: translateY(-2px);
-}
-
-.vote-btn.down:hover svg {
-    transform: translateY(2px);
-}
-
-.vote-count {
-    font-size: 0.9rem;
-    font-weight: 700;
-    color: var(--text-primary);
-}
-
 /* 文章内容 */
 .article-content {
     flex: 1;
@@ -455,15 +407,7 @@
         flex-direction: column;
         cursor: default;
     }
-    
-    .article-vote {
-        flex-direction: row;
-        width: 100%;
-        justify-content: flex-start;
-        padding-bottom: 0.75rem;
-        border-bottom: 1px solid var(--border-color);
-    }
-    
+
     .article-meta {
         flex-direction: column;
         align-items: flex-start;
@@ -486,15 +430,6 @@
     
     .filter-btn {
         padding: 0.4rem 0.75rem;
-        font-size: 0.85rem;
-    }
-    
-    .vote-btn {
-        width: 28px;
-        height: 28px;
-    }
-    
-    .vote-count {
         font-size: 0.85rem;
     }
     
