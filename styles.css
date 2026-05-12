@@ -1783,3 +1783,297 @@ a.use-case-card:hover {
 a.use-case-card:hover .use-case-title {
     color: var(--primary-color);
 }
+
+/* ─────────── 首次访问技术流开场动画 ─────────── */
+body.intro-active {
+    overflow: hidden;
+}
+
+.tech-intro {
+    position: fixed;
+    inset: 0;
+    z-index: 20000;
+    display: grid;
+    place-items: center;
+    padding: 24px;
+    color: #eaf2ff;
+    background:
+        radial-gradient(circle at 18% 18%, rgba(37, 99, 235, 0.36), transparent 34%),
+        radial-gradient(circle at 82% 72%, rgba(15, 118, 110, 0.32), transparent 32%),
+        linear-gradient(135deg, #07111f 0%, #0b1527 48%, #061b1c 100%);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.35s ease;
+}
+
+.tech-intro.is-visible {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.tech-intro.is-closing {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.tech-intro-grid {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+}
+
+.tech-intro-grid::before {
+    content: '';
+    position: absolute;
+    inset: -60px;
+    background-image:
+        linear-gradient(rgba(125, 211, 252, 0.09) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(125, 211, 252, 0.09) 1px, transparent 1px);
+    background-size: 44px 44px;
+    transform: perspective(800px) rotateX(58deg) translateY(80px);
+    animation: techGridDrift 5s linear infinite;
+}
+
+.tech-intro-grid::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, transparent 0%, rgba(94, 234, 212, 0.16) 48%, transparent 56%);
+    transform: translateY(-100%);
+    animation: techScan 3.6s ease-in-out infinite;
+}
+
+.tech-intro-panel {
+    position: relative;
+    width: min(640px, 100%);
+    overflow: hidden;
+    padding: clamp(1.6rem, 4vw, 2.7rem);
+    border: 1px solid rgba(147, 197, 253, 0.28);
+    border-radius: 18px;
+    background:
+        linear-gradient(145deg, rgba(15, 23, 42, 0.92), rgba(15, 118, 110, 0.34)),
+        rgba(8, 13, 25, 0.92);
+    box-shadow: 0 32px 90px rgba(0, 0, 0, 0.34), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+    text-align: center;
+    transform: translateY(14px) scale(0.98);
+    transition: transform 0.45s ease;
+}
+
+.tech-intro.is-visible .tech-intro-panel {
+    transform: translateY(0) scale(1);
+}
+
+.tech-intro-panel::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(105deg, transparent 0%, rgba(255, 255, 255, 0.16) 46%, transparent 64%);
+    transform: translateX(-120%);
+    animation: techPanelGlint 3.4s ease-in-out infinite;
+}
+
+.tech-intro-mark {
+    position: relative;
+    z-index: 1;
+    font-size: clamp(2.25rem, 8vw, 4.75rem);
+    font-weight: 900;
+    line-height: 0.95;
+    letter-spacing: 0;
+}
+
+.tech-intro-core {
+    position: relative;
+    z-index: 1;
+    width: 132px;
+    height: 132px;
+    margin: 1.5rem auto 1.1rem;
+    border: 1px solid rgba(147, 197, 253, 0.42);
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(94, 234, 212, 0.28) 0 18%, rgba(37, 99, 235, 0.12) 19% 44%, transparent 45%);
+    box-shadow: 0 0 40px rgba(45, 212, 191, 0.18);
+    animation: techPulse 2.4s ease-in-out infinite;
+}
+
+.tech-intro-core::before,
+.tech-intro-core::after {
+    content: '';
+    position: absolute;
+    inset: 14px;
+    border: 1px dashed rgba(191, 219, 254, 0.55);
+    border-radius: 50%;
+    animation: techSpin 7s linear infinite;
+}
+
+.tech-intro-core::after {
+    inset: 31px;
+    border-style: solid;
+    border-color: rgba(94, 234, 212, 0.48) transparent rgba(94, 234, 212, 0.48) transparent;
+    animation-duration: 4.8s;
+    animation-direction: reverse;
+}
+
+.tech-intro-core span {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #5eead4;
+    box-shadow: 0 0 16px rgba(94, 234, 212, 0.8);
+}
+
+.tech-intro-core span:nth-child(1) { top: 17px; left: 58px; }
+.tech-intro-core span:nth-child(2) { right: 20px; bottom: 34px; background: #93c5fd; }
+.tech-intro-core span:nth-child(3) { left: 24px; bottom: 32px; background: #f87171; }
+
+.tech-intro-kicker {
+    position: relative;
+    z-index: 1;
+    margin: 0;
+    color: #93c5fd;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 0.82rem;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.tech-intro h2 {
+    position: relative;
+    z-index: 1;
+    margin: 0.35rem 0 1.25rem;
+    color: #fff;
+    font-size: clamp(1.35rem, 4vw, 2rem);
+    line-height: 1.25;
+}
+
+.tech-intro-stream {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    gap: 0.55rem;
+    max-width: 470px;
+    margin: 0 auto 1.35rem;
+    text-align: left;
+}
+
+.tech-intro-stream span {
+    display: block;
+    padding: 0.7rem 0.85rem;
+    border: 1px solid rgba(147, 197, 253, 0.18);
+    border-radius: 10px;
+    background: rgba(15, 23, 42, 0.54);
+    color: #c7d2fe;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 0.82rem;
+    opacity: 0;
+    transform: translateX(-12px);
+    animation: techLineIn 0.5s ease forwards;
+}
+
+.tech-intro-stream span:nth-child(2) { animation-delay: 0.34s; }
+.tech-intro-stream span:nth-child(3) { animation-delay: 0.68s; }
+
+.tech-intro-progress {
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+    height: 7px;
+    border-radius: 999px;
+    background: rgba(148, 163, 184, 0.22);
+}
+
+.tech-intro-progress span {
+    display: block;
+    width: 0;
+    height: 100%;
+    border-radius: inherit;
+    background: linear-gradient(90deg, #2563eb, #5eead4);
+    animation: techProgress 3.6s ease forwards;
+}
+
+.tech-intro-skip {
+    position: relative;
+    z-index: 1;
+    margin-top: 1rem;
+    border: 1px solid rgba(226, 232, 240, 0.22);
+    border-radius: 999px;
+    padding: 0.55rem 1.1rem;
+    background: rgba(255, 255, 255, 0.08);
+    color: #e2e8f0;
+    font: inherit;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.tech-intro-skip:hover,
+.tech-intro-skip:focus-visible {
+    background: rgba(255, 255, 255, 0.16);
+    outline: none;
+    transform: translateY(-1px);
+}
+
+@keyframes techGridDrift {
+    from { background-position: 0 0, 0 0; }
+    to { background-position: 44px 44px, 44px 44px; }
+}
+
+@keyframes techScan {
+    0%, 12% { transform: translateY(-100%); }
+    58%, 100% { transform: translateY(100%); }
+}
+
+@keyframes techPanelGlint {
+    0%, 18% { transform: translateX(-120%); }
+    58%, 100% { transform: translateX(120%); }
+}
+
+@keyframes techPulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.045); }
+}
+
+@keyframes techSpin {
+    to { transform: rotate(360deg); }
+}
+
+@keyframes techLineIn {
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes techProgress {
+    to { width: 100%; }
+}
+
+@media (max-width: 640px) {
+    .tech-intro {
+        padding: 16px;
+    }
+
+    .tech-intro-core {
+        width: 106px;
+        height: 106px;
+    }
+
+    .tech-intro-stream span {
+        font-size: 0.74rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .tech-intro,
+    .tech-intro-panel,
+    .tech-intro-grid::before,
+    .tech-intro-grid::after,
+    .tech-intro-panel::before,
+    .tech-intro-core,
+    .tech-intro-core::before,
+    .tech-intro-core::after,
+    .tech-intro-stream span,
+    .tech-intro-progress span {
+        animation: none;
+        transition: none;
+    }
+}

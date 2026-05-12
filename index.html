@@ -121,6 +121,29 @@
 <body>
     <!-- Skip to main content for accessibility -->
     <a href="#main" class="sr-only skip-link">跳转到主要内容</a>
+
+    <div class="tech-intro" id="techIntro" aria-hidden="true">
+        <div class="tech-intro-grid" aria-hidden="true"></div>
+        <div class="tech-intro-panel" role="status" aria-live="polite">
+            <div class="tech-intro-mark">
+                <span class="logo-text-red">Fa</span><span class="logo-text-gradient">ro</span><span class="logo-text-red">AI</span>
+            </div>
+            <div class="tech-intro-core" aria-hidden="true">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <p class="tech-intro-kicker">OpenClaw Gateway Initializing</p>
+            <h2>连接模型、工具与微信入口</h2>
+            <div class="tech-intro-stream">
+                <span>model.provider: OpenAI / Ollama</span>
+                <span>channel.weixin: ready for setup</span>
+                <span>workflow.router: local-first</span>
+            </div>
+            <div class="tech-intro-progress" aria-hidden="true"><span></span></div>
+            <button type="button" class="tech-intro-skip" id="techIntroSkip">跳过</button>
+        </div>
+    </div>
     
     <!-- 导航栏 -->
     <header class="header" role="banner">
@@ -863,8 +886,8 @@
                     });
                 });
                 
-                videoBackdrop?.addEventListener('click', () = closeModal(videoModal));
-                videoCloseBtn?.addEventListener('click', () = closeModal(videoModal));
+                videoBackdrop?.addEventListener('click', () => closeModal(videoModal));
+                videoCloseBtn?.addEventListener('click', () => closeModal(videoModal));
                 
                 document.addEventListener('keydown', (e) => {
                     if (e.key === 'Escape' && videoModal.getAttribute('aria-hidden') === 'false') {
@@ -884,8 +907,8 @@
                     openModal(demoModal);
                 });
                 
-                demoBackdrop?.addEventListener('click', () = closeModal(demoModal));
-                demoCloseBtn?.addEventListener('click', () = closeModal(demoModal));
+                demoBackdrop?.addEventListener('click', () => closeModal(demoModal));
+                demoCloseBtn?.addEventListener('click', () => closeModal(demoModal));
                 
                 document.addEventListener('keydown', (e) => {
                     if (e.key === 'Escape' && demoModal.getAttribute('aria-hidden') === 'false') {

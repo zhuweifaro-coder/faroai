@@ -368,3 +368,75 @@ document.head.appendChild(style);
         });
     });
 })();
+
+/* ─────────── 首次访问技术流开场动画 ─────────── */
+(function bindTechIntro() {
+    function onReady(callback) {
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', callback);
+            return;
+        }
+        callback();
+    }
+
+    onReady(() => {
+        const intro = document.getElementById('techIntro');
+        if (!intro) return;
+
+        const storageKey = 'faroaiTechIntroSeenV1';
+        const skipButton = document.getElementById('techIntroSkip');
+        const prefersReducedMotion = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
+        let closeTimer;
+
+        function hasSeenIntro() {
+            try {
+                return window.localStorage.getItem(storageKey) === '1';
+            } catch (error) {
+                return false;
+            }
+        }
+
+        function markIntroSeen() {
+            try {
+                window.localStorage.setItem(storageKey, '1');
+            } catch (error) {
+                // localStorage can be unavailable in private browsing.
+            }
+        }
+
+        function removeIntro() {
+            if (intro.parentNode) {
+                intro.parentNode.removeChild(intro);
+            }
+        }
+
+        function closeIntro() {
+            if (!intro.classList.contains('is-visible')) return;
+            markIntroSeen();
+            window.clearTimeout(closeTimer);
+            intro.classList.add('is-closing');
+            intro.classList.remove('is-visible');
+            intro.setAttribute('aria-hidden', 'true');
+            document.body.classList.remove('intro-active');
+            window.setTimeout(removeIntro, 420);
+        }
+
+        if (prefersReducedMotion || hasSeenIntro()) {
+            if (prefersReducedMotion) markIntroSeen();
+            removeIntro();
+            return;
+        }
+
+        document.body.classList.add('intro-active');
+        intro.setAttribute('aria-hidden', 'false');
+        window.requestAnimationFrame(() => intro.classList.add('is-visible'));
+        closeTimer = window.setTimeout(closeIntro, 4200);
+
+        skipButton?.addEventListener('click', closeIntro);
+        document.addEventListener('keydown', event => {
+            if (event.key === 'Escape') {
+                closeIntro();
+            }
+        });
+    });
+})();
