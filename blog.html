@@ -240,6 +240,75 @@
                         </div>
                     </article>
 
+                    <article id="article-model-routing-matrix" class="article-card featured" data-category="technical">
+                        <div class="article-content">
+                            <div class="article-header">
+                                <a href="docs.html#models" class="article-title">模型路由矩阵：如何按任务复杂度、隐私级别和响应时间选择模型</a>
+                                <span class="article-category category-technical">技术文章</span>
+                            </div>
+                            <p class="article-excerpt">
+                                模型路由不是简单地“强模型优先”。更稳定的矩阵通常包含三列：任务复杂度、数据敏感度、响应时间要求。隐私敏感且结构清晰的任务优先本地模型；需要联网信息或复杂推理的任务再路由到云端；需要低延迟的微信回复则应限制上下文长度和工具数量。这样可以同时控制成本、速度和数据边界。
+                            </p>
+                            <p class="article-source">相关资料：<a href="docs.html#models">模型配置文档</a>、<a href="https://platform.openai.com/docs/models" target="_blank" rel="noopener noreferrer">OpenAI Models</a></p>
+                            <div class="article-meta">
+                                <a href="个人概况_2026_v3.html" class="article-author">炜哥</a>
+                                <span class="article-date">2026-05-14</span>
+                                <span class="article-note">技术笔记</span>
+                                <div class="article-tags">
+                                    <span class="tag">模型路由</span>
+                                    <span class="tag">本地模型</span>
+                                    <span class="tag">成本控制</span>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article id="article-tool-permission-design" class="article-card featured" data-category="technical">
+                        <div class="article-content">
+                            <div class="article-header">
+                                <a href="api.html" class="article-title">工具调用权限设计：哪些动作可以自动执行，哪些必须人工确认</a>
+                                <span class="article-category category-technical">技术文章</span>
+                            </div>
+                            <p class="article-excerpt">
+                                Agent 的风险通常不在“回答错”，而在“执行错”。读取资料、整理摘要、生成草稿可以自动执行；发送消息、删除文件、修改配置、上传隐私资料必须进入确认流程。工具调用设计应该把动作分成只读、低风险写入、高风险写入三类，并在日志里记录触发来源、工具参数、执行结果和失败原因。
+                            </p>
+                            <p class="article-source">相关资料：<a href="https://platform.openai.com/docs/guides/tools" target="_blank" rel="noopener noreferrer">OpenAI Tools guide</a>、<a href="api.html">本站集成说明</a></p>
+                            <div class="article-meta">
+                                <a href="个人概况_2026_v3.html" class="article-author">炜哥</a>
+                                <span class="article-date">2026-05-14</span>
+                                <span class="article-note">安全设计</span>
+                                <div class="article-tags">
+                                    <span class="tag">工具调用</span>
+                                    <span class="tag">权限</span>
+                                    <span class="tag">人工确认</span>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article id="article-observability-gateway" class="article-card featured" data-category="technical">
+                        <div class="article-content">
+                            <div class="article-header">
+                                <a href="docs.html#troubleshooting" class="article-title">可观测性清单：Gateway、模型、通道和任务日志分别应该记录什么</a>
+                                <span class="article-category category-technical">技术文章</span>
+                            </div>
+                            <p class="article-excerpt">
+                                一个能长期运行的 AI 工作流必须可观测。Gateway 层记录连接状态和路由结果，模型层记录 provider、模型名、耗时和错误码，通道层记录消息入口和回传状态，任务层记录每个步骤的输入输出摘要。排障时先看链路是否中断，再看模型是否超时，最后再看业务逻辑。
+                            </p>
+                            <p class="article-source">相关资料：<a href="docs.html#gateway">Gateway 文档</a>、<a href="docs.html#troubleshooting">故障排查</a></p>
+                            <div class="article-meta">
+                                <a href="个人概况_2026_v3.html" class="article-author">炜哥</a>
+                                <span class="article-date">2026-05-14</span>
+                                <span class="article-note">技术笔记</span>
+                                <div class="article-tags">
+                                    <span class="tag">可观测性</span>
+                                    <span class="tag">日志</span>
+                                    <span class="tag">排障</span>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
                     <article id="article-wechat-checklist" class="article-card featured" data-category="tutorial">
                         <div class="article-content">
                             <div class="article-header">
@@ -258,6 +327,75 @@
                                     <span class="tag">微信机器人</span>
                                     <span class="tag">Gateway</span>
                                     <span class="tag">上线检查</span>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article id="article-knowledge-base-setup" class="article-card featured" data-category="tutorial">
+                        <div class="article-content">
+                            <div class="article-header">
+                                <a href="docs.html#knowledge" class="article-title">个人知识库搭建教程：从 20 份高频资料开始，而不是一次导入所有文件</a>
+                                <span class="article-category category-tutorial">教程</span>
+                            </div>
+                            <p class="article-excerpt">
+                                知识库第一步不要追求“大而全”。更稳的流程是先选 20 份高频资料：个人简介、项目说明、常见问答、配置文档、客户材料和 SOP。导入后用 10 个真实问题测试召回质量，再补充标题、摘要和标签。只有当问题能稳定命中正确资料，再扩展到更多历史文件。
+                            </p>
+                            <p class="article-source">相关资料：<a href="docs.html#knowledge">知识库与记忆文档</a></p>
+                            <div class="article-meta">
+                                <a href="个人概况_2026_v3.html" class="article-author">炜哥</a>
+                                <span class="article-date">2026-05-14</span>
+                                <span class="article-note">教程</span>
+                                <div class="article-tags">
+                                    <span class="tag">知识库</span>
+                                    <span class="tag">资料整理</span>
+                                    <span class="tag">召回测试</span>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article id="article-daily-briefing-workflow" class="article-card featured" data-category="tutorial">
+                        <div class="article-content">
+                            <div class="article-header">
+                                <a href="docs.html#workflows" class="article-title">每日简报工作流教程：采集、去重、摘要、分级和微信推送</a>
+                                <span class="article-category category-tutorial">教程</span>
+                            </div>
+                            <p class="article-excerpt">
+                                每日简报不要直接把搜索结果丢给模型。推荐拆成五步：先采集来源，再按 URL 和标题去重，然后抽取正文摘要，再按主题和重要性分级，最后生成微信可读的短版输出。每一步都保留中间结果，便于发现是数据源问题、摘要问题，还是推送通道问题。
+                            </p>
+                            <p class="article-source">相关资料：<a href="docs.html#workflows">自动化任务流文档</a>、<a href="docs.html#wechat">微信机器人接入</a></p>
+                            <div class="article-meta">
+                                <a href="个人概况_2026_v3.html" class="article-author">炜哥</a>
+                                <span class="article-date">2026-05-14</span>
+                                <span class="article-note">教程</span>
+                                <div class="article-tags">
+                                    <span class="tag">每日简报</span>
+                                    <span class="tag">自动化</span>
+                                    <span class="tag">微信推送</span>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article id="article-upgrade-rollback" class="article-card featured" data-category="tutorial">
+                        <div class="article-content">
+                            <div class="article-header">
+                                <a href="docs.html#install" class="article-title">升级与回滚教程：OpenClaw、Gateway 和插件更新前后要保存哪些信息</a>
+                                <span class="article-category category-tutorial">教程</span>
+                            </div>
+                            <p class="article-excerpt">
+                                升级前至少保存四类信息：当前 OpenClaw 版本、Gateway 状态、插件列表、默认模型配置。升级后不要直接跑复杂任务，先执行 doctor、重启 Gateway、验证模型最小调用、检查通道状态。如果出现异常，先回退插件或配置，再考虑回退核心版本，避免同时改动多个变量。
+                            </p>
+                            <p class="article-source">相关资料：<a href="docs.html#install">安装与升级文档</a>、<a href="docs.html#gateway">Gateway 文档</a></p>
+                            <div class="article-meta">
+                                <a href="个人概况_2026_v3.html" class="article-author">炜哥</a>
+                                <span class="article-date">2026-05-14</span>
+                                <span class="article-note">教程</span>
+                                <div class="article-tags">
+                                    <span class="tag">升级</span>
+                                    <span class="tag">回滚</span>
+                                    <span class="tag">变更检查</span>
                                 </div>
                             </div>
                         </div>
