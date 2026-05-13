@@ -71,6 +71,36 @@
     border-bottom: 2px solid var(--border-color);
 }
 
+.category-briefs {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+    margin: 0 0 2rem;
+}
+
+.category-brief {
+    min-height: 168px;
+    padding: 1.1rem;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    background: linear-gradient(180deg, #ffffff, #f8fafc);
+    box-shadow: var(--shadow-sm);
+}
+
+.category-brief h2 {
+    margin: 0.85rem 0 0.55rem;
+    color: var(--text-primary);
+    font-size: 1.05rem;
+    line-height: 1.35;
+}
+
+.category-brief p {
+    margin: 0;
+    color: var(--text-secondary);
+    font-size: 0.92rem;
+    line-height: 1.65;
+}
+
 .filter-group {
     display: flex;
     gap: 0.5rem;
@@ -581,6 +611,10 @@
 
 /* 移动端：隐藏 sidebar，恢复单列 */
 @media (max-width: 900px) {
+    .category-briefs {
+        grid-template-columns: 1fr;
+    }
+
     .blog-layout {
         grid-template-columns: 1fr;
     }

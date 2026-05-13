@@ -74,6 +74,24 @@
                     </div>
                 </div>
 
+                <div class="category-briefs" aria-label="博客分类说明">
+                    <article class="category-brief">
+                        <span class="article-category category-technical">技术文章</span>
+                        <h2>架构、接口与可靠性</h2>
+                        <p>重点记录模型路由、Responses API、工具调用、知识库、监控和故障隔离，帮助把 AI 从“能回答”推进到“可运行、可排查”。</p>
+                    </article>
+                    <article class="category-brief">
+                        <span class="article-category category-tutorial">教程</span>
+                        <h2>按步骤落地</h2>
+                        <p>围绕 OpenClaw Gateway、微信机器人、本地模型、定时任务和文档知识库，提供可以直接执行和验证的配置路径。</p>
+                    </article>
+                    <article class="category-brief">
+                        <span class="article-category category-news">行业动态</span>
+                        <h2>趋势与选型判断</h2>
+                        <p>关注本地优先、多模态、通道化入口和 Agent 工作流演进，尽量把外部变化转化为实际部署建议。</p>
+                    </article>
+                </div>
+
                 <!-- P2 #14: 博客主体 + 侧边目录 -->
                 <div class="blog-layout">
                   <div class="articles-wrap">
@@ -171,6 +189,144 @@
                                     <span class="tag">Speech</span>
                                     <span class="tag">Whisper</span>
                                     <span class="tag">语音助手</span>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article id="article-agent-architecture" class="article-card featured" data-category="technical">
+                        <div class="article-content">
+                            <div class="article-header">
+                                <a href="api.html" class="article-title">Agent 工作台架构拆解：模型层、工具层、通道层和权限边界</a>
+                                <span class="article-category category-technical">技术文章</span>
+                            </div>
+                            <p class="article-excerpt">
+                                一个稳定的 AI 工作台不能把所有能力塞进单个 prompt。更可控的结构是四层：模型层负责推理和生成，工具层负责搜索、文件、代码和外部系统调用，通道层负责微信、网页和 CLI 入口，权限层负责限制可执行动作。<span class="brand-word"><span class="brand-red">Fa</span><span class="brand-mid">ro</span><span class="brand-red">AI</span></span> 当前把 OpenClaw Gateway 放在通道与工具之间，便于排查“消息没进来、模型没响应、工具没执行”这些不同故障。
+                            </p>
+                            <p class="article-source">相关资料：<a href="https://platform.openai.com/docs/guides/tools" target="_blank" rel="noopener noreferrer">OpenAI Tools guide</a>、<a href="api.html">本站集成说明</a></p>
+                            <div class="article-meta">
+                                <a href="个人概况_2026_v3.html" class="article-author">炜哥</a>
+                                <span class="article-date">2026-05-13</span>
+                                <span class="article-note">架构笔记</span>
+                                <div class="article-tags">
+                                    <span class="tag">Agent 架构</span>
+                                    <span class="tag">工具调用</span>
+                                    <span class="tag">权限边界</span>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article id="article-knowledge-routing" class="article-card featured" data-category="technical">
+                        <div class="article-content">
+                            <div class="article-header">
+                                <a href="docs.html#knowledge" class="article-title">知识库不是资料仓库：检索、摘要、记忆与长期上下文怎么分工</a>
+                                <span class="article-category category-technical">技术文章</span>
+                            </div>
+                            <p class="article-excerpt">
+                                知识库适合放稳定资料，例如产品说明、SOP、项目背景和常见问答；记忆适合保存偏好、长期上下文和协作线索；临时搜索适合处理新闻和实时变化。把三者混在一起会导致回答不稳定。更合理的做法是：先判断问题是否需要实时信息，再决定走知识库检索、本地记忆，还是联网搜索，最后把结果合并给模型生成。
+                            </p>
+                            <p class="article-source">相关资料：<a href="docs.html#knowledge">FaroAI 知识库文档</a>、<a href="https://platform.openai.com/docs/guides/tools" target="_blank" rel="noopener noreferrer">OpenAI Tools guide</a></p>
+                            <div class="article-meta">
+                                <a href="个人概况_2026_v3.html" class="article-author">炜哥</a>
+                                <span class="article-date">2026-05-13</span>
+                                <span class="article-note">技术笔记</span>
+                                <div class="article-tags">
+                                    <span class="tag">知识库</span>
+                                    <span class="tag">RAG</span>
+                                    <span class="tag">Memory</span>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article id="article-wechat-checklist" class="article-card featured" data-category="tutorial">
+                        <div class="article-content">
+                            <div class="article-header">
+                                <a href="docs.html#wechat" class="article-title">微信机器人上线检查清单：从插件安装到消息回传的 8 个检查点</a>
+                                <span class="article-category category-tutorial">教程</span>
+                            </div>
+                            <p class="article-excerpt">
+                                微信机器人问题不要直接归因到模型。上线前建议按顺序检查：OpenClaw CLI 可用、Gateway 正常启动、微信插件已安装、通道状态为 running、默认模型可调用、最小 prompt 返回 OK、微信入口能收到消息、回复链路能回传。每一步都应该有一条命令或一个可观察状态，避免靠猜测排障。
+                            </p>
+                            <p class="article-source">相关资料：<a href="docs.html#wechat">微信机器人接入文档</a>、<a href="docs.html#troubleshooting">故障排查</a></p>
+                            <div class="article-meta">
+                                <a href="个人概况_2026_v3.html" class="article-author">炜哥</a>
+                                <span class="article-date">2026-05-13</span>
+                                <span class="article-note">教程</span>
+                                <div class="article-tags">
+                                    <span class="tag">微信机器人</span>
+                                    <span class="tag">Gateway</span>
+                                    <span class="tag">上线检查</span>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article id="article-cron-timeout" class="article-card featured" data-category="tutorial">
+                        <div class="article-content">
+                            <div class="article-header">
+                                <a href="docs.html#workflows" class="article-title">定时任务超时排查：从接口耗时、分页数量到摘要生成逐段限时</a>
+                                <span class="article-category category-tutorial">教程</span>
+                            </div>
+                            <p class="article-excerpt">
+                                定时任务失败不一定是数据接口不可用，常见原因包括：一次抓取太多分页、板块聚合没有缓存、摘要模型等待过久、网络请求缺少超时、失败后没有降级数据源。更稳的实现是把任务拆成采集、清洗、聚合、摘要、发送五段，每段设置独立超时和日志；如果某段失败，仍返回已完成部分和明确告警。
+                            </p>
+                            <p class="article-source">相关资料：<a href="docs.html#workflows">自动化任务流文档</a>、<a href="docs.html#troubleshooting">故障排查</a></p>
+                            <div class="article-meta">
+                                <a href="个人概况_2026_v3.html" class="article-author">炜哥</a>
+                                <span class="article-date">2026-05-13</span>
+                                <span class="article-note">教程</span>
+                                <div class="article-tags">
+                                    <span class="tag">Cron</span>
+                                    <span class="tag">任务超时</span>
+                                    <span class="tag">降级策略</span>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article id="article-local-first-trend" class="article-card featured" data-category="news">
+                        <div class="article-content">
+                            <div class="article-header">
+                                <a href="docs.html#models" class="article-title">行业观察：个人 AI 助手正在从云端聊天框转向本地优先工作台</a>
+                                <span class="article-category category-news">行业动态</span>
+                            </div>
+                            <p class="article-excerpt">
+                                AI 助手的核心入口正在变化：用户不只需要网页聊天框，还需要微信、文件夹、终端、浏览器和定时任务入口。本地优先并不等于完全离线，而是把隐私敏感、成本敏感、频繁重复的任务放在本机或本地网关，把需要强推理、多模态和实时资料的任务按需路由到云端能力。
+                            </p>
+                            <p class="article-source">相关资料：<a href="docs.html#models">模型配置文档</a>、<a href="https://platform.openai.com/docs/models" target="_blank" rel="noopener noreferrer">OpenAI Models</a></p>
+                            <div class="article-meta">
+                                <a href="个人概况_2026_v3.html" class="article-author">炜哥</a>
+                                <span class="article-date">2026-05-13</span>
+                                <span class="article-note">趋势观察</span>
+                                <div class="article-tags">
+                                    <span class="tag">本地优先</span>
+                                    <span class="tag">AI 工作台</span>
+                                    <span class="tag">模型路由</span>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article id="article-multimodal-trend" class="article-card featured" data-category="news">
+                        <div class="article-content">
+                            <div class="article-header">
+                                <a href="https://platform.openai.com/docs/guides/images" target="_blank" rel="noopener noreferrer" class="article-title">行业观察：多模态能力的价值不在炫技，而在减少工作流断点</a>
+                                <span class="article-category category-news">行业动态</span>
+                            </div>
+                            <p class="article-excerpt">
+                                多模态能力真正有价值的场景，是把截图、表格、语音、长文和图片资料接进同一个任务流。例如微信里收到截图后自动识别问题，语音消息先转写再总结，产品图片先理解再生成说明。对个人和小团队来说，关键不是追最新模型名，而是把输入格式转换、检索、推理和回传做成可重复流程。
+                            </p>
+                            <p class="article-source">相关资料：<a href="https://platform.openai.com/docs/guides/images" target="_blank" rel="noopener noreferrer">OpenAI Images guide</a>、<a href="https://platform.openai.com/docs/guides/speech-to-text" target="_blank" rel="noopener noreferrer">OpenAI Speech to text guide</a></p>
+                            <div class="article-meta">
+                                <a href="个人概况_2026_v3.html" class="article-author">炜哥</a>
+                                <span class="article-date">2026-05-13</span>
+                                <span class="article-note">趋势观察</span>
+                                <div class="article-tags">
+                                    <span class="tag">多模态</span>
+                                    <span class="tag">语音转写</span>
+                                    <span class="tag">图像理解</span>
                                 </div>
                             </div>
                         </div>

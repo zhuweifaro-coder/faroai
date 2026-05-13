@@ -464,6 +464,20 @@ document.head.appendChild(style);
         const prefersReducedMotion = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
         let closeTimer;
 
+        function shouldSkipIntroForInternalHomeClick() {
+            const navigation = performance.getEntriesByType?.('navigation')?.[0];
+            const isReload = navigation?.type === 'reload';
+            if (isReload) return false;
+            if (!document.referrer) return false;
+
+            try {
+                const referrer = new URL(document.referrer);
+                return referrer.origin === window.location.origin;
+            } catch (error) {
+                return false;
+            }
+        }
+
         function removeIntro() {
             if (intro.parentNode) {
                 intro.parentNode.removeChild(intro);
@@ -478,6 +492,11 @@ document.head.appendChild(style);
             intro.setAttribute('aria-hidden', 'true');
             document.body.classList.remove('intro-active');
             window.setTimeout(removeIntro, 420);
+        }
+
+        if (shouldSkipIntroForInternalHomeClick()) {
+            removeIntro();
+            return;
         }
 
         document.body.classList.add('intro-active');
