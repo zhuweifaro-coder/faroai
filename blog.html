@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FaroAI 博客 - OpenClaw 新闻、OpenAI 技术资料与本地 AI 实践</title>
     <meta name="description" content="FaroAI 博客：跟踪 OpenClaw 最新版本、OpenAI 官方模型与 API 更新，并分享微信机器人、本地模型和 AI 工作流实践。">
-    <meta name="keywords" content="FaroAI 博客, OpenClaw 新闻, OpenAI 技术资料, GPT-5.5, Responses API, Realtime API, 微信机器人, Ollama">
+    <meta name="keywords" content="FaroAI 博客, OpenClaw 新闻, OpenAI 技术资料, OpenAI 模型, Responses API, Realtime API, 微信机器人, Ollama">
     <link rel="canonical" href="https://www.faroai.net/blog.html">
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="blog.css">
@@ -49,6 +49,7 @@
                     <span class="blog-kicker"><span class="brand-word"><span class="brand-red">Fa</span><span class="brand-mid">ro</span><span class="brand-red">AI</span></span> Notes</span>
                     <h1 class="blog-title">博客</h1>
                     <p class="blog-description">跟踪 OpenClaw 最新动态、OpenAI 官方技术资料，以及把 AI 接入微信、本地模型和自动化工作流的实践记录。</p>
+                    <p class="blog-freshness">内容校对日期：2026-05-13。OpenAI 相关内容以官方文档为准；OpenClaw 相关内容以本站本机实测与公开文档交叉记录。</p>
                 </div>
             </div>
         </section>
@@ -106,13 +107,13 @@
                     <article id="article-openai-models" class="article-card featured" data-category="technical">
                         <div class="article-content">
                             <div class="article-header">
-                                <a href="https://developers.openai.com/api/docs/guides/latest-model" target="_blank" rel="noopener noreferrer" class="article-title">OpenAI 模型选型更新：官方模型页、Responses API 与多模态路由怎么放进 <span class="brand-word"><span class="brand-red">Fa</span><span class="brand-mid">ro</span><span class="brand-red">AI</span></span></a>
+                                <a href="https://platform.openai.com/docs/models" target="_blank" rel="noopener noreferrer" class="article-title">OpenAI 模型选型更新：官方模型页、Responses API 与多模态路由怎么放进 <span class="brand-word"><span class="brand-red">Fa</span><span class="brand-mid">ro</span><span class="brand-red">AI</span></span></a>
                                 <span class="article-category category-technical">技术文章</span>
                             </div>
                             <p class="article-excerpt">
-                                OpenAI 官方最新模型指南把 GPT-5.5 标为面向复杂任务的旗舰模型，GPT-5.5-Codex 适合长时间编码、调试和代理式软件工程，GPT-5.4 / mini / nano 则覆盖日常与低延迟场景。对 <span class="brand-word"><span class="brand-red">Fa</span><span class="brand-mid">ro</span><span class="brand-red">AI</span></span> 的模型路由来说，可以把“复杂分析/代码任务”交给强模型，把“微信日常问答/摘要/分类”交给更快模型，同时将图像生成单独路由到 gpt-image-2。
+                                OpenAI 官方模型文档强调按任务选择模型：复杂推理、长上下文和代码任务使用更强模型；日常摘要、分类、轻量客服和微信回复可走更低延迟模型；图像、语音和实时对话应使用对应的多模态接口。对 <span class="brand-word"><span class="brand-red">Fa</span><span class="brand-mid">ro</span><span class="brand-red">AI</span></span> 来说，模型名不应硬编码在页面承诺里，实际部署时应按 OpenAI 官方模型页和可用额度动态配置。
                             </p>
-                            <p class="article-source">资料来源：<a href="https://developers.openai.com/api/docs/guides/latest-model" target="_blank" rel="noopener noreferrer">OpenAI Latest model guide</a>、<a href="https://developers.openai.com/api/docs/guides/image-generation" target="_blank" rel="noopener noreferrer">OpenAI Image generation guide</a></p>
+                            <p class="article-source">资料来源：<a href="https://platform.openai.com/docs/models" target="_blank" rel="noopener noreferrer">OpenAI Models</a>、<a href="https://platform.openai.com/docs/guides/images" target="_blank" rel="noopener noreferrer">OpenAI Image generation guide</a></p>
                             <div class="article-meta">
                                 <a href="个人概况_2026_v3.html" class="article-author">炜哥</a>
                                 <span class="article-date">2026-05-10</span>
@@ -136,7 +137,7 @@
                             <p class="article-excerpt">
                                 Responses API 是 OpenAI 推荐的统一响应接口，适合需要多轮状态、工具调用、多模态输入和代理式执行的应用。对 <span class="brand-word"><span class="brand-red">Fa</span><span class="brand-mid">ro</span><span class="brand-red">AI</span></span> 来说，落地路线很清晰：用 Responses 承载模型回复，用 File Search/Code Interpreter/Web Search 等工具处理资料和计算，用 MCP 连接外部系统，再由 OpenClaw Gateway 负责通道、权限和任务触发。
                             </p>
-                            <p class="article-source">资料来源：<a href="https://developers.openai.com/api/docs/guides/migrate-to-responses" target="_blank" rel="noopener noreferrer">OpenAI Responses API guide</a>、<a href="https://developers.openai.com/api/docs/guides/tools" target="_blank" rel="noopener noreferrer">OpenAI Tools guide</a></p>
+                            <p class="article-source">资料来源：<a href="https://platform.openai.com/docs/guides/migrate-to-responses" target="_blank" rel="noopener noreferrer">OpenAI Responses API guide</a>、<a href="https://platform.openai.com/docs/guides/tools" target="_blank" rel="noopener noreferrer">OpenAI Tools guide</a></p>
                             <div class="article-meta">
                                 <a href="个人概况_2026_v3.html" class="article-author">炜哥</a>
                                 <span class="article-date">2026-05-10</span>
@@ -154,13 +155,13 @@
                     <article class="article-card featured" data-category="technical">
                         <div class="article-content">
                             <div class="article-header">
-                                <a href="https://developers.openai.com/api/docs/guides/realtime" target="_blank" rel="noopener noreferrer" class="article-title">OpenAI Realtime 2、Translate 与 Whisper：语音型 AI 助手的新接口组合</a>
+                                <a href="https://platform.openai.com/docs/guides/realtime" target="_blank" rel="noopener noreferrer" class="article-title">OpenAI Realtime、语音转写与翻译：语音型 AI 助手的新接口组合</a>
                                 <span class="article-category category-technical">技术文章</span>
                             </div>
-                            <p class="article-excerpt">>>
+                            <p class="article-excerpt">
                                 OpenAI 官方音频文档显示，Realtime API 适合低延迟语音交互，最新音频能力还包含面向翻译的模型和 Whisper 转写接口。<span class="brand-word"><span class="brand-red">Fa</span><span class="brand-mid">ro</span><span class="brand-red">AI</span></span> 后续如果做“微信语音消息 - 转写 - 总结/回复”的链路，可以把语音输入、实时对话和文本任务拆开：转写走专用接口，实时会话走 Realtime，长文本整理再回到通用模型。
                             </p>
-                            <p class="article-source">资料来源：<a href="https://developers.openai.com/api/docs/guides/realtime" target="_blank" rel="noopener noreferrer">OpenAI Realtime guide</a>、<a href="https://developers.openai.com/api/docs/guides/speech-to-text" target="_blank" rel="noopener noreferrer">OpenAI Speech to text guide</a></p>
+                            <p class="article-source">资料来源：<a href="https://platform.openai.com/docs/guides/realtime" target="_blank" rel="noopener noreferrer">OpenAI Realtime guide</a>、<a href="https://platform.openai.com/docs/guides/speech-to-text" target="_blank" rel="noopener noreferrer">OpenAI Speech to text guide</a></p>
                             <div class="article-meta">
                                 <a href="个人概况_2026_v3.html" class="article-author">炜哥</a>
                                 <span class="article-date">2026-05-10</span>
@@ -205,7 +206,7 @@
 	                                <a href="docs.html#workflows" class="article-title">OpenClaw v2026.4.28 更新观察：子智能体上下文继承与本地工作流</a>
                                 <span class="article-category category-product">产品更新</span>
                             </div>
-                            <p class="article-excerpt">>>
+                            <p class="article-excerpt">
                                 这版更新最适合放在本地 AI 工作流语境下理解：子智能体上下文继承让复杂任务更容易拆分，Active Memory 让长期协作更连续，MLX/本地模型能力则让部分任务可以留在本机处理。<span class="brand-word"><span class="brand-red">Fa</span><span class="brand-mid">ro</span><span class="brand-red">AI</span></span> 后续会把这些能力整理成更清晰的“微信触发 - agent 执行 - 结果回传”流程。
                             </p>
                             <div class="article-meta">
@@ -226,7 +227,7 @@
                     <article class="article-card featured" data-category="news">
                         <div class="article-content">
                             <div class="article-header">
-                                 <a href="https://developers.openai.com/api/docs/guides/latest-model" target="_blank" rel="noopener noreferrer" class="article-title">OpenAI 最新模型指南速读：如何为复杂任务、代码任务和日常回复选模型</a>
+                                 <a href="https://platform.openai.com/docs/models" target="_blank" rel="noopener noreferrer" class="article-title">OpenAI 模型指南速读：如何为复杂任务、代码任务和日常回复选模型</a>
                                 <span class="article-category category-news">行业动态</span>
                             </div>
                             <p class="article-excerpt">
@@ -272,7 +273,7 @@
                     <article class="article-card featured" data-category="technical">
                         <div class="article-content">
                             <div class="article-header">
-                                   <a href="https://developers.openai.com/api/docs/guides/migrate-to-responses" target="_blank" rel="noopener noreferrer" class="article-title">技术选型：为什么 Agent 应用越来越适合用 Responses API 做中枢</a>
+                                   <a href="https://platform.openai.com/docs/guides/migrate-to-responses" target="_blank" rel="noopener noreferrer" class="article-title">技术选型：为什么 Agent 应用越来越适合用 Responses API 做中枢</a>
                                 <span class="article-category category-technical">技术文章</span>
                             </div>
                             <p class="article-excerpt">

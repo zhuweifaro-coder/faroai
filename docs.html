@@ -54,6 +54,18 @@
             line-height: 1.75;
         }
 
+        .docs-freshness {
+            max-width: 820px;
+            margin: 1.2rem auto 0;
+            padding: 0.8rem 1rem;
+            border: 1px solid rgba(255, 255, 255, 0.22);
+            border-radius: var(--radius-md);
+            background: rgba(15, 23, 42, 0.18);
+            color: rgba(255, 255, 255, 0.86);
+            font-size: 0.92rem;
+            line-height: 1.7;
+        }
+
         .docs-hero-actions {
             display: flex;
             justify-content: center;
@@ -410,6 +422,7 @@
                     <span class="docs-eyebrow"><span class="brand-word"><span class="brand-red">Fa</span><span class="brand-mid">ro</span><span class="brand-red">AI</span></span> Docs</span>
                     <h1>文档中心</h1>
                     <p>从安装 OpenClaw、启动本地网关、接入微信机器人，到配置 Ollama 模型、知识库和自动化任务流。这里按真实落地顺序整理 <span class="brand-word"><span class="brand-red">Fa</span><span class="brand-mid">ro</span><span class="brand-red">AI</span></span> 的使用路径。</p>
+                    <p class="docs-freshness">最后校对：2026-05-13。命令示例按本站本机 OpenClaw Gateway 验证路径整理；不同版本参数可能变化，执行前以 <code>openclaw --help</code> 和官方文档为准。</p>
                     <div class="docs-hero-actions">
                         <a href="#quickstart" class="btn btn-large">5 分钟快速上手</a>
                         <a href="#wechat" class="btn btn-secondary btn-large">配置微信机器人</a>
@@ -606,7 +619,7 @@ openclaw models list</code></pre>
 
                         <section id="troubleshooting" class="docs-section" data-doc-section>
                             <h2>故障排查</h2>
-                            <p>>>>优先按“网关是否在线 - 插件是否加载 - 通道是否运行 - 模型是否可调用”的顺序排查。</p>
+                            <p>优先按“网关是否在线 - 插件是否加载 - 通道是否运行 - 模型是否可调用”的顺序排查。不要直接改复杂配置，先用最小命令确认是哪一段链路失败。</p>
                             <div class="faq-list">
                                 <div class="faq-item">
                                     <h3>Gateway 显示 not reachable 怎么办？</h3>
