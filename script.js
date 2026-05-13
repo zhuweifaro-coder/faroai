@@ -385,28 +385,6 @@ document.head.appendChild(style);
         if (!audio || !toggle) return;
 
         const text = toggle.querySelector('.music-toggle-text');
-        const storageKey = 'faroaiBgmStoppedV1';
-        let userStopped = false;
-
-        function readStoppedPreference() {
-            try {
-                return window.localStorage.getItem(storageKey) === '1';
-            } catch (error) {
-                return false;
-            }
-        }
-
-        function writeStoppedPreference(stopped) {
-            try {
-                if (stopped) {
-                    window.localStorage.setItem(storageKey, '1');
-                } else {
-                    window.localStorage.removeItem(storageKey);
-                }
-            } catch (error) {
-                // localStorage can be unavailable in private browsing.
-            }
-        }
 
         function setState(state) {
             const isPlaying = state === 'playing';
@@ -418,23 +396,19 @@ document.head.appendChild(style);
             toggle.disabled = unavailable;
 
             if (text) {
-                if (isPlaying) text.textContent = '停止背景音乐';
+                if (isPlaying) text.textContent = '暂停背景音乐';
                 else if (unavailable) text.textContent = '音乐文件待上传';
                 else text.textContent = '播放背景音乐';
             }
         }
 
-        function stopMusic() {
-            userStopped = true;
+        function pauseMusic() {
             audio.pause();
-            writeStoppedPreference(true);
             setState('paused');
         }
 
         async function playMusic() {
             if (toggle.disabled) return;
-            userStopped = false;
-            writeStoppedPreference(false);
             audio.volume = 0.42;
 
             try {
@@ -446,30 +420,22 @@ document.head.appendChild(style);
         }
 
         audio.addEventListener('playing', () => setState('playing'));
-        audio.addEventListener('pause', () => {
-            if (!userStopped && !audio.ended) return;
-            setState('paused');
-        });
+        audio.addEventListener('pause', () => setState('paused'));
         audio.addEventListener('error', () => setState('unavailable'));
 
         toggle.addEventListener('click', () => {
             if (audio.paused) {
                 playMusic();
             } else {
-                stopMusic();
+                pauseMusic();
             }
         });
-
-        if (readStoppedPreference()) {
-            setState('paused');
-            return;
-        }
 
         setState('paused');
         playMusic();
 
         const unlockOnce = () => {
-            if (!userStopped && audio.paused && !toggle.disabled) {
+            if (audio.paused && !toggle.disabled) {
                 playMusic();
             }
             window.removeEventListener('pointerdown', unlockOnce);
