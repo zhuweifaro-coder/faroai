@@ -133,17 +133,32 @@
                 <span></span>
                 <span></span>
             </div>
-            <p class="tech-intro-kicker">OpenClaw Gateway Initializing</p>
-            <h2>连接模型、工具与微信入口</h2>
+            <p class="tech-intro-kicker">FaroAI Runtime Sequence</p>
+            <h2>正在启动本地优先 AI 工作流</h2>
+            <div class="tech-intro-status" aria-hidden="true">
+                <span>Gateway</span>
+                <span>Weixin</span>
+                <span>Knowledge</span>
+                <span>Automation</span>
+            </div>
             <div class="tech-intro-stream">
                 <span>model.provider: OpenAI / Ollama</span>
-                <span>channel.weixin: ready for setup</span>
-                <span>workflow.router: local-first</span>
+                <span>gateway.openclaw: routing tools and memory</span>
+                <span>channel.weixin: waiting for secure handshake</span>
+                <span>workflow.router: local-first execution ready</span>
             </div>
             <div class="tech-intro-progress" aria-hidden="true"><span></span></div>
             <button type="button" class="tech-intro-skip" id="techIntroSkip">跳过</button>
         </div>
     </div>
+
+    <audio id="homeBgm" class="site-bgm" preload="auto" loop>
+        <source src="assets/audio/ocean-little-end.mp3" type="audio/mpeg">
+    </audio>
+    <button type="button" class="music-toggle" id="musicToggle" aria-pressed="false" aria-controls="homeBgm" hidden>
+        <span class="music-toggle-icon" aria-hidden="true"></span>
+        <span class="music-toggle-text">播放背景音乐</span>
+    </button>
     
     <!-- 导航栏 -->
     <header class="header" role="banner">

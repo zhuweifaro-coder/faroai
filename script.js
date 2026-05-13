@@ -369,7 +369,118 @@ document.head.appendChild(style);
     });
 })();
 
-/* ─────────── 首次访问技术流开场动画 ─────────── */
+/* ─────────── 首页背景音乐：Ocean (Little End) ─────────── */
+(function bindHomeBgm() {
+    function onReady(callback) {
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', callback);
+            return;
+        }
+        callback();
+    }
+
+    onReady(() => {
+        const audio = document.getElementById('homeBgm');
+        const toggle = document.getElementById('musicToggle');
+        if (!audio || !toggle) return;
+
+        const text = toggle.querySelector('.music-toggle-text');
+        const storageKey = 'faroaiBgmStoppedV1';
+        let userStopped = false;
+
+        function readStoppedPreference() {
+            try {
+                return window.localStorage.getItem(storageKey) === '1';
+            } catch (error) {
+                return false;
+            }
+        }
+
+        function writeStoppedPreference(stopped) {
+            try {
+                if (stopped) {
+                    window.localStorage.setItem(storageKey, '1');
+                } else {
+                    window.localStorage.removeItem(storageKey);
+                }
+            } catch (error) {
+                // localStorage can be unavailable in private browsing.
+            }
+        }
+
+        function setState(state) {
+            const isPlaying = state === 'playing';
+            const unavailable = state === 'unavailable';
+            toggle.classList.toggle('is-playing', isPlaying);
+            toggle.classList.toggle('is-unavailable', unavailable);
+            toggle.hidden = unavailable;
+            toggle.setAttribute('aria-pressed', String(isPlaying));
+            toggle.disabled = unavailable;
+
+            if (text) {
+                if (isPlaying) text.textContent = '停止背景音乐';
+                else if (unavailable) text.textContent = '音乐文件待上传';
+                else text.textContent = '播放背景音乐';
+            }
+        }
+
+        function stopMusic() {
+            userStopped = true;
+            audio.pause();
+            writeStoppedPreference(true);
+            setState('paused');
+        }
+
+        async function playMusic() {
+            if (toggle.disabled) return;
+            userStopped = false;
+            writeStoppedPreference(false);
+            audio.volume = 0.42;
+
+            try {
+                await audio.play();
+                setState('playing');
+            } catch (error) {
+                setState('paused');
+            }
+        }
+
+        audio.addEventListener('playing', () => setState('playing'));
+        audio.addEventListener('pause', () => {
+            if (!userStopped && !audio.ended) return;
+            setState('paused');
+        });
+        audio.addEventListener('error', () => setState('unavailable'));
+
+        toggle.addEventListener('click', () => {
+            if (audio.paused) {
+                playMusic();
+            } else {
+                stopMusic();
+            }
+        });
+
+        if (readStoppedPreference()) {
+            setState('paused');
+            return;
+        }
+
+        setState('paused');
+        playMusic();
+
+        const unlockOnce = () => {
+            if (!userStopped && audio.paused && !toggle.disabled) {
+                playMusic();
+            }
+            window.removeEventListener('pointerdown', unlockOnce);
+            window.removeEventListener('keydown', unlockOnce);
+        };
+        window.addEventListener('pointerdown', unlockOnce, { once: true });
+        window.addEventListener('keydown', unlockOnce, { once: true });
+    });
+})();
+
+/* ─────────── 每次进入首页播放技术流开场动画 ─────────── */
 (function bindTechIntro() {
     function onReady(callback) {
         if (document.readyState === 'loading') {
@@ -383,26 +494,9 @@ document.head.appendChild(style);
         const intro = document.getElementById('techIntro');
         if (!intro) return;
 
-        const storageKey = 'faroaiTechIntroSeenV1';
         const skipButton = document.getElementById('techIntroSkip');
         const prefersReducedMotion = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
         let closeTimer;
-
-        function hasSeenIntro() {
-            try {
-                return window.localStorage.getItem(storageKey) === '1';
-            } catch (error) {
-                return false;
-            }
-        }
-
-        function markIntroSeen() {
-            try {
-                window.localStorage.setItem(storageKey, '1');
-            } catch (error) {
-                // localStorage can be unavailable in private browsing.
-            }
-        }
 
         function removeIntro() {
             if (intro.parentNode) {
@@ -412,7 +506,6 @@ document.head.appendChild(style);
 
         function closeIntro() {
             if (!intro.classList.contains('is-visible')) return;
-            markIntroSeen();
             window.clearTimeout(closeTimer);
             intro.classList.add('is-closing');
             intro.classList.remove('is-visible');
@@ -421,16 +514,10 @@ document.head.appendChild(style);
             window.setTimeout(removeIntro, 420);
         }
 
-        if (prefersReducedMotion || hasSeenIntro()) {
-            if (prefersReducedMotion) markIntroSeen();
-            removeIntro();
-            return;
-        }
-
         document.body.classList.add('intro-active');
         intro.setAttribute('aria-hidden', 'false');
         window.requestAnimationFrame(() => intro.classList.add('is-visible'));
-        closeTimer = window.setTimeout(closeIntro, 4200);
+        closeTimer = window.setTimeout(closeIntro, prefersReducedMotion ? 1800 : 5200);
 
         skipButton?.addEventListener('click', closeIntro);
         document.addEventListener('keydown', event => {

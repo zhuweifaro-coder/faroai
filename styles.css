@@ -1784,7 +1784,115 @@ a.use-case-card:hover .use-case-title {
     color: var(--primary-color);
 }
 
-/* ─────────── 首次访问技术流开场动画 ─────────── */
+/* ─────────── 首页背景音乐控制 ─────────── */
+.site-bgm {
+    display: none;
+}
+
+.music-toggle {
+    position: fixed;
+    right: 24px;
+    bottom: 24px;
+    z-index: 12000;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.58rem;
+    min-height: 44px;
+    max-width: calc(100vw - 32px);
+    padding: 0.68rem 0.95rem;
+    border: 1px solid rgba(37, 99, 235, 0.18);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.9);
+    color: var(--text-primary);
+    box-shadow: 0 14px 35px rgba(15, 23, 42, 0.14);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    cursor: pointer;
+    font: inherit;
+    font-size: 0.9rem;
+    font-weight: 800;
+    line-height: 1;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.music-toggle:hover,
+.music-toggle:focus-visible {
+    border-color: rgba(37, 99, 235, 0.42);
+    box-shadow: 0 18px 44px rgba(15, 23, 42, 0.18);
+    outline: none;
+    transform: translateY(-2px);
+}
+
+.music-toggle-icon {
+    position: relative;
+    width: 20px;
+    height: 20px;
+    flex: 0 0 20px;
+    border: 2px solid var(--primary-color);
+    border-radius: 50%;
+}
+
+.music-toggle-icon::before {
+    content: '';
+    position: absolute;
+    left: 7px;
+    top: 4px;
+    width: 0;
+    height: 0;
+    border-top: 4px solid transparent;
+    border-bottom: 4px solid transparent;
+    border-left: 6px solid var(--primary-color);
+}
+
+.music-toggle.is-playing {
+    border-color: rgba(15, 118, 110, 0.32);
+    background: linear-gradient(135deg, rgba(239, 246, 255, 0.94), rgba(204, 251, 241, 0.94));
+}
+
+.music-toggle.is-playing .music-toggle-icon {
+    border-color: var(--secondary-color);
+}
+
+.music-toggle.is-playing .music-toggle-icon::before,
+.music-toggle.is-playing .music-toggle-icon::after {
+    content: '';
+    position: absolute;
+    top: 4px;
+    width: 3px;
+    height: 8px;
+    border: 0;
+    border-radius: 2px;
+    background: var(--secondary-color);
+}
+
+.music-toggle.is-playing .music-toggle-icon::before {
+    left: 6px;
+}
+
+.music-toggle.is-playing .music-toggle-icon::after {
+    right: 6px;
+}
+
+.music-toggle.is-unavailable {
+    display: none;
+    opacity: 0.72;
+    cursor: not-allowed;
+}
+
+.music-toggle.is-unavailable:hover {
+    transform: none;
+}
+
+@media (max-width: 640px) {
+    .music-toggle {
+        right: 16px;
+        bottom: 16px;
+        padding-inline: 0.78rem;
+        font-size: 0.82rem;
+    }
+}
+
+/* ─────────── 每次进入首页播放技术流开场动画 ─────────── */
 body.intro-active {
     overflow: hidden;
 }
@@ -1798,8 +1906,9 @@ body.intro-active {
     padding: 24px;
     color: #eaf2ff;
     background:
-        radial-gradient(circle at 18% 18%, rgba(37, 99, 235, 0.36), transparent 34%),
-        radial-gradient(circle at 82% 72%, rgba(15, 118, 110, 0.32), transparent 32%),
+        radial-gradient(circle at 14% 16%, rgba(37, 99, 235, 0.42), transparent 34%),
+        radial-gradient(circle at 82% 72%, rgba(15, 118, 110, 0.36), transparent 32%),
+        radial-gradient(circle at 58% 18%, rgba(248, 113, 113, 0.16), transparent 26%),
         linear-gradient(135deg, #07111f 0%, #0b1527 48%, #061b1c 100%);
     opacity: 0;
     pointer-events: none;
@@ -1845,7 +1954,7 @@ body.intro-active {
 
 .tech-intro-panel {
     position: relative;
-    width: min(640px, 100%);
+    width: min(690px, 100%);
     overflow: hidden;
     padding: clamp(1.6rem, 4vw, 2.7rem);
     border: 1px solid rgba(147, 197, 253, 0.28);
@@ -1870,6 +1979,15 @@ body.intro-active {
     background: linear-gradient(105deg, transparent 0%, rgba(255, 255, 255, 0.16) 46%, transparent 64%);
     transform: translateX(-120%);
     animation: techPanelGlint 3.4s ease-in-out infinite;
+}
+
+.tech-intro-panel::after {
+    content: '';
+    position: absolute;
+    inset: 18px;
+    border: 1px solid rgba(94, 234, 212, 0.16);
+    border-radius: 14px;
+    pointer-events: none;
 }
 
 .tech-intro-mark {
@@ -1939,10 +2057,43 @@ body.intro-active {
 .tech-intro h2 {
     position: relative;
     z-index: 1;
-    margin: 0.35rem 0 1.25rem;
+    margin: 0.35rem 0 1rem;
     color: #fff;
     font-size: clamp(1.35rem, 4vw, 2rem);
     line-height: 1.25;
+}
+
+.tech-intro-status {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem;
+    margin: 0 0 1.25rem;
+}
+
+.tech-intro-status span {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.38rem;
+    padding: 0.36rem 0.68rem;
+    border: 1px solid rgba(147, 197, 253, 0.18);
+    border-radius: 999px;
+    background: rgba(15, 23, 42, 0.42);
+    color: #bfdbfe;
+    font-size: 0.74rem;
+    font-weight: 800;
+}
+
+.tech-intro-status span::before {
+    content: '';
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #5eead4;
+    box-shadow: 0 0 12px rgba(94, 234, 212, 0.8);
+    animation: techStatusBlink 1.35s ease-in-out infinite;
 }
 
 .tech-intro-stream {
@@ -1971,6 +2122,7 @@ body.intro-active {
 
 .tech-intro-stream span:nth-child(2) { animation-delay: 0.34s; }
 .tech-intro-stream span:nth-child(3) { animation-delay: 0.68s; }
+.tech-intro-stream span:nth-child(4) { animation-delay: 1.02s; }
 
 .tech-intro-progress {
     position: relative;
@@ -2036,6 +2188,11 @@ body.intro-active {
     to { transform: rotate(360deg); }
 }
 
+@keyframes techStatusBlink {
+    0%, 100% { opacity: 0.45; transform: scale(0.84); }
+    50% { opacity: 1; transform: scale(1); }
+}
+
 @keyframes techLineIn {
     to {
         opacity: 1;
@@ -2071,6 +2228,7 @@ body.intro-active {
     .tech-intro-core,
     .tech-intro-core::before,
     .tech-intro-core::after,
+    .tech-intro-status span::before,
     .tech-intro-stream span,
     .tech-intro-progress span {
         animation: none;
