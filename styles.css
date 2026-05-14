@@ -278,6 +278,16 @@ a:hover {
     overflow: hidden;
 }
 
+.hero-particles {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.62;
+    pointer-events: none;
+    z-index: 0;
+}
+
 .hero::before {
     content: none;
 }
@@ -501,6 +511,60 @@ a:hover {
     box-shadow: 0 26px 46px rgba(15, 23, 42, 0.14);
 }
 
+.gateway-pulse {
+    display: grid;
+    grid-template-columns: minmax(74px, auto) 1fr minmax(74px, auto) 1fr minmax(86px, auto);
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1.25rem;
+}
+
+.pulse-node {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 32px;
+    padding: 0.35rem 0.6rem;
+    border: 1px solid rgba(37, 99, 235, 0.18);
+    border-radius: 999px;
+    background: #f8fafc;
+    color: var(--text-secondary);
+    font-size: 0.76rem;
+    font-weight: 800;
+    white-space: nowrap;
+}
+
+.pulse-node.is-on {
+    background: #eff6ff;
+    color: var(--primary-color);
+}
+
+.pulse-node.is-core {
+    background: linear-gradient(135deg, rgba(37, 99, 235, 0.95), rgba(15, 118, 110, 0.95));
+    color: #fff;
+    box-shadow: 0 0 0 5px rgba(37, 99, 235, 0.08);
+}
+
+.pulse-line {
+    position: relative;
+    height: 2px;
+    overflow: hidden;
+    border-radius: 999px;
+    background: rgba(37, 99, 235, 0.16);
+}
+
+.pulse-line::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -45%;
+    width: 45%;
+    height: 100%;
+    border-radius: inherit;
+    background: linear-gradient(90deg, transparent, #2563eb, #14b8a6);
+    animation: pulseFlow 2.2s ease-in-out infinite;
+}
+
 .preview-header {
     display: flex;
     align-items: center;
@@ -636,6 +700,269 @@ a:hover {
 
 .chart-bar:hover {
     opacity: 0.8;
+}
+
+/* 动态工作流演示 */
+.workflow-lab {
+    position: relative;
+    overflow: hidden;
+    padding: 100px 0;
+    background:
+        radial-gradient(circle at 14% 18%, rgba(37, 99, 235, 0.12), transparent 30%),
+        radial-gradient(circle at 84% 22%, rgba(231, 76, 60, 0.08), transparent 26%),
+        linear-gradient(180deg, #f8fafc 0%, #eef6ff 100%);
+}
+
+.workflow-lab::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+        linear-gradient(rgba(37, 99, 235, 0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(15, 118, 110, 0.05) 1px, transparent 1px);
+    background-size: 34px 34px;
+    mask-image: linear-gradient(180deg, transparent, #000 18%, #000 82%, transparent);
+    pointer-events: none;
+}
+
+.workflow-lab .container {
+    position: relative;
+    z-index: 1;
+}
+
+.workflow-lab-grid {
+    display: grid;
+    grid-template-columns: minmax(240px, 0.72fr) minmax(0, 1.42fr) minmax(230px, 0.68fr);
+    gap: 1.25rem;
+    align-items: stretch;
+}
+
+.workflow-controls,
+.workflow-metrics {
+    display: grid;
+    gap: 0.9rem;
+}
+
+.workflow-tab {
+    width: 100%;
+    min-height: 96px;
+    padding: 1rem;
+    border: 1px solid rgba(148, 163, 184, 0.28);
+    border-radius: var(--radius-lg);
+    background: rgba(255, 255, 255, 0.78);
+    color: var(--text-primary);
+    text-align: left;
+    box-shadow: var(--shadow-sm);
+    cursor: pointer;
+    font: inherit;
+    transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.workflow-tab span,
+.workflow-tab small {
+    display: block;
+}
+
+.workflow-tab span {
+    margin-bottom: 0.35rem;
+    font-size: 1rem;
+    font-weight: 800;
+}
+
+.workflow-tab small {
+    color: var(--text-secondary);
+    font-size: 0.84rem;
+    line-height: 1.55;
+}
+
+.workflow-tab:hover,
+.workflow-tab:focus-visible,
+.workflow-tab.is-active {
+    transform: translateY(-2px);
+    border-color: rgba(37, 99, 235, 0.36);
+    background: #fff;
+    box-shadow: 0 16px 34px rgba(15, 23, 42, 0.1);
+    outline: none;
+}
+
+.workflow-tab.is-active {
+    background: linear-gradient(135deg, #ffffff 0%, #eff6ff 100%);
+}
+
+.workflow-stage {
+    min-width: 0;
+}
+
+.workflow-screen {
+    height: 100%;
+    min-height: 492px;
+    overflow: hidden;
+    border: 1px solid rgba(37, 99, 235, 0.18);
+    border-radius: 18px;
+    background:
+        linear-gradient(145deg, rgba(15, 23, 42, 0.96), rgba(7, 89, 133, 0.86)),
+        #0f172a;
+    color: #e2e8f0;
+    box-shadow: 0 28px 64px rgba(15, 23, 42, 0.18);
+}
+
+.workflow-screen-header {
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+    padding: 1.05rem 1.2rem;
+    border-bottom: 1px solid rgba(226, 232, 240, 0.12);
+}
+
+.workflow-screen-header strong {
+    margin-left: 0.4rem;
+    color: #fff;
+    font-size: 0.95rem;
+}
+
+.screen-dot {
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
+}
+
+.screen-dot.red { background: #f87171; }
+.screen-dot.yellow { background: #fbbf24; }
+.screen-dot.green { background: #34d399; }
+
+.workflow-command {
+    margin: 1.2rem;
+    padding: 0.95rem 1rem;
+    border: 1px solid rgba(147, 197, 253, 0.24);
+    border-radius: var(--radius-md);
+    background: rgba(15, 23, 42, 0.72);
+    color: #bfdbfe;
+    line-height: 1.65;
+}
+
+.workflow-steps {
+    display: grid;
+    gap: 0.75rem;
+    padding: 0 1.2rem 1.2rem;
+}
+
+.workflow-step {
+    display: grid;
+    grid-template-columns: 34px 1fr auto;
+    gap: 0.75rem;
+    align-items: center;
+    padding: 0.85rem;
+    border: 1px solid rgba(148, 163, 184, 0.16);
+    border-radius: var(--radius-md);
+    background: rgba(255, 255, 255, 0.06);
+    opacity: 0;
+    transform: translateY(8px);
+    animation: workflowStepIn 0.42s ease forwards;
+}
+
+.workflow-step-index {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+    border-radius: 10px;
+    background: rgba(94, 234, 212, 0.14);
+    color: #5eead4;
+    font-weight: 900;
+}
+
+.workflow-step strong {
+    display: block;
+    color: #fff;
+    font-size: 0.94rem;
+}
+
+.workflow-step div span {
+    display: block;
+    margin-top: 0.18rem;
+    color: #cbd5e1;
+    font-size: 0.82rem;
+    line-height: 1.55;
+}
+
+.workflow-step-state {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    color: #86efac;
+    font-size: 0.78rem;
+    font-weight: 800;
+}
+
+.workflow-step-state::before {
+    content: '';
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #22c55e;
+    box-shadow: 0 0 12px rgba(34, 197, 94, 0.8);
+}
+
+.workflow-output {
+    margin: 0 1.2rem 1.2rem;
+    padding: 1rem;
+    border: 1px solid rgba(94, 234, 212, 0.2);
+    border-radius: var(--radius-md);
+    background: linear-gradient(135deg, rgba(20, 184, 166, 0.16), rgba(37, 99, 235, 0.12));
+}
+
+.workflow-output span {
+    display: inline-flex;
+    margin-bottom: 0.4rem;
+    color: #5eead4;
+    font-size: 0.78rem;
+    font-weight: 900;
+}
+
+.workflow-output p {
+    margin: 0;
+    color: #f8fafc;
+    line-height: 1.7;
+}
+
+.metric-card {
+    min-height: 132px;
+    padding: 1.2rem;
+    border: 1px solid rgba(37, 99, 235, 0.18);
+    border-radius: var(--radius-lg);
+    background: rgba(255, 255, 255, 0.82);
+    box-shadow: var(--shadow-sm);
+}
+
+.metric-card span {
+    display: block;
+    margin-bottom: 0.6rem;
+    color: var(--text-secondary);
+    font-size: 0.82rem;
+    font-weight: 800;
+}
+
+.metric-card strong {
+    display: block;
+    color: var(--text-primary);
+    font-size: 1.04rem;
+    line-height: 1.5;
+}
+
+@keyframes pulseFlow {
+    to { left: 100%; }
+}
+
+@keyframes pulseFlowVertical {
+    to { top: 100%; }
+}
+
+@keyframes workflowStepIn {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 /* 特性区域 */
@@ -1114,6 +1441,19 @@ a:hover {
         gap: 3rem;
     }
 
+    .workflow-lab-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .workflow-controls,
+    .workflow-metrics {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .workflow-screen {
+        min-height: 460px;
+    }
+
     .hero-content {
         max-width: 760px;
     }
@@ -1204,6 +1544,46 @@ a:hover {
 
     .preview-stats {
         grid-template-columns: 1fr;
+    }
+
+    .gateway-pulse {
+        grid-template-columns: 1fr;
+    }
+
+    .pulse-line {
+        width: 2px;
+        height: 22px;
+        justify-self: center;
+    }
+
+    .pulse-line::after {
+        top: -45%;
+        left: 0;
+        width: 100%;
+        height: 45%;
+        background: linear-gradient(180deg, transparent, #2563eb, #14b8a6);
+        animation-name: pulseFlowVertical;
+    }
+
+    .workflow-controls,
+    .workflow-metrics {
+        grid-template-columns: 1fr;
+    }
+
+    .workflow-lab {
+        padding: 72px 0;
+    }
+
+    .workflow-screen {
+        min-height: 0;
+    }
+
+    .workflow-step {
+        grid-template-columns: 34px 1fr;
+    }
+
+    .workflow-step-state {
+        grid-column: 2;
     }
     
     .section-title {

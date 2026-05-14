@@ -446,6 +446,203 @@ document.head.appendChild(style);
     });
 })();
 
+/* ─────────── 首页动态科技感：粒子背景 + 工作流演示 ─────────── */
+(function bindHomepageDynamics() {
+    function onReady(callback) {
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', callback);
+            return;
+        }
+        callback();
+    }
+
+    onReady(() => {
+        const canvas = document.getElementById('heroParticles');
+        const prefersReducedMotion = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
+
+        if (canvas && !prefersReducedMotion) {
+            const ctx = canvas.getContext('2d');
+            const particles = [];
+            const particleCount = window.innerWidth < 768 ? 36 : 72;
+            let width = 0;
+            let height = 0;
+            let animationFrame;
+
+            function resizeCanvas() {
+                const rect = canvas.getBoundingClientRect();
+                const ratio = window.devicePixelRatio || 1;
+                width = rect.width;
+                height = rect.height;
+                canvas.width = Math.max(1, Math.floor(width * ratio));
+                canvas.height = Math.max(1, Math.floor(height * ratio));
+                ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
+            }
+
+            function createParticle(index) {
+                const angle = (index / particleCount) * Math.PI * 2;
+                return {
+                    x: Math.random() * width,
+                    y: Math.random() * height,
+                    vx: Math.cos(angle) * (0.18 + Math.random() * 0.34),
+                    vy: Math.sin(angle) * (0.18 + Math.random() * 0.34),
+                    r: 1.2 + Math.random() * 2.2,
+                    hue: Math.random() > 0.72 ? 5 : Math.random() > 0.42 ? 178 : 218
+                };
+            }
+
+            function resetParticles() {
+                particles.length = 0;
+                for (let i = 0; i < particleCount; i += 1) {
+                    particles.push(createParticle(i));
+                }
+            }
+
+            function draw() {
+                ctx.clearRect(0, 0, width, height);
+                particles.forEach((p, i) => {
+                    p.x += p.vx;
+                    p.y += p.vy;
+                    if (p.x < -20 || p.x > width + 20) p.vx *= -1;
+                    if (p.y < -20 || p.y > height + 20) p.vy *= -1;
+
+                    ctx.beginPath();
+                    ctx.fillStyle = `hsla(${p.hue}, 78%, 56%, 0.42)`;
+                    ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+                    ctx.fill();
+
+                    for (let j = i + 1; j < particles.length; j += 1) {
+                        const q = particles[j];
+                        const dx = p.x - q.x;
+                        const dy = p.y - q.y;
+                        const distance = Math.sqrt(dx * dx + dy * dy);
+                        if (distance < 118) {
+                            ctx.beginPath();
+                            ctx.strokeStyle = `rgba(37, 99, 235, ${0.16 * (1 - distance / 118)})`;
+                            ctx.lineWidth = 1;
+                            ctx.moveTo(p.x, p.y);
+                            ctx.lineTo(q.x, q.y);
+                            ctx.stroke();
+                        }
+                    }
+                });
+                animationFrame = window.requestAnimationFrame(draw);
+            }
+
+            resizeCanvas();
+            resetParticles();
+            draw();
+            window.addEventListener('resize', () => {
+                window.cancelAnimationFrame(animationFrame);
+                resizeCanvas();
+                resetParticles();
+                draw();
+            });
+        }
+
+        const flows = {
+            briefing: {
+                title: '每日简报工作流',
+                command: '微信：整理今天 AI 与自动化领域的重要消息，并按影响程度排序。',
+                steps: [
+                    ['接收入口', '从微信消息识别简报主题、时间范围和输出格式'],
+                    ['资料采集', '检索官方文档、技术博客和可信新闻源，过滤重复内容'],
+                    ['模型摘要', '按影响力、可执行性和风险等级整理成短摘要'],
+                    ['人工确认', '发送前保留确认节点，避免未经审核自动群发']
+                ],
+                output: '已生成 5 条高优先级摘要、3 条配置建议和 1 条待人工确认事项，可直接推送到微信。',
+                route: '微信 → Gateway → Web/Search → Model',
+                automation: '半自动，关键发送前确认',
+                status: '适合日常信息简报'
+            },
+            knowledge: {
+                title: '知识库问答工作流',
+                command: '微信：根据我的配置文档，说明 OpenClaw Gateway 连接模型失败时怎么排查。',
+                steps: [
+                    ['意图识别', '判断问题属于配置排障，而不是普通闲聊'],
+                    ['知识检索', '检索安装文档、模型配置、日志说明和历史处理记录'],
+                    ['引用整合', '保留关键来源，优先输出可操作步骤'],
+                    ['结果返回', '按“先检查网关，再检查模型，再检查通道”的顺序回复']
+                ],
+                output: '已生成一份 6 步排障清单，包含命令、预期结果和异常分支处理方式。',
+                route: '微信 → Gateway → Knowledge → Model',
+                automation: '自动检索，回复可人工复核',
+                status: '适合个人资料库和团队手册'
+            },
+            stock: {
+                title: '市场复盘工作流',
+                command: '微信：18:00 汇总跌幅、成交量、涨停板块、量价同步和缩量预警。',
+                steps: [
+                    ['任务调度', '按交易日和固定时间启动，非交易日自动标记跳过'],
+                    ['行情采集', '对接可用行情源，设置超时和备用源，避免单接口卡死'],
+                    ['板块归因', '聚合跌幅、成交量、涨停数量和连续量价变化'],
+                    ['预警输出', '对突然缩量、异常放量和接口失败分别给出提示']
+                ],
+                output: '已生成市场复盘模板。真实部署时建议为东财接口增加超时、重试和备用行情源。',
+                route: 'Cron → Gateway → Market APIs → Model',
+                automation: '定时执行，异常时主动报警',
+                status: '适合每日收盘后复盘'
+            }
+        };
+
+        const tabs = document.querySelectorAll('.workflow-tab');
+        const title = document.getElementById('workflowTitle');
+        const command = document.getElementById('workflowCommand');
+        const steps = document.getElementById('workflowSteps');
+        const output = document.getElementById('workflowOutput');
+        const metricRoute = document.getElementById('metricRoute');
+        const metricAutomation = document.getElementById('metricAutomation');
+        const metricStatus = document.getElementById('metricStatus');
+
+        function renderFlow(key) {
+            const flow = flows[key] || flows.briefing;
+            if (!title || !command || !steps || !output) return;
+
+            title.textContent = flow.title;
+            command.textContent = flow.command;
+            output.textContent = flow.output;
+            if (metricRoute) metricRoute.textContent = flow.route;
+            if (metricAutomation) metricAutomation.textContent = flow.automation;
+            if (metricStatus) metricStatus.textContent = flow.status;
+
+            steps.innerHTML = '';
+            flow.steps.forEach((step, index) => {
+                const item = document.createElement('div');
+                item.className = 'workflow-step';
+                item.style.animationDelay = `${index * 90}ms`;
+                item.innerHTML = `
+                    <span class="workflow-step-index">${String(index + 1).padStart(2, '0')}</span>
+                    <div>
+                        <strong>${step[0]}</strong>
+                        <span>${step[1]}</span>
+                    </div>
+                    <span class="workflow-step-state">ready</span>
+                `;
+                steps.appendChild(item);
+            });
+        }
+
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                tabs.forEach(item => {
+                    item.classList.remove('is-active');
+                    item.setAttribute('aria-selected', 'false');
+                });
+                tab.classList.add('is-active');
+                tab.setAttribute('aria-selected', 'true');
+                renderFlow(tab.dataset.flow);
+            });
+        });
+
+        renderFlow('briefing');
+
+        const demoButton = document.getElementById('workflowDemoButton');
+        const lab = document.getElementById('workflow-lab');
+        demoButton?.addEventListener('click', () => {
+            lab?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+    });
+})();
+
 /* ─────────── 每次进入首页播放技术流开场动画 ─────────── */
 (function bindTechIntro() {
     function onReady(callback) {

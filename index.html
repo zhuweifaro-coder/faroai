@@ -200,6 +200,7 @@
     <main id="main">
         <!-- Hero 区域 -->
         <section id="home" class="hero" aria-label="首页介绍">
+            <canvas class="hero-particles" id="heroParticles" aria-hidden="true"></canvas>
             <div class="container">
                 <div class="hero-content">
                     <div class="hero-badge">
@@ -220,7 +221,7 @@
                             </svg>
                             <span>查看配置文档</span>
                         </a>
-                        <button type="button" class="btn btn-secondary btn-large btn-play-video" aria-label="观看 OpenClaw 运作原理介绍视频">
+                        <button type="button" class="btn btn-secondary btn-large btn-play-video" id="workflowDemoButton" aria-label="查看 FaroAI 工作流演示">
                             <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="margin-right: 8px;">
                                 <path d="M8 5v14l11-7z"/>
                             </svg>
@@ -258,6 +259,13 @@
                             <span class="preview-title"><span class="brand-word"><span class="brand-red">Fa</span><span class="brand-mid">ro</span><span class="brand-red">AI</span></span> Gateway</span>
                         </div>
                         <div class="preview-content">
+                            <div class="gateway-pulse" aria-hidden="true">
+                                <span class="pulse-node is-on">微信入口</span>
+                                <span class="pulse-line"></span>
+                                <span class="pulse-node is-core">Gateway</span>
+                                <span class="pulse-line"></span>
+                                <span class="pulse-node is-on">模型 / 工具</span>
+                            </div>
                             <div class="agent-feed" aria-hidden="true">
                                 <div class="feed-line user">微信：帮我总结今天的技术新闻</div>
                                 <div class="feed-line ai"><span class="brand-word"><span class="brand-red">Fa</span><span class="brand-mid">ro</span><span class="brand-red">AI</span></span>：已检索 6 个来源，按影响力整理摘要。</div>
@@ -312,6 +320,65 @@
                         <strong>先网关，再通道，再模型</strong>
                         <p>OpenClaw Gateway、微信插件和模型调用按顺序逐段排查。</p>
                     </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 动态工作流演示 -->
+        <section id="workflow-lab" class="workflow-lab" aria-label="FaroAI 动态工作流演示">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-label">实时演示</span>
+                    <h2 class="section-title">把一个需求拆成可执行的 AI 工作流</h2>
+                    <p class="section-description">
+                        选择一个真实场景，页面会动态展示 FaroAI 如何接收消息、调用工具、整理结果并返回到微信或文档。
+                    </p>
+                </div>
+                <div class="workflow-lab-grid">
+                    <div class="workflow-controls" role="tablist" aria-label="工作流场景">
+                        <button type="button" class="workflow-tab is-active" data-flow="briefing" role="tab" aria-selected="true">
+                            <span>每日简报</span>
+                            <small>搜索、去重、摘要、推送</small>
+                        </button>
+                        <button type="button" class="workflow-tab" data-flow="knowledge" role="tab" aria-selected="false">
+                            <span>知识库问答</span>
+                            <small>检索资料、引用来源、生成答案</small>
+                        </button>
+                        <button type="button" class="workflow-tab" data-flow="stock" role="tab" aria-selected="false">
+                            <span>市场复盘</span>
+                            <small>采集行情、识别板块、输出预警</small>
+                        </button>
+                    </div>
+                    <div class="workflow-stage">
+                        <div class="workflow-screen">
+                            <div class="workflow-screen-header">
+                                <span class="screen-dot red"></span>
+                                <span class="screen-dot yellow"></span>
+                                <span class="screen-dot green"></span>
+                                <strong id="workflowTitle">每日简报工作流</strong>
+                            </div>
+                            <div class="workflow-command" id="workflowCommand">微信：整理今天 AI 与自动化领域的重要消息，并按影响程度排序。</div>
+                            <div class="workflow-steps" id="workflowSteps" aria-live="polite"></div>
+                            <div class="workflow-output">
+                                <span>输出预览</span>
+                                <p id="workflowOutput">已生成 5 条高优先级摘要、3 条配置建议和 1 条待人工确认事项，可直接推送到微信。</p>
+                            </div>
+                        </div>
+                    </div>
+                    <aside class="workflow-metrics" aria-label="演示指标">
+                        <div class="metric-card">
+                            <span>响应链路</span>
+                            <strong id="metricRoute">微信 → Gateway → Web/Search → Model</strong>
+                        </div>
+                        <div class="metric-card">
+                            <span>自动化级别</span>
+                            <strong id="metricAutomation">半自动，关键发送前确认</strong>
+                        </div>
+                        <div class="metric-card">
+                            <span>适用状态</span>
+                            <strong id="metricStatus">适合日常信息简报</strong>
+                        </div>
+                    </aside>
                 </div>
             </div>
         </section>
