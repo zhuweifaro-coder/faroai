@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="FaroAI 站内搜索：快速查找 OpenClaw、微信机器人、本地模型、知识库、自动化工作流和联系方式。">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.faroai.net/search.html">
+    <title>FaroAI 站内搜索 - 文档、博客、功能与联系方式</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <a href="#main" class="sr-only skip-link">跳转到主要内容</a>
+    <header class="header" role="banner">
+        <div class="container">
+            <nav class="navbar" role="navigation" aria-label="主导航">
+                <a href="index.html" class="logo" aria-label="FaroAI 首页">
+                    <svg class="logo-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                    <span class="logo-text"><span class="logo-text-red">Fa</span><span class="logo-text-gradient">ro</span><span class="logo-text-red">AI</span></span>
+                </a>
+                <ul class="nav-menu">
+                    <li><a href="index.html#home">首页</a></li>
+                    <li><a href="features.html">功能</a></li>
+                    <li><a href="docs.html">文档</a></li>
+                    <li><a href="blog.html">博客</a></li>
+                    <li><a href="个人概况_2026_v3.html">关于我</a></li>
+                </ul>
+                <div class="nav-actions">
+                    <a href="contact.html" class="btn btn-outline">联系站长</a>
+                    <a href="docs.html" class="btn btn-primary">开始配置</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main id="main">
+        <section class="search-hero sci-fi-page-hero">
+            <div class="container">
+                <span class="section-label">Search Console</span>
+                <h1>站内搜索</h1>
+                <p>搜索文档、博客、功能、用例和联系方式。本站是静态站，搜索在浏览器本地完成，不上传关键词。</p>
+                <form class="site-search-form" id="siteSearchForm" role="search">
+                    <label class="sr-only" for="siteSearchInput">搜索关键词</label>
+                    <input id="siteSearchInput" name="q" type="search" placeholder="输入 OpenClaw、微信机器人、知识库、股票日报..." autocomplete="off">
+                    <button type="submit" class="btn btn-primary">搜索</button>
+                </form>
+            </div>
+        </section>
+
+        <section class="search-results-section">
+            <div class="container">
+                <div class="search-summary" id="searchSummary">输入关键词开始搜索，或点击下方常用入口。</div>
+                <div class="search-results" id="searchResults" aria-live="polite"></div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer" role="contentinfo">
+        <div class="container">
+            <div class="footer-bottom">
+                <div class="footer-copyright">
+                    <span>&copy; 2026 <span class="brand-word"><span class="brand-red">Fa</span><span class="brand-mid">ro</span><span class="brand-red">AI</span></span>. All rights reserved.</span>
+                    <a href="privacy.html">隐私政策</a>
+                    <a href="terms.html">服务条款</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        (function () {
+            const pages = [
+                { title: '首页：本地优先 AI 助手工作台', url: 'index.html#home', type: '首页', text: 'FaroAI OpenClaw Gateway 微信机器人 本地模型 Ollama 自动化工作流 运行控制台' },
+                { title: '动态工作流演示', url: 'index.html#workflow-lab', type: '演示', text: '每日简报 知识库问答 市场复盘 Gateway 工具调用 模型输出' },
+                { title: '功能特性', url: 'features.html', type: '功能', text: '多模态输入 自动化任务流 本地优先安全 团队协作 快速集成 持续分析' },
+                { title: '文档中心', url: 'docs.html', type: '文档', text: '安装升级 Gateway 微信机器人 模型配置 知识库 自动化任务流 故障排查' },
+                { title: 'OpenClaw 安装与升级', url: 'docs.html#install', type: '文档', text: 'OpenClaw 2026.5.12 npm latest 2026.5.7 Gateway restart doctor update' },
+                { title: '微信机器人配置', url: 'docs.html#wechat', type: '文档', text: 'openclaw-weixin 微信通道 消息发送 接收 二维码 配置 排障' },
+                { title: '模型配置', url: 'docs.html#models', type: '文档', text: 'Ollama qwen OpenAI 模型路由 fallback 本地优先 强模型兜底' },
+                { title: '知识库', url: 'docs.html#knowledge', type: '文档', text: '个人知识库 文档检索 文件引用 资料整理 问答' },
+                { title: '自动化任务流', url: 'docs.html#workflows', type: '文档', text: 'cron 定时任务 股票日报 每日简报 失败重试 超时报警' },
+                { title: '博客：技术文章、教程、行业动态', url: 'blog.html', type: '博客', text: 'OpenClaw OpenAI Responses API Realtime 技术文章 教程 行业动态' },
+                { title: '集成说明', url: 'api.html', type: '集成', text: 'OpenClaw Gateway OpenAI SDK 本地集成 API 说明 静态站 SaaS 边界' },
+                { title: '使用场景', url: 'usecases.html', type: '用例', text: '开发辅助 内容创作 数据分析 学习辅助 微信入口 工作流' },
+                { title: '联系方式', url: 'contact.html', type: '联系', text: 'faro@vip.163.com 微信二维码 联系站长 试用 部署支持' },
+                { title: '关于我', url: '个人概况_2026_v3.html', type: '关于', text: 'FARO 站长 项目发起人 本地 AI 微信机器人 自动化实践' }
+            ];
+
+            const form = document.getElementById('siteSearchForm');
+            const input = document.getElementById('siteSearchInput');
+            const results = document.getElementById('searchResults');
+            const summary = document.getElementById('searchSummary');
+
+            function render(query) {
+                const q = query.trim().toLowerCase();
+                const matched = q
+                    ? pages.filter(item => `${item.title} ${item.type} ${item.text}`.toLowerCase().includes(q))
+                    : pages.slice(0, 8);
+
+                summary.textContent = q ? `找到 ${matched.length} 个结果：${query}` : '常用入口';
+                results.innerHTML = matched.map(item => `
+                    <a class="search-result-card" href="${item.url}">
+                        <span>${item.type}</span>
+                        <strong>${item.title}</strong>
+                        <p>${item.text}</p>
+                    </a>
+                `).join('') || '<p class="search-empty">没有找到结果。可以尝试搜索“OpenClaw”“微信机器人”“知识库”“股票日报”。</p>';
+            }
+
+            form.addEventListener('submit', event => {
+                event.preventDefault();
+                const q = input.value.trim();
+                const url = new URL(window.location.href);
+                if (q) url.searchParams.set('q', q);
+                else url.searchParams.delete('q');
+                window.history.replaceState({}, '', url);
+                render(q);
+            });
+
+            input.addEventListener('input', () => render(input.value));
+            const initial = new URLSearchParams(window.location.search).get('q') || '';
+            input.value = initial;
+            render(initial);
+        })();
+    </script>
+</body>
+</html>

@@ -92,7 +92,7 @@
         },
         "potentialAction": {
             "@type": "SearchAction",
-            "target": "https://www.faroai.net/search?q={search_term_string}",
+            "target": "https://www.faroai.net/search.html?q={search_term_string}",
             "query-input": "required name=search_term_string"
         }
     }
@@ -221,7 +221,7 @@
                             </svg>
                             <span>查看配置文档</span>
                         </a>
-                        <button type="button" class="btn btn-secondary btn-large btn-play-video" id="workflowDemoButton" aria-label="查看 FaroAI 工作流演示">
+                        <button type="button" class="btn btn-secondary btn-large" id="workflowDemoButton" aria-label="查看 FaroAI 工作流演示">
                             <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="margin-right: 8px;">
                                 <path d="M8 5v14l11-7z"/>
                             </svg>
@@ -230,7 +230,7 @@
                     </div>
                     <div class="hero-proof" aria-label="核心能力">
                         <div class="proof-item">静态站已上线</div>
-                        <div class="proof-item">OpenClaw 2026.5.7</div>
+                        <div class="proof-item">OpenClaw latest 2026.5.12</div>
                         <div class="proof-item">登录仅状态提示</div>
                     </div>
                     <div class="hero-stats" aria-label="平台状态">
@@ -307,8 +307,8 @@
                 <div class="credibility-grid">
                     <div class="credibility-item">
                         <span class="credibility-label">内容更新时间</span>
-                        <strong>2026-05-13</strong>
-                        <p>首页、文档和博客已按当前部署状态重新整理。</p>
+                        <strong>2026-05-15</strong>
+                        <p>首页、文档和博客已按当前 OpenClaw registry 状态重新校对。</p>
                     </div>
                     <div class="credibility-item">
                         <span class="credibility-label">事实边界</span>
@@ -379,6 +379,43 @@
                             <strong id="metricStatus">适合日常信息简报</strong>
                         </div>
                     </aside>
+                </div>
+            </div>
+        </section>
+
+        <!-- 运行控制台 -->
+        <section class="mission-control" aria-label="FaroAI 运行控制台">
+            <div class="container">
+                <div class="mission-shell">
+                    <div class="mission-copy">
+                        <span class="section-label">Mission Control</span>
+                        <h2 class="section-title">让网站像一个正在运行的 AI 控制台</h2>
+                        <p class="section-description">
+                            本页展示的是静态站可真实承载的能力边界：状态说明、文档入口、工作流演示、站内搜索和联系方式都可直接使用；需要后端授权的能力会明确标注。
+                        </p>
+                    </div>
+                    <div class="mission-grid">
+                        <article class="mission-card is-green">
+                            <span>Gateway</span>
+                            <strong>本地网关可运行</strong>
+                            <p>文档按 OpenClaw Gateway、模型、微信通道分段验证。</p>
+                        </article>
+                        <article class="mission-card is-blue">
+                            <span>Weixin</span>
+                            <strong>微信入口已配置</strong>
+                            <p>联系页保留微信二维码，机器人部署按文档说明处理。</p>
+                        </article>
+                        <article class="mission-card is-red">
+                            <span>Models</span>
+                            <strong>本地优先，强模型可扩展</strong>
+                            <p>默认展示 Ollama 路径，复杂任务建议增加云端强模型兜底。</p>
+                        </article>
+                        <article class="mission-card is-amber">
+                            <span>Search</span>
+                            <strong>站内搜索已接入</strong>
+                            <p>可搜索文档、博客、功能、用例、集成和联系方式。</p>
+                        </article>
+                    </div>
                 </div>
             </div>
         </section>
@@ -594,13 +631,13 @@
                     <article class="blog-preview-card">
                         <div class="blog-preview-meta-top">
                             <span class="blog-preview-tag">产品更新</span>
-                            <time class="blog-preview-date">2026-05-10</time>
+                            <time class="blog-preview-date">2026-05-15</time>
                         </div>
                         <h3 class="blog-preview-title">
-                            <a href="blog.html#article-openclaw-2026-5-7">OpenClaw 2026.5.7 实测：升级、Gateway 与微信机器人链路</a>
+                            <a href="blog.html#article-openclaw-2026-5-7">OpenClaw 2026.5.12 可用：本机 2026.5.7 到最新版的升级判断</a>
                         </h3>
                         <p class="blog-preview-excerpt">
-                            记录本机升级到 OpenClaw 2026.5.7 后的验证顺序：先确认 Gateway，再验证模型 provider，最后检查微信机器人通道。
+                            记录本机 OpenClaw 2026.5.7 的网关状态，并标注 registry latest 2026.5.12，给出升级前后的验证顺序。
                         </p>
                         <a href="blog.html#article-openclaw-2026-5-7" class="blog-preview-readmore">阅读全文 →</a>
                     </article>
@@ -921,6 +958,7 @@
                     <h4>资源</h4>
                     <ul>
                         <li><a href="docs.html">文档</a></li>
+                        <li><a href="search.html">站内搜索</a></li>
                         <li><a href="api.html">API 参考</a></li>
                         <li><a href="community.html">社区</a></li>
                         <li><a href="contact.html">帮助支持</a></li>
