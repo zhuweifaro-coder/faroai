@@ -2558,15 +2558,16 @@ body.intro-active {
     position: fixed;
     inset: 0;
     z-index: 20000;
-    display: grid;
-    place-items: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     padding: 24px;
     color: #eaf2ff;
     background:
-        radial-gradient(circle at 14% 16%, rgba(37, 99, 235, 0.42), transparent 34%),
-        radial-gradient(circle at 82% 72%, rgba(15, 118, 110, 0.36), transparent 32%),
-        radial-gradient(circle at 58% 18%, rgba(248, 113, 113, 0.16), transparent 26%),
-        linear-gradient(135deg, #07111f 0%, #0b1527 48%, #061b1c 100%);
+        radial-gradient(circle at 17% 17%, rgba(37, 99, 235, 0.5), transparent 31%),
+        radial-gradient(circle at 79% 70%, rgba(20, 184, 166, 0.42), transparent 34%),
+        radial-gradient(circle at 58% 50%, rgba(248, 113, 113, 0.17), transparent 26%),
+        linear-gradient(128deg, #030712 0%, #07111f 45%, #041f22 100%);
     opacity: 0;
     pointer-events: none;
     transition: opacity 0.35s ease;
@@ -2595,8 +2596,8 @@ body.intro-active {
     background-image:
         linear-gradient(rgba(125, 211, 252, 0.09) 1px, transparent 1px),
         linear-gradient(90deg, rgba(125, 211, 252, 0.09) 1px, transparent 1px);
-    background-size: 44px 44px;
-    transform: perspective(800px) rotateX(58deg) translateY(80px);
+    background-size: 48px 48px;
+    transform: perspective(900px) rotateX(62deg) translateY(96px) scale(1.08);
     animation: techGridDrift 5s linear infinite;
 }
 
@@ -2609,19 +2610,32 @@ body.intro-active {
     animation: techScan 3.6s ease-in-out infinite;
 }
 
+.tech-intro-aurora {
+    position: absolute;
+    inset: -18%;
+    background:
+        conic-gradient(from 120deg at 50% 50%, transparent 0deg, rgba(96, 165, 250, 0.18) 62deg, transparent 118deg, rgba(45, 212, 191, 0.22) 174deg, transparent 238deg, rgba(248, 113, 113, 0.18) 302deg, transparent 360deg);
+    filter: blur(42px);
+    opacity: 0.9;
+    animation: techAurora 7s linear infinite;
+}
+
 .tech-intro-panel {
     position: relative;
-    width: min(690px, 100%);
+    width: min(900px, 100%);
+    min-height: min(680px, calc(100vh - 48px));
+    display: grid;
+    place-items: center;
     overflow: hidden;
-    padding: clamp(1.6rem, 4vw, 2.7rem);
-    border: 1px solid rgba(147, 197, 253, 0.28);
-    border-radius: 18px;
+    padding: clamp(1.25rem, 4vw, 3.2rem);
+    border: 0;
+    border-radius: 50%;
     background:
-        linear-gradient(145deg, rgba(15, 23, 42, 0.92), rgba(15, 118, 110, 0.34)),
-        rgba(8, 13, 25, 0.92);
-    box-shadow: 0 32px 90px rgba(0, 0, 0, 0.34), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+        radial-gradient(circle at 50% 47%, rgba(15, 23, 42, 0.82) 0 15%, rgba(15, 118, 110, 0.14) 16% 33%, transparent 34%),
+        radial-gradient(circle, rgba(147, 197, 253, 0.12), transparent 62%);
+    box-shadow: 0 0 110px rgba(37, 99, 235, 0.18);
     text-align: center;
-    transform: translateY(14px) scale(0.98);
+    transform: translateY(18px) scale(0.94);
     transition: transform 0.45s ease;
 }
 
@@ -2632,40 +2646,107 @@ body.intro-active {
 .tech-intro-panel::before {
     content: '';
     position: absolute;
-    inset: 0;
-    background: linear-gradient(105deg, transparent 0%, rgba(255, 255, 255, 0.16) 46%, transparent 64%);
-    transform: translateX(-120%);
-    animation: techPanelGlint 3.4s ease-in-out infinite;
+    inset: 8%;
+    border-radius: 50%;
+    background:
+        radial-gradient(circle, transparent 58%, rgba(94, 234, 212, 0.32) 59%, transparent 60%),
+        conic-gradient(from 0deg, transparent 0deg 28deg, rgba(96, 165, 250, 0.78) 34deg 42deg, transparent 50deg 138deg, rgba(248, 113, 113, 0.76) 146deg 152deg, transparent 160deg 260deg, rgba(45, 212, 191, 0.72) 268deg 276deg, transparent 286deg 360deg);
+    -webkit-mask: radial-gradient(circle, transparent 0 56%, #000 57% 61%, transparent 62%);
+    mask: radial-gradient(circle, transparent 0 56%, #000 57% 61%, transparent 62%);
+    animation: techSpin 8s linear infinite;
 }
 
 .tech-intro-panel::after {
     content: '';
     position: absolute;
-    inset: 18px;
-    border: 1px solid rgba(94, 234, 212, 0.16);
-    border-radius: 14px;
+    inset: 18%;
+    border-radius: 50%;
+    border: 1px solid rgba(147, 197, 253, 0.22);
+    box-shadow:
+        0 0 0 1px rgba(94, 234, 212, 0.09),
+        inset 0 0 50px rgba(45, 212, 191, 0.08);
     pointer-events: none;
 }
 
+.tech-intro-orbit {
+    position: absolute;
+    inset: 6%;
+    border-radius: 50%;
+    border: 1px solid rgba(191, 219, 254, 0.2);
+    transform: rotateX(66deg) rotateZ(-12deg);
+    pointer-events: none;
+}
+
+.tech-intro-orbit::before,
+.tech-intro-orbit::after {
+    content: '';
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #5eead4;
+    box-shadow: 0 0 22px rgba(94, 234, 212, 0.9);
+}
+
+.tech-intro-orbit::before {
+    top: 8%;
+    left: 24%;
+}
+
+.tech-intro-orbit::after {
+    right: 16%;
+    bottom: 20%;
+    background: #f87171;
+    box-shadow: 0 0 22px rgba(248, 113, 113, 0.82);
+}
+
+.tech-intro-orbit-b {
+    inset: 18%;
+    transform: rotateX(58deg) rotateZ(28deg);
+    border-style: dashed;
+    animation: techOrbitTilt 5.8s ease-in-out infinite;
+}
+
+.tech-intro-beam {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: min(1080px, 130vw);
+    height: 70px;
+    transform: translate(-50%, -50%) rotate(-13deg);
+    background: linear-gradient(90deg, transparent, rgba(96, 165, 250, 0.2), rgba(94, 234, 212, 0.24), transparent);
+    filter: blur(2px);
+    opacity: 0.85;
+    animation: techBeam 2.8s ease-in-out infinite;
+}
+
 .tech-intro-mark {
-    position: relative;
+    position: absolute;
+    top: 14%;
+    left: 50%;
+    transform: translateX(-50%);
     z-index: 1;
-    font-size: clamp(2.25rem, 8vw, 4.75rem);
+    font-size: clamp(2.5rem, 8vw, 6rem);
     font-weight: 900;
     line-height: 0.95;
     letter-spacing: 0;
+    text-shadow: 0 0 36px rgba(96, 165, 250, 0.22);
 }
 
 .tech-intro-core {
     position: relative;
     z-index: 1;
-    width: 132px;
-    height: 132px;
-    margin: 1.5rem auto 1.1rem;
+    width: clamp(146px, 24vw, 220px);
+    height: clamp(146px, 24vw, 220px);
+    margin: 0 auto;
     border: 1px solid rgba(147, 197, 253, 0.42);
     border-radius: 50%;
-    background: radial-gradient(circle, rgba(94, 234, 212, 0.28) 0 18%, rgba(37, 99, 235, 0.12) 19% 44%, transparent 45%);
-    box-shadow: 0 0 40px rgba(45, 212, 191, 0.18);
+    background:
+        radial-gradient(circle, rgba(255, 255, 255, 0.95) 0 5%, rgba(94, 234, 212, 0.5) 6% 16%, rgba(37, 99, 235, 0.24) 17% 38%, transparent 39%),
+        conic-gradient(from 180deg, rgba(37, 99, 235, 0.18), transparent, rgba(20, 184, 166, 0.2), transparent);
+    box-shadow:
+        0 0 56px rgba(45, 212, 191, 0.32),
+        inset 0 0 34px rgba(96, 165, 250, 0.22);
     animation: techPulse 2.4s ease-in-out infinite;
 }
 
@@ -2700,6 +2781,15 @@ body.intro-active {
 .tech-intro-core span:nth-child(2) { right: 20px; bottom: 34px; background: #93c5fd; }
 .tech-intro-core span:nth-child(3) { left: 24px; bottom: 32px; background: #f87171; }
 
+.tech-intro-copy {
+    position: absolute;
+    z-index: 2;
+    left: 50%;
+    bottom: 21%;
+    width: min(680px, calc(100% - 32px));
+    transform: translateX(-50%);
+}
+
 .tech-intro-kicker {
     position: relative;
     z-index: 1;
@@ -2716,18 +2806,23 @@ body.intro-active {
     z-index: 1;
     margin: 0.35rem 0 1rem;
     color: #fff;
-    font-size: clamp(1.35rem, 4vw, 2rem);
+    font-size: clamp(1.55rem, 4.8vw, 2.55rem);
     line-height: 1.25;
+    text-shadow: 0 0 34px rgba(147, 197, 253, 0.28);
 }
 
 .tech-intro-status {
-    position: relative;
+    position: absolute;
     z-index: 1;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     gap: 0.5rem;
-    margin: 0 0 1.25rem;
+    left: 50%;
+    bottom: 11%;
+    width: min(720px, calc(100% - 32px));
+    margin: 0;
+    transform: translateX(-50%);
 }
 
 .tech-intro-status span {
@@ -2754,27 +2849,34 @@ body.intro-active {
 }
 
 .tech-intro-stream {
-    position: relative;
+    position: absolute;
     z-index: 1;
     display: grid;
     gap: 0.55rem;
-    max-width: 470px;
-    margin: 0 auto 1.35rem;
+    width: min(360px, 34vw);
+    max-width: 360px;
+    margin: 0;
     text-align: left;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%) rotate(-5deg);
 }
 
 .tech-intro-stream span {
     display: block;
-    padding: 0.7rem 0.85rem;
+    padding: 0.64rem 0.85rem;
     border: 1px solid rgba(147, 197, 253, 0.18);
-    border-radius: 10px;
-    background: rgba(15, 23, 42, 0.54);
+    border-radius: 999px;
+    background: linear-gradient(90deg, rgba(15, 23, 42, 0.74), rgba(15, 118, 110, 0.2));
     color: #c7d2fe;
     font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-    font-size: 0.82rem;
+    font-size: 0.76rem;
     opacity: 0;
     transform: translateX(-12px);
     animation: techLineIn 0.5s ease forwards;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .tech-intro-stream span:nth-child(2) { animation-delay: 0.34s; }
@@ -2782,10 +2884,14 @@ body.intro-active {
 .tech-intro-stream span:nth-child(4) { animation-delay: 1.02s; }
 
 .tech-intro-progress {
-    position: relative;
+    position: absolute;
     z-index: 1;
     overflow: hidden;
-    height: 7px;
+    left: 50%;
+    bottom: 7%;
+    width: min(440px, calc(100% - 72px));
+    height: 4px;
+    transform: translateX(-50%);
     border-radius: 999px;
     background: rgba(148, 163, 184, 0.22);
 }
@@ -2800,9 +2906,10 @@ body.intro-active {
 }
 
 .tech-intro-skip {
-    position: relative;
+    position: absolute;
+    right: max(24px, 4vw);
+    top: max(20px, 4vh);
     z-index: 1;
-    margin-top: 1rem;
     border: 1px solid rgba(226, 232, 240, 0.22);
     border-radius: 999px;
     padding: 0.55rem 1.1rem;
@@ -2823,7 +2930,7 @@ body.intro-active {
 
 @keyframes techGridDrift {
     from { background-position: 0 0, 0 0; }
-    to { background-position: 44px 44px, 44px 44px; }
+    to { background-position: 48px 48px, 48px 48px; }
 }
 
 @keyframes techScan {
@@ -2834,6 +2941,10 @@ body.intro-active {
 @keyframes techPanelGlint {
     0%, 18% { transform: translateX(-120%); }
     58%, 100% { transform: translateX(120%); }
+}
+
+@keyframes techAurora {
+    to { transform: rotate(360deg); }
 }
 
 @keyframes techPulse {
@@ -2861,23 +2972,46 @@ body.intro-active {
     to { width: 100%; }
 }
 
+@keyframes techOrbitTilt {
+    0%, 100% { transform: rotateX(58deg) rotateZ(28deg) scale(1); }
+    50% { transform: rotateX(62deg) rotateZ(42deg) scale(1.04); }
+}
+
+@keyframes techBeam {
+    0%, 100% { opacity: 0.48; transform: translate(-50%, -50%) rotate(-13deg) scaleX(0.82); }
+    50% { opacity: 0.98; transform: translate(-50%, -50%) rotate(-13deg) scaleX(1); }
+}
+
 @media (max-width: 640px) {
     .tech-intro {
         padding: 16px;
     }
 
-    .tech-intro-core {
-        width: 106px;
-        height: 106px;
+    .tech-intro-panel {
+        width: min(560px, 100%);
+        min-height: min(620px, calc(100vh - 32px));
     }
 
-    .tech-intro-stream span {
-        font-size: 0.74rem;
+    .tech-intro-mark {
+        top: 12%;
+    }
+
+    .tech-intro-copy {
+        bottom: 24%;
+    }
+
+    .tech-intro-status {
+        bottom: 13%;
+    }
+
+    .tech-intro-stream {
+        display: none;
     }
 }
 
 @media (prefers-reduced-motion: reduce) {
     .tech-intro,
+    .tech-intro-aurora,
     .tech-intro-panel,
     .tech-intro-grid::before,
     .tech-intro-grid::after,
