@@ -3255,12 +3255,12 @@ body.intro-active {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: clamp(118px, 14vw, 144px);
-    height: clamp(78px, 9.5vw, 94px);
+    width: clamp(154px, 18vw, 184px);
+    height: clamp(54px, 6.4vw, 64px);
     margin-bottom: -0.04rem;
     padding: 0;
     border: 1px solid rgba(147, 197, 253, 0.2);
-    border-radius: 30px;
+    border-radius: 24px;
     background:
         linear-gradient(180deg, rgba(15, 23, 42, 0.54), rgba(15, 23, 42, 0.22)),
         radial-gradient(circle at 50% 50%, rgba(94, 234, 212, 0.14), transparent 62%);
@@ -3271,7 +3271,7 @@ body.intro-active {
         0 0 34px rgba(94, 234, 212, 0.12);
     backdrop-filter: blur(12px);
     opacity: 0.94;
-    transform: rotate(-8deg);
+    transform: rotate(-5deg);
     animation: techBadgeFloat 3.8s ease-in-out infinite;
 }
 
@@ -3279,17 +3279,31 @@ body.intro-active {
     content: '';
     position: absolute;
     inset: -9px;
-    border-radius: 36px;
+    border-radius: 30px;
     border: 1px solid rgba(94, 234, 212, 0.12);
     box-shadow: 0 0 0 1px rgba(96, 165, 250, 0.06);
     pointer-events: none;
 }
 
-.tech-intro-fa {
-    width: clamp(96px, 11.5vw, 116px);
-    height: auto;
-    display: block;
+.tech-intro-logo {
+    position: relative;
+    z-index: 1;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.48rem;
+    font-size: clamp(1.06rem, 2vw, 1.28rem);
+    font-weight: 850;
+    line-height: 1;
     filter: drop-shadow(0 0 18px rgba(94, 234, 212, 0.16));
+}
+
+.tech-intro-logo .logo-icon {
+    width: clamp(28px, 3.3vw, 34px);
+    height: clamp(28px, 3.3vw, 34px);
+}
+
+.tech-intro-logo .logo-text {
+    color: rgba(248, 250, 252, 0.95);
 }
 
 .tech-intro-core {
@@ -3511,8 +3525,8 @@ body.intro-active {
 }
 
 @keyframes techBadgeFloat {
-    0%, 100% { transform: translateY(0) rotate(-8deg); }
-    50% { transform: translateY(-7px) rotate(-3deg); }
+    0%, 100% { transform: translateY(0) rotate(-5deg); }
+    50% { transform: translateY(-7px) rotate(-1deg); }
 }
 
 @keyframes techScan {
@@ -3586,14 +3600,19 @@ body.intro-active {
     }
 
     .tech-intro-mark {
-        width: 112px;
-        height: 74px;
-        border-radius: 24px;
+        width: 146px;
+        height: 52px;
+        border-radius: 20px;
     }
 
-    .tech-intro-fa {
-        width: 92px;
-        height: auto;
+    .tech-intro-logo {
+        gap: 0.42rem;
+        font-size: 1.02rem;
+    }
+
+    .tech-intro-logo .logo-icon {
+        width: 27px;
+        height: 27px;
     }
 
     .tech-intro-core {
