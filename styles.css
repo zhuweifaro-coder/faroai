@@ -2622,18 +2622,21 @@ body.intro-active {
 
 .tech-intro-panel {
     position: relative;
-    width: min(900px, 100%);
-    min-height: min(680px, calc(100vh - 48px));
+    width: min(760px, 100%);
+    min-height: min(610px, calc(100vh - 48px));
     display: grid;
-    place-items: center;
-    overflow: hidden;
-    padding: clamp(1.25rem, 4vw, 3.2rem);
+    grid-template-rows: auto auto auto auto auto;
+    align-items: center;
+    justify-items: center;
+    gap: clamp(0.75rem, 1.8vw, 1.25rem);
+    overflow: visible;
+    padding: clamp(1.45rem, 4vw, 3.1rem);
     border: 0;
-    border-radius: 50%;
+    border-radius: 999px;
     background:
-        radial-gradient(circle at 50% 47%, rgba(15, 23, 42, 0.82) 0 15%, rgba(15, 118, 110, 0.14) 16% 33%, transparent 34%),
-        radial-gradient(circle, rgba(147, 197, 253, 0.12), transparent 62%);
-    box-shadow: 0 0 110px rgba(37, 99, 235, 0.18);
+        radial-gradient(circle at 50% 42%, rgba(15, 23, 42, 0.68) 0 26%, rgba(15, 118, 110, 0.12) 27% 48%, transparent 66%),
+        radial-gradient(circle, rgba(147, 197, 253, 0.11), transparent 64%);
+    box-shadow: 0 0 92px rgba(37, 99, 235, 0.15);
     text-align: center;
     transform: translateY(18px) scale(0.94);
     transition: transform 0.45s ease;
@@ -2646,25 +2649,25 @@ body.intro-active {
 .tech-intro-panel::before {
     content: '';
     position: absolute;
-    inset: 8%;
+    inset: 6%;
     border-radius: 50%;
     background:
-        radial-gradient(circle, transparent 58%, rgba(94, 234, 212, 0.32) 59%, transparent 60%),
-        conic-gradient(from 0deg, transparent 0deg 28deg, rgba(96, 165, 250, 0.78) 34deg 42deg, transparent 50deg 138deg, rgba(248, 113, 113, 0.76) 146deg 152deg, transparent 160deg 260deg, rgba(45, 212, 191, 0.72) 268deg 276deg, transparent 286deg 360deg);
-    -webkit-mask: radial-gradient(circle, transparent 0 56%, #000 57% 61%, transparent 62%);
-    mask: radial-gradient(circle, transparent 0 56%, #000 57% 61%, transparent 62%);
+        radial-gradient(circle, transparent 61%, rgba(94, 234, 212, 0.28) 62%, transparent 63%),
+        conic-gradient(from 0deg, transparent 0deg 42deg, rgba(96, 165, 250, 0.62) 48deg 55deg, transparent 64deg 156deg, rgba(248, 113, 113, 0.48) 164deg 170deg, transparent 179deg 274deg, rgba(45, 212, 191, 0.62) 282deg 290deg, transparent 300deg 360deg);
+    -webkit-mask: radial-gradient(circle, transparent 0 58%, #000 59% 62%, transparent 63%);
+    mask: radial-gradient(circle, transparent 0 58%, #000 59% 62%, transparent 63%);
     animation: techSpin 8s linear infinite;
 }
 
 .tech-intro-panel::after {
     content: '';
     position: absolute;
-    inset: 18%;
+    inset: 20%;
     border-radius: 50%;
-    border: 1px solid rgba(147, 197, 253, 0.22);
+    border: 1px solid rgba(147, 197, 253, 0.14);
     box-shadow:
-        0 0 0 1px rgba(94, 234, 212, 0.09),
-        inset 0 0 50px rgba(45, 212, 191, 0.08);
+        0 0 0 1px rgba(94, 234, 212, 0.06),
+        inset 0 0 42px rgba(45, 212, 191, 0.06);
     pointer-events: none;
 }
 
@@ -2712,33 +2715,38 @@ body.intro-active {
     left: 50%;
     top: 50%;
     width: min(1080px, 130vw);
-    height: 70px;
+    height: 54px;
     transform: translate(-50%, -50%) rotate(-13deg);
     background: linear-gradient(90deg, transparent, rgba(96, 165, 250, 0.2), rgba(94, 234, 212, 0.24), transparent);
     filter: blur(2px);
-    opacity: 0.85;
+    opacity: 0.62;
     animation: techBeam 2.8s ease-in-out infinite;
 }
 
 .tech-intro-mark {
-    position: absolute;
-    top: 15%;
-    left: 50%;
-    transform: translateX(-50%);
+    position: relative;
     z-index: 1;
-    font-size: clamp(1.9rem, 4.8vw, 3.65rem);
+    align-self: end;
+    display: inline-flex;
+    align-items: baseline;
+    justify-content: center;
+    padding: 0.22rem 0.8rem 0.28rem;
+    border: 1px solid rgba(147, 197, 253, 0.16);
+    border-radius: 999px;
+    background: rgba(15, 23, 42, 0.24);
+    font-size: clamp(1.55rem, 3.8vw, 2.7rem);
     font-weight: 850;
     line-height: 0.95;
     letter-spacing: 0;
-    opacity: 0.92;
-    text-shadow: 0 0 26px rgba(96, 165, 250, 0.18);
+    opacity: 0.9;
+    text-shadow: 0 0 22px rgba(96, 165, 250, 0.16);
 }
 
 .tech-intro-core {
     position: relative;
     z-index: 1;
-    width: clamp(178px, 26vw, 258px);
-    height: clamp(178px, 26vw, 258px);
+    width: clamp(170px, 22vw, 230px);
+    height: clamp(170px, 22vw, 230px);
     margin: 0 auto;
     border: 1px solid rgba(147, 197, 253, 0.2);
     border-radius: 50%;
@@ -2747,8 +2755,8 @@ body.intro-active {
         radial-gradient(circle at 42% 36%, rgba(125, 211, 252, 0.38) 0 18%, rgba(37, 99, 235, 0.38) 34%, rgba(8, 47, 73, 0.78) 63%, rgba(2, 6, 23, 0.96) 100%),
         linear-gradient(135deg, rgba(94, 234, 212, 0.22), rgba(37, 99, 235, 0.3) 48%, rgba(248, 113, 113, 0.12));
     box-shadow:
-        0 24px 80px rgba(0, 0, 0, 0.34),
-        0 0 70px rgba(45, 212, 191, 0.3),
+        0 22px 70px rgba(0, 0, 0, 0.34),
+        0 0 62px rgba(45, 212, 191, 0.26),
         inset -24px -30px 46px rgba(2, 6, 23, 0.78),
         inset 18px 16px 32px rgba(191, 219, 254, 0.18);
     transform-style: preserve-3d;
@@ -2800,12 +2808,10 @@ body.intro-active {
 .tech-intro-core span:nth-child(3) { left: 22%; bottom: 24%; background: #f87171; }
 
 .tech-intro-copy {
-    position: absolute;
+    position: relative;
     z-index: 2;
-    left: 50%;
-    bottom: 19%;
-    width: min(620px, calc(100% - 32px));
-    transform: translateX(-50%);
+    width: min(540px, 100%);
+    transform: none;
 }
 
 .tech-intro-kicker {
@@ -2814,46 +2820,45 @@ body.intro-active {
     margin: 0;
     color: rgba(147, 197, 253, 0.78);
     font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-    font-size: 0.74rem;
+    font-size: 0.7rem;
     font-weight: 700;
+    letter-spacing: 0.08em;
     text-transform: uppercase;
 }
 
 .tech-intro h2 {
     position: relative;
     z-index: 1;
-    margin: 0.48rem 0 0.9rem;
-    color: rgba(226, 232, 240, 0.9);
-    font-size: clamp(1.08rem, 2.9vw, 1.65rem);
-    font-weight: 750;
+    margin: 0.42rem 0 0;
+    color: rgba(226, 232, 240, 0.86);
+    font-size: clamp(1rem, 2.35vw, 1.38rem);
+    font-weight: 720;
     line-height: 1.34;
-    text-shadow: 0 0 24px rgba(147, 197, 253, 0.2);
+    text-shadow: 0 0 20px rgba(147, 197, 253, 0.18);
 }
 
 .tech-intro-status {
-    position: absolute;
+    position: relative;
     z-index: 1;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     gap: 0.5rem;
-    left: 50%;
-    bottom: 11%;
-    width: min(720px, calc(100% - 32px));
+    width: min(620px, 100%);
     margin: 0;
-    transform: translateX(-50%);
+    transform: none;
 }
 
 .tech-intro-status span {
     display: inline-flex;
     align-items: center;
     gap: 0.38rem;
-    padding: 0.36rem 0.68rem;
+    padding: 0.32rem 0.62rem;
     border: 1px solid rgba(147, 197, 253, 0.18);
     border-radius: 999px;
-    background: rgba(15, 23, 42, 0.42);
-    color: #bfdbfe;
-    font-size: 0.74rem;
+    background: rgba(15, 23, 42, 0.34);
+    color: rgba(191, 219, 254, 0.9);
+    font-size: 0.7rem;
     font-weight: 800;
 }
 
@@ -2872,24 +2877,25 @@ body.intro-active {
     z-index: 1;
     display: grid;
     gap: 0.55rem;
-    width: min(360px, 34vw);
-    max-width: 360px;
+    width: min(330px, 30vw);
+    max-width: 330px;
     margin: 0;
     text-align: left;
-    right: 0;
-    top: 50%;
-    transform: translateY(-50%) rotate(-5deg);
+    right: -86px;
+    top: 47%;
+    opacity: 0.78;
+    transform: translateY(-50%) rotate(-4deg);
 }
 
 .tech-intro-stream span {
     display: block;
-    padding: 0.64rem 0.85rem;
-    border: 1px solid rgba(147, 197, 253, 0.18);
+    padding: 0.58rem 0.78rem;
+    border: 1px solid rgba(147, 197, 253, 0.14);
     border-radius: 999px;
     background: linear-gradient(90deg, rgba(15, 23, 42, 0.74), rgba(15, 118, 110, 0.2));
-    color: #c7d2fe;
+    color: rgba(199, 210, 254, 0.86);
     font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-    font-size: 0.76rem;
+    font-size: 0.72rem;
     opacity: 0;
     transform: translateX(-12px);
     animation: techLineIn 0.5s ease forwards;
@@ -2903,14 +2909,12 @@ body.intro-active {
 .tech-intro-stream span:nth-child(4) { animation-delay: 1.02s; }
 
 .tech-intro-progress {
-    position: absolute;
+    position: relative;
     z-index: 1;
     overflow: hidden;
-    left: 50%;
-    bottom: 7%;
-    width: min(440px, calc(100% - 72px));
+    width: min(390px, 72%);
     height: 4px;
-    transform: translateX(-50%);
+    transform: none;
     border-radius: 999px;
     background: rgba(148, 163, 184, 0.22);
 }
@@ -3016,25 +3020,36 @@ body.intro-active {
     }
 
     .tech-intro-panel {
-        width: min(560px, 100%);
-        min-height: min(620px, calc(100vh - 32px));
+        width: min(520px, 100%);
+        min-height: min(560px, calc(100vh - 32px));
+        gap: 0.78rem;
+        padding: 1.45rem 1rem;
     }
 
     .tech-intro-mark {
-        top: 14%;
-        font-size: clamp(1.7rem, 10vw, 2.65rem);
+        font-size: clamp(1.45rem, 8.5vw, 2.25rem);
+    }
+
+    .tech-intro-core {
+        width: clamp(150px, 42vw, 188px);
+        height: clamp(150px, 42vw, 188px);
     }
 
     .tech-intro-copy {
-        bottom: 23%;
+        width: min(420px, 100%);
     }
 
     .tech-intro h2 {
-        font-size: clamp(1rem, 5vw, 1.28rem);
+        font-size: clamp(0.98rem, 4.4vw, 1.2rem);
     }
 
     .tech-intro-status {
-        bottom: 13%;
+        gap: 0.38rem;
+    }
+
+    .tech-intro-status span {
+        padding: 0.28rem 0.52rem;
+        font-size: 0.66rem;
     }
 
     .tech-intro-stream {
