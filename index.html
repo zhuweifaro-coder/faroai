@@ -4,6 +4,7 @@
     <!-- SEO & Meta 优化 -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
     <meta name="description" content="FaroAI 是面向个人与小团队的本地优先 AI 助手工作台，连接微信、Ollama、知识库与自动化任务，让你的 AI 真正接入日常工作。">
     <meta name="keywords" content="FaroAI, OpenClaw, AI 助手, 微信机器人, Ollama, 自动化工作流, 本地 AI, 多模态 AI">
     <meta name="author" content="FaroAI Team">
@@ -14,14 +15,14 @@
     <meta property="og:url" content="https://www.faroai.net/">
     <meta property="og:title" content="FaroAI - 本地优先的 AI 助手工作台">
     <meta property="og:description" content="连接微信、Ollama、知识库与自动化任务，让 AI 能听、能看、能执行。">
-    <meta property="og:image" content="https://www.faroai.net/assets/og-image.jpg">
+    <meta property="og:image" content="https://www.faroai.net/assets/og-image.svg">
     
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://www.faroai.net/">
     <meta property="twitter:title" content="FaroAI - 本地优先的 AI 助手工作台">
     <meta property="twitter:description" content="连接微信、Ollama、知识库与自动化任务，让 AI 能听、能看、能执行。">
-    <meta property="twitter:image" content="https://www.faroai.net/assets/twitter-card.jpg">
+    <meta property="twitter:image" content="https://www.faroai.net/assets/og-image.svg">
     <link rel="canonical" href="https://www.faroai.net/">
     
     <!-- 主题色 -->
@@ -87,7 +88,7 @@
             "name": "FaroAI Team",
             "logo": {
                 "@type": "ImageObject",
-                "url": "https://www.faroai.net/assets/logo.png"
+                "url": "https://www.faroai.net/assets/logo.svg"
             }
         },
         "potentialAction": {
@@ -208,8 +209,8 @@
             <div class="container">
                 <div class="hero-content">
                     <div class="hero-badge">
-                        <span class="badge-icon">2026.5</span>
-                        <span>OpenClaw Gateway + 微信机器人 + 本地模型实践站</span>
+                        <span class="badge-icon">2026.5.12</span>
+                        <span>Gateway + 微信 + 本地模型实测通过</span>
                     </div>
                     <h1 class="hero-title">
                         <span class="gradient-text"><span class="brand-word"><span class="brand-red">F</span><span class="brand-grad brand-grad-a">a</span><span class="brand-grad brand-grad-r">r</span><span class="brand-grad brand-grad-o">o</span><span class="brand-red">A</span><span class="brand-grad brand-grad-i">I</span></span></span>
@@ -234,8 +235,9 @@
                     </div>
                     <div class="hero-proof" aria-label="核心能力">
                         <div class="proof-item">静态站已上线</div>
-                        <div class="proof-item">OpenClaw latest 2026.5.12</div>
-                        <div class="proof-item">登录仅状态提示</div>
+                        <div class="proof-item">OpenClaw 2026.5.12</div>
+                        <div class="proof-item">微信链路已验证</div>
+                        <div class="proof-item">本地模型可调用</div>
                     </div>
                     <div class="hero-stats" aria-label="平台状态">
                         <div class="stat">
@@ -311,8 +313,8 @@
                 <div class="credibility-grid">
                     <div class="credibility-item">
                         <span class="credibility-label">内容更新时间</span>
-                        <strong>2026-05-15</strong>
-                        <p>首页、文档和博客已按当前 OpenClaw registry 状态重新校对。</p>
+                        <strong>2026-05-17</strong>
+                        <p>OpenClaw 已升级到 2026.5.12，并完成 Gateway、微信通道和本地模型链路验证。</p>
                     </div>
                     <div class="credibility-item">
                         <span class="credibility-label">事实边界</span>
@@ -322,7 +324,61 @@
                     <div class="credibility-item">
                         <span class="credibility-label">验证方式</span>
                         <strong>先网关，再通道，再模型</strong>
-                        <p>OpenClaw Gateway、微信插件和模型调用按顺序逐段排查。</p>
+                        <p>本次已验证：Gateway 健康、openclaw-weixin running、本地 Ollama 模型回复并成功投递微信。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="ops-radar" aria-label="FaroAI 运行态势">
+            <div class="container">
+                <div class="ops-shell">
+                    <div class="ops-copy">
+                        <span class="section-label">Live Stack</span>
+                        <h2 class="section-title">把“能不能用”直接放在首页</h2>
+                        <p class="section-description">
+                            站点不只展示概念，也保留真实运维口径：版本、网关、微信通道、本地模型和验证结果分开展示，后续接入后端后可替换为实时接口数据。
+                        </p>
+                    </div>
+                    <div class="ops-console" role="group" aria-label="当前实测状态">
+                        <div class="ops-console-header">
+                            <span class="screen-dot red"></span>
+                            <span class="screen-dot yellow"></span>
+                            <span class="screen-dot green"></span>
+                            <strong>faroai.runtime.check</strong>
+                            <span class="ops-sync" id="opsSync">SYNC 00:00</span>
+                        </div>
+                        <div class="ops-status-grid">
+                            <article class="ops-status-card is-ok">
+                                <span class="ops-status-dot" aria-hidden="true"></span>
+                                <small>Gateway</small>
+                                <strong>OpenClaw 2026.5.12</strong>
+                                <p>127.0.0.1:18789 health live</p>
+                            </article>
+                            <article class="ops-status-card is-ok">
+                                <span class="ops-status-dot" aria-hidden="true"></span>
+                                <small>Weixin</small>
+                                <strong>openclaw-weixin 2.4.3</strong>
+                                <p>enabled / configured / running</p>
+                            </article>
+                            <article class="ops-status-card is-ok">
+                                <span class="ops-status-dot" aria-hidden="true"></span>
+                                <small>Model</small>
+                                <strong>qwen3.6 27B MLX</strong>
+                                <p>Ollama local provider verified</p>
+                            </article>
+                            <article class="ops-status-card is-watch">
+                                <span class="ops-status-dot" aria-hidden="true"></span>
+                                <small>Boundary</small>
+                                <strong>OAuth / API 待接入</strong>
+                                <p>按钮仅提示状态，不伪装登录</p>
+                            </article>
+                        </div>
+                        <div class="ops-terminal" aria-label="验证记录">
+                            <code>curl /health → {"ok":true,"status":"live"}</code>
+                            <code>agent → ollama/qwen3.6:27b-mlx-bf16-fast → 本地模型调用正常</code>
+                            <code>weixin delivery → sent → 微信机器人链路测试成功</code>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -401,18 +457,18 @@
                     <div class="mission-grid">
                         <article class="mission-card is-green">
                             <span>Gateway</span>
-                            <strong>本地网关可运行</strong>
-                            <p>文档按 OpenClaw Gateway、模型、微信通道分段验证。</p>
+                            <strong>OpenClaw 2026.5.12 已运行</strong>
+                            <p>Gateway 健康探针返回 live，版本与 CLI 已一致。</p>
                         </article>
                         <article class="mission-card is-blue">
                             <span>Weixin</span>
-                            <strong>微信入口已配置</strong>
-                            <p>联系页保留微信二维码，机器人部署按文档说明处理。</p>
+                            <strong>微信机器人链路已验证</strong>
+                            <p>openclaw-weixin 2.4.3 已加载，并成功投递本地模型回复。</p>
                         </article>
                         <article class="mission-card is-red">
                             <span>Models</span>
-                            <strong>本地优先，强模型可扩展</strong>
-                            <p>默认展示 Ollama 路径，复杂任务建议增加云端强模型兜底。</p>
+                            <strong>默认本地模型可用</strong>
+                            <p>qwen3.6:27b-mlx-bf16-fast 已完成 OpenClaw agent 调用测试。</p>
                         </article>
                         <article class="mission-card is-amber">
                             <span>Search</span>
@@ -564,13 +620,13 @@
                 <div class="status-grid">
                     <article class="status-card is-live">
                         <span class="status-badge">已上线</span>
-                        <h3>网站、文档、博客、联系方式</h3>
-                        <p>Cloudflare Pages 静态站已可访问，文档与博客可直接阅读，联系方式页可通过邮件或微信继续沟通。</p>
+                        <h3>网站、文档、博客、联系方式与站内搜索</h3>
+                        <p>Cloudflare Pages 静态站可访问，核心内容可阅读，联系页支持邮件和微信沟通。</p>
                     </article>
                     <article class="status-card is-config">
-                        <span class="status-badge">可配置</span>
-                        <h3>OpenClaw Gateway 与微信机器人</h3>
-                        <p>按文档完成本机 OpenClaw、模型 provider、微信通道和自动化任务配置后，可在本地环境运行。</p>
+                        <span class="status-badge">已实测</span>
+                        <h3>OpenClaw Gateway、微信机器人与本地模型</h3>
+                        <p>本机已升级到 OpenClaw 2026.5.12，并验证微信机器人可通过 OpenClaw 调用本地模型。</p>
                     </article>
                     <article class="status-card is-pending">
                         <span class="status-badge">接入中</span>
@@ -638,12 +694,12 @@
                             <time class="blog-preview-date">2026-05-15</time>
                         </div>
                         <h3 class="blog-preview-title">
-                            <a href="blog.html#article-openclaw-2026-5-7">OpenClaw 2026.5.12 可用：本机 2026.5.7 到最新版的升级判断</a>
+                            <a href="blog.html#article-openclaw-2026-5-12">OpenClaw 2026.5.12 已验证：Gateway、微信与本地模型链路检查</a>
                         </h3>
                         <p class="blog-preview-excerpt">
-                            记录本机 OpenClaw 2026.5.7 的网关状态，并标注 registry latest 2026.5.12，给出升级前后的验证顺序。
+                            记录本机 OpenClaw 2026.5.12 的网关状态、微信机器人通道和 Ollama 本地模型调用结果，给出升级后的验证顺序。
                         </p>
-                        <a href="blog.html#article-openclaw-2026-5-7" class="blog-preview-readmore">阅读全文 →</a>
+                        <a href="blog.html#article-openclaw-2026-5-12" class="blog-preview-readmore">阅读全文 →</a>
                     </article>
                     <article class="blog-preview-card">
                         <div class="blog-preview-meta-top">

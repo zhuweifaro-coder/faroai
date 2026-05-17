@@ -673,6 +673,7 @@ a:hover {
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
+    max-width: 100%;
     background: rgba(219, 234, 254, 0.8);
     color: var(--primary-color);
     padding: 0.5rem 1rem;
@@ -680,6 +681,7 @@ a:hover {
     font-size: 0.9rem;
     font-weight: 500;
     margin-bottom: 1.5rem;
+    line-height: 1.45;
 }
 
 .badge-icon {
@@ -695,6 +697,10 @@ a:hover {
     font-size: 0.72rem;
     font-weight: 800;
     letter-spacing: 0.04em;
+}
+
+.hero-badge span:last-child {
+    min-width: 0;
 }
 
 .hero-title {
@@ -846,6 +852,155 @@ a:hover {
     color: var(--text-secondary);
     line-height: 1.65;
     font-size: 0.92rem;
+}
+
+.ops-radar {
+    position: relative;
+    overflow: hidden;
+    padding: 94px 0;
+    background:
+        radial-gradient(circle at 20% 22%, rgba(37, 99, 235, 0.18), transparent 30%),
+        radial-gradient(circle at 82% 18%, rgba(15, 118, 110, 0.14), transparent 26%),
+        linear-gradient(135deg, #f8fafc 0%, #eef6ff 58%, #ffffff 100%);
+}
+
+.ops-radar::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+        linear-gradient(rgba(37, 99, 235, 0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(15, 118, 110, 0.05) 1px, transparent 1px);
+    background-size: 36px 36px;
+    mask-image: radial-gradient(circle at 50% 30%, #000 0%, transparent 72%);
+    pointer-events: none;
+}
+
+.ops-shell {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.18fr);
+    gap: 3rem;
+    align-items: center;
+}
+
+.ops-copy {
+    text-align: left;
+}
+
+.ops-copy .section-title,
+.ops-copy .section-description {
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.ops-console {
+    overflow: hidden;
+    border: 1px solid rgba(37, 99, 235, 0.2);
+    border-radius: 20px;
+    background:
+        linear-gradient(145deg, rgba(15, 23, 42, 0.96), rgba(8, 47, 73, 0.92)),
+        #0f172a;
+    box-shadow: 0 26px 70px rgba(15, 23, 42, 0.2);
+    color: #e2e8f0;
+}
+
+.ops-console-header {
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+    padding: 1rem 1.15rem;
+    border-bottom: 1px solid rgba(226, 232, 240, 0.12);
+}
+
+.ops-console-header strong {
+    margin-left: 0.45rem;
+    color: #f8fafc;
+    font-size: 0.92rem;
+}
+
+.ops-sync {
+    margin-left: auto;
+    color: #5eead4;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 0.78rem;
+    font-weight: 900;
+}
+
+.ops-status-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.9rem;
+    padding: 1.15rem;
+}
+
+.ops-status-card {
+    position: relative;
+    min-height: 132px;
+    padding: 1rem;
+    border: 1px solid rgba(148, 163, 184, 0.18);
+    border-radius: var(--radius-lg);
+    background: rgba(255, 255, 255, 0.06);
+}
+
+.ops-status-dot {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    width: 10px;
+    height: 10px;
+    border-radius: 999px;
+    background: #22c55e;
+    box-shadow: 0 0 0 7px rgba(34, 197, 94, 0.12), 0 0 18px rgba(34, 197, 94, 0.7);
+}
+
+.ops-status-card.is-watch .ops-status-dot {
+    background: #f59e0b;
+    box-shadow: 0 0 0 7px rgba(245, 158, 11, 0.12), 0 0 18px rgba(245, 158, 11, 0.62);
+}
+
+.ops-status-card small {
+    display: block;
+    margin-bottom: 0.65rem;
+    color: #93c5fd;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 0.76rem;
+    font-weight: 900;
+    text-transform: uppercase;
+}
+
+.ops-status-card strong {
+    display: block;
+    max-width: calc(100% - 22px);
+    color: #fff;
+    font-size: 1rem;
+    line-height: 1.42;
+}
+
+.ops-status-card p {
+    margin: 0.58rem 0 0;
+    color: #cbd5e1;
+    font-size: 0.86rem;
+    line-height: 1.55;
+}
+
+.ops-terminal {
+    display: grid;
+    gap: 0.55rem;
+    padding: 0 1.15rem 1.15rem;
+}
+
+.ops-terminal code {
+    display: block;
+    overflow-wrap: anywhere;
+    padding: 0.72rem 0.8rem;
+    border: 1px solid rgba(94, 234, 212, 0.16);
+    border-radius: var(--radius-md);
+    background: rgba(2, 6, 23, 0.36);
+    color: #bfdbfe;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 0.78rem;
 }
 
 .dashboard-preview {
@@ -2006,7 +2161,8 @@ a:hover {
 
     .hero .container,
     .quickstart-layout,
-    .mission-shell {
+    .mission-shell,
+    .ops-shell {
         grid-template-columns: 1fr;
         gap: 3rem;
     }
@@ -2089,6 +2245,18 @@ a:hover {
     .hero {
         padding: 104px 0 56px;
     }
+
+    .hero-badge {
+        align-items: flex-start;
+        gap: 0.4rem;
+        padding: 0.48rem 0.72rem;
+        font-size: 0.82rem;
+        white-space: normal;
+    }
+
+    .badge-icon {
+        flex: 0 0 auto;
+    }
     
     .hero-title {
         font-size: 2.5rem;
@@ -2164,6 +2332,7 @@ a:hover {
     .pricing-grid,
     .use-cases-grid,
     .mission-grid,
+    .ops-status-grid,
     .search-results,
     .footer-content {
         grid-template-columns: 1fr;
@@ -2174,6 +2343,10 @@ a:hover {
     }
 
     .quickstart {
+        padding: 72px 0;
+    }
+
+    .ops-radar {
         padding: 72px 0;
     }
     

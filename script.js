@@ -640,6 +640,17 @@ document.head.appendChild(style);
         demoButton?.addEventListener('click', () => {
             lab?.scrollIntoView({ behavior: 'smooth', block: 'start' });
         });
+
+        const opsSync = document.getElementById('opsSync');
+        if (opsSync) {
+            const startedAt = Date.now();
+            window.setInterval(() => {
+                const elapsed = Math.floor((Date.now() - startedAt) / 1000);
+                const minutes = String(Math.floor(elapsed / 60)).padStart(2, '0');
+                const seconds = String(elapsed % 60).padStart(2, '0');
+                opsSync.textContent = `SYNC ${minutes}:${seconds}`;
+            }, 1000);
+        }
     });
 })();
 
