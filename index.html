@@ -131,9 +131,19 @@
             <div class="tech-intro-orbit tech-intro-orbit-b" aria-hidden="true"></div>
             <div class="tech-intro-beam" aria-hidden="true"></div>
             <div class="tech-intro-mark" aria-hidden="true">
-                <span class="tech-signal-node"></span>
-                <span class="tech-signal-node"></span>
-                <span class="tech-signal-node"></span>
+                <svg class="tech-intro-fa" viewBox="0 0 64 64" focusable="false">
+                    <defs>
+                        <linearGradient id="introFaWave" x1="9" y1="14" x2="55" y2="50">
+                            <stop stop-color="#2563eb"/>
+                            <stop offset="1" stop-color="#14b8a6"/>
+                        </linearGradient>
+                    </defs>
+                    <path d="M12 39c8 12 30 12 40 0" fill="none" stroke="#e74c3c" stroke-width="5" stroke-linecap="round"/>
+                    <path d="M12 25c8-12 30-12 40 0" fill="none" stroke="url(#introFaWave)" stroke-width="5" stroke-linecap="round"/>
+                    <circle cx="32" cy="32" r="7" fill="#0f172a"/>
+                    <path d="M27 32h10" stroke="#fff" stroke-width="3" stroke-linecap="round"/>
+                    <path d="M32 27v10" stroke="#fff" stroke-width="3" stroke-linecap="round"/>
+                </svg>
             </div>
             <div class="tech-intro-core" aria-hidden="true">
                 <span></span>

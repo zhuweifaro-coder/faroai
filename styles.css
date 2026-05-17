@@ -3255,65 +3255,41 @@ body.intro-active {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 0.48rem;
-    width: 118px;
-    height: 34px;
+    width: clamp(76px, 10vw, 94px);
+    height: clamp(76px, 10vw, 94px);
     margin-bottom: -0.04rem;
     padding: 0;
-    border: 1px solid rgba(147, 197, 253, 0.16);
-    border-radius: 999px;
+    border: 1px solid rgba(147, 197, 253, 0.2);
+    border-radius: 28px;
     background:
-        linear-gradient(180deg, rgba(15, 23, 42, 0.42), rgba(15, 23, 42, 0.18)),
-        radial-gradient(circle at 50% 50%, rgba(94, 234, 212, 0.1), transparent 60%);
+        linear-gradient(180deg, rgba(15, 23, 42, 0.54), rgba(15, 23, 42, 0.22)),
+        radial-gradient(circle at 50% 50%, rgba(94, 234, 212, 0.14), transparent 62%);
     box-shadow:
-        inset 0 1px 0 rgba(255, 255, 255, 0.08),
-        0 12px 34px rgba(15, 23, 42, 0.18),
-        0 0 28px rgba(94, 234, 212, 0.08);
+        inset 0 1px 0 rgba(255, 255, 255, 0.12),
+        inset 0 -16px 32px rgba(15, 23, 42, 0.24),
+        0 18px 44px rgba(15, 23, 42, 0.22),
+        0 0 34px rgba(94, 234, 212, 0.12);
     backdrop-filter: blur(12px);
-    opacity: 0.88;
-}
-
-.tech-intro-mark::before,
-.tech-intro-mark::after {
-    content: '';
-    position: absolute;
-    left: 16px;
-    right: 16px;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(147, 197, 253, 0.42), transparent);
+    opacity: 0.94;
+    transform: rotate(-8deg);
+    animation: techBadgeFloat 3.8s ease-in-out infinite;
 }
 
 .tech-intro-mark::before {
-    top: 10px;
+    content: '';
+    position: absolute;
+    inset: -9px;
+    border-radius: 34px;
+    border: 1px solid rgba(94, 234, 212, 0.12);
+    box-shadow: 0 0 0 1px rgba(96, 165, 250, 0.06);
+    pointer-events: none;
 }
 
-.tech-intro-mark::after {
-    bottom: 10px;
-}
-
-.tech-signal-node {
-    position: relative;
-    z-index: 1;
-    width: 9px;
-    height: 9px;
-    border-radius: 50%;
-    background: #5eead4;
-    box-shadow: 0 0 18px rgba(94, 234, 212, 0.88);
-    animation: techStatusBlink 1.45s ease-in-out infinite;
-}
-
-.tech-signal-node:nth-child(2) {
-    width: 12px;
-    height: 12px;
-    background: #93c5fd;
-    box-shadow: 0 0 20px rgba(147, 197, 253, 0.82);
-    animation-delay: 0.18s;
-}
-
-.tech-signal-node:nth-child(3) {
-    background: #f87171;
-    box-shadow: 0 0 18px rgba(248, 113, 113, 0.74);
-    animation-delay: 0.36s;
+.tech-intro-fa {
+    width: 62px;
+    height: 62px;
+    display: block;
+    filter: drop-shadow(0 0 18px rgba(94, 234, 212, 0.16));
 }
 
 .tech-intro-core {
@@ -3534,6 +3510,11 @@ body.intro-active {
     to { background-position: 48px 48px, 48px 48px; }
 }
 
+@keyframes techBadgeFloat {
+    0%, 100% { transform: translateY(0) rotate(-8deg); }
+    50% { transform: translateY(-7px) rotate(-3deg); }
+}
+
 @keyframes techScan {
     0%, 12% { transform: translateY(-100%); }
     58%, 100% { transform: translateY(100%); }
@@ -3605,8 +3586,14 @@ body.intro-active {
     }
 
     .tech-intro-mark {
-        width: 106px;
-        height: 32px;
+        width: 74px;
+        height: 74px;
+        border-radius: 24px;
+    }
+
+    .tech-intro-fa {
+        width: 56px;
+        height: 56px;
     }
 
     .tech-intro-core {
@@ -3648,7 +3635,8 @@ body.intro-active {
     .tech-intro-core::after,
     .tech-intro-status span::before,
     .tech-intro-stream span,
-    .tech-intro-progress span {
+    .tech-intro-progress span,
+    .tech-intro-mark {
         animation: none;
         transition: none;
     }
