@@ -3255,12 +3255,12 @@ body.intro-active {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: clamp(76px, 10vw, 94px);
-    height: clamp(76px, 10vw, 94px);
+    width: clamp(118px, 14vw, 144px);
+    height: clamp(78px, 9.5vw, 94px);
     margin-bottom: -0.04rem;
     padding: 0;
     border: 1px solid rgba(147, 197, 253, 0.2);
-    border-radius: 28px;
+    border-radius: 30px;
     background:
         linear-gradient(180deg, rgba(15, 23, 42, 0.54), rgba(15, 23, 42, 0.22)),
         radial-gradient(circle at 50% 50%, rgba(94, 234, 212, 0.14), transparent 62%);
@@ -3279,15 +3279,15 @@ body.intro-active {
     content: '';
     position: absolute;
     inset: -9px;
-    border-radius: 34px;
+    border-radius: 36px;
     border: 1px solid rgba(94, 234, 212, 0.12);
     box-shadow: 0 0 0 1px rgba(96, 165, 250, 0.06);
     pointer-events: none;
 }
 
 .tech-intro-fa {
-    width: 62px;
-    height: 62px;
+    width: clamp(96px, 11.5vw, 116px);
+    height: auto;
     display: block;
     filter: drop-shadow(0 0 18px rgba(94, 234, 212, 0.16));
 }
@@ -3586,14 +3586,14 @@ body.intro-active {
     }
 
     .tech-intro-mark {
-        width: 74px;
+        width: 112px;
         height: 74px;
         border-radius: 24px;
     }
 
     .tech-intro-fa {
-        width: 56px;
-        height: 56px;
+        width: 92px;
+        height: auto;
     }
 
     .tech-intro-core {
