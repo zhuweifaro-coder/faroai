@@ -198,11 +198,38 @@ a:hover {
     color: var(--primary-color);
 }
 
+.logo-icon-flow {
+    overflow: visible;
+}
+
+.logo-icon-flow path {
+    fill: none;
+    stroke-linecap: round;
+}
+
+.logo-flow-red {
+    stroke: #e74c3c;
+    stroke-width: 2;
+}
+
+.logo-flow-blue {
+    stroke: #2563eb;
+    stroke-width: 2;
+}
+
+.logo-flow-core {
+    fill: #0f172a;
+}
+
+.logo-flow-cross {
+    stroke: #ffffff;
+    stroke-width: 1.35;
+}
+
 .logo-text {
-    background: var(--gradient-primary);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    display: inline-flex;
+    align-items: baseline;
+    letter-spacing: 0;
 }
 
 .brand-word {
@@ -212,6 +239,26 @@ a:hover {
 .brand-red {
     color: #e74c3c;
     -webkit-text-fill-color: #e74c3c;
+}
+
+.brand-grad {
+    -webkit-text-fill-color: currentColor;
+}
+
+.brand-grad-a {
+    color: #1d4ed8;
+}
+
+.brand-grad-r {
+    color: #2563eb;
+}
+
+.brand-grad-o {
+    color: #0ea5e9;
+}
+
+.brand-grad-i {
+    color: #5eead4;
 }
 
 .brand-mid {
@@ -232,6 +279,311 @@ a:hover {
      -webkit-background-clip: text;
      -webkit-text-fill-color: transparent;
     background-clip: text;
+}
+
+/* Logo 方案预览 */
+.logo-options-page {
+    min-height: 100vh;
+    background:
+        radial-gradient(circle at 14% 8%, rgba(37, 99, 235, 0.18), transparent 26rem),
+        radial-gradient(circle at 86% 18%, rgba(15, 118, 110, 0.18), transparent 24rem),
+        linear-gradient(180deg, #f8fafc 0%, #ffffff 58%, #eef6ff 100%);
+}
+
+.logo-options-shell {
+    width: min(1180px, calc(100% - 32px));
+    margin: 0 auto;
+    padding: 52px 0 72px;
+}
+
+.logo-options-hero {
+    max-width: 760px;
+    margin-bottom: 32px;
+}
+
+.logo-options-back {
+    display: inline-flex;
+    align-items: center;
+    min-height: 38px;
+    padding: 0 16px;
+    margin-bottom: 28px;
+    border: 1px solid rgba(37, 99, 235, 0.18);
+    border-radius: var(--radius-full);
+    background: rgba(255, 255, 255, 0.72);
+    color: var(--primary-color);
+    font-weight: 700;
+    box-shadow: 0 12px 30px rgba(15, 23, 42, 0.06);
+}
+
+.logo-options-kicker {
+    width: max-content;
+    max-width: 100%;
+    padding: 5px 12px;
+    border-radius: var(--radius-full);
+    background: rgba(219, 234, 254, 0.9);
+    color: var(--primary-color);
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.logo-options-hero h1 {
+    margin: 16px 0 12px;
+    color: var(--text-primary);
+    font-size: clamp(2.2rem, 4vw, 4.5rem);
+    line-height: 1.04;
+}
+
+.logo-options-hero p {
+    color: var(--text-secondary);
+    font-size: 1.08rem;
+    max-width: 700px;
+}
+
+.logo-option-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px;
+}
+
+.logo-option-card {
+    overflow: hidden;
+    border: 1px solid rgba(148, 163, 184, 0.24);
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.86);
+    box-shadow: 0 24px 70px rgba(15, 23, 42, 0.1);
+}
+
+.logo-option-stage {
+    min-height: 230px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 34px;
+    position: relative;
+    overflow: hidden;
+}
+
+.logo-option-stage::before {
+    content: "";
+    position: absolute;
+    inset: 20px;
+    background-image:
+        linear-gradient(rgba(148, 163, 184, 0.18) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(148, 163, 184, 0.18) 1px, transparent 1px);
+    background-size: 28px 28px;
+    mask-image: radial-gradient(circle at center, #000 0%, transparent 70%);
+}
+
+.logo-option-stage.light {
+    background:
+        radial-gradient(circle at 30% 30%, rgba(37, 99, 235, 0.12), transparent 42%),
+        radial-gradient(circle at 75% 70%, rgba(15, 118, 110, 0.12), transparent 44%),
+        #f8fafc;
+}
+
+.logo-option-stage.dark {
+    background:
+        radial-gradient(circle at 30% 24%, rgba(37, 99, 235, 0.36), transparent 40%),
+        radial-gradient(circle at 76% 70%, rgba(15, 118, 110, 0.32), transparent 42%),
+        #0f172a;
+}
+
+.faro-logo {
+    position: relative;
+    z-index: 1;
+    display: inline-flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.faro-logo-mark {
+    width: 76px;
+    height: 76px;
+    flex: 0 0 auto;
+    filter: drop-shadow(0 14px 18px rgba(15, 23, 42, 0.18));
+}
+
+.faro-logo-word {
+    display: inline-flex;
+    align-items: baseline;
+    color: var(--text-primary);
+    font-size: clamp(2.25rem, 4.4vw, 4.15rem);
+    font-weight: 900;
+    line-height: 1;
+    letter-spacing: 0;
+}
+
+.faro-logo-word span:first-child,
+.faro-logo-word span:last-child {
+    color: #e74c3c;
+}
+
+.faro-logo-word span:nth-child(2) {
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.logo-option-stage.dark .faro-logo-word {
+    color: #f8fafc;
+}
+
+.faro-logo-a .faro-logo-mark {
+    transform: rotate(-8deg);
+}
+
+.faro-logo-b .faro-logo-word {
+    font-weight: 850;
+}
+
+.faro-logo-c .faro-logo-mark {
+    transform: translateY(2px);
+}
+
+.faro-logo-c .faro-logo-word span:first-child,
+.faro-logo-c .faro-logo-word span:nth-child(5) {
+    color: #e74c3c;
+    -webkit-text-fill-color: #e74c3c;
+    background: none;
+}
+
+.faro-logo-c .faro-logo-word span:nth-child(2) {
+    color: #1d4ed8;
+    -webkit-text-fill-color: #1d4ed8;
+    background: none;
+}
+
+.faro-logo-c .faro-logo-word span:nth-child(3) {
+    color: #2563eb;
+    -webkit-text-fill-color: #2563eb;
+    background: none;
+}
+
+.faro-logo-c .faro-logo-word span:nth-child(4) {
+    color: #0ea5e9;
+    -webkit-text-fill-color: #0ea5e9;
+    background: none;
+}
+
+.faro-logo-c .faro-logo-word span:nth-child(6) {
+    color: #5eead4;
+    -webkit-text-fill-color: #5eead4;
+    background: none;
+}
+
+.faro-logo-d .faro-logo-word {
+    font-family: "Arial Black", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+.faro-logo-d {
+    gap: 0;
+}
+
+.faro-logo-d .faro-logo-inline-mark {
+    width: clamp(3.25rem, 6.5vw, 5.2rem);
+    height: clamp(3.25rem, 6.5vw, 5.2rem);
+    margin-right: -0.1em;
+    transform: translateY(0.04em);
+}
+
+.faro-logo-d .faro-logo-word span:first-child {
+    color: transparent;
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.faro-logo-d .faro-logo-word span:nth-child(2) {
+    color: #e74c3c;
+    -webkit-text-fill-color: #e74c3c;
+}
+
+.faro-logo-d .faro-logo-word span:nth-child(3) {
+    color: #ffffff;
+    -webkit-text-fill-color: #ffffff;
+}
+
+.logo-option-copy {
+    padding: 24px 26px 28px;
+}
+
+.logo-option-copy h2 {
+    margin-bottom: 10px;
+    color: var(--text-primary);
+    font-size: 1.25rem;
+}
+
+.logo-option-copy p,
+.logo-option-copy li {
+    color: var(--text-secondary);
+}
+
+.logo-option-copy ul {
+    display: grid;
+    gap: 6px;
+    margin-top: 14px;
+    padding-left: 1.1rem;
+}
+
+.logo-option-scale {
+    margin-top: 28px;
+    padding: 28px;
+    border: 1px solid rgba(148, 163, 184, 0.24);
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.8);
+    box-shadow: 0 24px 70px rgba(15, 23, 42, 0.08);
+}
+
+.logo-option-scale h2 {
+    margin-bottom: 18px;
+    color: var(--text-primary);
+    font-size: 1.1rem;
+}
+
+.logo-scale-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 18px;
+}
+
+.logo-scale-item {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 52px;
+    height: 52px;
+    border: 1px solid rgba(148, 163, 184, 0.26);
+    border-radius: 16px;
+    background: #ffffff;
+}
+
+.logo-scale-item .faro-logo-mark {
+    width: 32px;
+    height: 32px;
+}
+
+@media (max-width: 860px) {
+    .logo-option-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .logo-option-stage {
+        min-height: 190px;
+        padding: 26px;
+    }
+
+    .faro-logo {
+        gap: 10px;
+    }
+
+    .faro-logo-mark {
+        width: 58px;
+        height: 58px;
+    }
 }
 
 .nav-menu {
@@ -2082,7 +2434,7 @@ a:hover {
 .eye-icon { width: 20px; height: 20px; }
 
 /* 全局兜底：任何没显式设 width 的 inline SVG 不超过 1.5em */
-svg:not([width]):not([class~="logo-icon"]):not([class~="feature-icon"]):not(.team-avatar > svg):not(.social-links svg):not(.video-modal-close svg):not(.mobile-menu-btn svg) {
+svg:not([width]):not([class~="logo-icon"]):not([class~="faro-logo-mark"]):not([class~="feature-icon"]):not(.team-avatar > svg):not(.social-links svg):not(.video-modal-close svg):not(.mobile-menu-btn svg) {
     max-width: 1.5em;
     max-height: 1.5em;
 }
