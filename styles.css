@@ -1003,6 +1003,278 @@ a:hover {
     font-size: 0.78rem;
 }
 
+.command-deck {
+    position: relative;
+    overflow: hidden;
+    padding: 104px 0;
+    background:
+        radial-gradient(circle at 18% 18%, rgba(37, 99, 235, 0.2), transparent 28%),
+        radial-gradient(circle at 82% 28%, rgba(20, 184, 166, 0.18), transparent 26%),
+        linear-gradient(135deg, #07111f 0%, #0f172a 52%, #052f31 100%);
+    color: #e2e8f0;
+}
+
+.command-deck::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+        linear-gradient(rgba(125, 211, 252, 0.08) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(94, 234, 212, 0.06) 1px, transparent 1px);
+    background-size: 42px 42px;
+    transform: perspective(900px) rotateX(62deg) translateY(72px) scale(1.08);
+    transform-origin: center bottom;
+    opacity: 0.46;
+    pointer-events: none;
+}
+
+.command-deck::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(110deg, transparent 0 42%, rgba(94, 234, 212, 0.12) 50%, transparent 58% 100%);
+    animation: commandScan 5.2s ease-in-out infinite;
+    pointer-events: none;
+}
+
+.command-deck .container {
+    position: relative;
+    z-index: 1;
+}
+
+.command-deck .section-title {
+    color: #f8fafc;
+}
+
+.command-deck .section-description {
+    color: #cbd5e1;
+}
+
+.command-deck-shell {
+    display: grid;
+    grid-template-columns: minmax(230px, 0.72fr) minmax(0, 1.28fr);
+    gap: 1.25rem;
+    align-items: stretch;
+}
+
+.command-nav {
+    display: grid;
+    gap: 0.85rem;
+}
+
+.command-chip {
+    width: 100%;
+    min-height: 88px;
+    padding: 1rem;
+    border: 1px solid rgba(148, 163, 184, 0.22);
+    border-radius: 18px;
+    background: rgba(15, 23, 42, 0.56);
+    color: inherit;
+    text-align: left;
+    cursor: pointer;
+    font: inherit;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+    transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+}
+
+.command-chip span,
+.command-chip small {
+    display: block;
+}
+
+.command-chip span {
+    margin-bottom: 0.35rem;
+    color: #f8fafc;
+    font-size: 1rem;
+    font-weight: 850;
+}
+
+.command-chip small {
+    color: #94a3b8;
+    line-height: 1.55;
+    font-size: 0.84rem;
+}
+
+.command-chip:hover,
+.command-chip:focus-visible,
+.command-chip.is-active {
+    transform: translateY(-2px);
+    border-color: rgba(94, 234, 212, 0.44);
+    background: linear-gradient(135deg, rgba(37, 99, 235, 0.34), rgba(20, 184, 166, 0.18));
+    box-shadow: 0 18px 44px rgba(0, 0, 0, 0.22), 0 0 26px rgba(94, 234, 212, 0.1);
+    outline: none;
+}
+
+.command-holo {
+    position: relative;
+    min-height: 468px;
+    display: grid;
+    align-items: center;
+    border: 1px solid rgba(94, 234, 212, 0.16);
+    border-radius: 26px;
+    background:
+        radial-gradient(circle at 50% 46%, rgba(94, 234, 212, 0.14), transparent 34%),
+        linear-gradient(145deg, rgba(15, 23, 42, 0.62), rgba(8, 47, 73, 0.34));
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.28);
+    overflow: hidden;
+}
+
+.holo-orbit {
+    position: absolute;
+    inset: 9%;
+    border: 1px solid rgba(147, 197, 253, 0.16);
+    border-radius: 50%;
+    transform: rotateX(66deg) rotateZ(-8deg);
+    pointer-events: none;
+}
+
+.holo-orbit::before,
+.holo-orbit::after {
+    content: '';
+    position: absolute;
+    inset: 9%;
+    border-radius: 50%;
+    border: 1px dashed rgba(94, 234, 212, 0.18);
+}
+
+.holo-orbit::after {
+    inset: 22%;
+    border-color: rgba(248, 113, 113, 0.16);
+}
+
+.holo-orbit span {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    border-radius: 999px;
+    background: #5eead4;
+    box-shadow: 0 0 20px rgba(94, 234, 212, 0.85);
+}
+
+.holo-orbit span:nth-child(1) { left: 18%; top: 14%; }
+.holo-orbit span:nth-child(2) { right: 16%; top: 38%; background: #93c5fd; }
+.holo-orbit span:nth-child(3) { left: 44%; bottom: 4%; background: #f87171; }
+
+.command-panel {
+    position: relative;
+    z-index: 1;
+    width: min(760px, calc(100% - 36px));
+    margin: 0 auto;
+    overflow: hidden;
+    border: 1px solid rgba(147, 197, 253, 0.18);
+    border-radius: 20px;
+    background: rgba(2, 6, 23, 0.72);
+    backdrop-filter: blur(16px);
+    box-shadow: 0 24px 70px rgba(0, 0, 0, 0.28);
+}
+
+.command-panel-header {
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+    padding: 1rem 1.1rem;
+    border-bottom: 1px solid rgba(226, 232, 240, 0.12);
+}
+
+.command-panel-header strong {
+    margin-left: 0.35rem;
+    color: #fff;
+    font-size: 0.96rem;
+}
+
+.command-panel-header em {
+    margin-left: auto;
+    color: #5eead4;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-style: normal;
+    font-size: 0.74rem;
+    font-weight: 900;
+}
+
+.command-line {
+    margin: 1.1rem;
+    padding: 0.92rem 1rem;
+    border: 1px solid rgba(94, 234, 212, 0.16);
+    border-radius: 14px;
+    background: rgba(15, 23, 42, 0.78);
+    color: #bfdbfe;
+    line-height: 1.65;
+}
+
+.command-pipeline {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 0.7rem;
+    padding: 0 1.1rem 1rem;
+}
+
+.command-node {
+    position: relative;
+    min-height: 82px;
+    padding: 0.82rem;
+    border: 1px solid rgba(147, 197, 253, 0.14);
+    border-radius: 14px;
+    background: linear-gradient(180deg, rgba(15, 23, 42, 0.86), rgba(8, 47, 73, 0.5));
+    color: #e2e8f0;
+    animation: commandNodeIn 0.36s ease both;
+}
+
+.command-node::before {
+    content: '';
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #5eead4;
+    box-shadow: 0 0 14px rgba(94, 234, 212, 0.76);
+}
+
+.command-node small {
+    display: block;
+    margin-bottom: 0.36rem;
+    color: #93c5fd;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 0.68rem;
+    font-weight: 900;
+}
+
+.command-node strong {
+    display: block;
+    color: #f8fafc;
+    line-height: 1.35;
+    font-size: 0.92rem;
+}
+
+.command-output-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.75rem;
+    padding: 0 1.1rem 1.1rem;
+}
+
+.command-output-grid article {
+    padding: 0.95rem;
+    border: 1px solid rgba(148, 163, 184, 0.14);
+    border-radius: 14px;
+    background: rgba(15, 23, 42, 0.5);
+}
+
+.command-output-grid span {
+    display: block;
+    margin-bottom: 0.38rem;
+    color: #94a3b8;
+    font-size: 0.72rem;
+    font-weight: 850;
+}
+
+.command-output-grid strong {
+    color: #f8fafc;
+    font-size: 0.88rem;
+    line-height: 1.45;
+}
+
 .dashboard-preview {
     background: rgba(255, 255, 255, 0.86);
     border: 1px solid rgba(37, 99, 235, 0.16);
@@ -1689,6 +1961,23 @@ a:hover {
     }
 }
 
+@keyframes commandScan {
+    0% { transform: translateX(-70%); opacity: 0; }
+    45%, 55% { opacity: 1; }
+    100% { transform: translateX(70%); opacity: 0; }
+}
+
+@keyframes commandNodeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 /* 特性区域 */
 .features {
     padding: 100px 0;
@@ -2162,7 +2451,8 @@ a:hover {
     .hero .container,
     .quickstart-layout,
     .mission-shell,
-    .ops-shell {
+    .ops-shell,
+    .command-deck-shell {
         grid-template-columns: 1fr;
         gap: 3rem;
     }
@@ -2178,6 +2468,14 @@ a:hover {
 
     .workflow-screen {
         min-height: 460px;
+    }
+
+    .command-nav {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .command-holo {
+        min-height: 430px;
     }
 
     .hero-content {
@@ -2312,6 +2610,10 @@ a:hover {
         padding: 72px 0;
     }
 
+    .command-deck {
+        padding: 76px 0;
+    }
+
     .workflow-screen {
         min-height: 0;
     }
@@ -2333,6 +2635,9 @@ a:hover {
     .use-cases-grid,
     .mission-grid,
     .ops-status-grid,
+    .command-nav,
+    .command-pipeline,
+    .command-output-grid,
     .search-results,
     .footer-content {
         grid-template-columns: 1fr;
@@ -2348,6 +2653,28 @@ a:hover {
 
     .ops-radar {
         padding: 72px 0;
+    }
+
+    .command-chip {
+        min-height: 78px;
+    }
+
+    .command-holo {
+        min-height: 0;
+        padding: 1rem 0;
+    }
+
+    .command-panel {
+        width: calc(100% - 24px);
+    }
+
+    .command-panel-header {
+        flex-wrap: wrap;
+    }
+
+    .command-panel-header em {
+        width: 100%;
+        margin-left: 0;
     }
     
     .pricing-card.featured {
@@ -3655,7 +3982,9 @@ body.intro-active {
     .tech-intro-status span::before,
     .tech-intro-stream span,
     .tech-intro-progress span,
-    .tech-intro-mark {
+    .tech-intro-mark,
+    .command-deck::after,
+    .command-node {
         animation: none;
         transition: none;
     }

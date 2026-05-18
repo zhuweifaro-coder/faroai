@@ -635,6 +635,109 @@ document.head.appendChild(style);
 
         renderFlow('briefing');
 
+        const commandDeck = {
+            wechat: {
+                title: '微信机器人任务舱',
+                risk: 'Human confirm',
+                line: '用户在微信发来问题，Gateway 识别意图后调用本地模型生成回复。',
+                nodes: [
+                    ['IN', '微信消息接收'],
+                    ['ROUTE', '意图与权限判断'],
+                    ['MODEL', 'Ollama / OpenAI 生成'],
+                    ['OUT', '回复草稿确认']
+                ],
+                tools: 'Weixin → Gateway → Ollama → Reply',
+                output: '回复草稿 + 发送前确认',
+                boundary: '涉及敏感操作时人工确认'
+            },
+            research: {
+                title: '资料研究任务舱',
+                risk: 'Cited output',
+                line: '输入研究主题后，按来源可信度筛选资料，形成带引用的中文摘要。',
+                nodes: [
+                    ['QUERY', '拆解研究问题'],
+                    ['SEARCH', '搜索与去重'],
+                    ['READ', '提取关键段落'],
+                    ['WRITE', '生成摘要与引用']
+                ],
+                tools: 'Search → Extract → Rank → Summary',
+                output: '中文摘要 + 来源清单',
+                boundary: '实时事实需标注来源和日期'
+            },
+            market: {
+                title: '市场监控任务舱',
+                risk: 'Timed alert',
+                line: '按交易日触发复盘任务，统计跌幅、成交量、涨停板块与缩量预警。',
+                nodes: [
+                    ['CRON', '18:00 定时触发'],
+                    ['FETCH', '行情源采集'],
+                    ['GROUP', '板块归因'],
+                    ['ALERT', '异常预警推送']
+                ],
+                tools: 'Cron → Market APIs → Model → Weixin',
+                output: '复盘报告 + 异常告警',
+                boundary: '行情接口失败时进入降级提示'
+            },
+            ops: {
+                title: '运维排障任务舱',
+                risk: 'Live check',
+                line: '从 Gateway 健康、插件状态、模型响应和消息投递四层定位故障。',
+                nodes: [
+                    ['HEALTH', 'Gateway 探针'],
+                    ['PLUGIN', '微信插件检查'],
+                    ['MODEL', '模型调用测试'],
+                    ['TRACE', '链路日志定位']
+                ],
+                tools: 'Health → Plugin → Model → Trace',
+                output: '排障清单 + 修复建议',
+                boundary: '不自动重置配置，先给出确认项'
+            }
+        };
+
+        const commandChips = document.querySelectorAll('.command-chip');
+        const commandTitle = document.getElementById('commandTitle');
+        const commandRisk = document.getElementById('commandRisk');
+        const commandLine = document.getElementById('commandLine');
+        const commandPipeline = document.getElementById('commandPipeline');
+        const commandTools = document.getElementById('commandTools');
+        const commandOutput = document.getElementById('commandOutput');
+        const commandBoundary = document.getElementById('commandBoundary');
+
+        function renderCommandDeck(key) {
+            const item = commandDeck[key] || commandDeck.weixin;
+            if (!commandTitle || !commandRisk || !commandLine || !commandPipeline) return;
+
+            commandTitle.textContent = item.title;
+            commandRisk.textContent = item.risk;
+            commandLine.textContent = item.line;
+            if (commandTools) commandTools.textContent = item.tools;
+            if (commandOutput) commandOutput.textContent = item.output;
+            if (commandBoundary) commandBoundary.textContent = item.boundary;
+
+            commandPipeline.innerHTML = '';
+            item.nodes.forEach((node, index) => {
+                const nodeEl = document.createElement('div');
+                nodeEl.className = 'command-node';
+                nodeEl.style.animationDelay = `${index * 80}ms`;
+                nodeEl.innerHTML = `<small>${node[0]}</small><strong>${node[1]}</strong>`;
+                commandPipeline.appendChild(nodeEl);
+            });
+        }
+
+        commandChips.forEach(chip => {
+            chip.addEventListener('click', () => {
+                commandChips.forEach(item => {
+                    item.classList.remove('is-active');
+                    item.setAttribute('aria-selected', 'false');
+                });
+                chip.classList.add('is-active');
+                chip.setAttribute('aria-selected', 'true');
+                renderCommandDeck(chip.dataset.command);
+            });
+        });
+
+        renderCommandDeck('wechat');
+
         const demoButton = document.getElementById('workflowDemoButton');
         const lab = document.getElementById('workflow-lab');
         demoButton?.addEventListener('click', () => {

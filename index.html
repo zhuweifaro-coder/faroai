@@ -318,7 +318,7 @@
                 <div class="credibility-grid">
                     <div class="credibility-item">
                         <span class="credibility-label">内容更新时间</span>
-                        <strong>2026-05-17</strong>
+                        <strong>2026-05-18</strong>
                         <p>OpenClaw 已升级到 2026.5.12，并完成 Gateway、微信通道和本地模型链路验证。</p>
                     </div>
                     <div class="credibility-item">
@@ -383,6 +383,70 @@
                             <code>curl /health → {"ok":true,"status":"live"}</code>
                             <code>agent → ollama/qwen3.6:27b-mlx-bf16-fast → 本地模型调用正常</code>
                             <code>weixin delivery → sent → 微信机器人链路测试成功</code>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="command-deck" aria-label="FaroAI AI 指挥台">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-label">Command Deck</span>
+                    <h2 class="section-title">把能力做成可操作的任务面板</h2>
+                    <p class="section-description">
+                        点击不同任务，查看它在 Gateway、微信、本地模型和工具链之间如何流转。当前为前端交互演示，真实部署时可接入 OpenClaw API 与任务日志。
+                    </p>
+                </div>
+                <div class="command-deck-shell">
+                    <div class="command-nav" role="tablist" aria-label="AI 任务类型">
+                        <button class="command-chip is-active" type="button" data-command="wechat" role="tab" aria-selected="true">
+                            <span>微信助手</span>
+                            <small>消息理解 / 回复 / 推送</small>
+                        </button>
+                        <button class="command-chip" type="button" data-command="research" role="tab" aria-selected="false">
+                            <span>资料研究</span>
+                            <small>搜索 / 摘要 / 引用</small>
+                        </button>
+                        <button class="command-chip" type="button" data-command="market" role="tab" aria-selected="false">
+                            <span>市场监控</span>
+                            <small>定时任务 / 预警 / 复盘</small>
+                        </button>
+                        <button class="command-chip" type="button" data-command="ops" role="tab" aria-selected="false">
+                            <span>运维排障</span>
+                            <small>健康检查 / 日志 / 恢复</small>
+                        </button>
+                    </div>
+                    <div class="command-holo" aria-live="polite">
+                        <div class="holo-orbit" aria-hidden="true">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                        <div class="command-panel">
+                            <div class="command-panel-header">
+                                <span class="screen-dot red"></span>
+                                <span class="screen-dot yellow"></span>
+                                <span class="screen-dot green"></span>
+                                <strong id="commandTitle">微信机器人任务舱</strong>
+                                <em id="commandRisk">Human confirm</em>
+                            </div>
+                            <div class="command-line" id="commandLine">用户在微信发来问题，Gateway 识别意图后调用本地模型生成回复。</div>
+                            <div class="command-pipeline" id="commandPipeline"></div>
+                            <div class="command-output-grid">
+                                <article>
+                                    <span>工具链</span>
+                                    <strong id="commandTools">Weixin → Gateway → Ollama → Reply</strong>
+                                </article>
+                                <article>
+                                    <span>输出</span>
+                                    <strong id="commandOutput">回复草稿 + 发送前确认</strong>
+                                </article>
+                                <article>
+                                    <span>边界</span>
+                                    <strong id="commandBoundary">涉及敏感操作时人工确认</strong>
+                                </article>
+                            </div>
                         </div>
                     </div>
                 </div>
