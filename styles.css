@@ -704,7 +704,7 @@ a:hover {
 }
 
 .hero-title {
-    font-size: clamp(2.8rem, 6vw, 5.25rem);
+    font-size: clamp(2.62rem, 5.45vw, 4.82rem);
     font-weight: 800;
     line-height: 1.1;
     margin-bottom: 1.5rem;
@@ -724,8 +724,8 @@ a:hover {
     align-items: baseline;
     width: fit-content;
     max-width: 100%;
-    margin-left: -0.08em;
-    padding: 0.05em 0.14em 0.08em;
+    margin-left: -0.04em;
+    padding: 0.06em 0.12em 0.09em;
     isolation: isolate;
     transform: translateZ(0);
     animation: heroLogoFloat 5.8s ease-in-out infinite;
@@ -734,15 +734,15 @@ a:hover {
 .hero-logo-word::before {
     content: '';
     position: absolute;
-    inset: 0.1em -0.04em 0.02em;
+    inset: 0.08em -0.02em 0.04em;
     z-index: -2;
-    border-radius: 0.2em;
+    border-radius: 0.34em;
     background:
         radial-gradient(circle at 22% 44%, rgba(231, 76, 60, 0.18), transparent 44%),
         radial-gradient(circle at 70% 50%, rgba(94, 234, 212, 0.22), transparent 48%),
         linear-gradient(135deg, rgba(37, 99, 235, 0.14), rgba(15, 118, 110, 0.08));
-    filter: blur(18px);
-    opacity: 0.86;
+    filter: blur(16px);
+    opacity: 0.78;
     pointer-events: none;
 }
 
@@ -751,13 +751,13 @@ a:hover {
     position: absolute;
     left: 0.08em;
     right: 0.08em;
-    bottom: -0.1em;
+    bottom: -0.07em;
     z-index: -1;
-    height: 0.16em;
+    height: 0.13em;
     border-radius: 999px;
     background: radial-gradient(ellipse, rgba(15, 23, 42, 0.2), transparent 68%);
     filter: blur(8px);
-    opacity: 0.58;
+    opacity: 0.48;
     transform: perspective(220px) rotateX(58deg);
     pointer-events: none;
 }
@@ -768,8 +768,8 @@ a:hover {
     display: inline-flex;
     align-items: baseline;
     text-shadow:
-        0 10px 22px rgba(15, 23, 42, 0.12),
-        0 0 24px rgba(96, 165, 250, 0.14);
+        0 8px 18px rgba(15, 23, 42, 0.1),
+        0 0 20px rgba(96, 165, 250, 0.12);
 }
 
 .hero-logo-word .brand-word::before {
@@ -2063,7 +2063,7 @@ a:hover {
         transform: translateY(0) rotateX(0deg);
     }
     50% {
-        transform: translateY(-8px) rotateX(2deg);
+        transform: translateY(-5px) rotateX(1.4deg);
     }
 }
 
@@ -2661,17 +2661,18 @@ a:hover {
     }
     
     .hero-title {
-        font-size: 2.5rem;
+        font-size: 2.32rem;
     }
 
     .hero-logo-word {
-        margin-left: -0.04em;
-        padding: 0.04em 0.08em 0.07em;
+        margin-left: -0.02em;
+        padding: 0.04em 0.07em 0.07em;
     }
 
     .hero-logo-word::before {
-        inset: 0.12em 0 0.04em;
-        filter: blur(13px);
+        inset: 0.12em 0.02em 0.06em;
+        border-radius: 0.36em;
+        filter: blur(11px);
     }
     
     .hero-title .subtitle {
