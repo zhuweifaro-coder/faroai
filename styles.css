@@ -2124,11 +2124,22 @@ a:hover {
 @keyframes founderBlink {
     0%, 7.2%, 9.6%, 13.2%, 100% {
         opacity: 0;
-        transform: scaleY(0.16);
+        transform: scaleY(0.2);
+    }
+    8.2%, 11.4% {
+        opacity: 0.96;
+        transform: scaleY(1);
+    }
+}
+
+@keyframes founderWinkLine {
+    0%, 7.2%, 9.6%, 13.2%, 100% {
+        opacity: 0;
+        transform: translateY(-1px) scaleX(0.78);
     }
     8.2%, 11.4% {
         opacity: 1;
-        transform: scaleY(1);
+        transform: translateY(0) scaleX(1);
     }
 }
 
@@ -2471,19 +2482,16 @@ a:hover {
 .team-avatar::before {
     content: '';
     position: absolute;
-    left: 33px;
-    top: 35px;
+    left: 55px;
+    top: 34px;
     z-index: 3;
-    width: 14px;
-    height: 6px;
+    width: 17px;
+    height: 10px;
     border-radius: 999px;
-    background: linear-gradient(180deg, rgba(239, 188, 160, 0.98), rgba(203, 129, 103, 0.94));
-    box-shadow:
-        24px 0 0 rgba(239, 188, 160, 0.96),
-        0 1.4px 0 rgba(70, 39, 34, 0.34),
-        24px 1.4px 0 rgba(70, 39, 34, 0.32);
+    background: rgba(236, 175, 145, 0.96);
+    box-shadow: 0 2px 4px rgba(236, 175, 145, 0.22);
     opacity: 0;
-    transform: scaleY(0.16);
+    transform: scaleY(0.2);
     transform-origin: center;
     animation: founderBlink 6.8s ease-in-out infinite;
     pointer-events: none;
@@ -2510,6 +2518,22 @@ a:hover {
     display: block;
     object-fit: cover;
     object-position: center;
+}
+
+.avatar-wink {
+    position: absolute;
+    left: 56px;
+    top: 38px;
+    z-index: 4;
+    width: 17px;
+    height: 7px;
+    border-radius: 0 0 999px 999px;
+    border-bottom: 2px solid rgba(58, 34, 31, 0.86);
+    opacity: 0;
+    transform: translateY(-1px) scaleX(0.78);
+    transform-origin: center;
+    animation: founderWinkLine 6.8s ease-in-out infinite;
+    pointer-events: none;
 }
 
 .team-name {
@@ -4250,7 +4274,8 @@ body.intro-active {
     .command-deck::after,
     .command-node,
     .team-avatar::before,
-    .team-avatar::after {
+    .team-avatar::after,
+    .avatar-wink {
         animation: none;
         transition: none;
     }
