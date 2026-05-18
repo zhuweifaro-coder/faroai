@@ -704,8 +704,8 @@ a:hover {
 }
 
 .hero-title {
-    font-size: clamp(2.62rem, 5.45vw, 4.82rem);
-    font-weight: 800;
+    font-size: clamp(2.36rem, 4.95vw, 4.36rem);
+    font-weight: 760;
     line-height: 1.1;
     margin-bottom: 1.5rem;
     letter-spacing: 0;
@@ -724,25 +724,25 @@ a:hover {
     align-items: baseline;
     width: fit-content;
     max-width: 100%;
-    margin-left: -0.04em;
-    padding: 0.06em 0.12em 0.09em;
+    margin-left: -0.02em;
+    padding: 0.07em 0.12em 0.1em;
     isolation: isolate;
     transform: translateZ(0);
-    animation: heroLogoFloat 5.8s ease-in-out infinite;
+    animation: heroLogoFloat 5.2s ease-in-out infinite;
 }
 
 .hero-logo-word::before {
     content: '';
     position: absolute;
-    inset: 0.08em -0.02em 0.04em;
+    inset: 0.06em -0.01em 0.05em;
     z-index: -2;
-    border-radius: 0.34em;
+    border-radius: 0.46em;
     background:
         radial-gradient(circle at 22% 44%, rgba(231, 76, 60, 0.18), transparent 44%),
         radial-gradient(circle at 70% 50%, rgba(94, 234, 212, 0.22), transparent 48%),
         linear-gradient(135deg, rgba(37, 99, 235, 0.14), rgba(15, 118, 110, 0.08));
-    filter: blur(16px);
-    opacity: 0.78;
+    filter: blur(15px);
+    opacity: 0.74;
     pointer-events: none;
 }
 
@@ -767,6 +767,8 @@ a:hover {
     z-index: 1;
     display: inline-flex;
     align-items: baseline;
+    font-family: ui-rounded, "SF Pro Rounded", "Nunito Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-weight: 800;
     text-shadow:
         0 8px 18px rgba(15, 23, 42, 0.1),
         0 0 20px rgba(96, 165, 250, 0.12);
@@ -2063,7 +2065,7 @@ a:hover {
         transform: translateY(0) rotateX(0deg);
     }
     50% {
-        transform: translateY(-5px) rotateX(1.4deg);
+        transform: translateY(-11px) rotateX(2.4deg);
     }
 }
 
@@ -2661,7 +2663,7 @@ a:hover {
     }
     
     .hero-title {
-        font-size: 2.32rem;
+        font-size: 2.08rem;
     }
 
     .hero-logo-word {
@@ -2671,7 +2673,7 @@ a:hover {
 
     .hero-logo-word::before {
         inset: 0.12em 0.02em 0.06em;
-        border-radius: 0.36em;
+        border-radius: 0.46em;
         filter: blur(11px);
     }
     
