@@ -718,6 +718,86 @@ a:hover {
     background-clip: text;
 }
 
+.hero-logo-word {
+    position: relative;
+    display: inline-flex;
+    align-items: baseline;
+    width: fit-content;
+    max-width: 100%;
+    margin-left: -0.08em;
+    padding: 0.05em 0.14em 0.08em;
+    isolation: isolate;
+    transform: translateZ(0);
+    animation: heroLogoFloat 5.8s ease-in-out infinite;
+}
+
+.hero-logo-word::before {
+    content: '';
+    position: absolute;
+    inset: 0.1em -0.04em 0.02em;
+    z-index: -2;
+    border-radius: 0.2em;
+    background:
+        radial-gradient(circle at 22% 44%, rgba(231, 76, 60, 0.18), transparent 44%),
+        radial-gradient(circle at 70% 50%, rgba(94, 234, 212, 0.22), transparent 48%),
+        linear-gradient(135deg, rgba(37, 99, 235, 0.14), rgba(15, 118, 110, 0.08));
+    filter: blur(18px);
+    opacity: 0.86;
+    pointer-events: none;
+}
+
+.hero-logo-word::after {
+    content: '';
+    position: absolute;
+    left: 0.08em;
+    right: 0.08em;
+    bottom: -0.1em;
+    z-index: -1;
+    height: 0.16em;
+    border-radius: 999px;
+    background: radial-gradient(ellipse, rgba(15, 23, 42, 0.2), transparent 68%);
+    filter: blur(8px);
+    opacity: 0.58;
+    transform: perspective(220px) rotateX(58deg);
+    pointer-events: none;
+}
+
+.hero-logo-word .brand-word {
+    position: relative;
+    z-index: 1;
+    display: inline-flex;
+    align-items: baseline;
+    text-shadow:
+        0 10px 22px rgba(15, 23, 42, 0.12),
+        0 0 24px rgba(96, 165, 250, 0.14);
+}
+
+.hero-logo-word .brand-word::before {
+    content: '';
+    position: absolute;
+    left: 0.08em;
+    right: 0.12em;
+    top: 0.08em;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(94, 234, 212, 0.55), transparent);
+    opacity: 0.72;
+    transform: translateY(-0.02em);
+    pointer-events: none;
+}
+
+.hero-logo-word .brand-word::after {
+    content: '';
+    position: absolute;
+    left: 0.04em;
+    right: 0.06em;
+    top: 50%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(37, 99, 235, 0.18), rgba(94, 234, 212, 0.32), transparent);
+    opacity: 0;
+    animation: heroLogoScan 4.6s ease-in-out infinite;
+    pointer-events: none;
+}
+
 .hero-title .subtitle {
     display: block;
     margin-top: 1rem;
@@ -1978,6 +2058,30 @@ a:hover {
     }
 }
 
+@keyframes heroLogoFloat {
+    0%, 100% {
+        transform: translateY(0) rotateX(0deg);
+    }
+    50% {
+        transform: translateY(-8px) rotateX(2deg);
+    }
+}
+
+@keyframes heroLogoScan {
+    0%, 18%, 100% {
+        opacity: 0;
+        transform: translateY(-0.35em) scaleX(0.6);
+    }
+    38% {
+        opacity: 0.76;
+        transform: translateY(0) scaleX(1);
+    }
+    58% {
+        opacity: 0;
+        transform: translateY(0.38em) scaleX(0.7);
+    }
+}
+
 /* 特性区域 */
 .features {
     padding: 100px 0;
@@ -2558,6 +2662,16 @@ a:hover {
     
     .hero-title {
         font-size: 2.5rem;
+    }
+
+    .hero-logo-word {
+        margin-left: -0.04em;
+        padding: 0.04em 0.08em 0.07em;
+    }
+
+    .hero-logo-word::before {
+        inset: 0.12em 0 0.04em;
+        filter: blur(13px);
     }
     
     .hero-title .subtitle {
@@ -3977,6 +4091,8 @@ body.intro-active {
     .tech-intro-stream span,
     .tech-intro-progress span,
     .tech-intro-mark,
+    .hero-logo-word,
+    .hero-logo-word .brand-word::after,
     .command-deck::after,
     .command-node {
         animation: none;
