@@ -774,6 +774,67 @@ a:hover {
         0 0 20px rgba(96, 165, 250, 0.12);
 }
 
+.hero-logo-word .brand-word > span {
+    display: inline-block;
+    transform-origin: center;
+    animation: heroLetterMorph 9.2s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+    will-change: transform, opacity, filter;
+}
+
+.hero-logo-word .brand-word > span:nth-child(1) { --hero-morph-x: 2.2em; --hero-morph-y: 0.02em; --hero-morph-rotate: -18deg; }
+.hero-logo-word .brand-word > span:nth-child(2) { --hero-morph-x: 1.32em; --hero-morph-y: -0.03em; --hero-morph-rotate: 12deg; }
+.hero-logo-word .brand-word > span:nth-child(3) { --hero-morph-x: 0.52em; --hero-morph-y: 0.04em; --hero-morph-rotate: -10deg; }
+.hero-logo-word .brand-word > span:nth-child(4) { --hero-morph-x: -0.28em; --hero-morph-y: -0.04em; --hero-morph-rotate: 14deg; }
+.hero-logo-word .brand-word > span:nth-child(5) { --hero-morph-x: -1.16em; --hero-morph-y: 0.03em; --hero-morph-rotate: -12deg; }
+.hero-logo-word .brand-word > span:nth-child(6) { --hero-morph-x: -1.72em; --hero-morph-y: -0.02em; --hero-morph-rotate: 18deg; }
+
+.hero-logo-orb {
+    position: absolute;
+    left: 50%;
+    top: 48%;
+    z-index: 2;
+    width: 0.82em;
+    height: 0.82em;
+    border-radius: 50%;
+    background:
+        radial-gradient(circle at 32% 25%, rgba(255, 255, 255, 0.98) 0 7%, rgba(191, 219, 254, 0.58) 8% 20%, transparent 34%),
+        radial-gradient(circle at 42% 36%, rgba(125, 211, 252, 0.44) 0 20%, rgba(37, 99, 235, 0.52) 38%, rgba(8, 47, 73, 0.84) 68%, rgba(2, 6, 23, 0.96) 100%),
+        linear-gradient(135deg, rgba(94, 234, 212, 0.35), rgba(37, 99, 235, 0.34) 48%, rgba(231, 76, 60, 0.18));
+    box-shadow:
+        0 14px 30px rgba(15, 23, 42, 0.18),
+        0 0 28px rgba(45, 212, 191, 0.28),
+        inset -0.14em -0.18em 0.3em rgba(2, 6, 23, 0.64),
+        inset 0.1em 0.08em 0.22em rgba(255, 255, 255, 0.18);
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.38);
+    animation: heroOrbMorph 9.2s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+    pointer-events: none;
+}
+
+.hero-logo-orb::before,
+.hero-logo-orb::after {
+    content: '';
+    position: absolute;
+    inset: -0.13em;
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+.hero-logo-orb::before {
+    background:
+        repeating-radial-gradient(ellipse at center, transparent 0 0.08em, rgba(147, 197, 253, 0.2) 0.09em 0.1em, transparent 0.11em 0.18em),
+        linear-gradient(90deg, transparent 0 46%, rgba(191, 219, 254, 0.24) 47% 48%, transparent 49% 100%);
+    mix-blend-mode: screen;
+    opacity: 0.78;
+    transform: rotateX(62deg) rotateZ(-8deg);
+}
+
+.hero-logo-orb::after {
+    background: conic-gradient(from 20deg, transparent 0deg 38deg, rgba(94, 234, 212, 0.62) 54deg 68deg, transparent 84deg 190deg, rgba(96, 165, 250, 0.48) 206deg 218deg, transparent 235deg 360deg);
+    -webkit-mask: radial-gradient(circle, transparent 0 50%, #000 52% 58%, transparent 60%);
+    mask: radial-gradient(circle, transparent 0 50%, #000 52% 58%, transparent 60%);
+}
+
 .hero-logo-word .brand-word::before {
     content: '';
     position: absolute;
@@ -2084,6 +2145,30 @@ a:hover {
     }
 }
 
+@keyframes heroLetterMorph {
+    0%, 28%, 72%, 100% {
+        opacity: 1;
+        filter: blur(0);
+        transform: translate3d(0, 0, 0) rotate(0deg) scale(1);
+    }
+    42%, 58% {
+        opacity: 0;
+        filter: blur(6px);
+        transform: translate3d(var(--hero-morph-x), var(--hero-morph-y), 0) rotate(var(--hero-morph-rotate)) scale(0.16);
+    }
+}
+
+@keyframes heroOrbMorph {
+    0%, 30%, 70%, 100% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.38) rotate(0deg);
+    }
+    43%, 58% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1) rotate(12deg);
+    }
+}
+
 /* 特性区域 */
 .features {
     padding: 100px 0;
@@ -2675,6 +2760,11 @@ a:hover {
         inset: 0.12em 0.02em 0.06em;
         border-radius: 0.46em;
         filter: blur(11px);
+    }
+
+    .hero-logo-orb {
+        width: 0.72em;
+        height: 0.72em;
     }
     
     .hero-title .subtitle {
@@ -4096,6 +4186,8 @@ body.intro-active {
     .tech-intro-mark,
     .hero-logo-word,
     .hero-logo-word .brand-word::after,
+    .hero-logo-word .brand-word > span,
+    .hero-logo-orb,
     .command-deck::after,
     .command-node {
         animation: none;
