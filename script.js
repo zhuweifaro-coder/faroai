@@ -757,6 +757,61 @@ document.head.appendChild(style);
     });
 })();
 
+/* ─────────── 首页快速导航：滚动位置高亮 ─────────── */
+(function bindSectionRail() {
+    function onReady(callback) {
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', callback);
+            return;
+        }
+        callback();
+    }
+
+    onReady(() => {
+        const rail = document.querySelector('.section-rail');
+        if (!rail) return;
+
+        const links = Array.from(rail.querySelectorAll('a[href^="#"]'));
+        const targets = links
+            .map(link => document.querySelector(link.getAttribute('href')))
+            .filter(Boolean);
+
+        if (!links.length || !targets.length) return;
+
+        function setActive(id) {
+            links.forEach(link => {
+                link.classList.toggle('is-active', link.getAttribute('href') === `#${id}`);
+            });
+        }
+
+        if (!('IntersectionObserver' in window)) {
+            const updateByScroll = () => {
+                const current = targets
+                    .map(target => ({ target, top: Math.abs(target.getBoundingClientRect().top - 110) }))
+                    .sort((a, b) => a.top - b.top)[0]?.target;
+                if (current?.id) setActive(current.id);
+            };
+            window.addEventListener('scroll', updateByScroll, { passive: true });
+            updateByScroll();
+            return;
+        }
+
+        const observer = new IntersectionObserver(entries => {
+            const visible = entries
+                .filter(entry => entry.isIntersecting)
+                .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+            if (visible?.target?.id) {
+                setActive(visible.target.id);
+            }
+        }, {
+            rootMargin: '-42% 0px -48% 0px',
+            threshold: [0.01, 0.18, 0.36]
+        });
+
+        targets.forEach(target => observer.observe(target));
+    });
+})();
+
 /* ─────────── 每次进入首页播放技术流开场动画 ─────────── */
 (function bindTechIntro() {
     function onReady(callback) {

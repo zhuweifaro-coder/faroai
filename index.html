@@ -207,6 +207,17 @@
         </div>
     </header>
 
+    <nav class="section-rail" aria-label="首页快速导航">
+        <a href="#home" class="is-active">顶部</a>
+        <a href="#fit-map">适配</a>
+        <a href="#ops-radar">状态</a>
+        <a href="#command-deck">指挥台</a>
+        <a href="#workflow-lab">演示</a>
+        <a href="#features">能力</a>
+        <a href="#blog">博客</a>
+        <a href="#team-intro">站长</a>
+    </nav>
+
     <main id="main">
         <!-- Hero 区域 -->
         <section id="home" class="hero" aria-label="首页介绍">
@@ -222,8 +233,14 @@
                         <span class="subtitle">把 AI 接进你的微信、知识库和自动化工作流</span>
                     </h1>
                     <p class="hero-description">
-                        这里展示的是可落地的本地 AI 工作流：用 OpenClaw Gateway 连接模型、工具和微信入口；用文档说明真实配置方式；用联系方式承接试用与部署支持。
+                        FaroAI 不是一个“会聊天的演示页”，而是一套可以真正接进微信、知识库和自动化任务的本地优先 AI 工作台。你可以先在单机上跑通，再按团队需要扩展到多模型、多入口、多任务编排。
                     </p>
+                    <div class="hero-audience" aria-label="适用对象">
+                        <span class="hero-audience-chip">个人操盘手</span>
+                        <span class="hero-audience-chip">小团队知识中枢</span>
+                        <span class="hero-audience-chip">微信入口自动化</span>
+                        <span class="hero-audience-chip">本地模型工作流</span>
+                    </div>
                     <div class="hero-actions">
                         <a href="docs.html" class="btn btn-primary btn-large" aria-label="查看 FaroAI 配置文档">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
@@ -243,6 +260,18 @@
                         <div class="proof-item">OpenClaw 2026.5.12</div>
                         <div class="proof-item">微信链路已验证</div>
                         <div class="proof-item">本地模型可调用</div>
+                    </div>
+                    <div class="hero-trust-grid" aria-label="落地判断依据">
+                        <article class="hero-trust-card">
+                            <span>从零到可用</span>
+                            <strong>先本地跑通，再考虑扩展</strong>
+                            <p>不是先卖你一个后台，而是先给出网关、模型、通道三段式可验证路径。</p>
+                        </article>
+                        <article class="hero-trust-card">
+                            <span>适合现状</span>
+                            <strong>个人和小团队更容易受益</strong>
+                            <p>当你需要微信入口、文档检索和固定自动化，而不是复杂企业平台时，FaroAI 更轻。</p>
+                        </article>
                     </div>
                     <div class="hero-stats" aria-label="平台状态">
                         <div class="stat">
@@ -318,7 +347,7 @@
                 <div class="credibility-grid">
                     <div class="credibility-item">
                         <span class="credibility-label">内容更新时间</span>
-                        <strong>2026-05-18</strong>
+                        <strong>2026-05-21</strong>
                         <p>OpenClaw 已升级到 2026.5.12，并完成 Gateway、微信通道和本地模型链路验证。</p>
                     </div>
                     <div class="credibility-item">
@@ -335,7 +364,80 @@
             </div>
         </section>
 
-        <section class="ops-radar" aria-label="FaroAI 运行态势">
+        <section id="fit-map" class="fit-map" aria-label="FaroAI 适配地图">
+            <div class="container">
+                <div class="section-header fit-map-header">
+                    <span class="section-label">Fit Map</span>
+                    <h2 class="section-title">先判断你是不是该用它，再谈部署</h2>
+                    <p class="section-description">
+                        这套站点不想把所有人都往同一个漏斗里塞。FaroAI 最适合已经明确需要微信入口、资料检索和自动化执行的人，而不是只想体验聊天界面的访客。
+                    </p>
+                </div>
+                <div class="fit-map-grid">
+                    <article class="fit-card fit-card-primary">
+                        <div class="fit-card-head">
+                            <span class="fit-card-kicker">Best for</span>
+                            <h3>个人工作台</h3>
+                        </div>
+                        <p>你希望 AI 真正帮你整理消息、生成简报、查询文档、辅助决策，而不是只停留在网页输入框里。</p>
+                        <ul class="fit-points">
+                            <li>适合长期使用微信触发任务</li>
+                            <li>适合自己维护模型与知识源</li>
+                            <li>适合先单机验证，再逐步扩展</li>
+                        </ul>
+                    </article>
+                    <article class="fit-card">
+                        <div class="fit-card-head">
+                            <span class="fit-card-kicker">Team use</span>
+                            <h3>小团队中枢</h3>
+                        </div>
+                        <p>团队不需要大而全的 AI 平台，只想先把 FAQ、值班排障、日报和知识检索串起来。</p>
+                        <ul class="fit-points">
+                            <li>统一文档与流程入口</li>
+                            <li>降低重复沟通成本</li>
+                            <li>保留发送前人工确认边界</li>
+                        </ul>
+                    </article>
+                    <article class="fit-card">
+                        <div class="fit-card-head">
+                            <span class="fit-card-kicker">Not ideal</span>
+                            <h3>不适合的场景</h3>
+                        </div>
+                        <p>如果你要的是成熟 SaaS、现成账号体系、立即可用的多租户后台，那么现在还不是 FaroAI 的优势区域。</p>
+                        <ul class="fit-points fit-points-muted">
+                            <li>OAuth 与公开 API 仍在接入</li>
+                            <li>首页展示以本地与半自动为主</li>
+                            <li>不刻意伪装成已完成的云产品</li>
+                        </ul>
+                    </article>
+                </div>
+                <div class="launch-lanes" aria-label="落地路径">
+                    <article class="launch-lane">
+                        <span class="launch-step">01</span>
+                        <div>
+                            <strong>本地验证</strong>
+                            <p>先验证 Gateway、模型和微信入口能否串通。</p>
+                        </div>
+                    </article>
+                    <article class="launch-lane">
+                        <span class="launch-step">02</span>
+                        <div>
+                            <strong>加入知识与任务</strong>
+                            <p>再接入文档检索、日报、定时任务和人工确认节点。</p>
+                        </div>
+                    </article>
+                    <article class="launch-lane">
+                        <span class="launch-step">03</span>
+                        <div>
+                            <strong>按团队扩展</strong>
+                            <p>最后再考虑更多模型、更多入口和更细的权限控制。</p>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section id="ops-radar" class="ops-radar" aria-label="FaroAI 运行态势">
             <div class="container">
                 <div class="ops-shell">
                     <div class="ops-copy">
@@ -389,7 +491,7 @@
             </div>
         </section>
 
-        <section class="command-deck" aria-label="FaroAI AI 指挥台">
+        <section id="command-deck" class="command-deck" aria-label="FaroAI AI 指挥台">
             <div class="container">
                 <div class="section-header">
                     <span class="section-label">Command Deck</span>
@@ -513,7 +615,7 @@
         </section>
 
         <!-- 运行控制台 -->
-        <section class="mission-control" aria-label="FaroAI 运行控制台">
+        <section id="mission-control" class="mission-control" aria-label="FaroAI 运行控制台">
             <div class="container">
                 <div class="mission-shell">
                     <div class="mission-copy">
@@ -639,7 +741,7 @@
         </section>
 
         <!-- 快速开始 -->
-        <section class="quickstart" aria-label="快速开始">
+        <section id="quickstart" class="quickstart" aria-label="快速开始">
             <div class="container">
                 <div class="quickstart-layout">
                     <div class="quickstart-copy">
@@ -677,7 +779,7 @@
         </section>
 
         <!-- 当前状态 -->
-        <section class="site-status" aria-label="当前功能状态">
+        <section id="site-status" class="site-status" aria-label="当前功能状态">
             <div class="container">
                 <div class="section-header">
                     <span class="section-label">当前状态</span>
@@ -804,7 +906,7 @@
         </section>
 
         <!-- 站长简介 -->
-        <section class="team-intro" aria-label="项目发起人">
+        <section id="team-intro" class="team-intro" aria-label="项目发起人">
             <div class="container">
                 <div class="section-header">
                     <span class="section-label">关于站长</span>
@@ -817,7 +919,6 @@
                     <div class="team-avatar">
                         <img src="assets/faro-founder-avatar.jpg" alt="FARO 站长头像">
                     </div>
-                    <h3 class="team-name">FARO</h3>
                     <p class="team-title"><span class="brand-word"><span class="brand-red">F</span><span class="brand-grad brand-grad-a">a</span><span class="brand-grad brand-grad-r">r</span><span class="brand-grad brand-grad-o">o</span><span class="brand-red">A</span><span class="brand-grad brand-grad-i">I</span></span> 发起人 & AI 自动化实践者</p>
                     <p class="team-description">
                         长期关注本地 AI、Agent 网关、微信机器人和自动化系统，把可落地的 AI 能力打磨成个人与小团队每天都能用的工作台。
