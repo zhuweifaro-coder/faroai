@@ -48,7 +48,7 @@
                     <span class="blog-kicker"><span class="brand-word"><span class="brand-red">F</span><span class="brand-grad brand-grad-a">a</span><span class="brand-grad brand-grad-r">r</span><span class="brand-grad brand-grad-o">o</span><span class="brand-red">A</span><span class="brand-grad brand-grad-i">I</span></span> Notes</span>
                     <h1 class="blog-title">博客</h1>
                     <p class="blog-description">跟踪 OpenClaw 最新动态、OpenAI 官方技术资料，以及把 AI 接入微信、本地模型和自动化工作流的实践记录。</p>
-                    <p class="blog-freshness">内容校对日期：2026-05-15。OpenAI 相关内容以官方文档为准；OpenClaw 相关内容以本站本机实测、npm registry 与公开文档交叉记录。</p>
+                    <p class="blog-freshness">内容校对日期：2026-05-28。OpenAI 相关内容以官方文档为准；OpenClaw 相关内容以 GitHub Releases、npm registry 与本站本机实测交叉记录。</p>
                 </div>
             </div>
         </section>
@@ -97,6 +97,102 @@
                 <!-- 文章列表 -->
                 <div class="articles" id="articles">
                     <!-- 置顶文章：OpenClaw 与 OpenAI 最新资料 -->
+                    <article id="article-openclaw-2026-5-27-watch" class="article-card featured" data-category="product">
+                        <div class="article-content">
+                            <div class="article-header">
+                                <a href="https://github.com/openclaw/openclaw/releases/" target="_blank" rel="noopener noreferrer" class="article-title">OpenClaw 2026.5.27 发布：先看 Gateway、通道和安全边界，再决定是否升级</a>
+                                <span class="article-category category-product">产品更新</span>
+                            </div>
+                            <p class="article-excerpt">
+                                npm registry 显示 OpenClaw latest 已在 2026-05-28 更新到 2026.5.27；GitHub Releases 同步记录了 2026.5.27-beta.1 的安全、Gateway、Codex app-server 与 provider/model 相关改动。本站建议把 2026.5.27 当作可评估升级版本：生产链路仍以本机已验证版本为准，升级前先跑 Gateway health、模型 provider 回复、微信通道投递三项检查。
+                            </p>
+                            <p class="article-source">资料来源：<a href="https://github.com/openclaw/openclaw/releases/" target="_blank" rel="noopener noreferrer">OpenClaw GitHub Releases</a>、<a href="https://www.npmjs.com/package/openclaw" target="_blank" rel="noopener noreferrer">npm openclaw</a></p>
+                            <div class="article-meta">
+                                <a href="个人概况_2026_v3.html" class="article-author">炜哥</a>
+                                <span class="article-date">2026-05-28</span>
+                                <span class="article-note">版本观察</span>
+                                <div class="article-tags">
+                                    <span class="tag">OpenClaw</span>
+                                    <span class="tag">Gateway</span>
+                                    <span class="tag">Beta</span>
+                                    <span class="tag">安全边界</span>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article id="article-openai-responses-tools-2026-05-28" class="article-card featured" data-category="technical">
+                        <div class="article-content">
+                            <div class="article-header">
+                                <a href="https://developers.openai.com/api/docs/guides/tools" target="_blank" rel="noopener noreferrer" class="article-title">OpenAI Responses 与 Tools：把“会回答”升级为“可执行、可审计”的 Agent 工作流</a>
+                                <span class="article-category category-technical">技术文章</span>
+                            </div>
+                            <p class="article-excerpt">
+                                OpenAI 官方文档把 Responses API 定位为面向 Agent 应用的统一接口，工具层可接入 web search、file search、function calling、remote MCP、computer use、shell 等能力。对 <span class="brand-word"><span class="brand-red">F</span><span class="brand-grad brand-grad-a">a</span><span class="brand-grad brand-grad-r">r</span><span class="brand-grad brand-grad-o">o</span><span class="brand-red">A</span><span class="brand-grad brand-grad-i">I</span></span> 来说，关键不是把所有工具一次性打开，而是按任务分层：查询类工具自动调用，写文件、发消息、交易和部署类动作必须保留人工确认与日志。
+                            </p>
+                            <p class="article-source">资料来源：<a href="https://developers.openai.com/api/docs/guides/migrate-to-responses" target="_blank" rel="noopener noreferrer">OpenAI Responses 迁移指南</a>、<a href="https://developers.openai.com/api/docs/guides/tools" target="_blank" rel="noopener noreferrer">OpenAI Tools 指南</a></p>
+                            <div class="article-meta">
+                                <a href="个人概况_2026_v3.html" class="article-author">炜哥</a>
+                                <span class="article-date">2026-05-28</span>
+                                <span class="article-note">架构笔记</span>
+                                <div class="article-tags">
+                                    <span class="tag">Responses API</span>
+                                    <span class="tag">Tools</span>
+                                    <span class="tag">MCP</span>
+                                    <span class="tag">审计</span>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article id="article-codex-mobile-desktop-link" class="article-card featured" data-category="tutorial">
+                        <div class="article-content">
+                            <div class="article-header">
+                                <a href="docs.html#troubleshooting" class="article-title">Codex 移动端卡在“正在等待桌面端”：账号、桌面端会话和网络三步排查</a>
+                                <span class="article-category category-tutorial">教程</span>
+                            </div>
+                            <p class="article-excerpt">
+                                OpenAI 帮助中心说明，Codex 移动端远程访问会连接底层 Mac 主机或远程环境，并显示项目上下文、审批、终端输出、diff 和测试结果。如果手机端一直等待桌面端，优先检查三点：手机 ChatGPT 与桌面 Codex 是否为同一账号；桌面端是否保持在线且没有卡在授权页；手机与桌面是否处在可访问的网络环境，必要时重启桌面 Codex 后重新扫码。
+                            </p>
+                            <p class="article-source">资料来源：<a href="https://help.openai.com/en/articles/10128477-chatgpt-enterprise-edu-release-notes" target="_blank" rel="noopener noreferrer">OpenAI Help Center release notes</a>、本站 Codex 移动端配置记录</p>
+                            <div class="article-meta">
+                                <a href="个人概况_2026_v3.html" class="article-author">炜哥</a>
+                                <span class="article-date">2026-05-28</span>
+                                <span class="article-note">排查清单</span>
+                                <div class="article-tags">
+                                    <span class="tag">Codex Mobile</span>
+                                    <span class="tag">ChatGPT</span>
+                                    <span class="tag">远程访问</span>
+                                    <span class="tag">排障</span>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article id="article-agent-security-2026-05" class="article-card featured" data-category="news">
+                        <div class="article-content">
+                            <div class="article-header">
+                                <a href="https://arxiv.org/abs/2605.25435" target="_blank" rel="noopener noreferrer" class="article-title">Agent 安全成为部署前置条件：外部输入、工具执行和通道回复都要分层防护</a>
+                                <span class="article-category category-news">行业动态</span>
+                            </div>
+                            <p class="article-excerpt">
+                                2026-05-25 arXiv 新论文系统梳理了 OpenClaw agents 的安全与隐私威胁，重点落在推理过程、动作执行和外部交互三层。结合 OpenAI 官方 Agent 安全建议，本站后续会把“权限最小化、危险动作确认、工具输出隔离、微信回复可追踪”作为默认设计，而不是等出现误操作后再补救。
+                            </p>
+                            <p class="article-source">资料来源：<a href="https://arxiv.org/abs/2605.25435" target="_blank" rel="noopener noreferrer">arXiv: Security of OpenClaw Agents</a>、<a href="https://developers.openai.com/api/docs/guides/agent-builder-safety" target="_blank" rel="noopener noreferrer">OpenAI Agent safety guide</a></p>
+                            <div class="article-meta">
+                                <a href="个人概况_2026_v3.html" class="article-author">炜哥</a>
+                                <span class="article-date">2026-05-28</span>
+                                <span class="article-note">趋势观察</span>
+                                <div class="article-tags">
+                                    <span class="tag">Agent 安全</span>
+                                    <span class="tag">OpenClaw</span>
+                                    <span class="tag">权限控制</span>
+                                    <span class="tag">微信机器人</span>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
                     <article id="article-openclaw-2026-5-12" class="article-card featured" data-category="product">
                         <div class="article-content">
                             <div class="article-header">
