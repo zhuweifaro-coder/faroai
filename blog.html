@@ -45,10 +45,23 @@
         <section class="blog-hero">
             <div class="container">
                 <div class="blog-hero-content">
-                    <span class="blog-kicker"><span class="brand-word"><span class="brand-red">F</span><span class="brand-grad brand-grad-a">a</span><span class="brand-grad brand-grad-r">r</span><span class="brand-grad brand-grad-o">o</span><span class="brand-red">A</span><span class="brand-grad brand-grad-i">I</span></span> Notes</span>
-                    <h1 class="blog-title">博客</h1>
-                    <p class="blog-description">跟踪 OpenClaw 最新动态、OpenAI 官方技术资料，以及把 AI 接入微信、本地模型和自动化工作流的实践记录。</p>
-                    <p class="blog-freshness">内容校对日期：2026-05-28。OpenAI 相关内容以官方文档为准；OpenClaw 相关内容以 GitHub Releases、npm registry 与本站本机实测交叉记录。</p>
+                    <div class="blog-hero-copy">
+                        <span class="blog-kicker"><span class="brand-word"><span class="brand-red">F</span><span class="brand-grad brand-grad-a">a</span><span class="brand-grad brand-grad-r">r</span><span class="brand-grad brand-grad-o">o</span><span class="brand-red">A</span><span class="brand-grad brand-grad-i">I</span></span> Notes</span>
+                        <h1 class="blog-title">AI 工作流日志</h1>
+                        <p class="blog-description">跟踪 OpenClaw 最新动态、OpenAI 官方技术资料，以及把 AI 接入微信、本地模型和自动化工作流的实践记录。</p>
+                    </div>
+                    <aside class="blog-hero-panel" aria-label="博客更新摘要">
+                        <div class="blog-hero-panel-head">
+                            <span>Latest update</span>
+                            <strong>2026-05-30</strong>
+                        </div>
+                        <p class="blog-freshness">OpenAI 相关内容以官方文档为准；OpenClaw 相关内容以 GitHub Releases、npm registry 与本站本机实测交叉记录。</p>
+                        <div class="blog-hero-metrics" aria-label="当前关注主题">
+                            <span>OpenClaw</span>
+                            <span>Responses API</span>
+                            <span>本地 AI</span>
+                        </div>
+                    </aside>
                 </div>
             </div>
         </section>
@@ -97,6 +110,54 @@
                 <!-- 文章列表 -->
                 <div class="articles" id="articles">
                     <!-- 置顶文章：OpenClaw 与 OpenAI 最新资料 -->
+                    <article id="article-openclaw-2026-5-30-upgrade-window" class="article-card featured" data-category="product">
+                        <div class="article-content">
+                            <div class="article-header">
+                                <a href="https://github.com/openclaw/openclaw/releases/" target="_blank" rel="noopener noreferrer" class="article-title">OpenClaw 2026.5.27 仍是 latest：5.28 beta 可观察，但生产链路先别追新</a>
+                                <span class="article-category category-product">产品更新</span>
+                            </div>
+                            <p class="article-excerpt">
+                                2026-05-30 复核 npm registry：OpenClaw latest 仍为 2026.5.27，包元数据最近修改时间为 2026-05-29 22:47 UTC；GitHub Releases 里 2026.5.28 目前主要以 beta 形态出现。对 <span class="brand-word"><span class="brand-red">F</span><span class="brand-grad brand-grad-a">a</span><span class="brand-grad brand-grad-r">r</span><span class="brand-grad brand-grad-o">o</span><span class="brand-red">A</span><span class="brand-grad brand-grad-i">I</span></span> 来说，正确动作不是看到 beta 就升级，而是把它放进观察清单：看 Gateway 启动、provider 路由、微信通道、工具权限和回滚路径是否都有证据。
+                            </p>
+                            <p class="article-source">资料来源：<a href="https://www.npmjs.com/package/openclaw" target="_blank" rel="noopener noreferrer">npm openclaw</a>、<a href="https://github.com/openclaw/openclaw/releases/" target="_blank" rel="noopener noreferrer">OpenClaw GitHub Releases</a></p>
+                            <div class="article-meta">
+                                <a href="个人概况_2026_v3.html" class="article-author">炜哥</a>
+                                <span class="article-date">2026-05-30</span>
+                                <span class="article-note">升级观察</span>
+                                <div class="article-tags">
+                                    <span class="tag">OpenClaw</span>
+                                    <span class="tag">2026.5.27</span>
+                                    <span class="tag">Beta 观察</span>
+                                    <span class="tag">升级策略</span>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article id="article-openai-assistants-sunset-2026-05-30" class="article-card featured" data-category="technical">
+                        <div class="article-content">
+                            <div class="article-header">
+                                <a href="https://developers.openai.com/api/docs/guides/migrate-to-responses" target="_blank" rel="noopener noreferrer" class="article-title">OpenAI Assistants API 退场倒计时：新工作流应直接按 Responses 设计</a>
+                                <span class="article-category category-technical">技术文章</span>
+                            </div>
+                            <p class="article-excerpt">
+                                OpenAI 官方迁移文档已经明确：Responses API 是构建 Agent 的未来方向，Assistants API 自 2025-08-26 起进入弃用周期，并计划在 2026-08-26 sunset。本站后续的 Agent、知识库和工具调用文章会默认以 Responses 为主线：用 typed items 记录推理、消息、工具调用和工具输出；用 previous_response_id 或 Conversations 处理多轮状态；高风险动作继续放在人工确认之后。
+                            </p>
+                            <p class="article-source">资料来源：<a href="https://developers.openai.com/api/docs/guides/migrate-to-responses" target="_blank" rel="noopener noreferrer">OpenAI Responses 迁移指南</a>、<a href="https://platform.openai.com/docs/api-reference/responses?api-mode=responses" target="_blank" rel="noopener noreferrer">OpenAI Responses API Reference</a></p>
+                            <div class="article-meta">
+                                <a href="个人概况_2026_v3.html" class="article-author">炜哥</a>
+                                <span class="article-date">2026-05-30</span>
+                                <span class="article-note">接口迁移</span>
+                                <div class="article-tags">
+                                    <span class="tag">OpenAI</span>
+                                    <span class="tag">Responses API</span>
+                                    <span class="tag">Assistants API</span>
+                                    <span class="tag">Agent</span>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
                     <article id="article-openclaw-2026-5-27-watch" class="article-card featured" data-category="product">
                         <div class="article-content">
                             <div class="article-header">
