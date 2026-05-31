@@ -619,6 +619,8 @@ document.head.appendChild(style);
                 `;
                 steps.appendChild(item);
             });
+
+            window.FaroAIGsap?.animateWorkflow?.();
         }
 
         tabs.forEach(tab => {
@@ -722,6 +724,8 @@ document.head.appendChild(style);
                 nodeEl.innerHTML = `<small>${node[0]}</small><strong>${node[1]}</strong>`;
                 commandPipeline.appendChild(nodeEl);
             });
+
+            window.FaroAIGsap?.animateCommandDeck?.();
         }
 
         commandChips.forEach(chip => {
@@ -754,6 +758,215 @@ document.head.appendChild(style);
                 opsSync.textContent = `SYNC ${minutes}:${seconds}`;
             }, 1000);
         }
+    });
+})();
+
+/* ─────────── 首页 GSAP 动效增强：入场、滚动揭示、面板切换 ─────────── */
+(function bindGsapHomepageAnimations() {
+    function onReady(callback) {
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', callback);
+            return;
+        }
+        callback();
+    }
+
+    onReady(() => {
+        const gsap = window.gsap;
+        const ScrollTrigger = window.ScrollTrigger;
+        const prefersReducedMotion = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
+
+        window.FaroAIGsap = {
+            animateWorkflow() {},
+            animateCommandDeck() {}
+        };
+
+        if (!gsap || prefersReducedMotion) return;
+
+        if (ScrollTrigger) {
+            gsap.registerPlugin(ScrollTrigger);
+        }
+
+        gsap.defaults({
+            ease: 'power3.out',
+            duration: 0.72
+        });
+
+        const heroItems = [
+            '.hero-badge',
+            '.hero-title',
+            '.hero-description',
+            '.hero-audience-chip',
+            '.hero-actions .btn',
+            '.proof-item',
+            '.hero-trust-card',
+            '.stat'
+        ];
+
+        gsap.from(heroItems, {
+            autoAlpha: 0,
+            y: 24,
+            duration: 0.82,
+            stagger: 0.055,
+            clearProps: 'opacity,visibility,transform'
+        });
+
+        gsap.from('.dashboard-preview', {
+            autoAlpha: 0,
+            y: 34,
+            scale: 0.97,
+            rotateX: 4,
+            duration: 0.95,
+            delay: 0.12,
+            transformOrigin: '50% 60%',
+            clearProps: 'opacity,visibility,transform'
+        });
+
+        gsap.from('.preview-chart .chart-bar', {
+            scaleY: 0.28,
+            transformOrigin: '50% 100%',
+            duration: 0.9,
+            delay: 0.42,
+            stagger: 0.06,
+            clearProps: 'transform'
+        });
+
+        if (ScrollTrigger) {
+            gsap.to('.dashboard-preview', {
+                y: -28,
+                rotateZ: -0.8,
+                ease: 'none',
+                scrollTrigger: {
+                    trigger: '.hero',
+                    start: 'top top',
+                    end: 'bottom top',
+                    scrub: 0.7
+                }
+            });
+
+            gsap.to('.hero-particles', {
+                y: 46,
+                opacity: 0.38,
+                ease: 'none',
+                scrollTrigger: {
+                    trigger: '.hero',
+                    start: 'top top',
+                    end: 'bottom top',
+                    scrub: true
+                }
+            });
+
+            const revealItems = gsap.utils.toArray([
+                '.credibility-item',
+                '.fit-card',
+                '.launch-lane',
+                '.ops-copy',
+                '.ops-console',
+                '.command-deck .section-header',
+                '.command-chip',
+                '.command-holo',
+                '.workflow-lab .section-header',
+                '.workflow-controls',
+                '.workflow-stage',
+                '.workflow-metrics',
+                '.mission-card',
+                '.feature-card',
+                '.quickstart-step',
+                '.status-card',
+                '.use-case-card',
+                '.blog-preview-card',
+                '.team-card'
+            ].join(','));
+
+            ScrollTrigger.batch(revealItems, {
+                start: 'top 86%',
+                once: true,
+                onEnter(batch) {
+                    gsap.fromTo(batch, {
+                        autoAlpha: 0,
+                        y: 28
+                    }, {
+                        autoAlpha: 1,
+                        y: 0,
+                        duration: 0.68,
+                        stagger: 0.06,
+                        clearProps: 'opacity,visibility,transform'
+                    });
+                }
+            });
+
+            gsap.to('.holo-orbit span', {
+                rotate: 360,
+                duration: 18,
+                repeat: -1,
+                ease: 'none',
+                transformOrigin: '50% 50%',
+                stagger: 1.2
+            });
+        }
+
+        function addPointerLift(selector) {
+            gsap.utils.toArray(selector).forEach(element => {
+                element.addEventListener('pointerenter', () => {
+                    gsap.to(element, { y: -4, scale: 1.012, duration: 0.28, overwrite: 'auto' });
+                });
+                element.addEventListener('pointerleave', () => {
+                    gsap.to(element, { y: 0, scale: 1, duration: 0.32, overwrite: 'auto' });
+                });
+            });
+        }
+
+        addPointerLift('.hero-actions .btn, .command-chip, .workflow-tab, .feature-card, .blog-preview-card');
+
+        window.FaroAIGsap.animateWorkflow = function animateWorkflow() {
+            gsap.fromTo('.workflow-step', {
+                autoAlpha: 0,
+                x: -18
+            }, {
+                autoAlpha: 1,
+                x: 0,
+                duration: 0.42,
+                stagger: 0.055,
+                clearProps: 'opacity,visibility,transform'
+            });
+            gsap.fromTo('.workflow-output', {
+                autoAlpha: 0.62,
+                y: 8
+            }, {
+                autoAlpha: 1,
+                y: 0,
+                duration: 0.4,
+                clearProps: 'opacity,visibility,transform'
+            });
+        };
+
+        window.FaroAIGsap.animateCommandDeck = function animateCommandDeck() {
+            gsap.fromTo('.command-node', {
+                autoAlpha: 0,
+                y: 12,
+                scale: 0.96
+            }, {
+                autoAlpha: 1,
+                y: 0,
+                scale: 1,
+                duration: 0.38,
+                stagger: 0.05,
+                clearProps: 'opacity,visibility,transform'
+            });
+            gsap.fromTo('.command-output-grid article', {
+                autoAlpha: 0.58,
+                y: 8
+            }, {
+                autoAlpha: 1,
+                y: 0,
+                duration: 0.42,
+                stagger: 0.045,
+                clearProps: 'opacity,visibility,transform'
+            });
+        };
+
+        window.FaroAIGsap.animateWorkflow();
+        window.FaroAIGsap.animateCommandDeck();
     });
 })();
 
