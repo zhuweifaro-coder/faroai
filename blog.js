@@ -4,6 +4,16 @@ document.addEventListener('DOMContentLoaded', function() {
     // 文章筛选
     const filterBtns = document.querySelectorAll('.filter-btn');
     const articles = document.querySelectorAll('.article-card');
+    const filterGroup = document.querySelector('.filter-group');
+    const visibleCount = document.createElement('span');
+    visibleCount.className = 'filter-count';
+    visibleCount.setAttribute('aria-live', 'polite');
+    filterGroup?.appendChild(visibleCount);
+
+    const updateVisibleCount = () => {
+        const count = Array.from(articles).filter(article => article.style.display !== 'none').length;
+        visibleCount.textContent = `${count} 篇`;
+    };
     
     filterBtns.forEach(btn => {
         btn.addEventListener('click', function() {
@@ -20,6 +30,8 @@ document.addEventListener('DOMContentLoaded', function() {
                     article.style.display = 'none';
                 }
             });
+
+            updateVisibleCount();
         });
     });
     
@@ -43,6 +55,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
         
         articles.forEach(article => container.appendChild(article));
+        updateVisibleCount();
     });
     
     // 移动端菜单
@@ -107,6 +120,8 @@ document.addEventListener('DOMContentLoaded', function() {
             article.style.transform = 'translateY(0)';
         }, index * 100);
     });
+
+    updateVisibleCount();
 });
 
 /* ─────────── P2 #14: 自动生成博客目录 ─────────── */
