@@ -758,6 +758,68 @@ document.head.appendChild(style);
                 opsSync.textContent = `SYNC ${minutes}:${seconds}`;
             }, 1000);
         }
+
+        const matrixItems = {
+            wechat: {
+                title: '微信入口层',
+                score: 'Ready 92%',
+                description: '把微信消息变成可路由任务，区分闲聊、资料查询、自动化触发和需要人工确认的请求。',
+                bars: [92, 78, 86]
+            },
+            knowledge: {
+                title: '知识检索层',
+                score: 'Indexed 84%',
+                description: '把博客、文档、配置记录和个人知识库接进统一检索路径，回答时保留来源和更新时间。',
+                bars: [84, 72, 82]
+            },
+            automation: {
+                title: '自动任务层',
+                score: 'Flow 76%',
+                description: '把日报、市场复盘、邮件摘要和运维检查做成可复用任务，但关键发送和危险动作仍保留确认。',
+                bars: [80, 76, 88]
+            },
+            safety: {
+                title: '安全审计层',
+                score: 'Guard 88%',
+                description: '对外部输入、工具输出、消息投递和配置修改分层隔离，避免把模型回复直接等同为可执行命令。',
+                bars: [86, 70, 88]
+            }
+        };
+
+        const matrixChips = document.querySelectorAll('.matrix-chip');
+        const matrixTitle = document.getElementById('matrixTitle');
+        const matrixScore = document.getElementById('matrixScore');
+        const matrixDescription = document.getElementById('matrixDescription');
+        const matrixBars = [
+            document.getElementById('matrixBarAvailability'),
+            document.getElementById('matrixBarAutomation'),
+            document.getElementById('matrixBarSafety')
+        ];
+
+        function renderMatrix(key) {
+            const item = matrixItems[key] || matrixItems.weixin;
+            if (matrixTitle) matrixTitle.textContent = item.title;
+            if (matrixScore) matrixScore.textContent = item.score;
+            if (matrixDescription) matrixDescription.textContent = item.description;
+            matrixBars.forEach((bar, index) => {
+                if (bar) bar.style.width = `${item.bars[index]}%`;
+            });
+            window.FaroAIGsap?.animateMatrix?.();
+        }
+
+        matrixChips.forEach(chip => {
+            chip.addEventListener('click', () => {
+                matrixChips.forEach(item => {
+                    item.classList.remove('is-active');
+                    item.setAttribute('aria-selected', 'false');
+                });
+                chip.classList.add('is-active');
+                chip.setAttribute('aria-selected', 'true');
+                renderMatrix(chip.dataset.matrix);
+            });
+        });
+
+        renderMatrix('wechat');
     });
 })();
 
@@ -778,7 +840,8 @@ document.head.appendChild(style);
 
         window.FaroAIGsap = {
             animateWorkflow() {},
-            animateCommandDeck() {}
+            animateCommandDeck() {},
+            animateMatrix() {}
         };
 
         if (!gsap || prefersReducedMotion) return;
@@ -870,6 +933,9 @@ document.head.appendChild(style);
                 '.workflow-stage',
                 '.workflow-metrics',
                 '.mission-card',
+                '.agent-matrix .section-header',
+                '.matrix-orb',
+                '.matrix-panel',
                 '.feature-card',
                 '.quickstart-step',
                 '.status-card',
@@ -916,7 +982,7 @@ document.head.appendChild(style);
             });
         }
 
-        addPointerLift('.hero-actions .btn, .command-chip, .workflow-tab, .feature-card, .blog-preview-card');
+        addPointerLift('.hero-actions .btn, .command-chip, .workflow-tab, .matrix-chip, .feature-card, .blog-preview-card');
 
         window.FaroAIGsap.animateWorkflow = function animateWorkflow() {
             gsap.fromTo('.workflow-step', {
@@ -965,8 +1031,22 @@ document.head.appendChild(style);
             });
         };
 
+        window.FaroAIGsap.animateMatrix = function animateMatrix() {
+            gsap.fromTo('.matrix-panel p, .matrix-bar, .matrix-panel-header em', {
+                autoAlpha: 0.62,
+                y: 8
+            }, {
+                autoAlpha: 1,
+                y: 0,
+                duration: 0.36,
+                stagger: 0.045,
+                clearProps: 'opacity,visibility,transform'
+            });
+        };
+
         window.FaroAIGsap.animateWorkflow();
         window.FaroAIGsap.animateCommandDeck();
+        window.FaroAIGsap.animateMatrix();
     });
 })();
 

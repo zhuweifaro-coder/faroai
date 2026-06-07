@@ -219,9 +219,10 @@
         <a href="#ops-radar" data-step="03">状态</a>
         <a href="#command-deck" data-step="04">指挥台</a>
         <a href="#workflow-lab" data-step="05">演示</a>
-        <a href="#features" data-step="06">能力</a>
-        <a href="#blog" data-step="07">博客</a>
-        <a href="#team-intro" data-step="08">站长</a>
+        <a href="#agent-matrix" data-step="06">矩阵</a>
+        <a href="#features" data-step="07">能力</a>
+        <a href="#blog" data-step="08">博客</a>
+        <a href="#team-intro" data-step="09">站长</a>
     </nav>
 
     <main id="main">
@@ -353,8 +354,8 @@
                 <div class="credibility-grid">
                     <div class="credibility-item">
                         <span class="credibility-label">内容更新时间</span>
-                        <strong>2026-06-05</strong>
-                        <p>OpenClaw 已升级到 2026.6.1，并完成 Gateway、微信通道和本地模型链路验证。</p>
+                        <strong>2026-06-07</strong>
+                        <p>OpenClaw npm latest 仍为 2026.6.1；6 月 7 日 beta 已进入观察，本站稳定口径保持已验证链路。</p>
                     </div>
                     <div class="credibility-item">
                         <span class="credibility-label">事实边界</span>
@@ -652,6 +653,62 @@
                             <strong>站内搜索已接入</strong>
                             <p>可搜索文档、博客、功能、用例、集成和联系方式。</p>
                         </article>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 智能体能力矩阵 -->
+        <section id="agent-matrix" class="agent-matrix" aria-label="FaroAI 智能体能力矩阵">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-label">Agent Matrix</span>
+                    <h2 class="section-title">把能力、通道、边界放在同一张雷达图里</h2>
+                    <p class="section-description">
+                        一个可用的本地 AI 智能体，不只看模型强不强，还要看入口、知识、工具、审计和人工确认是否组成闭环。
+                    </p>
+                </div>
+                <div class="agent-matrix-shell">
+                    <div class="matrix-orb" aria-hidden="true">
+                        <span class="matrix-ring matrix-ring-a"></span>
+                        <span class="matrix-ring matrix-ring-b"></span>
+                        <span class="matrix-ring matrix-ring-c"></span>
+                        <span class="matrix-core"><span>AI</span></span>
+                        <span class="matrix-node node-wechat">微信</span>
+                        <span class="matrix-node node-gateway">Gateway</span>
+                        <span class="matrix-node node-model">模型</span>
+                        <span class="matrix-node node-tools">工具</span>
+                        <span class="matrix-node node-audit">审计</span>
+                    </div>
+                    <div class="matrix-panel">
+                        <div class="matrix-panel-header">
+                            <span class="screen-dot red"></span>
+                            <span class="screen-dot yellow"></span>
+                            <span class="screen-dot green"></span>
+                            <strong id="matrixTitle">微信入口层</strong>
+                            <em id="matrixScore">Ready 92%</em>
+                        </div>
+                        <p id="matrixDescription">把微信消息变成可路由任务，区分闲聊、资料查询、自动化触发和需要人工确认的请求。</p>
+                        <div class="matrix-bars" aria-label="能力评分">
+                            <div class="matrix-bar">
+                                <span>可用性</span>
+                                <strong><i id="matrixBarAvailability" style="width: 92%"></i></strong>
+                            </div>
+                            <div class="matrix-bar">
+                                <span>自动化</span>
+                                <strong><i id="matrixBarAutomation" style="width: 78%"></i></strong>
+                            </div>
+                            <div class="matrix-bar">
+                                <span>安全边界</span>
+                                <strong><i id="matrixBarSafety" style="width: 86%"></i></strong>
+                            </div>
+                        </div>
+                        <div class="matrix-actions" role="tablist" aria-label="能力矩阵切换">
+                            <button class="matrix-chip is-active" type="button" data-matrix="wechat" role="tab" aria-selected="true">微信入口</button>
+                            <button class="matrix-chip" type="button" data-matrix="knowledge" role="tab" aria-selected="false">知识检索</button>
+                            <button class="matrix-chip" type="button" data-matrix="automation" role="tab" aria-selected="false">自动任务</button>
+                            <button class="matrix-chip" type="button" data-matrix="safety" role="tab" aria-selected="false">安全审计</button>
+                        </div>
                     </div>
                 </div>
             </div>
