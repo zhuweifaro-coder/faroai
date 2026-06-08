@@ -214,7 +214,7 @@
 
 .source-ledger-grid {
     display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
     gap: 0.75rem;
     margin-top: 1rem;
 }
@@ -266,6 +266,10 @@
 .article-card.is-targeted {
     border-color: rgba(37, 99, 235, 0.34);
     box-shadow: 0 26px 62px rgba(37, 99, 235, 0.12);
+}
+
+.article-card.is-targeted .article-title {
+    color: var(--primary-color);
 }
 
 .category-brief h2 {

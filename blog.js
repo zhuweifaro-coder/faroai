@@ -82,16 +82,24 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-    // 平滑滚动
+    // 平滑滚动，同时保留 hash 以便高亮来源卡和文章锚点
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
+            const hash = this.getAttribute('href');
+            if (!hash || hash === '#') return;
+
+            const target = document.querySelector(hash);
+            if (!target) return;
+
             e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
-            if (target) {
-                target.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                });
+            target.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+
+            if (window.location.hash !== hash) {
+                history.replaceState(null, '', hash);
+                setTargetArticle();
             }
         });
     });

@@ -59,6 +59,7 @@
                         <div class="blog-hero-metrics" aria-label="当前关注主题">
                             <span>OpenClaw 2026.6.1</span>
                             <span>Codex 2026-06-02</span>
+                            <span>Agents SDK 0.14.0</span>
                             <span>Ollama 0.30</span>
                         </div>
                     </aside>
@@ -125,6 +126,11 @@
                             <strong>Codex Academy 继续强调 automation 要可复查</strong>
                             <p>官方 Academy 页面明确要求任务描述具体、可重复、易审核；这和每周站点更新、消息发送、资料核验的实践一致。</p>
                         </a>
+                        <a class="source-ledger-card" href="#article-agents-sdk-v0140-2026-06-08">
+                            <small>AI Agent</small>
+                            <strong>Agents SDK 0.14.0 于 06-02 强化 Skills、messengers 与定时任务</strong>
+                            <p>Cloudflare 官方 changelog 把 Agent Skills、Telegram messenger、declarative schedules 和 Workflows durable steps 放在同一版本里，说明代理正在朝“会接入口、会定时、会恢复”演进。</p>
+                        </a>
                         <a class="source-ledger-card" href="#article-ollama-0-30-runtime-2026-06-08">
                             <small>本地模型</small>
                             <strong>Ollama 0.30 于 06-05 官宣，强调 GGUF 与更广 GPU 支持</strong>
@@ -146,7 +152,7 @@
                                 <span class="article-category category-product">产品更新</span>
                             </div>
                             <p class="article-excerpt">
-                                GitHub Releases 显示，OpenClaw 2026.6.1 在 2026-06-03 仍标记为 Latest，重点是中断后恢复、移动通道投递稳定性、请求超时边界和插件加载恢复；而 2026-06-07 发布的 2026.6.5-beta.2 则增加了“QQBot 过滤模型 reasoning/thinking 脚手架后再投递”的预发布改动。对微信机器人和自动化工作流来说，这意味着稳定生产链路继续跟随 2026.6.1，而对“模型内部推理文本不要漏到聊天通道”这类问题要持续留意后续正式版。
+                                截至 2026-06-08 复核 GitHub Releases，OpenClaw 2026.6.1 仍标记为 Latest，重点落在中断后恢复、移动通道投递稳定性、请求超时边界和插件加载恢复；而 2026-06-07 发布的 2026.6.5-beta.2 则加入“QQBot 过滤模型 reasoning/thinking 脚手架后再投递”的预发布改动。对微信机器人和自动化工作流来说，这意味着生产链路继续跟随 2026.6.1 更稳妥，而对“模型内部推理文本不要漏到聊天通道”这类问题要持续关注后续正式版。
                             </p>
                             <p class="article-source">资料来源：<a href="https://github.com/openclaw/openclaw/releases/" target="_blank" rel="noopener noreferrer">OpenClaw GitHub Releases</a>（2026-06-03 stable、2026-06-07 beta）</p>
                             <div class="article-meta">
@@ -206,6 +212,30 @@
                                     <span class="tag">Automation</span>
                                     <span class="tag">Sites</span>
                                     <span class="tag">Review loop</span>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article id="article-agents-sdk-v0140-2026-06-08" class="article-card featured" data-category="technical">
+                        <div class="article-content">
+                            <div class="article-header">
+                                <a href="https://developers.cloudflare.com/changelog/post/2026-06-02-agents-sdk-v0140/" target="_blank" rel="noopener noreferrer" class="article-title">Agents SDK 0.14.0 把 Skills、messengers、定时任务和 Workflows 串到一起，AI Agent 开始更像“长期运行系统”</a>
+                                <span class="article-category category-technical">技术文章</span>
+                            </div>
+                            <p class="article-excerpt">
+                                Cloudflare 在 2026-06-02 的官方 changelog 中，把 on-demand Agent Skills、chat messengers（先支持 Telegram）、declarative scheduled tasks，以及 Workflows 里的 durable reasoning steps 一次性放进 Agents SDK 0.14.0。对做微信机器人、站点巡检和日报自动化的人来说，这个信号很明确：Agent 框架正在从“会聊天”走向“会接入口、会定时执行、断线后还能恢复上下文”。如果你的工作流已经依赖 OpenClaw、Codex 或本地模型，这类更新值得关注，因为它决定了后续是继续用脚本拼接，还是把调度、通道和状态恢复纳入同一运行层。
+                            </p>
+                            <p class="article-source">资料来源：<a href="https://developers.cloudflare.com/changelog/post/2026-06-02-agents-sdk-v0140/" target="_blank" rel="noopener noreferrer">Cloudflare Changelog: Agents SDK v0.14.0</a></p>
+                            <div class="article-meta">
+                                <a href="个人概况_2026_v3.html" class="article-author">炜哥</a>
+                                <span class="article-date">2026-06-08</span>
+                                <span class="article-note">Agent 架构</span>
+                                <div class="article-tags">
+                                    <span class="tag">AI Agent</span>
+                                    <span class="tag">Cloudflare</span>
+                                    <span class="tag">Scheduled tasks</span>
+                                    <span class="tag">Messengers</span>
                                 </div>
                             </div>
                         </div>
