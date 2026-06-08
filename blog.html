@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
-    <title>FaroAI 日志 - OpenClaw 新闻、OpenAI 技术资料与本地 AI 实践</title>
-    <meta name="description" content="FaroAI 工作流日志：跟踪 OpenClaw 最新版本、OpenAI 官方模型与 API 更新，并分享微信机器人、本地模型和 AI 工作流实践。">
-    <meta name="keywords" content="FaroAI 日志, AI 工作流日志, OpenClaw 新闻, OpenAI 技术资料, OpenAI 模型, Responses API, Realtime API, 微信机器人, Ollama">
+    <title>FaroAI 日志 - OpenClaw、Codex 自动化与本地模型周报</title>
+    <meta name="description" content="FaroAI 工作流日志：跟踪 OpenClaw 最新版本、OpenAI Codex 自动化更新、AI Agent 实践与本地模型运行时变化。">
+    <meta name="keywords" content="FaroAI 日志, AI 工作流日志, OpenClaw 新闻, Codex 自动化, OpenAI 技术资料, AI Agent, 微信机器人, Ollama 0.30">
     <link rel="canonical" href="https://www.faroai.net/blog.html">
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="blog.css">
@@ -53,13 +53,13 @@
                     <aside class="blog-hero-panel" aria-label="日志更新摘要">
                         <div class="blog-hero-panel-head">
                             <span>Latest update</span>
-                            <strong>2026-06-05</strong>
+                            <strong>2026-06-08</strong>
                         </div>
-                        <p class="blog-freshness">OpenAI 相关内容以官方新闻与开发者文档为准；OpenClaw 相关内容以 GitHub Releases、npm registry 与本站本机实测交叉记录。</p>
+                        <p class="blog-freshness">OpenAI 相关内容以官方新闻与开发者文档为准；OpenClaw 与 Ollama 相关内容以 GitHub Releases、官方博客与当前公开发布页交叉核验。</p>
                         <div class="blog-hero-metrics" aria-label="当前关注主题">
                             <span>OpenClaw 2026.6.1</span>
-                            <span>openclaw-weixin 2.4.4</span>
-                            <span>Ollama v0.30.5</span>
+                            <span>Codex 2026-06-02</span>
+                            <span>Ollama 0.30</span>
                         </div>
                     </aside>
                 </div>
@@ -107,29 +107,29 @@
                 <div class="source-ledger" aria-label="本周资料核验">
                     <div class="source-ledger-head">
                         <span>Verified sources</span>
-                        <strong>2026-06-05 本周核验</strong>
+                        <strong>2026-06-08 本周核验</strong>
                     </div>
                     <div class="source-ledger-grid">
-                        <article>
+                        <a class="source-ledger-card" href="#article-openclaw-2026-6-8-release-watch">
                             <small>OpenClaw</small>
-                            <strong>latest 2026.6.1，beta 2026.6.2-beta.1</strong>
-                            <p>npm registry 与 GitHub Releases 一致；本站本机已升级到 2026.6.1，Gateway 探针通过。</p>
-                        </article>
-                        <article>
-                            <small>微信机器人</small>
-                            <strong>openclaw-weixin 2.4.4</strong>
-                            <p>npm latest 与本机插件加载版本一致；深度状态显示 openclaw-weixin 已配置且 OK。</p>
-                        </article>
-                        <article>
-                            <small>OpenAI / Agent</small>
-                            <strong>Codex 官方更新发生在 2026-06-02</strong>
-                            <p>OpenAI 发布 Codex role-specific plugins、Sites preview 与 annotations；本站只记录可映射到工作流的部分。</p>
-                        </article>
-                        <article>
+                            <strong>2026.6.1 为 Latest，2026.6.5-beta.2 于 06-07 发布</strong>
+                            <p>GitHub Releases 显示稳定版仍是 2026.6.1；最新 beta 提到 QQBot 会过滤模型思维脚手架，适合作为通道安全观察点。</p>
+                        </a>
+                        <a class="source-ledger-card" href="#article-openai-codex-knowledge-work-2026-06-08">
+                            <small>OpenAI / Codex</small>
+                            <strong>06-02 连续发布两条 Codex 官方更新</strong>
+                            <p>一条强调插件、Sites、annotations，另一条给出知识工作与自动化使用趋势，适合映射 FaroAI 的站点与流程定位。</p>
+                        </a>
+                        <a class="source-ledger-card" href="#article-codex-automation-site-playbook-2026-06-08">
+                            <small>自动化工作流</small>
+                            <strong>Codex Academy 继续强调 automation 要可复查</strong>
+                            <p>官方 Academy 页面明确要求任务描述具体、可重复、易审核；这和每周站点更新、消息发送、资料核验的实践一致。</p>
+                        </a>
+                        <a class="source-ledger-card" href="#article-ollama-0-30-runtime-2026-06-08">
                             <small>本地模型</small>
-                            <strong>Ollama v0.30.5 于 2026-06-04 发布</strong>
-                            <p>GitHub Releases 显示 v0.30.5 修复 gemma4:12b 崩溃问题，适合作为本地模型运行时维护提醒。</p>
-                        </article>
+                            <strong>Ollama 0.30 于 06-05 官宣，强调 GGUF 与更广 GPU 支持</strong>
+                            <p>官方博客确认 0.30 通过 llama.cpp 提升兼容性，并在 NVIDIA 场景给出最高 20% 吞吐提升说明。</p>
+                        </a>
                     </div>
                 </div>
 
@@ -139,43 +139,43 @@
                 <!-- 文章列表 -->
                 <div class="articles" id="articles">
                     <!-- 置顶文章：OpenClaw 与 OpenAI 最新资料 -->
-                    <article id="article-openclaw-2026-6-1-upgrade-verified" class="article-card featured" data-category="product">
+                    <article id="article-openclaw-2026-6-8-release-watch" class="article-card featured" data-category="product">
                         <div class="article-content">
                             <div class="article-header">
-                                <a href="https://github.com/openclaw/openclaw/releases/" target="_blank" rel="noopener noreferrer" class="article-title">OpenClaw 2026.6.1 已是 latest：本站完成升级、Gateway 与微信通道复核</a>
+                                <a href="https://github.com/openclaw/openclaw/releases/" target="_blank" rel="noopener noreferrer" class="article-title">OpenClaw 2026.6.1 仍是 Latest，2026.6.5-beta.2 提醒通道输出要继续收口</a>
                                 <span class="article-category category-product">产品更新</span>
                             </div>
                             <p class="article-excerpt">
-                                2026-06-05 复核 npm registry：OpenClaw latest 为 2026.6.1，beta 为 2026.6.2-beta.1；GitHub Releases 中 2026.6.1 标记为 Latest，重点包含 agent/CLI 恢复、通道与移动投递稳定性、provider 与插件请求超时边界等改动。本站本机已从 2026.5.27 升级到 2026.6.1，并完成 Gateway reachable、openclaw-weixin OK、微信 direct session 投递型 agent 调用测试。生产链路建议跟随 latest，不追 beta。
+                                GitHub Releases 显示，OpenClaw 2026.6.1 在 2026-06-03 仍标记为 Latest，重点是中断后恢复、移动通道投递稳定性、请求超时边界和插件加载恢复；而 2026-06-07 发布的 2026.6.5-beta.2 则增加了“QQBot 过滤模型 reasoning/thinking 脚手架后再投递”的预发布改动。对微信机器人和自动化工作流来说，这意味着稳定生产链路继续跟随 2026.6.1，而对“模型内部推理文本不要漏到聊天通道”这类问题要持续留意后续正式版。
                             </p>
-                            <p class="article-source">资料来源：<a href="https://www.npmjs.com/package/openclaw" target="_blank" rel="noopener noreferrer">npm openclaw</a>、<a href="https://github.com/openclaw/openclaw/releases/" target="_blank" rel="noopener noreferrer">OpenClaw GitHub Releases</a>、本站 2026-06-05 本机升级校验</p>
+                            <p class="article-source">资料来源：<a href="https://github.com/openclaw/openclaw/releases/" target="_blank" rel="noopener noreferrer">OpenClaw GitHub Releases</a>（2026-06-03 stable、2026-06-07 beta）</p>
                             <div class="article-meta">
                                 <a href="个人概况_2026_v3.html" class="article-author">炜哥</a>
-                                <span class="article-date">2026-06-05</span>
-                                <span class="article-note">升级实测</span>
+                                <span class="article-date">2026-06-08</span>
+                                <span class="article-note">版本观察</span>
                                 <div class="article-tags">
                                     <span class="tag">OpenClaw</span>
                                     <span class="tag">2026.6.1</span>
-                                    <span class="tag">Gateway</span>
-                                    <span class="tag">微信通道</span>
+                                    <span class="tag">2026.6.5-beta.2</span>
+                                    <span class="tag">通道安全</span>
                                 </div>
                             </div>
                         </div>
                     </article>
 
-                    <article id="article-openai-codex-workflow-2026-06-02" class="article-card featured" data-category="technical">
+                    <article id="article-openai-codex-knowledge-work-2026-06-08" class="article-card featured" data-category="technical">
                         <div class="article-content">
                             <div class="article-header">
-                                <a href="https://openai.com/index/codex-for-every-role-tool-workflow/" target="_blank" rel="noopener noreferrer" class="article-title">OpenAI 2026-06-02 Codex 更新：插件、Sites 与 annotations 更接近工作流操作台</a>
+                                <a href="https://openai.com/index/codex-for-every-role-tool-workflow/" target="_blank" rel="noopener noreferrer" class="article-title">OpenAI 06-02 连发两条 Codex 更新：插件、Sites 与知识工作自动化进入同一叙事</a>
                                 <span class="article-category category-technical">技术文章</span>
                             </div>
                             <p class="article-excerpt">
-                                OpenAI 官方新闻在 2026-06-02 发布 Codex 更新：面向不同角色的插件、可分享的 Sites preview，以及可在结果上局部标注修改的 annotations。对 FaroAI 这类个人和小团队工作台，真正有价值的不是把“会生成页面”写成营销口号，而是把角色、工具权限、资料来源和修改记录放到同一个可追踪流程里：研究、摘要、站点更新、微信发送都要能回看来源与执行边界。
+                                OpenAI 在 2026-06-02 同时发布两条 Codex 官方信息：一条产品更新写明 role-specific plugins、可分享的 Sites preview 与 annotations；另一条知识工作报告则给出 500 万周活用户、非开发者占比约 20%、研究/数据分析/工作流自动化增长明显等信号。对 FaroAI 这类个人工作台，这比单纯“AI 能写页面”更有参考价值，因为它把站点、自动化和资料协作明确放进了可分享、可批注、可持续运行的工作流框架里。
                             </p>
-                            <p class="article-source">资料来源：<a href="https://openai.com/news/" target="_blank" rel="noopener noreferrer">OpenAI News</a>、<a href="https://openai.com/index/codex-for-every-role-tool-workflow/" target="_blank" rel="noopener noreferrer">Codex for every role, tool, and workflow</a></p>
+                            <p class="article-source">资料来源：<a href="https://openai.com/index/codex-for-every-role-tool-workflow/" target="_blank" rel="noopener noreferrer">Codex for every role, tool, and workflow</a>、<a href="https://openai.com/index/codex-for-knowledge-work/" target="_blank" rel="noopener noreferrer">Codex is becoming a productivity tool for everyone</a></p>
                             <div class="article-meta">
                                 <a href="个人概况_2026_v3.html" class="article-author">炜哥</a>
-                                <span class="article-date">2026-06-05</span>
+                                <span class="article-date">2026-06-08</span>
                                 <span class="article-note">工作流设计</span>
                                 <div class="article-tags">
                                     <span class="tag">OpenAI</span>
@@ -187,49 +187,49 @@
                         </div>
                     </article>
 
-                    <article id="article-ollama-0-30-5-local-runtime-2026-06-05" class="article-card featured" data-category="news">
+                    <article id="article-codex-automation-site-playbook-2026-06-08" class="article-card featured" data-category="tutorial">
                         <div class="article-content">
                             <div class="article-header">
-                                <a href="https://github.com/ollama/ollama/releases" target="_blank" rel="noopener noreferrer" class="article-title">Ollama v0.30.5 发布：本地模型运行时也要纳入周度维护</a>
-                                <span class="article-category category-news">行业动态</span>
+                                <a href="https://openai.com/academy/codex-automations/" target="_blank" rel="noopener noreferrer" class="article-title">教程：把每周 AI 巡检写成可复查自动化，再把结果做成可分享的 Site</a>
+                                <span class="article-category category-tutorial">教程</span>
                             </div>
                             <p class="article-excerpt">
-                                Ollama GitHub Releases 显示 v0.30.5 于 2026-06-04 发布，主要修复 gemma4:12b floating point exception crash。对 FaroAI 来说，本地模型不是“装完就不管”的组件：OpenClaw Gateway、微信通道、Ollama runtime 和具体模型都可能影响端到端稳定性。建议把 Ollama release、默认模型、最小 prompt、微信投递四项放进同一个周度检查。
+                                如果要把“每周找资料、改页面、做校验、发结果”变成稳定流程，OpenAI Academy 给出的标准其实很实用：任务要具体、可重复、易审核；本地运行时还要保证电脑唤醒、Codex 在线。结合 2026-06-02 的 Sites preview，这类自动化不该只产出一段摘要，而应产出可分享页面或状态面板，方便你回看来源、比对版本和决定是否真的发布。
                             </p>
-                            <p class="article-source">资料来源：<a href="https://github.com/ollama/ollama/releases" target="_blank" rel="noopener noreferrer">Ollama GitHub Releases</a>、本站本地模型调用检查记录</p>
+                            <p class="article-source">资料来源：<a href="https://openai.com/academy/codex-automations/" target="_blank" rel="noopener noreferrer">OpenAI Academy: Automations</a>、<a href="https://openai.com/index/codex-for-every-role-tool-workflow/" target="_blank" rel="noopener noreferrer">Codex for every role, tool, and workflow</a></p>
                             <div class="article-meta">
                                 <a href="个人概况_2026_v3.html" class="article-author">炜哥</a>
-                                <span class="article-date">2026-06-05</span>
-                                <span class="article-note">本地运行时</span>
+                                <span class="article-date">2026-06-08</span>
+                                <span class="article-note">落地教程</span>
                                 <div class="article-tags">
-                                    <span class="tag">Ollama</span>
-                                    <span class="tag">v0.30.5</span>
-                                    <span class="tag">本地模型</span>
-                                    <span class="tag">运行维护</span>
+                                    <span class="tag">Codex</span>
+                                    <span class="tag">Automation</span>
+                                    <span class="tag">Sites</span>
+                                    <span class="tag">Review loop</span>
                                 </div>
                             </div>
                         </div>
                     </article>
 
-                    <article id="article-openai-responses-tools-2026-05-28" class="article-card featured" data-category="technical">
+                    <article id="article-ollama-0-30-runtime-2026-06-08" class="article-card featured" data-category="news">
                         <div class="article-content">
                             <div class="article-header">
-                                <a href="https://developers.openai.com/api/docs/guides/tools" target="_blank" rel="noopener noreferrer" class="article-title">OpenAI Responses 与 Tools：把“会回答”升级为“可执行、可审计”的 Agent 工作流</a>
-                                <span class="article-category category-technical">技术文章</span>
+                                <a href="https://ollama.com/blog/improved-performance-and-model-support-with-gguf" target="_blank" rel="noopener noreferrer" class="article-title">Ollama 0.30 官宣：GGUF 兼容、更广 GPU 支持，本地模型周检要从“版本号”扩展到“运行面”</a>
+                                <span class="article-category category-news">行业动态</span>
                             </div>
                             <p class="article-excerpt">
-                                OpenAI 官方文档把 Responses API 定位为面向 Agent 应用的统一接口，工具层可接入 web search、file search、function calling、remote MCP、computer use、shell 等能力。对 <span class="brand-word"><span class="brand-red">F</span><span class="brand-grad brand-grad-a">a</span><span class="brand-grad brand-grad-r">r</span><span class="brand-grad brand-grad-o">o</span><span class="brand-red">A</span><span class="brand-grad brand-grad-i">I</span></span> 来说，关键不是把所有工具一次性打开，而是按任务分层：查询类工具自动调用，写文件、发消息、交易和部署类动作必须保留人工确认与日志。
+                                Ollama 官方博客在 2026-06-05 宣布 0.30 可通过 llama.cpp 获得更好的 GGUF 兼容性，并在 NVIDIA 硬件上给出最高 20% 吞吐提升，同时默认打开 Vulkan 以扩大 AMD 和 Intel GPU 覆盖。这意味着本地模型工作流的维护重点，不再只是“模型能不能跑起来”，还包括量化格式、GPU 路径、吞吐变化和不同硬件的一致性。对接 OpenClaw 或微信机器人时，这些变化会直接影响回复速度和稳定性。
                             </p>
-                            <p class="article-source">资料来源：<a href="https://developers.openai.com/api/docs/guides/migrate-to-responses" target="_blank" rel="noopener noreferrer">OpenAI Responses 迁移指南</a>、<a href="https://developers.openai.com/api/docs/guides/tools" target="_blank" rel="noopener noreferrer">OpenAI Tools 指南</a></p>
+                            <p class="article-source">资料来源：<a href="https://ollama.com/blog/improved-performance-and-model-support-with-gguf" target="_blank" rel="noopener noreferrer">Ollama Blog: Improved performance and model support with GGUF</a></p>
                             <div class="article-meta">
                                 <a href="个人概况_2026_v3.html" class="article-author">炜哥</a>
-                                <span class="article-date">2026-05-28</span>
-                                <span class="article-note">架构笔记</span>
+                                <span class="article-date">2026-06-08</span>
+                                <span class="article-note">本地运行时</span>
                                 <div class="article-tags">
-                                    <span class="tag">Responses API</span>
-                                    <span class="tag">Tools</span>
-                                    <span class="tag">MCP</span>
-                                    <span class="tag">审计</span>
+                                    <span class="tag">Ollama</span>
+                                    <span class="tag">0.30</span>
+                                    <span class="tag">GGUF</span>
+                                    <span class="tag">本地模型</span>
                                 </div>
                             </div>
                         </div>

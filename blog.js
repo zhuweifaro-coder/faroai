@@ -62,7 +62,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
     const navMenu = document.querySelector('.nav-menu');
     
-    mobileMenuBtn.addEventListener('click', function() {
+    mobileMenuBtn?.addEventListener('click', function() {
         const expanded = this.getAttribute('aria-expanded') === 'true';
         this.setAttribute('aria-expanded', !expanded);
         navMenu.style.display = !expanded ? 'flex' : 'none';
@@ -104,7 +104,7 @@ document.addEventListener('DOMContentLoaded', function() {
             // 移动端菜单调整
             if (window.innerWidth > 768) {
                 document.querySelector('.nav-menu').style.display = 'flex';
-                mobileMenuBtn.setAttribute('aria-expanded', 'false');
+                mobileMenuBtn?.setAttribute('aria-expanded', 'false');
             }
         }, 250);
     });
@@ -122,6 +122,19 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     updateVisibleCount();
+
+    const setTargetArticle = () => {
+        articles.forEach(article => article.classList.remove('is-targeted'));
+        if (!window.location.hash.startsWith('#article-')) return;
+
+        const target = document.querySelector(window.location.hash);
+        if (!target || !target.classList.contains('article-card')) return;
+
+        target.classList.add('is-targeted');
+    };
+
+    setTargetArticle();
+    window.addEventListener('hashchange', setTargetArticle);
 });
 
 /* ─────────── P2 #14: 自动生成博客目录 ─────────── */
