@@ -982,7 +982,7 @@ document.head.appendChild(style);
             });
         }
 
-        addPointerLift('.hero-actions .btn, .command-chip, .workflow-tab, .matrix-chip, .feature-card, .blog-preview-card');
+        addPointerLift('.hero-actions .btn, .command-chip, .workflow-tab, .matrix-chip, .matrix-mini-grid article, .feature-card, .blog-preview-card');
 
         window.FaroAIGsap.animateWorkflow = function animateWorkflow() {
             gsap.fromTo('.workflow-step', {
@@ -1032,7 +1032,7 @@ document.head.appendChild(style);
         };
 
         window.FaroAIGsap.animateMatrix = function animateMatrix() {
-            gsap.fromTo('.matrix-panel p, .matrix-bar, .matrix-panel-header em', {
+            gsap.fromTo('.matrix-panel p, .matrix-bar, .matrix-panel-header em, .matrix-mini-grid article', {
                 autoAlpha: 0.62,
                 y: 8
             }, {
