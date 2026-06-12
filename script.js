@@ -1105,6 +1105,65 @@ document.head.appendChild(style);
     });
 })();
 
+/* ─────────── 快速开始：命令复制 ─────────── */
+(function bindCommandCopy() {
+    function onReady(callback) {
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', callback);
+            return;
+        }
+        callback();
+    }
+
+    function fallbackCopy(value) {
+        const input = document.createElement('textarea');
+        input.value = value;
+        input.setAttribute('readonly', '');
+        input.style.position = 'fixed';
+        input.style.left = '-9999px';
+        input.style.opacity = '0';
+        document.body.appendChild(input);
+        input.select();
+        const copied = document.execCommand('copy');
+        input.remove();
+        return copied;
+    }
+
+    onReady(() => {
+        document.querySelectorAll('.copy-command').forEach(button => {
+            button.addEventListener('click', async () => {
+                const value = button.dataset.copy || '';
+                if (!value) return;
+
+                const original = button.textContent;
+                let copied = false;
+                try {
+                    if (navigator.clipboard?.writeText) {
+                        await navigator.clipboard.writeText(value);
+                        copied = true;
+                    } else {
+                        copied = fallbackCopy(value);
+                    }
+                } catch (error) {
+                    try {
+                        copied = fallbackCopy(value);
+                    } catch (fallbackError) {
+                        copied = false;
+                    }
+                }
+
+                button.textContent = copied ? '已复制' : '复制失败';
+                button.classList.toggle('is-copied', copied);
+
+                window.setTimeout(() => {
+                    button.textContent = original;
+                    button.classList.remove('is-copied');
+                }, 2200);
+            });
+        });
+    });
+})();
+
 /* ─────────── 每次进入首页播放技术流开场动画 ─────────── */
 (function bindTechIntro() {
     function onReady(callback) {

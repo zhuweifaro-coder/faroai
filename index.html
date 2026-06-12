@@ -827,6 +827,28 @@
                         <p class="section-description">
                             <span class="brand-word"><span class="brand-red">F</span><span class="brand-grad brand-grad-a">a</span><span class="brand-grad brand-grad-r">r</span><span class="brand-grad brand-grad-o">o</span><span class="brand-red">A</span><span class="brand-grad brand-grad-i">I</span></span> 的核心不是再做一个聊天页面，而是把 AI 网关放到你的真实工作入口：微信、终端、网页和自动任务。
                         </p>
+                        <div class="quickstart-actions" aria-label="快速开始入口">
+                            <a class="btn btn-primary" href="docs.html#quickstart">打开配置文档</a>
+                            <a class="btn btn-outline" href="contact.html">申请协助部署</a>
+                        </div>
+                        <div class="quickstart-terminal" aria-label="本地启动命令示例">
+                            <div class="quickstart-terminal-head">
+                                <span class="screen-dot red"></span>
+                                <span class="screen-dot yellow"></span>
+                                <span class="screen-dot green"></span>
+                                <strong>starter.check</strong>
+                                <em>copy ready</em>
+                            </div>
+                            <div class="quickstart-command-row">
+                                <code>openclaw gateway start --port 18789</code>
+                                <button type="button" class="copy-command" data-copy="openclaw gateway start --port 18789">复制</button>
+                            </div>
+                            <div class="quickstart-command-row">
+                                <code>curl http://127.0.0.1:18789/health</code>
+                                <button type="button" class="copy-command" data-copy="curl http://127.0.0.1:18789/health">复制</button>
+                            </div>
+                            <p>先确认网关可访问，再接入模型和微信通道。命令以你本机实际配置为准。</p>
+                        </div>
                     </div>
                     <div class="quickstart-steps">
                         <div class="quickstart-step">
@@ -897,29 +919,37 @@
                         <div class="use-case-image" aria-hidden="true">
                             <span class="use-case-icon">💻</span>
                         </div>
+                        <span class="use-case-kicker">Code / Docs</span>
                         <h3 class="use-case-title">开发辅助</h3>
                         <p>代码解释、调试建议、技术文档查询和仓库任务拆解</p>
+                        <span class="use-case-link">查看场景 →</span>
                     </a>
                     <a class="use-case-card" href="usecases.html#content-creation" aria-label="了解详情：内容创作">
                         <div class="use-case-image" aria-hidden="true">
                             <span class="use-case-icon">📧</span>
                         </div>
+                        <span class="use-case-kicker">Write / Reply</span>
                         <h3 class="use-case-title">内容创作</h3>
                         <p>文章写作、邮件回复、朋友圈/公众号内容草稿生成</p>
+                        <span class="use-case-link">查看场景 →</span>
                     </a>
                     <a class="use-case-card" href="usecases.html#data-analysis" aria-label="了解详情：数据分析">
                         <div class="use-case-image" aria-hidden="true">
                             <span class="use-case-icon">📊</span>
                         </div>
+                        <span class="use-case-kicker">Report / Alert</span>
                         <h3 class="use-case-title">数据分析</h3>
                         <p>资料归纳、趋势分析、结构化报告和复盘摘要</p>
+                        <span class="use-case-link">查看场景 →</span>
                     </a>
                     <a class="use-case-card" href="usecases.html#learning-assist" aria-label="了解详情：学习辅助">
                         <div class="use-case-image" aria-hidden="true">
                             <span class="use-case-icon">🎓</span>
                         </div>
+                        <span class="use-case-kicker">Learn / Review</span>
                         <h3 class="use-case-title">学习辅助</h3>
                         <p>知识点解析、学习计划制定、长文/论文陪读</p>
+                        <span class="use-case-link">查看场景 →</span>
                     </a>
                 </div>
             </div>
