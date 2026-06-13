@@ -369,7 +369,7 @@ document.head.appendChild(style);
     });
 })();
 
-/* ─────────── 首页背景音乐：FaroAI Crystal Drift ─────────── */
+/* ─────────── 首页背景音乐：FaroAI Soft Horizon ─────────── */
 (function bindHomeBgm() {
     function onReady(callback) {
         if (document.readyState === 'loading') {
