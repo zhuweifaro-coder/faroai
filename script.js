@@ -369,7 +369,7 @@ document.head.appendChild(style);
     });
 })();
 
-/* ─────────── 首页背景音乐：FaroAI Orbit Pulse ─────────── */
+/* ─────────── 首页背景音乐：FaroAI Crystal Drift ─────────── */
 (function bindHomeBgm() {
     function onReady(callback) {
         if (document.readyState === 'loading') {
