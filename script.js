@@ -369,7 +369,7 @@ document.head.appendChild(style);
     });
 })();
 
-/* ─────────── 首页背景音乐：Ocean (Little End) ─────────── */
+/* ─────────── 首页背景音乐：FaroAI Orbit Pulse ─────────── */
 (function bindHomeBgm() {
     function onReady(callback) {
         if (document.readyState === 'loading') {
@@ -385,12 +385,16 @@ document.head.appendChild(style);
         if (!audio || !toggle) return;
 
         const text = toggle.querySelector('.music-toggle-text');
+        let visitorPaused = false;
+        let attemptedAutoplay = false;
 
         function setState(state) {
             const isPlaying = state === 'playing';
             const unavailable = state === 'unavailable';
+            const ended = state === 'ended';
             toggle.classList.toggle('is-playing', isPlaying);
             toggle.classList.toggle('is-unavailable', unavailable);
+            toggle.classList.toggle('is-ended', ended);
             toggle.hidden = unavailable;
             toggle.setAttribute('aria-pressed', String(isPlaying));
             toggle.disabled = unavailable;
@@ -398,18 +402,23 @@ document.head.appendChild(style);
             if (text) {
                 if (isPlaying) text.textContent = '暂停背景音乐';
                 else if (unavailable) text.textContent = '音乐文件待上传';
+                else if (ended) text.textContent = '重新播放音乐';
                 else text.textContent = '播放背景音乐';
             }
         }
 
         function pauseMusic() {
+            visitorPaused = true;
             audio.pause();
             setState('paused');
         }
 
-        async function playMusic() {
+        async function playMusic({ reset = false } = {}) {
             if (toggle.disabled) return;
-            audio.volume = 0.42;
+            if (reset) audio.currentTime = 0;
+            visitorPaused = false;
+            audio.loop = false;
+            audio.volume = 0.28;
 
             try {
                 await audio.play();
@@ -421,21 +430,27 @@ document.head.appendChild(style);
 
         audio.addEventListener('playing', () => setState('playing'));
         audio.addEventListener('pause', () => setState('paused'));
+        audio.addEventListener('ended', () => setState('ended'));
         audio.addEventListener('error', () => setState('unavailable'));
 
         toggle.addEventListener('click', () => {
             if (audio.paused) {
-                playMusic();
+                playMusic({ reset: audio.ended });
             } else {
                 pauseMusic();
             }
         });
 
         setState('paused');
+        attemptedAutoplay = true;
         playMusic();
 
-        const unlockOnce = () => {
-            if (audio.paused && !toggle.disabled) {
+        const unlockOnce = (event) => {
+            if (event?.target && toggle.contains(event.target)) {
+                return;
+            }
+
+            if (attemptedAutoplay && audio.paused && !audio.ended && !visitorPaused && !toggle.disabled) {
                 playMusic();
             }
             window.removeEventListener('pointerdown', unlockOnce);

@@ -1,17 +1,11 @@
 # Homepage background music
 
-Selected track for review:
+Current track:
 
-- Title: Ambient Electronic Minimal_Flare
-- Artist: Coma-Media
-- Source: https://pixabay.com/music/corporate-ambient-electronic-minimal-flare-11132/
-- License reference: https://pixabay.com/service/license-summary/
+- File: `faroai-orbit-pulse.mp3`
+- Title: FaroAI Orbit Pulse
+- Source: Original generated ambient track for FaroAI
+- Duration: 38 seconds
+- Playback behavior: autoplay once per page load when allowed by the browser; visitors can pause or replay with the floating music control.
 
-Pixabay blocked automated download with a Cloudflare challenge in this environment.
-Download the MP3 from the source page after review and place it here:
-
-ocean-little-end.mp3
-
-The homepage audio control is already wired to this path:
-
-assets/audio/ocean-little-end.mp3
+The track is intentionally short, non-looping, low-volume, and synthetic so it fits the homepage launch animation without competing with the interface.
