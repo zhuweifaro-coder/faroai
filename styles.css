@@ -5222,10 +5222,11 @@ body.intro-active {
     padding: 24px;
     color: #eaf2ff;
     background:
-        radial-gradient(circle at 17% 17%, rgba(37, 99, 235, 0.54), transparent 31%),
-        radial-gradient(circle at 79% 70%, rgba(20, 184, 166, 0.46), transparent 34%),
-        radial-gradient(circle at 58% 50%, rgba(248, 113, 113, 0.17), transparent 26%),
-        linear-gradient(128deg, #020617 0%, #07111f 45%, #031f23 100%);
+        radial-gradient(circle at 50% 42%, rgba(37, 99, 235, 0.34), transparent 32%),
+        radial-gradient(circle at 50% 58%, rgba(20, 184, 166, 0.28), transparent 38%),
+        radial-gradient(circle at 18% 18%, rgba(37, 99, 235, 0.28), transparent 28%),
+        radial-gradient(circle at 82% 74%, rgba(248, 113, 113, 0.12), transparent 30%),
+        linear-gradient(128deg, #020617 0%, #06101e 48%, #031f23 100%);
     opacity: 0;
     pointer-events: none;
     transition: opacity 0.35s ease;
@@ -5280,23 +5281,29 @@ body.intro-active {
 
 .tech-intro-panel {
     position: relative;
-    width: min(720px, 100%);
-    min-height: min(590px, calc(100vh - 48px));
+    width: min(820px, 100%);
+    min-height: min(640px, calc(100vh - 48px));
     display: grid;
     grid-template-rows: auto auto auto auto auto;
     align-items: center;
     justify-items: center;
     gap: clamp(0.62rem, 1.5vw, 0.98rem);
-    overflow: visible;
+    overflow: hidden;
     padding: clamp(1.45rem, 4vw, 3.1rem);
-    border: 0;
-    border-radius: 999px;
+    border: 1px solid rgba(147, 197, 253, 0.16);
+    border-radius: 46px;
     background:
-        radial-gradient(circle at 50% 42%, rgba(15, 23, 42, 0.7) 0 24%, rgba(15, 118, 110, 0.15) 25% 47%, transparent 66%),
-        radial-gradient(circle, rgba(147, 197, 253, 0.13), transparent 64%);
+        linear-gradient(rgba(147, 197, 253, 0.045) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(94, 234, 212, 0.038) 1px, transparent 1px),
+        radial-gradient(circle at 50% 40%, rgba(15, 23, 42, 0.78) 0 20%, rgba(15, 118, 110, 0.16) 21% 48%, transparent 68%),
+        radial-gradient(circle at 50% 52%, rgba(147, 197, 253, 0.15), transparent 66%),
+        rgba(2, 6, 23, 0.3);
+    background-size: 34px 34px, 34px 34px, auto, auto, auto;
     box-shadow:
-        0 0 92px rgba(37, 99, 235, 0.17),
-        0 0 160px rgba(20, 184, 166, 0.08);
+        0 0 0 1px rgba(94, 234, 212, 0.04),
+        0 0 92px rgba(37, 99, 235, 0.18),
+        0 0 170px rgba(20, 184, 166, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.08);
     text-align: center;
     transform: translateY(18px) scale(0.94);
     transition: transform 0.45s ease;
@@ -5309,22 +5316,23 @@ body.intro-active {
 .tech-intro-panel::before {
     content: '';
     position: absolute;
-    inset: 6%;
-    border-radius: 50%;
+    inset: 8% 16%;
+    border-radius: 999px;
     background:
-        radial-gradient(circle, transparent 61%, rgba(94, 234, 212, 0.28) 62%, transparent 63%),
-        conic-gradient(from 0deg, transparent 0deg 42deg, rgba(96, 165, 250, 0.62) 48deg 55deg, transparent 64deg 156deg, rgba(248, 113, 113, 0.48) 164deg 170deg, transparent 179deg 274deg, rgba(45, 212, 191, 0.62) 282deg 290deg, transparent 300deg 360deg);
-    -webkit-mask: radial-gradient(circle, transparent 0 58%, #000 59% 62%, transparent 63%);
-    mask: radial-gradient(circle, transparent 0 58%, #000 59% 62%, transparent 63%);
+        radial-gradient(ellipse at center, transparent 0 55%, rgba(94, 234, 212, 0.22) 56%, transparent 58%),
+        conic-gradient(from 0deg, transparent 0deg 42deg, rgba(96, 165, 250, 0.55) 48deg 55deg, transparent 64deg 156deg, rgba(248, 113, 113, 0.34) 164deg 170deg, transparent 179deg 274deg, rgba(45, 212, 191, 0.54) 282deg 290deg, transparent 300deg 360deg);
+    -webkit-mask: radial-gradient(ellipse at center, transparent 0 54%, #000 57% 61%, transparent 64%);
+    mask: radial-gradient(ellipse at center, transparent 0 54%, #000 57% 61%, transparent 64%);
     animation: techSpin 8s linear infinite;
+    pointer-events: none;
 }
 
 .tech-intro-panel::after {
     content: '';
     position: absolute;
-    inset: 20%;
-    border-radius: 50%;
-    border: 1px solid rgba(147, 197, 253, 0.14);
+    inset: 16% 20%;
+    border-radius: 999px;
+    border: 1px solid rgba(147, 197, 253, 0.16);
     box-shadow:
         0 0 0 1px rgba(94, 234, 212, 0.06),
         inset 0 0 42px rgba(45, 212, 191, 0.06);
@@ -5334,8 +5342,8 @@ body.intro-active {
 
 .tech-intro-orbit {
     position: absolute;
-    inset: 6%;
-    border-radius: 50%;
+    inset: 8% 14%;
+    border-radius: 999px;
     border: 1px solid rgba(191, 219, 254, 0.2);
     transform: rotateX(66deg) rotateZ(-12deg);
     pointer-events: none;
@@ -5365,7 +5373,7 @@ body.intro-active {
 }
 
 .tech-intro-orbit-b {
-    inset: 18%;
+    inset: 20% 24%;
     transform: rotateX(58deg) rotateZ(28deg);
     border-style: dashed;
     animation: techOrbitTilt 5.8s ease-in-out infinite;
@@ -5376,9 +5384,11 @@ body.intro-active {
     left: 50%;
     top: 50%;
     width: min(1080px, 130vw);
-    height: 54px;
-    transform: translate(-50%, -50%) rotate(-13deg);
-    background: linear-gradient(90deg, transparent, rgba(96, 165, 250, 0.2), rgba(94, 234, 212, 0.24), transparent);
+    height: 66px;
+    transform: translate(-50%, -50%) rotate(-9deg);
+    background:
+        linear-gradient(90deg, transparent, rgba(96, 165, 250, 0.18), rgba(94, 234, 212, 0.28), transparent),
+        linear-gradient(180deg, transparent, rgba(255, 255, 255, 0.1), transparent);
     filter: blur(2px);
     opacity: 0.62;
     animation: techBeam 2.8s ease-in-out infinite;
@@ -5387,26 +5397,35 @@ body.intro-active {
 .tech-intro-mark {
     position: relative;
     z-index: 1;
-    align-self: end;
+    align-self: center;
     display: inline-flex;
     align-items: center;
     justify-content: center;
     width: auto;
     height: auto;
-    margin-bottom: -0.58rem;
-    padding: 0.2rem 0.35rem;
-    border: 0;
-    border-radius: 0;
-    background: transparent;
-    box-shadow: none;
-    backdrop-filter: none;
+    margin-bottom: -0.28rem;
+    padding: 0.42rem 0.8rem;
+    border: 1px solid rgba(147, 197, 253, 0.16);
+    border-radius: 999px;
+    background: rgba(2, 6, 23, 0.42);
+    box-shadow:
+        0 16px 42px rgba(0, 0, 0, 0.22),
+        0 0 26px rgba(94, 234, 212, 0.1);
+    backdrop-filter: blur(14px);
     opacity: 0.96;
-    transform: rotate(-5deg);
-    animation: techBadgeFloat 3.8s ease-in-out infinite;
+    transform: rotate(-2deg);
+    animation: techBadgeFloat 4.2s ease-in-out infinite;
 }
 
 .tech-intro-mark::before {
-    content: none;
+    content: '';
+    position: absolute;
+    left: 12%;
+    right: 12%;
+    bottom: -10px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(94, 234, 212, 0.75), transparent);
+    filter: blur(0.2px);
 }
 
 .tech-intro-logo {
@@ -5438,8 +5457,8 @@ body.intro-active {
 .tech-intro-core {
     position: relative;
     z-index: 1;
-    width: clamp(178px, 22vw, 238px);
-    height: clamp(178px, 22vw, 238px);
+    width: clamp(190px, 24vw, 264px);
+    height: clamp(190px, 24vw, 264px);
     margin: 0 auto;
     border: 1px solid rgba(147, 197, 253, 0.2);
     border-radius: 50%;
@@ -5505,15 +5524,16 @@ body.intro-active {
     z-index: 2;
     width: min(540px, 100%);
     transform: none;
+    padding: 0.4rem 0.8rem;
 }
 
 .tech-intro-kicker {
     position: relative;
     z-index: 1;
     margin: 0;
-    color: rgba(147, 197, 253, 0.72);
+    color: rgba(153, 246, 228, 0.84);
     font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-    font-size: 0.68rem;
+    font-size: 0.72rem;
     font-weight: 700;
     letter-spacing: 0.08em;
     text-transform: uppercase;
@@ -5523,9 +5543,9 @@ body.intro-active {
     position: relative;
     z-index: 1;
     margin: 0.36rem 0 0;
-    color: rgba(226, 232, 240, 0.78);
-    font-size: clamp(0.96rem, 2.05vw, 1.22rem);
-    font-weight: 680;
+    color: rgba(241, 245, 249, 0.88);
+    font-size: clamp(1.08rem, 2.18vw, 1.42rem);
+    font-weight: 760;
     line-height: 1.34;
     text-shadow: 0 0 20px rgba(147, 197, 253, 0.18);
 }
@@ -5611,23 +5631,25 @@ body.intro-active {
     max-width: 330px;
     margin: 0;
     text-align: left;
-    right: -86px;
-    top: 47%;
-    opacity: 0.78;
-    transform: translateY(-50%) rotate(-4deg);
+    right: 22px;
+    top: 50%;
+    opacity: 0.9;
+    transform: translateY(-50%);
 }
 
 .tech-intro-stream span {
     display: block;
     padding: 0.58rem 0.78rem;
     border: 1px solid rgba(147, 197, 253, 0.14);
-    border-radius: 999px;
-    background: linear-gradient(90deg, rgba(15, 23, 42, 0.74), rgba(15, 118, 110, 0.2));
+    border-radius: 14px;
+    background:
+        linear-gradient(90deg, rgba(15, 23, 42, 0.82), rgba(15, 118, 110, 0.26)),
+        rgba(2, 6, 23, 0.34);
     color: rgba(199, 210, 254, 0.86);
     font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
     font-size: 0.72rem;
     opacity: 0;
-    transform: translateX(-12px);
+    transform: translateX(16px);
     animation: techLineIn 0.5s ease forwards;
     white-space: nowrap;
     overflow: hidden;
@@ -5691,8 +5713,8 @@ body.intro-active {
 }
 
 @keyframes techBadgeFloat {
-    0%, 100% { transform: translateY(0) rotate(-5deg); }
-    50% { transform: translateY(-7px) rotate(-1deg); }
+    0%, 100% { transform: translateY(0) rotate(-2deg); }
+    50% { transform: translateY(-6px) rotate(1deg); }
 }
 
 @keyframes techScan {
@@ -5782,8 +5804,8 @@ body.intro-active {
 }
 
 @keyframes techBeam {
-    0%, 100% { opacity: 0.48; transform: translate(-50%, -50%) rotate(-13deg) scaleX(0.82); }
-    50% { opacity: 0.98; transform: translate(-50%, -50%) rotate(-13deg) scaleX(1); }
+    0%, 100% { opacity: 0.48; transform: translate(-50%, -50%) rotate(-9deg) scaleX(0.82); }
+    50% { opacity: 0.98; transform: translate(-50%, -50%) rotate(-9deg) scaleX(1); }
 }
 
 @media (max-width: 640px) {
