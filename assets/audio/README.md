@@ -2,10 +2,10 @@
 
 Current track:
 
-- File: `faroai-soft-horizon.mp3`
-- Title: FaroAI Soft Horizon
+- File: `faroai-electric-rush.mp3`
+- Title: FaroAI Electric Rush
 - Source: Original generated ambient track for FaroAI
-- Duration: 44 seconds
+- Duration: 48 seconds
 - Playback behavior: autoplay once per page load when allowed by the browser; visitors can pause or replay with the floating music control.
 
-The track is intentionally short, non-looping, low-volume, and synthetic. It uses a warmer light-electronic pad, soft melodic plucks, and very restrained bass so it feels closer to pleasant background music than experimental sound design.
+The track is intentionally short, non-looping, and synthetic. It uses a 128 BPM four-on-floor electronic groove, bright synth lead, rolling bass, hats, clap, and build/drop movement so the homepage feels energetic rather than slow or mournful.
