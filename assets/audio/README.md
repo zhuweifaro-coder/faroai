@@ -1,6 +1,11 @@
 # Homepage background music
 
-Current track:
+Current homepage status:
+
+- Homepage music is temporarily disabled while a replacement track is being reviewed.
+- Review page: `music-options.html`
+
+Previous track:
 
 - File: `faroai-prism-drive.mp3`
 - Title: FaroAI Prism Drive

@@ -385,6 +385,12 @@ document.head.appendChild(style);
         if (!audio || !toggle) return;
 
         const text = toggle.querySelector('.music-toggle-text');
+        const hasSource = Boolean(audio.querySelector('source')?.getAttribute('src'));
+        if (audio.dataset.disabled === 'true' || !hasSource) {
+            toggle.hidden = true;
+            return;
+        }
+
         let visitorPaused = false;
         let attemptedAutoplay = false;
 

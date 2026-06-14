@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FaroAI 背景音乐候选</title>
+    <meta name="robots" content="noindex, nofollow">
+    <style>
+        :root {
+            --ink: #101828;
+            --muted: #667085;
+            --line: rgba(35, 61, 102, 0.14);
+            --blue: #2f6eea;
+            --cyan: #62dfce;
+            --red: #e45445;
+            --panel: rgba(255, 255, 255, 0.86);
+            --dark: #0c1426;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+            color: var(--ink);
+            background:
+                radial-gradient(circle at 18% 12%, rgba(47, 110, 234, 0.16), transparent 30%),
+                radial-gradient(circle at 78% 18%, rgba(98, 223, 206, 0.16), transparent 28%),
+                linear-gradient(135deg, #f7f9ff 0%, #eef6fb 52%, #f9fbff 100%);
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            background-image:
+                linear-gradient(rgba(25, 70, 130, 0.055) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(25, 70, 130, 0.055) 1px, transparent 1px);
+            background-size: 36px 36px;
+            mask-image: linear-gradient(to bottom, #000 0%, rgba(0,0,0,0.7) 48%, transparent 100%);
+        }
+
+        .page {
+            width: min(1120px, calc(100% - 40px));
+            margin: 0 auto;
+            padding: 56px 0 72px;
+        }
+
+        .topbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            margin-bottom: 44px;
+        }
+
+        .brand {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 24px;
+            font-weight: 800;
+            letter-spacing: 0;
+        }
+
+        .brand-mark {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background:
+                radial-gradient(circle at 50% 50%, #fff 0 24%, transparent 25%),
+                conic-gradient(from 0deg, var(--red), var(--blue), var(--cyan), var(--red));
+            box-shadow: 0 12px 28px rgba(47, 110, 234, 0.2);
+        }
+
+        .brand-red {
+            color: var(--red);
+        }
+
+        .brand-grad {
+            background: linear-gradient(90deg, #2f6eea, #61d8cd);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .home-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 44px;
+            padding: 0 18px;
+            border: 1px solid var(--line);
+            border-radius: 999px;
+            color: var(--ink);
+            text-decoration: none;
+            font-weight: 700;
+            background: rgba(255,255,255,0.72);
+        }
+
+        .hero {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 14px;
+            margin-bottom: 32px;
+        }
+
+        .eyebrow {
+            width: fit-content;
+            padding: 8px 12px;
+            border-radius: 999px;
+            color: #1c5ad7;
+            background: rgba(47, 110, 234, 0.11);
+            font-size: 13px;
+            font-weight: 800;
+        }
+
+        h1 {
+            margin: 0;
+            max-width: 780px;
+            font-size: clamp(32px, 5vw, 64px);
+            line-height: 1.06;
+            letter-spacing: 0;
+        }
+
+        .lead {
+            max-width: 760px;
+            margin: 0;
+            color: var(--muted);
+            font-size: 17px;
+            line-height: 1.8;
+        }
+
+        .notice {
+            margin: 26px 0 0;
+            padding: 16px 18px;
+            border: 1px solid rgba(228, 84, 69, 0.18);
+            border-radius: 18px;
+            color: #913b32;
+            background: rgba(228, 84, 69, 0.06);
+            line-height: 1.7;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 18px;
+            margin-top: 34px;
+        }
+
+        .track {
+            position: relative;
+            overflow: hidden;
+            min-height: 360px;
+            padding: 24px;
+            border: 1px solid var(--line);
+            border-radius: 24px;
+            background: var(--panel);
+            box-shadow: 0 22px 60px rgba(18, 39, 78, 0.11);
+            backdrop-filter: blur(18px);
+        }
+
+        .track::before {
+            content: "";
+            position: absolute;
+            inset: -1px;
+            pointer-events: none;
+            background: linear-gradient(135deg, rgba(47, 110, 234, 0.16), transparent 36%, rgba(98, 223, 206, 0.13));
+            opacity: 0.7;
+        }
+
+        .track > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        .track-code {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            height: 28px;
+            padding: 0 10px;
+            border-radius: 999px;
+            color: #1f54c7;
+            background: rgba(47, 110, 234, 0.1);
+            font-size: 12px;
+            font-weight: 900;
+            text-transform: uppercase;
+        }
+
+        .track h2 {
+            margin: 22px 0 8px;
+            font-size: 24px;
+        }
+
+        .track p {
+            margin: 0;
+            color: var(--muted);
+            line-height: 1.72;
+        }
+
+        .meta {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 10px;
+            margin: 22px 0;
+        }
+
+        .meta span {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            min-height: 64px;
+            padding: 12px;
+            border: 1px solid rgba(35, 61, 102, 0.1);
+            border-radius: 16px;
+            background: rgba(255, 255, 255, 0.66);
+            color: var(--muted);
+            font-size: 12px;
+            line-height: 1.35;
+        }
+
+        .meta strong {
+            color: var(--ink);
+            font-size: 14px;
+        }
+
+        audio {
+            width: 100%;
+            margin-top: 6px;
+            filter: drop-shadow(0 10px 24px rgba(47, 110, 234, 0.12));
+        }
+
+        .source {
+            margin-top: 16px;
+            font-size: 12px;
+            color: var(--muted);
+        }
+
+        .source a {
+            color: #2563eb;
+            text-decoration: none;
+            font-weight: 700;
+        }
+
+        .footer-note {
+            margin-top: 28px;
+            padding: 22px 24px;
+            border-radius: 22px;
+            color: rgba(255,255,255,0.82);
+            background: linear-gradient(135deg, #0c1426 0%, #142844 52%, #103b3a 100%);
+            line-height: 1.8;
+        }
+
+        @media (max-width: 900px) {
+            .grid {
+                grid-template-columns: 1fr;
+            }
+
+            .topbar {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <main class="page">
+        <div class="topbar">
+            <div class="brand" aria-label="FaroAI">
+                <span class="brand-mark" aria-hidden="true"></span>
+                <span><span class="brand-red">F</span><span class="brand-grad">aro</span><span class="brand-red">A</span><span class="brand-grad">I</span></span>
+            </div>
+            <a class="home-link" href="index.html">返回首页</a>
+        </div>
+
+        <section class="hero">
+            <span class="eyebrow">BGM Review</span>
+            <h1>首页背景音乐候选</h1>
+            <p class="lead">当前首页音乐已暂停接入。下面三首来自 Mixkit 免费音乐库，方向更接近真实商业素材：科技、企业展示、未来感。请先试听，选定后再把对应曲目接入首页自动播放。</p>
+            <p class="notice">建议选择标准：不要低沉、不要幼稚、不要哀乐、不要过度娱乐化；优先选“正式、科技、有推进感，但不会抢页面内容”的版本。</p>
+        </section>
+
+        <section class="grid" aria-label="音乐候选">
+            <article class="track">
+                <span class="track-code">Option A</span>
+                <h2>Close Up</h2>
+                <p>企业科技展示方向。节奏稳定，商业感更强，适合官网首页做背景，不会过度娱乐化。</p>
+                <div class="meta">
+                    <span><strong>作者</strong>Michael Ramir C.</span>
+                    <span><strong>时长</strong>1:35</span>
+                    <span><strong>来源</strong>Mixkit</span>
+                    <span><strong>标签</strong>Corporate / Futuristic / Technology</span>
+                </div>
+                <audio controls preload="metadata" src="https://assets.mixkit.co/music/1167/1167.mp3"></audio>
+                <div class="source">License: <a href="https://mixkit.co/license/#musicFree" target="_blank" rel="noreferrer">Mixkit Stock Music Free License</a></div>
+            </article>
+
+            <article class="track">
+                <span class="track-code">Option B</span>
+                <h2>Digital Clouds</h2>
+                <p>更轻、更现代，带一点未来科技氛围。适合不想太严肃，但仍然保持干净商业感的首页。</p>
+                <div class="meta">
+                    <span><strong>作者</strong>Alejandro Magana</span>
+                    <span><strong>时长</strong>1:41</span>
+                    <span><strong>来源</strong>Mixkit</span>
+                    <span><strong>标签</strong>Chillout / Electronic / Technology</span>
+                </div>
+                <audio controls preload="metadata" src="https://assets.mixkit.co/music/175/175.mp3"></audio>
+                <div class="source">License: <a href="https://mixkit.co/license/#musicFree" target="_blank" rel="noreferrer">Mixkit Stock Music Free License</a></div>
+            </article>
+
+            <article class="track">
+                <span class="track-code">Option C</span>
+                <h2>Better Times are Coming</h2>
+                <p>更有能量和推进感，偏 synthpop/科技发布会氛围。比 A 更鲜明，但可能稍微更“音乐化”。</p>
+                <div class="meta">
+                    <span><strong>作者</strong>Alejandro Magana</span>
+                    <span><strong>时长</strong>1:40</span>
+                    <span><strong>来源</strong>Mixkit</span>
+                    <span><strong>标签</strong>Synthpop / Confident / Technology</span>
+                </div>
+                <audio controls preload="metadata" src="https://assets.mixkit.co/music/173/173.mp3"></audio>
+                <div class="source">License: <a href="https://mixkit.co/license/#musicFree" target="_blank" rel="noreferrer">Mixkit Stock Music Free License</a></div>
+            </article>
+        </section>
+
+        <section class="footer-note">
+            说明：这一步先解决“不要继续上线不满意音乐”的问题。确认 A、B、C 之一后，再把选中的文件复制为正式首页音频，并恢复首页打开时自动播放一次、访客可暂停的逻辑。
+        </section>
+    </main>
+</body>
+</html>
