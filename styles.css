@@ -5641,42 +5641,78 @@ body.intro-active {
 }
 
 .tech-intro-stream {
-    position: absolute;
+    position: relative;
     z-index: 1;
     display: grid;
-    gap: 0.55rem;
-    width: min(330px, 30vw);
-    max-width: 330px;
+    grid-template-columns: 1fr;
+    gap: 0.46rem;
+    width: min(560px, 86%);
     margin: 0;
     text-align: left;
-    right: 22px;
-    top: 50%;
+    justify-self: center;
     opacity: 0.9;
-    transform: translateY(-50%);
 }
 
 .tech-intro-stream span {
-    display: block;
-    padding: 0.58rem 0.78rem;
+    position: relative;
+    display: grid;
+    grid-template-columns: minmax(84px, 0.28fr) minmax(0, 1fr);
+    align-items: center;
+    gap: 0.78rem;
+    min-height: 42px;
+    padding: 0.56rem 0.78rem;
     border: 1px solid rgba(147, 197, 253, 0.14);
-    border-radius: 14px;
+    border-radius: 16px;
     background:
-        linear-gradient(90deg, rgba(15, 23, 42, 0.82), rgba(15, 118, 110, 0.26)),
-        rgba(2, 6, 23, 0.34);
-    color: rgba(199, 210, 254, 0.86);
+        linear-gradient(90deg, rgba(15, 23, 42, 0.88), rgba(15, 118, 110, 0.2)),
+        rgba(2, 6, 23, 0.4);
+    color: rgba(226, 232, 240, 0.86);
     font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-    font-size: 0.72rem;
+    font-size: 0.68rem;
     opacity: 0;
-    transform: translateX(16px);
+    transform: translateY(8px);
     animation: techLineIn 0.5s ease forwards;
+    overflow: hidden;
+}
+
+.tech-intro-stream span::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 12px;
+    bottom: 12px;
+    width: 2px;
+    border-radius: 999px;
+    background: linear-gradient(180deg, #5eead4, #60a5fa);
+    box-shadow: 0 0 16px rgba(94, 234, 212, 0.45);
+}
+
+.tech-intro-stream b,
+.tech-intro-stream em {
+    display: block;
+    min-width: 0;
+    font-style: normal;
+    line-height: 1.25;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
 }
 
+.tech-intro-stream b {
+    color: rgba(94, 234, 212, 0.88);
+    font-size: 0.62rem;
+    font-weight: 900;
+    letter-spacing: 0.12em;
+}
+
+.tech-intro-stream em {
+    color: rgba(219, 234, 254, 0.84);
+    font-size: 0.7rem;
+    font-weight: 700;
+}
+
 .tech-intro-stream span:nth-child(2) { animation-delay: 0.34s; }
 .tech-intro-stream span:nth-child(3) { animation-delay: 0.68s; }
-.tech-intro-stream span:nth-child(4) { animation-delay: 1.02s; }
 
 .tech-intro-progress {
     position: relative;
@@ -5808,7 +5844,7 @@ body.intro-active {
 @keyframes techLineIn {
     to {
         opacity: 1;
-        transform: translateX(0);
+        transform: translateY(0);
     }
 }
 
