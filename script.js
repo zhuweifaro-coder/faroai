@@ -369,7 +369,7 @@ document.head.appendChild(style);
     });
 })();
 
-/* ─────────── 首页背景音乐：FaroAI Electric Rush ─────────── */
+/* ─────────── 首页背景音乐：FaroAI Cyber Anthem ─────────── */
 (function bindHomeBgm() {
     function onReady(callback) {
         if (document.readyState === 'loading') {
@@ -418,7 +418,7 @@ document.head.appendChild(style);
             if (reset) audio.currentTime = 0;
             visitorPaused = false;
             audio.loop = false;
-            audio.volume = 0.36;
+            audio.volume = 0.32;
 
             try {
                 await audio.play();
