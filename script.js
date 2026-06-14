@@ -369,7 +369,7 @@ document.head.appendChild(style);
     });
 })();
 
-/* ─────────── 首页背景音乐：FaroAI Neon Lift ─────────── */
+/* ─────────── 首页背景音乐：FaroAI Prism Drive ─────────── */
 (function bindHomeBgm() {
     function onReady(callback) {
         if (document.readyState === 'loading') {
@@ -418,7 +418,7 @@ document.head.appendChild(style);
             if (reset) audio.currentTime = 0;
             visitorPaused = false;
             audio.loop = false;
-            audio.volume = 0.30;
+            audio.volume = 0.31;
 
             try {
                 await audio.play();
