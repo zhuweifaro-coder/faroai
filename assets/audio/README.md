@@ -1,16 +1,12 @@
 # Homepage background music
 
-Current homepage status:
+Current homepage track:
 
-- Homepage music is temporarily disabled while a replacement track is being reviewed.
-- Review page: `music-options.html`
-
-Previous track:
-
-- File: `faroai-prism-drive.mp3`
-- Title: FaroAI Prism Drive
-- Source: Original generated ambient track for FaroAI
-- Duration: 50 seconds
+- File: `mixkit-close-up-1167.mp3`
+- Title: Close Up
+- Artist: Michael Ramir C.
+- Source: Mixkit Stock Music Free License
+- Duration: 95 seconds
 - Playback behavior: autoplay once per page load when allowed by the browser; visitors can pause or replay with the floating music control.
 
-The track is intentionally short, non-looping, and synthetic. It uses a mature sci-fi product-demo style: 116 BPM controlled pulse, glassy mid-register pads, restrained plucks, light premium-tech percussion, reduced rumble, and subtle scan/rise motion without playful bleep motifs.
+The selected track is Option A from `music-options.html`: a corporate technology track with a steadier, more professional presentation tone than the generated prototypes.
