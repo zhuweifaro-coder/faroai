@@ -5584,40 +5584,69 @@ body.intro-active {
     transform: translateZ(26px);
 }
 
-.tech-intro-core strong {
+.tech-intro-core i {
     position: absolute;
-    left: 50%;
-    top: 50%;
     z-index: 3;
-    display: inline-grid;
-    place-items: center;
-    width: 54px;
-    height: 54px;
-    border: 1px solid rgba(191, 219, 254, 0.22);
-    border-radius: 50%;
-    background:
-        radial-gradient(circle at 36% 26%, rgba(255, 255, 255, 0.5), transparent 38%),
-        rgba(15, 23, 42, 0.24);
-    color: rgba(241, 245, 249, 0.9);
-    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-    font-size: 1.05rem;
-    font-weight: 900;
-    letter-spacing: 0.08em;
-    text-indent: 0.08em;
-    transform: translate(-50%, -50%) translateZ(34px);
-    text-shadow: 0 0 18px rgba(94, 234, 212, 0.36);
+    --label-transform: translate(-50%, -50%) rotate(-8deg);
+    display: inline-flex;
+    align-items: center;
+    min-height: 24px;
+    padding: 0.18rem 0.54rem;
+    border: 1px solid rgba(191, 219, 254, 0.16);
+    border-radius: 999px;
+    background: rgba(15, 23, 42, 0.18);
+    color: rgba(241, 245, 249, 0.5);
+    font-family: ui-rounded, "SF Pro Rounded", "Nunito Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: clamp(0.62rem, 1.15vw, 0.82rem);
+    font-style: normal;
+    font-weight: 820;
+    letter-spacing: 0;
+    white-space: nowrap;
+    mix-blend-mode: screen;
+    backdrop-filter: blur(4px);
+    text-shadow:
+        0 4px 14px rgba(2, 6, 23, 0.34),
+        0 0 16px rgba(94, 234, 212, 0.2);
     box-shadow:
-        0 0 34px rgba(94, 234, 212, 0.16),
-        inset 0 0 22px rgba(147, 197, 253, 0.1);
+        0 0 24px rgba(94, 234, 212, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.06);
+    transform: var(--label-transform);
+    animation: techFloatLabel 4.8s ease-in-out infinite;
 }
 
-.tech-intro-core strong::after {
+.tech-intro-core i::after {
     content: '';
     position: absolute;
-    inset: -8px;
+    left: 12%;
+    right: 12%;
+    bottom: -4px;
+    height: 1px;
     border-radius: inherit;
-    border: 1px solid rgba(94, 234, 212, 0.14);
-    animation: techRingBreathe 2.8s ease-in-out infinite;
+    background: linear-gradient(90deg, transparent, rgba(94, 234, 212, 0.36), transparent);
+    opacity: 0.7;
+}
+
+.tech-intro-core i:nth-of-type(1) {
+    left: 48%;
+    top: 27%;
+    color: rgba(204, 251, 241, 0.56);
+    --label-transform: translate(-50%, -50%) rotate(-8deg);
+}
+
+.tech-intro-core i:nth-of-type(2) {
+    right: 15%;
+    bottom: 34%;
+    color: rgba(191, 219, 254, 0.54);
+    --label-transform: translate(18%, 50%) rotate(8deg);
+    animation-delay: 0.65s;
+}
+
+.tech-intro-core i:nth-of-type(3) {
+    left: 21%;
+    bottom: 26%;
+    color: rgba(254, 202, 202, 0.46);
+    --label-transform: translate(-24%, 50%) rotate(-4deg);
+    animation-delay: 1.15s;
 }
 
 .tech-intro-core span:nth-child(1) { top: 22%; left: 34%; }
@@ -5861,6 +5890,17 @@ body.intro-active {
     50% { transform: translateX(-50%) translateY(-6px) rotate(-4deg); }
 }
 
+@keyframes techFloatLabel {
+    0%, 100% {
+        opacity: 0.78;
+        transform: var(--label-transform) translateY(0);
+    }
+    50% {
+        opacity: 0.96;
+        transform: var(--label-transform) translateY(-6px);
+    }
+}
+
 @keyframes techScan {
     0%, 12% { transform: translateY(-100%); }
     58%, 100% { transform: translateY(100%); }
@@ -5992,10 +6032,10 @@ body.intro-active {
         height: clamp(150px, 42vw, 188px);
     }
 
-    .tech-intro-core strong {
-        width: 44px;
-        height: 44px;
-        font-size: 0.88rem;
+    .tech-intro-core i {
+        min-height: 20px;
+        padding: 0.14rem 0.38rem;
+        font-size: 0.58rem;
     }
 
     .tech-intro-copy {
@@ -6041,6 +6081,7 @@ body.intro-active {
     .tech-intro-core,
     .tech-intro-core::before,
     .tech-intro-core::after,
+    .tech-intro-core i,
     .tech-intro-status span::before,
     .tech-intro-phases span::after,
     .tech-intro-stream span,
