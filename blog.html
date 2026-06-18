@@ -8,7 +8,7 @@
     <meta name="description" content="FaroAI 工作流日志：跟踪 OpenClaw 最新版本、OpenAI Codex 自动化更新、AI Agent 实践与本地模型运行时变化。">
     <meta name="keywords" content="FaroAI 日志, AI 工作流日志, OpenClaw 新闻, Codex 自动化, OpenAI 技术资料, AI Agent, 微信机器人, Ollama 0.30">
     <link rel="canonical" href="https://www.faroai.net/blog.html">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css?v=20260618b">
     <link rel="stylesheet" href="blog.css">
 </head>
 <body>
@@ -53,11 +53,11 @@
                     <aside class="blog-hero-panel" aria-label="日志更新摘要">
                         <div class="blog-hero-panel-head">
                             <span>Latest update</span>
-                            <strong>2026-06-08</strong>
+                            <strong>2026-06-18</strong>
                         </div>
                         <p class="blog-freshness">OpenAI 相关内容以官方新闻与开发者文档为准；OpenClaw 与 Ollama 相关内容以 GitHub Releases、官方博客与当前公开发布页交叉核验。</p>
                         <div class="blog-hero-metrics" aria-label="当前关注主题">
-                            <span>OpenClaw 2026.6.1</span>
+                            <span>OpenClaw 2026.6.8</span>
                             <span>Codex 2026-06-02</span>
                             <span>Agents SDK 0.14.0</span>
                             <span>Ollama 0.30</span>
@@ -108,13 +108,13 @@
                 <div class="source-ledger" aria-label="本周资料核验">
                     <div class="source-ledger-head">
                         <span>Verified sources</span>
-                        <strong>2026-06-08 本周核验</strong>
+                        <strong>2026-06-18 本周核验</strong>
                     </div>
                     <div class="source-ledger-grid">
-                        <a class="source-ledger-card" href="#article-openclaw-2026-6-8-release-watch">
+                        <a class="source-ledger-card" href="#article-openclaw-2026-6-8-stable">
                             <small>OpenClaw</small>
-                            <strong>2026.6.1 为 Latest，2026.6.5-beta.2 于 06-07 发布</strong>
-                            <p>GitHub Releases 显示稳定版仍是 2026.6.1；最新 beta 提到 QQBot 会过滤模型思维脚手架，适合作为通道安全观察点。</p>
+                            <strong>2026.6.8 已于 06-16 发布为稳定版</strong>
+                            <p>官方 Release 聚焦通道投递、Agent 恢复、模型路由、内存状态与移动端会话可靠性；npm latest 与发布标签一致。</p>
                         </a>
                         <a class="source-ledger-card" href="#article-openai-codex-knowledge-work-2026-06-08">
                             <small>OpenAI / Codex</small>
@@ -145,6 +145,30 @@
                 <!-- 文章列表 -->
                 <div class="articles" id="articles">
                     <!-- 置顶文章：OpenClaw 与 OpenAI 最新资料 -->
+                    <article id="article-openclaw-2026-6-8-stable" class="article-card featured" data-category="product">
+                        <div class="article-content">
+                            <div class="article-header">
+                                <a href="https://github.com/openclaw/openclaw/releases/tag/v2026.6.8" target="_blank" rel="noopener noreferrer" class="article-title">OpenClaw 2026.6.8 稳定版：通道投递、Agent 恢复与模型路由继续收紧</a>
+                                <span class="article-category category-product">产品更新</span>
+                            </div>
+                            <p class="article-excerpt">
+                                OpenClaw 2026.6.8 于 2026-06-16 发布。官方重点包括更可靠的 Agent 运行恢复、更安全的模型与工具 schema 路由、更稳的内存索引回滚，以及 Telegram、WhatsApp、WebChat 和 iOS 会话体验修复。对 FaroAI 当前的微信与本地模型链路，最重要的操作建议不是直接覆盖升级，而是先备份配置，升级后运行 doctor、重启 Gateway，并重新验证通道投递和本地模型回复。
+                            </p>
+                            <p class="article-source">资料来源：<a href="https://github.com/openclaw/openclaw/releases/tag/v2026.6.8" target="_blank" rel="noopener noreferrer">OpenClaw GitHub Release v2026.6.8</a>、<a href="https://www.npmjs.com/package/openclaw/v/2026.6.8" target="_blank" rel="noopener noreferrer">npm 2026.6.8</a></p>
+                            <div class="article-meta">
+                                <a href="个人概况_2026_v3.html" class="article-author">炜哥</a>
+                                <span class="article-date">2026-06-18</span>
+                                <span class="article-note">稳定版核验</span>
+                                <div class="article-tags">
+                                    <span class="tag">OpenClaw</span>
+                                    <span class="tag">2026.6.8</span>
+                                    <span class="tag">Agent recovery</span>
+                                    <span class="tag">Model routing</span>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
                     <article id="article-openclaw-2026-6-8-release-watch" class="article-card featured" data-category="product">
                         <div class="article-content">
                             <div class="article-header">

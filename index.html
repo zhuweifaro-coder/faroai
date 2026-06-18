@@ -33,7 +33,7 @@
     
     <!-- Preconnect & Preload -->
     <!-- Styles -->
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css?v=20260618b">
     
     <!-- Critical CSS Inline -->
     <style>
@@ -154,10 +154,10 @@
                 <span></span>
             </div>
             <div class="tech-intro-copy">
-                <p class="tech-intro-kicker">AI AGENT RUNTIME</p>
-                <h2>正在启动智能体中枢</h2>
+                <p class="tech-intro-kicker">LOCAL AGENT RUNTIME</p>
+                <h2>连接模型、记忆与工具</h2>
                 <div class="tech-intro-phases" aria-hidden="true">
-                    <span>01 Model</span>
+                    <span>01 Gateway</span>
                     <span>02 Memory</span>
                     <span>03 Tools</span>
                 </div>
@@ -223,15 +223,11 @@
 
     <nav class="section-rail" aria-label="首页快速导航">
         <span class="section-rail-title">NAV</span>
-        <a href="#home" class="is-active" data-step="01">顶部</a>
-        <a href="#fit-map" data-step="02">适配</a>
-        <a href="#ops-radar" data-step="03">状态</a>
-        <a href="#command-deck" data-step="04">指挥台</a>
-        <a href="#workflow-lab" data-step="05">演示</a>
-        <a href="#agent-matrix" data-step="06">矩阵</a>
-        <a href="#features" data-step="07">能力</a>
-        <a href="#blog" data-step="08">博客</a>
-        <a href="#team-intro" data-step="09">站长</a>
+        <a href="#home" class="is-active" data-step="01" aria-label="返回顶部">顶部</a>
+        <a href="#ops-radar" data-step="02" aria-label="运行状态">状态</a>
+        <a href="#workflow-lab" data-step="03" aria-label="工作流演示">演示</a>
+        <a href="#features" data-step="04" aria-label="核心能力">能力</a>
+        <a href="#blog" data-step="05" aria-label="最新博客">博客</a>
     </nav>
 
     <main id="main">
@@ -241,20 +237,19 @@
             <div class="container">
                 <div class="hero-content">
                     <div class="hero-badge">
-                        <span class="badge-icon">2026.6.1</span>
-                        <span>Gateway + 微信 + 本地模型实测通过</span>
+                        <span class="badge-icon">2026.6.5</span>
+                        <span>当前运行稳定，npm latest 2026.6.8 可升级</span>
                     </div>
                     <h1 class="hero-title">
                         <span class="gradient-text hero-logo-word"><span class="hero-logo-orb" aria-hidden="true"></span><span class="brand-word"><span class="brand-red">F</span><span class="brand-grad brand-grad-a">a</span><span class="brand-grad brand-grad-r">r</span><span class="brand-grad brand-grad-o">o</span><span class="brand-red">A</span><span class="brand-grad brand-grad-i">I</span></span></span>
                         <span class="subtitle">把 AI 接进你的微信、知识库和自动化工作流</span>
                     </h1>
                     <p class="hero-description">
-                        FaroAI 不是一个“会聊天的演示页”，而是一套可以真正接进微信、知识库和自动化任务的本地优先 AI 工作台。你可以先在单机上跑通，再按团队需要扩展到多模型、多入口、多任务编排。
+                        FaroAI 是一套本地优先 AI 工作台：用 OpenClaw Gateway 连接微信、知识库、本地模型和自动化任务，先在单机验证，再按需要扩展。
                     </p>
                     <div class="hero-audience" aria-label="适用对象">
-                        <span class="hero-audience-chip">个人操盘手</span>
-                        <span class="hero-audience-chip">小团队知识中枢</span>
-                        <span class="hero-audience-chip">微信入口自动化</span>
+                        <span class="hero-audience-chip">微信任务入口</span>
+                        <span class="hero-audience-chip">个人知识中枢</span>
                         <span class="hero-audience-chip">本地模型工作流</span>
                     </div>
                     <div class="hero-actions">
@@ -272,10 +267,9 @@
                         </button>
                     </div>
                     <div class="hero-proof" aria-label="核心能力">
-                        <div class="proof-item">静态站已上线</div>
-                        <div class="proof-item">OpenClaw 2026.6.1</div>
-                        <div class="proof-item">微信链路已验证</div>
-                        <div class="proof-item">本地模型可调用</div>
+                        <div class="proof-item">运行版 2026.6.5</div>
+                        <div class="proof-item">最新稳定版 2026.6.8</div>
+                        <div class="proof-item">微信插件 2.4.4</div>
                     </div>
                     <div class="hero-telemetry" aria-label="系统遥测">
                         <div class="telemetry-item">
@@ -289,32 +283,6 @@
                         <div class="telemetry-item">
                             <span>CHANNEL</span>
                             <strong>weixin.ready</strong>
-                        </div>
-                    </div>
-                    <div class="hero-trust-grid" aria-label="落地判断依据">
-                        <article class="hero-trust-card">
-                            <span>从零到可用</span>
-                            <strong>先本地跑通，再考虑扩展</strong>
-                            <p>不是先卖你一个后台，而是先给出网关、模型、通道三段式可验证路径。</p>
-                        </article>
-                        <article class="hero-trust-card">
-                            <span>适合现状</span>
-                            <strong>个人和小团队更容易受益</strong>
-                            <p>当你需要微信入口、文档检索和固定自动化，而不是复杂企业平台时，FaroAI 更轻。</p>
-                        </article>
-                    </div>
-                    <div class="hero-stats" aria-label="平台状态">
-                        <div class="stat">
-                            <span class="stat-number">Local-first</span>
-                            <span class="stat-label">数据与模型可本地运行</span>
-                        </div>
-                        <div class="stat">
-                            <span class="stat-number">Multi-channel</span>
-                            <span class="stat-label">微信、网页、CLI 可扩展</span>
-                        </div>
-                        <div class="stat">
-                            <span class="stat-number">Verified path</span>
-                            <span class="stat-label">按文档逐段验证链路</span>
                         </div>
                     </div>
                 </div>
@@ -362,20 +330,6 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="preview-chart">
-                                <div class="chart-bar" style="height: 60%"></div>
-                                <div class="chart-bar" style="height: 80%"></div>
-                                <div class="chart-bar" style="height: 45%"></div>
-                                <div class="chart-bar" style="height: 90%"></div>
-                                <div class="chart-bar" style="height: 75%"></div>
-                                <div class="chart-bar" style="height: 85%"></div>
-                                <div class="chart-bar" style="height: 70%"></div>
-                            </div>
-                            <div class="preview-data-strip">
-                                <span>latency 42ms</span>
-                                <span>queue 03</span>
-                                <span>guard on</span>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -387,8 +341,8 @@
                 <div class="credibility-grid">
                     <div class="credibility-item">
                         <span class="credibility-label">内容更新时间</span>
-                        <strong>2026-06-07</strong>
-                        <p>OpenClaw npm latest 仍为 2026.6.1；6 月 7 日 beta 已进入观察，本站稳定口径保持已验证链路。</p>
+                        <strong>2026-06-18</strong>
+                        <p>本机当前运行 OpenClaw 2026.6.5；npm 最新稳定版为 2026.6.8，升级前后应重新执行 doctor 与链路验证。</p>
                     </div>
                     <div class="credibility-item">
                         <span class="credibility-label">事实边界</span>
@@ -499,7 +453,7 @@
                             <article class="ops-status-card is-ok">
                                 <span class="ops-status-dot" aria-hidden="true"></span>
                                 <small>Gateway</small>
-                                <strong>OpenClaw 2026.6.1</strong>
+                                <strong>OpenClaw 2026.6.5</strong>
                                 <p>127.0.0.1:18789 health live</p>
                             </article>
                             <article class="ops-status-card is-ok">
@@ -674,8 +628,8 @@
                     <div class="mission-grid">
                         <article class="mission-card is-green">
                             <span>Gateway</span>
-                            <strong>OpenClaw 2026.6.1 已运行</strong>
-                            <p>Gateway 健康探针返回 live，CLI 与 Gateway 版本已一致。</p>
+                            <strong>OpenClaw 2026.6.5 正在运行</strong>
+                            <p>Gateway 健康探针返回 live，CLI 与 Gateway 版本一致；2026.6.8 已发布，可在复测后升级。</p>
                         </article>
                         <article class="mission-card is-blue">
                             <span>Weixin</span>
@@ -766,7 +720,7 @@
                         <div class="matrix-mini-grid" aria-label="当前矩阵摘要">
                             <article>
                                 <span>Runtime</span>
-                                <strong>OpenClaw 2026.6.1</strong>
+                                <strong>OpenClaw 2026.6.5</strong>
                             </article>
                             <article>
                                 <span>Channel</span>
@@ -950,7 +904,7 @@
                     <article class="status-card is-config">
                         <span class="status-badge">已实测</span>
                         <h3>OpenClaw Gateway、微信机器人与本地模型</h3>
-                        <p>本机已升级到 OpenClaw 2026.6.1，并验证微信机器人可通过 OpenClaw 调用本地模型。</p>
+                        <p>本机当前运行 OpenClaw 2026.6.5，Gateway 探针正常；微信插件 2.4.4 已加载，本地 Ollama 模型可用。npm 最新稳定版 2026.6.8 待升级复测。</p>
                     </article>
                     <article class="status-card is-pending">
                         <span class="status-badge">接入中</span>
@@ -1023,15 +977,15 @@
                     <article class="blog-preview-card">
                         <div class="blog-preview-meta-top">
                             <span class="blog-preview-tag">产品更新</span>
-                            <time class="blog-preview-date">2026-06-08</time>
+                            <time class="blog-preview-date">2026-06-18</time>
                         </div>
                         <h3 class="blog-preview-title">
-                            <a href="blog.html#article-openclaw-2026-6-8-release-watch">OpenClaw 2026.6.1 仍是 Latest，2026.6.5-beta.2 提醒通道输出要继续收口</a>
+                            <a href="blog.html#article-openclaw-2026-6-8-stable">OpenClaw 2026.6.8 稳定版：通道投递、Agent 恢复与模型路由继续收紧</a>
                         </h3>
                         <p class="blog-preview-excerpt">
-                            稳定版仍停在 2026.6.1，最新 beta 开始处理聊天通道里的思维脚手架泄漏问题。
+                            官方更新集中在通道可靠性、Agent 恢复、模型与工具 schema 安全，以及内存索引回滚能力。
                         </p>
-                        <a href="blog.html#article-openclaw-2026-6-8-release-watch" class="blog-preview-readmore">阅读全文 →</a>
+                        <a href="blog.html#article-openclaw-2026-6-8-stable" class="blog-preview-readmore">阅读全文 →</a>
                     </article>
                     <article class="blog-preview-card">
                         <div class="blog-preview-meta-top">
@@ -1470,7 +1424,7 @@
     <!-- Optimized Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" defer></script>
-    <script src="script.js" defer></script>
+    <script src="script.js?v=20260618b" defer></script>
     
     <!-- Performance Optimization -->
     <script>

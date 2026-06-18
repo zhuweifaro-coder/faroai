@@ -876,24 +876,24 @@ document.head.appendChild(style);
             duration: 0.72
         });
 
-        const heroItems = [
+        const heroItems = document.querySelectorAll([
             '.hero-badge',
             '.hero-title',
             '.hero-description',
             '.hero-audience-chip',
             '.hero-actions .btn',
-            '.proof-item',
-            '.hero-trust-card',
-            '.stat'
-        ];
+            '.proof-item'
+        ].join(','));
 
-        gsap.from(heroItems, {
-            autoAlpha: 0,
-            y: 24,
-            duration: 0.82,
-            stagger: 0.055,
-            clearProps: 'opacity,visibility,transform'
-        });
+        if (heroItems.length) {
+            gsap.from(heroItems, {
+                autoAlpha: 0,
+                y: 24,
+                duration: 0.82,
+                stagger: 0.055,
+                clearProps: 'opacity,visibility,transform'
+            });
+        }
 
         gsap.from('.dashboard-preview', {
             autoAlpha: 0,
@@ -906,14 +906,17 @@ document.head.appendChild(style);
             clearProps: 'opacity,visibility,transform'
         });
 
-        gsap.from('.preview-chart .chart-bar', {
-            scaleY: 0.28,
-            transformOrigin: '50% 100%',
-            duration: 0.9,
-            delay: 0.42,
-            stagger: 0.06,
-            clearProps: 'transform'
-        });
+        const chartBars = document.querySelectorAll('.preview-chart .chart-bar');
+        if (chartBars.length) {
+            gsap.from(chartBars, {
+                scaleY: 0.28,
+                transformOrigin: '50% 100%',
+                duration: 0.9,
+                delay: 0.42,
+                stagger: 0.06,
+                clearProps: 'transform'
+            });
+        }
 
         if (ScrollTrigger) {
             gsap.to('.dashboard-preview', {
@@ -1092,11 +1095,18 @@ document.head.appendChild(style);
 
         if (!links.length || !targets.length) return;
 
+        function updateRailVisibility() {
+            rail.classList.toggle('is-visible', window.scrollY > 280);
+        }
+
         function setActive(id) {
             links.forEach(link => {
                 link.classList.toggle('is-active', link.getAttribute('href') === `#${id}`);
             });
         }
+
+        window.addEventListener('scroll', updateRailVisibility, { passive: true });
+        updateRailVisibility();
 
         if (!('IntersectionObserver' in window)) {
             const updateByScroll = () => {
