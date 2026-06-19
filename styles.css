@@ -947,7 +947,8 @@ section[id] {
 .hero-logo-word .brand-word > span {
     display: inline-block;
     transform-origin: center;
-    animation: none;
+    animation: heroLetterMorph 9.2s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+    will-change: transform, opacity, filter;
 }
 
 .hero-logo-word .brand-word > span:nth-child(1) { --hero-morph-x: 2.2em; --hero-morph-y: 0.02em; --hero-morph-rotate: -18deg; }
@@ -976,7 +977,8 @@ section[id] {
         inset 0.1em 0.08em 0.22em rgba(255, 255, 255, 0.18);
     opacity: 0;
     transform: translate(-50%, -50%) scale(0.38);
-    display: none;
+    animation: heroOrbMorph 9.2s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+    will-change: transform, opacity;
     pointer-events: none;
 }
 
