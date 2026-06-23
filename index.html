@@ -131,9 +131,9 @@
             <div class="tech-intro-orbit tech-intro-orbit-b" aria-hidden="true"></div>
             <div class="tech-intro-beam" aria-hidden="true"></div>
             <div class="tech-intro-hud" aria-hidden="true">
-                <span>LLM ROUTER</span>
-                <span>RAG INDEX</span>
-                <span>TOOL BUS</span>
+                <span>MODEL ROUTER</span>
+                <span>MEMORY INDEX</span>
+                <span>TOOL GATE</span>
             </div>
             <div class="tech-intro-core" aria-hidden="true">
                 <div class="tech-intro-mark" aria-hidden="true">
@@ -155,11 +155,11 @@
             </div>
             <div class="tech-intro-copy">
                 <p class="tech-intro-kicker">LOCAL AGENT RUNTIME</p>
-                <h2>连接模型、记忆与工具</h2>
+                <h2>模型、记忆、工具与微信入口正在编排</h2>
                 <div class="tech-intro-phases" aria-hidden="true">
                     <span>01 Gateway</span>
-                    <span>02 Memory</span>
-                    <span>03 Tools</span>
+                    <span>02 Context</span>
+                    <span>03 Action</span>
                 </div>
             </div>
             <div class="tech-intro-status" aria-hidden="true">
@@ -237,8 +237,8 @@
             <div class="container">
                 <div class="hero-content">
                     <div class="hero-badge">
-                        <span class="badge-icon">2026.6.5</span>
-                        <span>当前运行稳定，npm latest 2026.6.8 可升级</span>
+                        <span class="badge-icon">2026.6.9</span>
+                        <span>OpenClaw 本机与 npm 最新版本已对齐，微信链路按网关状态验证</span>
                     </div>
                     <h1 class="hero-title">
                         <span class="gradient-text hero-logo-word"><span class="hero-logo-orb" aria-hidden="true"><span class="hero-orb-monogram">Fa</span></span><span class="brand-word"><span class="brand-red">F</span><span class="brand-grad brand-grad-a">a</span><span class="brand-grad brand-grad-r">r</span><span class="brand-grad brand-grad-o">o</span><span class="brand-red">A</span><span class="brand-grad brand-grad-i">I</span></span></span>
@@ -267,8 +267,8 @@
                         </button>
                     </div>
                     <div class="hero-proof" aria-label="核心能力">
-                        <div class="proof-item">运行版 2026.6.5</div>
-                        <div class="proof-item">最新稳定版 2026.6.8</div>
+                        <div class="proof-item">OpenClaw 2026.6.9</div>
+                        <div class="proof-item">本机版本已对齐 npm latest</div>
                         <div class="proof-item">微信插件 2.4.4</div>
                     </div>
                     <div class="hero-telemetry" aria-label="系统遥测">
@@ -342,7 +342,7 @@
                     <div class="credibility-item">
                         <span class="credibility-label">内容更新时间</span>
                         <strong>2026-06-18</strong>
-                        <p>本机当前运行 OpenClaw 2026.6.5；2026-06-22 复核 npm latest 为 2026.6.9，升级前后应重新执行 doctor 与链路验证。</p>
+                        <p>本机当前运行 OpenClaw 2026.6.9；2026-06-23 复核 npm latest 同为 2026.6.9，后续升级前后仍应重新执行 doctor 与链路验证。</p>
                     </div>
                     <div class="credibility-item">
                         <span class="credibility-label">事实边界</span>
@@ -453,7 +453,7 @@
                             <article class="ops-status-card is-ok">
                                 <span class="ops-status-dot" aria-hidden="true"></span>
                                 <small>Gateway</small>
-                                <strong>OpenClaw 2026.6.5</strong>
+                                <strong>OpenClaw 2026.6.9</strong>
                                 <p>127.0.0.1:18789 health live</p>
                             </article>
                             <article class="ops-status-card is-ok">
@@ -465,8 +465,8 @@
                             <article class="ops-status-card is-ok">
                                 <span class="ops-status-dot" aria-hidden="true"></span>
                                 <small>Model</small>
-                                <strong>qwen3.6 27B MLX</strong>
-                                <p>Ollama local provider verified</p>
+                                <strong>本地模型提供方</strong>
+                                <p>Ollama provider verified</p>
                             </article>
                             <article class="ops-status-card is-watch">
                                 <span class="ops-status-dot" aria-hidden="true"></span>
@@ -477,7 +477,7 @@
                         </div>
                         <div class="ops-terminal" aria-label="验证记录">
                             <code>curl /health → {"ok":true,"status":"live"}</code>
-                            <code>agent → ollama/qwen3.6:27b-mlx-bf16-fast → 本地模型调用正常</code>
+                            <code>agent → local model provider → 本地模型调用正常</code>
                             <code>weixin delivery → sent → 微信机器人链路测试成功</code>
                         </div>
                     </div>
@@ -628,8 +628,8 @@
                     <div class="mission-grid">
                         <article class="mission-card is-green">
                             <span>Gateway</span>
-                            <strong>OpenClaw 2026.6.5 正在运行</strong>
-                            <p>Gateway 健康探针返回 live，CLI 与 Gateway 版本一致；2026.6.8 已发布，可在复测后升级。</p>
+                            <strong>OpenClaw 2026.6.9 正在运行</strong>
+                            <p>Gateway 健康探针返回 live，CLI 与 npm latest 已对齐；后续版本升级需重新做网关、微信与模型链路复测。</p>
                         </article>
                         <article class="mission-card is-blue">
                             <span>Weixin</span>
@@ -639,7 +639,7 @@
                         <article class="mission-card is-red">
                             <span>Models</span>
                             <strong>默认本地模型可用</strong>
-                            <p>qwen3.6:27b-mlx-bf16-fast 已完成 OpenClaw agent 调用测试。</p>
+                            <p>本地模型提供方已完成 OpenClaw agent 调用测试，具体模型可按任务质量与机器负载调整。</p>
                         </article>
                         <article class="mission-card is-amber">
                             <span>Search</span>
@@ -681,7 +681,7 @@
                         <span class="matrix-ring matrix-ring-a"></span>
                         <span class="matrix-ring matrix-ring-b"></span>
                         <span class="matrix-ring matrix-ring-c"></span>
-                        <span class="matrix-core"><span>AI</span></span>
+                        <span class="matrix-core"><span>FaroAI</span></span>
                         <span class="matrix-node node-wechat">微信</span>
                         <span class="matrix-node node-gateway">Gateway</span>
                         <span class="matrix-node node-model">模型</span>
@@ -720,7 +720,7 @@
                         <div class="matrix-mini-grid" aria-label="当前矩阵摘要">
                             <article>
                                 <span>Runtime</span>
-                                <strong>OpenClaw 2026.6.5</strong>
+                                <strong>OpenClaw 2026.6.9</strong>
                             </article>
                             <article>
                                 <span>Channel</span>
@@ -904,7 +904,7 @@
                     <article class="status-card is-config">
                         <span class="status-badge">已实测</span>
                         <h3>OpenClaw Gateway、微信机器人与本地模型</h3>
-                        <p>本机当前运行 OpenClaw 2026.6.5，Gateway 探针正常；微信插件 2.4.4 已加载，本地 Ollama 模型可用。2026-06-22 复核 npm 最新稳定版为 2026.6.9，待升级复测。</p>
+                        <p>本机当前运行 OpenClaw 2026.6.9，Gateway 探针正常；微信插件 2.4.4 已加载，本地 Ollama 模型提供方可用。2026-06-23 复核 npm latest 同为 2026.6.9。</p>
                     </article>
                     <article class="status-card is-pending">
                         <span class="status-badge">接入中</span>

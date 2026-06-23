@@ -785,12 +785,12 @@ document.head.appendChild(style);
                 title: '微信入口层',
                 score: 'Ready 92%',
                 description: '把微信消息变成可路由任务，区分闲聊、资料查询、自动化触发和需要人工确认的请求。',
-                bars: [92, 78, 86]
+                bars: [94, 80, 88]
             },
             knowledge: {
                 title: '知识检索层',
                 score: 'Indexed 84%',
-                description: '把博客、文档、配置记录和个人知识库接进统一检索路径，回答时保留来源和更新时间。',
+                description: '把博客、文档、配置记录和个人知识库接进统一检索路径，回答时保留来源、时间和不确定性边界。',
                 bars: [84, 72, 82]
             },
             automation: {
@@ -802,8 +802,8 @@ document.head.appendChild(style);
             safety: {
                 title: '安全审计层',
                 score: 'Guard 88%',
-                description: '对外部输入、工具输出、消息投递和配置修改分层隔离，避免把模型回复直接等同为可执行命令。',
-                bars: [86, 70, 88]
+                description: '对外部输入、工具输出、消息投递和配置修改分层隔离，危险动作必须经过人工确认或显式授权。',
+                bars: [88, 72, 90]
             }
         };
 
