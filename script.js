@@ -155,7 +155,7 @@ class SmoothScroll {
 
         var desc = document.createElement('p');
         desc.style.cssText = 'color: #64748b; margin-bottom: 1.5rem;';
-        desc.textContent = '账号系统正在接入中，请先查看配置文档，或通过联系方式申请试用。';
+        desc.textContent = 'Google/GitHub OAuth 已接入；正式可用前请确认 Cloudflare Pages 环境变量已配置完整。';
 
         var closeBtn = document.createElement('button');
         closeBtn.style.cssText = 'background: #6366f1; color: white; border: none; padding: 0.75rem 1.5rem; border-radius: 0.5rem; cursor: pointer; font-weight: 600;';
@@ -307,7 +307,7 @@ document.head.appendChild(style);
         form?.addEventListener('submit', e => {
             e.preventDefault();
             const errorEl = form.querySelector('.form-error');
-            const message = '账号系统正在接入中，请先查看配置文档或通过联系方式申请试用。';
+            const message = '邮箱密码登录暂未开放，请使用 Google/GitHub OAuth，或通过联系方式申请试用。';
             if (errorEl) {
                 errorEl.textContent = message;
                 errorEl.hidden = false;
@@ -357,15 +357,109 @@ document.head.appendChild(style);
 
 /* ─────────── GitHub / Google OAuth 状态提示 ─────────── */
 (function bindOAuth() {
-    const oauthButtons = document.querySelectorAll('.btn-social');
-    oauthButtons.forEach(btn => {
-        btn.addEventListener('click', e => {
-            e.preventDefault();
-            const status = document.getElementById('authStatus');
-            if (status) {
-                status.textContent = 'Google/GitHub 登录正在接入中，当前不会发起 OAuth 授权请求。';
+    function onReady(callback) {
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', callback);
+            return;
+        }
+        callback();
+    }
+
+    onReady(() => {
+        const oauthButtons = document.querySelectorAll('.btn-social[data-oauth-provider]');
+        const status = document.getElementById('authStatus');
+        const loginTriggers = document.querySelectorAll('.btn-login-trigger');
+        const modalSubtitle = document.querySelector('#loginModal .modal-subtitle');
+        const isHttpPage = window.location.protocol === 'http:' || window.location.protocol === 'https:';
+
+        function setStatus(message, tone = 'info') {
+            if (!status) return;
+            status.textContent = message;
+            status.dataset.tone = tone;
+        }
+
+        function cleanLoginQuery() {
+            const url = new URL(window.location.href);
+            ['login', 'provider', 'reason', 'logout'].forEach(key => url.searchParams.delete(key));
+            window.history.replaceState({}, document.title, `${url.pathname}${url.search}${url.hash}`);
+        }
+
+        function updateLoggedInUser(user) {
+            if (!user) return;
+            const label = user.name || user.email || '已登录';
+            loginTriggers.forEach(trigger => {
+                const text = trigger.querySelector('span') || trigger;
+                text.textContent = label.length > 10 ? `${label.slice(0, 10)}...` : label;
+                trigger.setAttribute('aria-label', `已登录：${label}`);
+            });
+            if (modalSubtitle) {
+                modalSubtitle.textContent = `已通过 ${user.provider || 'OAuth'} 登录：${label}`;
             }
+        }
+
+        function handleQueryState() {
+            const params = new URLSearchParams(window.location.search);
+            const loginState = params.get('login');
+            const provider = params.get('provider');
+            const reason = params.get('reason');
+            const logout = params.get('logout');
+
+            if (loginState === 'success') {
+                setStatus(`${provider || 'OAuth'} 授权成功，正在读取会话信息。`, 'success');
+                cleanLoginQuery();
+                return;
+            }
+            if (loginState === 'error') {
+                setStatus(`OAuth 授权未完成：${reason || 'unknown_error'}。请检查 Cloudflare 环境变量和第三方回调地址。`, 'error');
+                cleanLoginQuery();
+                return;
+            }
+            if (logout) {
+                setStatus('已退出 OAuth 会话。', 'info');
+                cleanLoginQuery();
+            }
+        }
+
+        function loadSession() {
+            if (!isHttpPage) {
+                setStatus('OAuth 后端已接入；请通过 Cloudflare Pages 或本地 Pages Functions 预览使用。');
+                return;
+            }
+
+            fetch('/api/auth/session', {
+                credentials: 'include',
+                headers: { Accept: 'application/json' }
+            })
+                .then(response => (response.ok ? response.json() : null))
+                .then(data => {
+                    if (data?.authenticated && data.user) {
+                        updateLoggedInUser(data.user);
+                        setStatus(`已登录：${data.user.name || data.user.email || 'OAuth 用户'}。`, 'success');
+                    }
+                })
+                .catch(() => {
+                    setStatus('OAuth 前端入口已启用；当前预览环境未返回会话接口。', 'info');
+                });
+        }
+
+        oauthButtons.forEach(btn => {
+            btn.disabled = !isHttpPage;
+            btn.addEventListener('click', e => {
+                e.preventDefault();
+                const provider = btn.dataset.oauthProvider;
+                if (!provider || !isHttpPage) {
+                    setStatus('请在 Cloudflare Pages 线上环境中使用 OAuth。', 'error');
+                    return;
+                }
+
+                btn.setAttribute('aria-busy', 'true');
+                setStatus(`正在跳转到 ${provider} 授权页。`, 'info');
+                window.location.href = `/api/auth/${provider}`;
+            });
         });
+
+        handleQueryState();
+        loadSession();
     });
 })();
 
@@ -785,32 +879,49 @@ document.head.appendChild(style);
                 title: '微信入口层',
                 score: 'Ready 92%',
                 description: '把微信消息变成可路由任务，区分闲聊、资料查询、自动化触发和需要人工确认的请求。',
-                bars: [94, 80, 88]
+                bars: [94, 80, 88],
+                route: 'Weixin → Gateway → Model → Reply',
+                boundary: '敏感回复发送前确认',
+                handoff: '人工复核 / 自动草稿'
             },
             knowledge: {
                 title: '知识检索层',
                 score: 'Indexed 84%',
                 description: '把博客、文档、配置记录和个人知识库接进统一检索路径，回答时保留来源、时间和不确定性边界。',
-                bars: [84, 72, 82]
+                bars: [84, 72, 82],
+                route: 'Query → Search → Extract → Cite',
+                boundary: '实时事实标注来源日期',
+                handoff: '引用校对 / 摘要输出'
             },
             automation: {
                 title: '自动任务层',
                 score: 'Flow 76%',
                 description: '把日报、市场复盘、邮件摘要和运维检查做成可复用任务，但关键发送和危险动作仍保留确认。',
-                bars: [80, 76, 88]
+                bars: [80, 76, 88],
+                route: 'Cron → Toolchain → Model → Weixin',
+                boundary: '失败降级和超时中断',
+                handoff: '定时运行 / 异常提醒'
             },
             safety: {
                 title: '安全审计层',
                 score: 'Guard 88%',
                 description: '对外部输入、工具输出、消息投递和配置修改分层隔离，危险动作必须经过人工确认或显式授权。',
-                bars: [88, 72, 90]
+                bars: [88, 72, 90],
+                route: 'Input → Policy → Confirm → Trace',
+                boundary: '配置修改需显式授权',
+                handoff: '审计记录 / 人工放行'
             }
         };
 
+        const matrixShell = document.querySelector('.agent-matrix-shell');
         const matrixChips = document.querySelectorAll('.matrix-chip');
+        const matrixNodes = document.querySelectorAll('.matrix-node[data-node]');
         const matrixTitle = document.getElementById('matrixTitle');
         const matrixScore = document.getElementById('matrixScore');
         const matrixDescription = document.getElementById('matrixDescription');
+        const matrixRoute = document.getElementById('matrixRoute');
+        const matrixBoundary = document.getElementById('matrixBoundary');
+        const matrixHandoff = document.getElementById('matrixHandoff');
         const matrixBars = [
             document.getElementById('matrixBarAvailability'),
             document.getElementById('matrixBarAutomation'),
@@ -822,6 +933,13 @@ document.head.appendChild(style);
             if (matrixTitle) matrixTitle.textContent = item.title;
             if (matrixScore) matrixScore.textContent = item.score;
             if (matrixDescription) matrixDescription.textContent = item.description;
+            if (matrixRoute) matrixRoute.textContent = item.route;
+            if (matrixBoundary) matrixBoundary.textContent = item.boundary;
+            if (matrixHandoff) matrixHandoff.textContent = item.handoff;
+            if (matrixShell) matrixShell.dataset.active = key;
+            matrixNodes.forEach(node => {
+                node.classList.toggle('is-active', node.dataset.node === key);
+            });
             matrixBars.forEach((bar, index) => {
                 if (bar) bar.style.width = `${item.bars[index]}%`;
             });

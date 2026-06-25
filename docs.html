@@ -633,8 +633,8 @@ openclaw models list</code></pre>
                                     <p>先用最小 prompt 测试模型。如果本地模型很大，确认 Ollama 已加载、机器资源足够，并适当增加 timeout。</p>
                                 </div>
                                 <div class="faq-item">
-                                    <h3>页面登录为什么显示即将开放？</h3>
-                                    <p>当前网站是静态展示站，Google/GitHub OAuth 后端还未接入。现在可先通过文档配置本地 <span class="brand-word"><span class="brand-red">F</span><span class="brand-grad brand-grad-a">a</span><span class="brand-grad brand-grad-r">r</span><span class="brand-grad brand-grad-o">o</span><span class="brand-red">A</span><span class="brand-grad brand-grad-i">I</span></span>，或通过联系方式申请试用。</p>
+                                    <h3>页面登录需要怎样配置？</h3>
+                                    <p>Google/GitHub OAuth 后端已接入 Cloudflare Pages Functions。正式可用前，需要在第三方控制台配置回调地址，并在 Cloudflare Pages 环境变量中设置 <code>GOOGLE_CLIENT_ID</code>、<code>GOOGLE_CLIENT_SECRET</code>、<code>GITHUB_CLIENT_ID</code>、<code>GITHUB_CLIENT_SECRET</code>、<code>OAUTH_COOKIE_SECRET</code>。如果线上点击后提示 missing_env，说明环境变量还未配置完整。</p>
                                 </div>
                             </div>
                         </section>

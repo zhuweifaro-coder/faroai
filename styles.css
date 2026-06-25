@@ -2603,14 +2603,14 @@ section[id] {
 .agent-matrix {
     position: relative;
     overflow: hidden;
-    padding: 92px 0 104px;
+    padding: 104px 0 112px;
     background:
         linear-gradient(90deg, rgba(96, 165, 250, 0.045) 1px, transparent 1px),
         linear-gradient(180deg, rgba(94, 234, 212, 0.04) 1px, transparent 1px),
-        radial-gradient(circle at 14% 20%, rgba(37, 99, 235, 0.34), transparent 30%),
-        radial-gradient(circle at 78% 18%, rgba(20, 184, 166, 0.26), transparent 28%),
-        radial-gradient(circle at 54% 88%, rgba(231, 76, 60, 0.12), transparent 24%),
-        linear-gradient(135deg, #07111f 0%, #0f172a 54%, #052f31 100%);
+        radial-gradient(circle at 14% 18%, rgba(37, 99, 235, 0.42), transparent 30%),
+        radial-gradient(circle at 78% 16%, rgba(20, 184, 166, 0.32), transparent 28%),
+        radial-gradient(circle at 54% 92%, rgba(231, 76, 60, 0.13), transparent 24%),
+        linear-gradient(135deg, #050b18 0%, #0d1728 48%, #042d31 100%);
     background-size: 34px 34px, 34px 34px, auto, auto, auto, auto;
     color: #e2e8f0;
 }
@@ -2631,7 +2631,9 @@ section[id] {
     content: '';
     position: absolute;
     inset: 0;
-    background: linear-gradient(110deg, transparent 0 42%, rgba(94, 234, 212, 0.08) 50%, transparent 58% 100%);
+    background:
+        radial-gradient(ellipse at 50% 45%, transparent 0 40%, rgba(94, 234, 212, 0.08) 41%, transparent 43% 100%),
+        linear-gradient(110deg, transparent 0 42%, rgba(94, 234, 212, 0.08) 50%, transparent 58% 100%);
     animation: commandScan 7s ease-in-out infinite;
     pointer-events: none;
 }
@@ -2720,14 +2722,14 @@ section[id] {
 .agent-matrix-shell {
     position: relative;
     display: grid;
-    grid-template-columns: minmax(390px, 0.95fr) minmax(0, 1.05fr);
-    gap: 1rem;
+    grid-template-columns: minmax(390px, 0.98fr) minmax(0, 1.02fr);
+    gap: 1.1rem;
     align-items: center;
-    max-width: 1060px;
+    max-width: 1120px;
     margin: 0 auto;
     padding: 1.25rem;
     border: 1px solid rgba(147, 197, 253, 0.18);
-    border-radius: 34px;
+    border-radius: 30px;
     background:
         radial-gradient(circle at 18% 28%, rgba(37, 99, 235, 0.14), transparent 34%),
         radial-gradient(circle at 74% 68%, rgba(94, 234, 212, 0.12), transparent 36%),
@@ -2756,16 +2758,17 @@ section[id] {
 
 .matrix-orb {
     position: relative;
-    min-height: 448px;
-    border-radius: 28px;
+    min-height: 482px;
+    border-radius: 26px;
     border: 1px solid rgba(94, 234, 212, 0.16);
     background:
         linear-gradient(rgba(147, 197, 253, 0.035) 1px, transparent 1px),
         linear-gradient(90deg, rgba(94, 234, 212, 0.032) 1px, transparent 1px),
-        radial-gradient(circle at 50% 48%, rgba(94, 234, 212, 0.18), transparent 25%),
-        radial-gradient(circle at 50% 52%, rgba(37, 99, 235, 0.24), transparent 42%),
-        linear-gradient(145deg, rgba(15, 23, 42, 0.84), rgba(8, 47, 73, 0.42));
-    background-size: 30px 30px, 30px 30px, auto, auto, auto;
+        radial-gradient(circle at 50% 48%, rgba(94, 234, 212, 0.24), transparent 25%),
+        radial-gradient(circle at 50% 52%, rgba(37, 99, 235, 0.32), transparent 42%),
+        radial-gradient(circle at 18% 86%, rgba(231, 76, 60, 0.12), transparent 26%),
+        linear-gradient(145deg, rgba(15, 23, 42, 0.92), rgba(8, 47, 73, 0.46));
+    background-size: 30px 30px, 30px 30px, auto, auto, auto, auto;
     box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
     overflow: hidden;
 }
@@ -2824,6 +2827,51 @@ section[id] {
 .link-model { width: 34%; transform: rotate(333deg); }
 .link-tools { width: 31%; transform: rotate(38deg); }
 .link-audit { width: 30%; transform: rotate(137deg); }
+
+.agent-matrix-shell[data-active="wechat"] .link-wechat,
+.agent-matrix-shell[data-active="automation"] .link-gateway,
+.agent-matrix-shell[data-active="knowledge"] .link-model,
+.agent-matrix-shell[data-active="knowledge"] .link-tools,
+.agent-matrix-shell[data-active="safety"] .link-audit {
+    height: 2px;
+    opacity: 0.95;
+    background: linear-gradient(90deg, rgba(94, 234, 212, 0.96), rgba(37, 99, 235, 0.2), transparent);
+    box-shadow: 0 0 18px rgba(94, 234, 212, 0.58);
+}
+
+.matrix-axis {
+    position: absolute;
+    z-index: 3;
+    display: inline-flex;
+    align-items: center;
+    min-height: 26px;
+    padding: 0.18rem 0.58rem;
+    border: 1px solid rgba(147, 197, 253, 0.14);
+    border-radius: 999px;
+    background: rgba(2, 6, 23, 0.34);
+    color: rgba(219, 234, 254, 0.72);
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 0.66rem;
+    font-weight: 900;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.axis-input {
+    left: 9%;
+    top: 34%;
+}
+
+.axis-control {
+    left: 50%;
+    top: 8%;
+    transform: translateX(-50%);
+}
+
+.axis-output {
+    right: 8%;
+    bottom: 31%;
+}
 
 .matrix-coordinate {
     position: absolute;
@@ -2916,8 +2964,8 @@ section[id] {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 118px;
-    height: 118px;
+    width: 132px;
+    height: 132px;
     border-radius: 50%;
     transform: translate(-50%, -50%);
     background:
@@ -2929,7 +2977,7 @@ section[id] {
         0 24px 80px rgba(37, 99, 235, 0.42);
     color: rgba(255, 255, 255, 0.88);
     font-family: ui-rounded, "SF Pro Rounded", "Nunito Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-    font-size: 1.02rem;
+    font-size: 1.04rem;
     font-weight: 900;
     letter-spacing: 0;
     animation: matrixCorePulse 3.8s ease-in-out infinite;
@@ -2945,6 +2993,7 @@ section[id] {
     border: 1px solid rgba(191, 219, 254, 0.18);
     border-radius: 50%;
     background: radial-gradient(circle at 50% 50%, rgba(15, 23, 42, 0.12), rgba(2, 6, 23, 0.28));
+    color: rgba(255, 255, 255, 0.76);
     text-shadow:
         0 0 16px rgba(191, 219, 254, 0.68),
         0 0 28px rgba(94, 234, 212, 0.34);
@@ -2980,6 +3029,18 @@ section[id] {
     border-radius: 50%;
     background: #5eead4;
     box-shadow: 0 0 14px rgba(94, 234, 212, 0.76);
+}
+
+.matrix-node.is-active {
+    border-color: rgba(94, 234, 212, 0.62);
+    background:
+        linear-gradient(135deg, rgba(37, 99, 235, 0.94), rgba(15, 118, 110, 0.88)),
+        rgba(15, 23, 42, 0.92);
+    color: #fff;
+    box-shadow:
+        0 16px 40px rgba(0, 0, 0, 0.26),
+        0 0 0 7px rgba(94, 234, 212, 0.08),
+        0 0 28px rgba(94, 234, 212, 0.32);
 }
 
 .node-wechat { left: 10%; top: 45%; }
@@ -3041,6 +3102,41 @@ section[id] {
     padding: 1.25rem 1.25rem 0;
     color: #cbd5e1;
     line-height: 1.72;
+}
+
+.matrix-live-stack {
+    display: grid;
+    grid-template-columns: 1.25fr 1fr 1fr;
+    gap: 0.68rem;
+    padding: 1rem 1.25rem 0;
+}
+
+.matrix-live-stack article {
+    min-height: 84px;
+    padding: 0.82rem;
+    border: 1px solid rgba(94, 234, 212, 0.14);
+    border-radius: 14px;
+    background:
+        linear-gradient(135deg, rgba(15, 23, 42, 0.54), rgba(8, 47, 73, 0.32)),
+        rgba(15, 23, 42, 0.38);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+
+.matrix-live-stack span {
+    display: block;
+    margin-bottom: 0.4rem;
+    color: #5eead4;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 0.7rem;
+    font-weight: 900;
+    text-transform: uppercase;
+}
+
+.matrix-live-stack strong {
+    display: block;
+    color: #f8fafc;
+    font-size: 0.82rem;
+    line-height: 1.45;
 }
 
 .matrix-bars {
@@ -3139,6 +3235,35 @@ section[id] {
     color: #f8fafc;
     font-size: 0.86rem;
     line-height: 1.4;
+}
+
+.matrix-footnote {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin: 0 1.25rem 1.25rem;
+    padding: 0.85rem 0.95rem;
+    border: 1px solid rgba(94, 234, 212, 0.16);
+    border-radius: 14px;
+    background: rgba(94, 234, 212, 0.07);
+}
+
+.matrix-footnote span {
+    flex: 0 0 auto;
+    padding: 0.28rem 0.58rem;
+    border-radius: 999px;
+    background: rgba(94, 234, 212, 0.14);
+    color: #99f6e4;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 0.68rem;
+    font-weight: 900;
+    text-transform: uppercase;
+}
+
+.matrix-footnote strong {
+    color: #dbeafe;
+    font-size: 0.84rem;
+    line-height: 1.48;
 }
 
 /* 搜索页 */
@@ -4477,6 +4602,10 @@ section[id] {
         min-height: 430px;
     }
 
+    .matrix-live-stack {
+        grid-template-columns: 1fr;
+    }
+
     .hero-content {
         max-width: 760px;
     }
@@ -4708,6 +4837,10 @@ section[id] {
         display: none;
     }
 
+    .matrix-axis {
+        display: none;
+    }
+
     .matrix-link {
         opacity: 0.34;
     }
@@ -4725,6 +4858,21 @@ section[id] {
         min-width: 70px;
         min-height: 34px;
         font-size: 0.78rem;
+    }
+
+    .matrix-live-stack,
+    .matrix-bars,
+    .matrix-actions,
+    .matrix-mini-grid {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+
+    .matrix-footnote {
+        align-items: flex-start;
+        flex-direction: column;
+        margin-left: 1rem;
+        margin-right: 1rem;
     }
 
     .workflow-screen {
@@ -5350,12 +5498,29 @@ body.modal-open { overflow: hidden; }
     box-shadow: none;
 }
 
+.btn-social[aria-busy="true"] {
+    pointer-events: none;
+    opacity: 0.78;
+}
+
 .auth-status {
     margin: 0.8rem 0 0;
     padding: 0.75rem 0.9rem;
     border: 1px solid rgba(37, 99, 235, 0.18);
     border-radius: var(--radius-md);
     background: #eff6ff;
+}
+
+.auth-status[data-tone="success"] {
+    border-color: rgba(20, 184, 166, 0.24);
+    background: #ecfdf5;
+    color: #047857;
+}
+
+.auth-status[data-tone="error"] {
+    border-color: rgba(231, 76, 60, 0.22);
+    background: #fff1f2;
+    color: #be123c;
 }
 
 .modal-footer {

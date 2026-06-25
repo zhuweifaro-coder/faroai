@@ -225,9 +225,10 @@
         <span class="section-rail-title">NAV</span>
         <a href="#home" class="is-active" data-step="01" aria-label="返回顶部">顶部</a>
         <a href="#ops-radar" data-step="02" aria-label="运行状态">状态</a>
-        <a href="#workflow-lab" data-step="03" aria-label="工作流演示">演示</a>
-        <a href="#features" data-step="04" aria-label="核心能力">能力</a>
-        <a href="#blog" data-step="05" aria-label="最新博客">博客</a>
+        <a href="#agent-matrix" data-step="03" aria-label="系统矩阵">矩阵</a>
+        <a href="#workflow-lab" data-step="04" aria-label="工作流演示">演示</a>
+        <a href="#features" data-step="05" aria-label="核心能力">能力</a>
+        <a href="#blog" data-step="06" aria-label="最新博客">博客</a>
     </nav>
 
     <main id="main">
@@ -399,7 +400,7 @@
                         </div>
                         <p>如果你要的是成熟 SaaS、现成账号体系、立即可用的多租户后台，那么现在还不是 FaroAI 的优势区域。</p>
                         <ul class="fit-points fit-points-muted">
-                            <li>OAuth 与公开 API 仍在接入</li>
+                            <li>OAuth 已接入后端，公开 API 仍在接入</li>
                             <li>首页展示以本地与半自动为主</li>
                             <li>不刻意伪装成已完成的云产品</li>
                         </ul>
@@ -471,8 +472,8 @@
                             <article class="ops-status-card is-watch">
                                 <span class="ops-status-dot" aria-hidden="true"></span>
                                 <small>Boundary</small>
-                                <strong>OAuth / API 待接入</strong>
-                                <p>按钮仅提示状态，不伪装登录</p>
+                                <strong>OAuth 可配置 / API 待接入</strong>
+                                <p>第三方登录需配置 Cloudflare 环境变量</p>
                             </article>
                         </div>
                         <div class="ops-terminal" aria-label="验证记录">
@@ -661,16 +662,19 @@
             <div class="container">
                 <div class="section-header">
                     <span class="section-label">Agent Matrix</span>
-                    <h2 class="section-title">把能力、通道、边界放在同一张雷达图里</h2>
+                    <h2 class="section-title">用一张系统图看清入口、模型、工具和安全边界</h2>
                     <p class="section-description">
-                        一个可用的本地 AI 智能体，不只看模型强不强，还要看入口、知识、工具、审计和人工确认是否组成闭环。
+                        一个可用的本地 AI 智能体，不只看模型强不强，更要看入口、知识、工具、审计和人工确认是否能稳定组成闭环。
                     </p>
                 </div>
-                <div class="agent-matrix-shell">
+                <div class="agent-matrix-shell" data-active="wechat">
                     <div class="matrix-orb" aria-hidden="true">
                         <span class="matrix-crosshair matrix-crosshair-x"></span>
                         <span class="matrix-crosshair matrix-crosshair-y"></span>
                         <span class="matrix-sweep"></span>
+                        <span class="matrix-axis axis-input">Input</span>
+                        <span class="matrix-axis axis-control">Control</span>
+                        <span class="matrix-axis axis-output">Output</span>
                         <span class="matrix-link link-wechat"></span>
                         <span class="matrix-link link-gateway"></span>
                         <span class="matrix-link link-model"></span>
@@ -682,11 +686,11 @@
                         <span class="matrix-ring matrix-ring-b"></span>
                         <span class="matrix-ring matrix-ring-c"></span>
                         <span class="matrix-core"><span>FaroAI</span></span>
-                        <span class="matrix-node node-wechat">微信</span>
-                        <span class="matrix-node node-gateway">Gateway</span>
-                        <span class="matrix-node node-model">模型</span>
-                        <span class="matrix-node node-tools">工具</span>
-                        <span class="matrix-node node-audit">审计</span>
+                        <span class="matrix-node node-wechat is-active" data-node="wechat">微信</span>
+                        <span class="matrix-node node-gateway" data-node="automation">Gateway</span>
+                        <span class="matrix-node node-model" data-node="knowledge">模型</span>
+                        <span class="matrix-node node-tools" data-node="knowledge">工具</span>
+                        <span class="matrix-node node-audit" data-node="safety">审计</span>
                     </div>
                     <div class="matrix-panel">
                         <div class="matrix-panel-header">
@@ -697,6 +701,20 @@
                             <em id="matrixScore">Ready 92%</em>
                         </div>
                         <p id="matrixDescription">把微信消息变成可路由任务，区分闲聊、资料查询、自动化触发和需要人工确认的请求。</p>
+                        <div class="matrix-live-stack" aria-label="当前系统路径">
+                            <article>
+                                <span>Route</span>
+                                <strong id="matrixRoute">Weixin → Gateway → Model → Reply</strong>
+                            </article>
+                            <article>
+                                <span>Boundary</span>
+                                <strong id="matrixBoundary">敏感回复发送前确认</strong>
+                            </article>
+                            <article>
+                                <span>Handoff</span>
+                                <strong id="matrixHandoff">人工复核 / 自动草稿</strong>
+                            </article>
+                        </div>
                         <div class="matrix-bars" aria-label="能力评分">
                             <div class="matrix-bar">
                                 <span>可用性</span>
@@ -730,6 +748,10 @@
                                 <span>Mode</span>
                                 <strong>Local-first</strong>
                             </article>
+                        </div>
+                        <div class="matrix-footnote">
+                            <span>Live boundary</span>
+                            <strong>可自动生成，但关键投递和配置变更保留人工确认。</strong>
                         </div>
                     </div>
                 </div>
@@ -907,9 +929,9 @@
                         <p>本机当前运行 OpenClaw 2026.6.9，Gateway 探针正常；微信插件 2.4.4 已加载，本地 Ollama 模型提供方可用。2026-06-23 复核 npm latest 同为 2026.6.9。</p>
                     </article>
                     <article class="status-card is-pending">
-                        <span class="status-badge">接入中</span>
-                        <h3>Google/GitHub 登录、云端 API 与控制台</h3>
-                        <p>当前不伪装成可用 SaaS 后端。相关按钮会给出状态提示，试用与部署请走邮件或微信。</p>
+                        <span class="status-badge">可配置</span>
+                        <h3>Google/GitHub OAuth、云端 API 与控制台</h3>
+                        <p>OAuth 后端已接入 Cloudflare Pages Functions；正式可用需配置第三方应用和环境变量。云端 API 与控制台仍不伪装成完整 SaaS。</p>
                     </article>
                 </div>
             </div>
@@ -1079,7 +1101,7 @@
             
             <div class="modal-header">
                 <h2 id="loginModalTitle" class="modal-title">欢迎回来</h2>
-                <p class="modal-subtitle">账号系统正在接入中，当前可先查看配置文档或联系站长申请试用。</p>
+                <p class="modal-subtitle">OAuth 已接入，可使用 Google 或 GitHub 授权登录；邮箱密码入口暂作账号预留。</p>
             </div>
             
             <form id="loginForm" class="login-form" novalidate>
@@ -1132,27 +1154,27 @@
             </form>
             
             <div class="login-divider">
-                <span class="divider-text">第三方登录即将开放</span>
+                <span class="divider-text">第三方 OAuth 登录</span>
             </div>
             
             <div class="social-login" aria-describedby="authStatus">
-                <button type="button" class="btn btn-social btn-github" aria-label="GitHub 登录即将开放" disabled>
+                <button type="button" class="btn btn-social btn-github" aria-label="使用 GitHub 登录" data-oauth-provider="github">
                     <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                         <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.231.961-.267 1.986-.4 3.001-.4 1.016.001 2.04.133 3.001.4 2.291-1.553 3.297-1.231 3.297-1.231.653 1.652.242 2.873.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
                     </svg>
-                    GitHub 即将开放
+                    GitHub 登录
                 </button>
-                <button type="button" class="btn btn-social btn-google" aria-label="Google 登录即将开放" disabled>
+                <button type="button" class="btn btn-social btn-google" aria-label="使用 Google 登录" data-oauth-provider="google">
                     <svg viewBox="0 0 24 24" aria-hidden="true">
                         <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
                         <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
                         <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
                         <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
                     </svg>
-                    Google 即将开放
+                    Google 登录
                 </button>
             </div>
-            <p id="authStatus" class="auth-status" role="status">当前静态站点未启用 OAuth，不会跳转到 Google 授权页。</p>
+            <p id="authStatus" class="auth-status" role="status">OAuth 后端已接入。上线后需在 Cloudflare Pages 配置 Google/GitHub client id、client secret 和 cookie secret。</p>
             
             <div class="modal-footer">
                 <p class="footer-text">想了解更多？ <a href="docs.html" class="link-signup">查看配置文档 →</a></p>

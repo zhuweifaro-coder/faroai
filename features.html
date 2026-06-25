@@ -409,12 +409,12 @@
                         <span class="section-label">无缝连接</span>
                         <h2>快速集成</h2>
                         <p><span class="brand-word"><span class="brand-red">F</span><span class="brand-grad brand-grad-a">a</span><span class="brand-grad brand-grad-r">r</span><span class="brand-grad brand-grad-o">o</span><span class="brand-red">A</span><span class="brand-grad brand-grad-i">I</span></span> 提供丰富的集成方式，让你将 AI 能力无缝嵌入现有的工作流和工具链中。无论你的技术栈是什么，都能快速对接。</p>
-                        <p>当前重点支持 OpenClaw Gateway、本地模型、微信入口与脚本自动化。云端控制台、OAuth 和公开 REST API 会在后端接入完成后再开放。</p>
+                        <p>当前重点支持 OpenClaw Gateway、本地模型、微信入口、脚本自动化和 Google/GitHub OAuth。云端控制台与公开 REST API 会在后端能力完善后再开放。</p>
                         <ul class="feature-detail-list">
                             <li>已验证路径：OpenClaw Gateway、Ollama、本地文件、微信机器人</li>
-                            <li>完整的 REST API，支持所有核心功能编程化操作</li>
+                            <li>OAuth 路径：Cloudflare Pages Functions 发起授权、回调换取资料、HttpOnly cookie 保存会话</li>
                             <li>Webhook 可作为自部署方案，由你的服务端按需实现</li>
-                            <li>Google/GitHub OAuth 正在接入，当前不会发起授权请求</li>
+                            <li>Google/GitHub OAuth 需要在 Cloudflare Pages 配置 client id、client secret 和 cookie secret</li>
                             <li>推荐使用 OpenAI 官方 Python/Node SDK 与本地 Gateway 组合</li>
                         </ul>
                     </div>
