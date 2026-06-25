@@ -1,0 +1,8 @@
+name = "faroai-oauth"
+main = "_worker.js"
+compatibility_date = "2026-06-25"
+
+routes = [
+  { pattern = "www.faroai.net/api/auth/*", zone_name = "faroai.net" },
+  { pattern = "faroai.net/api/auth/*", zone_name = "faroai.net" }
+]

@@ -47,7 +47,11 @@ export default {
             return json({ error: 'not_found' }, 404);
         }
 
-        return env.ASSETS.fetch(request);
+        if (env.ASSETS?.fetch) {
+            return env.ASSETS.fetch(request);
+        }
+
+        return json({ error: 'not_found' }, 404);
     }
 };
 
