@@ -2,6 +2,7 @@ const STATE_COOKIE = 'faro_oauth_state';
 const SESSION_COOKIE = 'faro_session';
 const STATE_MAX_AGE = 10 * 60;
 const SESSION_MAX_AGE = 7 * 24 * 60 * 60;
+const STATIC_FALLBACK_ORIGIN = 'https://raw.githubusercontent.com/zhuweifaro-coder/faroai/main';
 
 const PROVIDERS = {
     github: {
@@ -51,9 +52,95 @@ export default {
             return env.ASSETS.fetch(request);
         }
 
-        return json({ error: 'not_found' }, 404);
+        return fetchStaticFallback(request, env);
     }
 };
+
+async function fetchStaticFallback(request, env) {
+    const url = new URL(request.url);
+    const path = normalizeStaticPath(url.pathname);
+
+    if (isBlockedStaticPath(path)) {
+        return json({ error: 'not_found' }, 404);
+    }
+
+    const origin = (env.STATIC_ORIGIN || STATIC_FALLBACK_ORIGIN).replace(/\/+$/, '');
+    const assetUrl = `${origin}${path}`;
+    const upstream = await fetch(assetUrl, {
+        headers: {
+            'User-Agent': 'FaroAI-Worker-Static-Fallback'
+        },
+        cf: {
+            cacheEverything: true,
+            cacheTtl: 300
+        }
+    });
+
+    if (!upstream.ok) {
+        return json({ error: 'not_found' }, 404);
+    }
+
+    const headers = new Headers(upstream.headers);
+    headers.set('Content-Type', contentTypeForPath(path));
+    headers.set('Cache-Control', cacheControlForPath(path));
+    headers.delete('Content-Security-Policy');
+
+    return new Response(upstream.body, {
+        status: upstream.status,
+        headers
+    });
+}
+
+function normalizeStaticPath(pathname) {
+    if (!pathname || pathname === '/') {
+        return '/index.html';
+    }
+
+    const cleaned = pathname.replace(/\/{2,}/g, '/');
+    if (cleaned.endsWith('/')) {
+        return `${cleaned}index.html`;
+    }
+
+    return cleaned;
+}
+
+function isBlockedStaticPath(pathname) {
+    return pathname.startsWith('/functions/')
+        || pathname === '/_worker.js'
+        || pathname === '/wrangler.toml'
+        || pathname.startsWith('/.git')
+        || pathname.includes('..');
+}
+
+function contentTypeForPath(pathname) {
+    const extension = pathname.split('.').pop().toLowerCase();
+    const types = {
+        css: 'text/css; charset=utf-8',
+        html: 'text/html; charset=utf-8',
+        js: 'text/javascript; charset=utf-8',
+        json: 'application/json; charset=utf-8',
+        svg: 'image/svg+xml; charset=utf-8',
+        png: 'image/png',
+        jpg: 'image/jpeg',
+        jpeg: 'image/jpeg',
+        webp: 'image/webp',
+        gif: 'image/gif',
+        ico: 'image/x-icon',
+        mp3: 'audio/mpeg',
+        wav: 'audio/wav',
+        pdf: 'application/pdf'
+    };
+
+    return types[extension] || 'application/octet-stream';
+}
+
+function cacheControlForPath(pathname) {
+    if (pathname.endsWith('.html')) {
+        return 'public, max-age=0, must-revalidate';
+    }
+
+    return 'public, max-age=300';
+}
 
 async function handleStart(provider, request, env) {
     try {
