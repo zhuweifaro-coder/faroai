@@ -225,10 +225,11 @@
         <span class="section-rail-title">NAV</span>
         <a href="#home" class="is-active" data-step="01" aria-label="返回顶部">顶部</a>
         <a href="#ops-radar" data-step="02" aria-label="运行状态">状态</a>
-        <a href="#agent-matrix" data-step="03" aria-label="系统矩阵">矩阵</a>
-        <a href="#workflow-lab" data-step="04" aria-label="工作流演示">演示</a>
-        <a href="#features" data-step="05" aria-label="核心能力">能力</a>
-        <a href="#blog" data-step="06" aria-label="最新博客">博客</a>
+        <a href="#config-lab" data-step="03" aria-label="配置诊断">诊断</a>
+        <a href="#agent-matrix" data-step="04" aria-label="系统矩阵">矩阵</a>
+        <a href="#workflow-lab" data-step="05" aria-label="工作流演示">演示</a>
+        <a href="#features" data-step="06" aria-label="核心能力">能力</a>
+        <a href="#blog" data-step="07" aria-label="最新博客">博客</a>
     </nav>
 
     <main id="main">
@@ -647,6 +648,123 @@
                             <strong>站内搜索已接入</strong>
                             <p>可搜索文档、博客、功能、用例、集成和联系方式。</p>
                         </article>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="config-lab" class="config-lab" aria-label="FaroAI 配置诊断台">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-label">Config Lab</span>
+                    <h2 class="section-title">三步生成一条更稳的落地路径</h2>
+                    <p class="section-description">
+                        选择入口、模型和安全级别，页面会即时组合推荐架构、执行边界和下一步检查项。它不是后端配置器，但能把部署决策讲清楚。
+                    </p>
+                </div>
+                <div class="config-lab-shell">
+                    <div class="config-selector" aria-label="配置选择">
+                        <div class="config-group" data-config-group="channel">
+                            <div class="config-group-head">
+                                <span>01</span>
+                                <strong>入口通道</strong>
+                            </div>
+                            <div class="config-options" role="radiogroup" aria-label="入口通道">
+                                <button class="config-option is-active" type="button" data-config-option="channel" data-value="wechat" aria-pressed="true">
+                                    <span>微信机器人</span>
+                                    <small>日常消息、简报、提醒</small>
+                                </button>
+                                <button class="config-option" type="button" data-config-option="channel" data-value="web" aria-pressed="false">
+                                    <span>网页工作台</span>
+                                    <small>文档、搜索、公开展示</small>
+                                </button>
+                                <button class="config-option" type="button" data-config-option="channel" data-value="cli" aria-pressed="false">
+                                    <span>CLI / Cron</span>
+                                    <small>定时任务、批处理、巡检</small>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="config-group" data-config-group="model">
+                            <div class="config-group-head">
+                                <span>02</span>
+                                <strong>模型策略</strong>
+                            </div>
+                            <div class="config-options" role="radiogroup" aria-label="模型策略">
+                                <button class="config-option is-active" type="button" data-config-option="model" data-value="local" aria-pressed="true">
+                                    <span>本地优先</span>
+                                    <small>Ollama / 本机模型</small>
+                                </button>
+                                <button class="config-option" type="button" data-config-option="model" data-value="hybrid" aria-pressed="false">
+                                    <span>混合模型</span>
+                                    <small>本地处理 + 云端增强</small>
+                                </button>
+                                <button class="config-option" type="button" data-config-option="model" data-value="cloud" aria-pressed="false">
+                                    <span>云端优先</span>
+                                    <small>API 能力、速度和兼容性</small>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="config-group" data-config-group="guard">
+                            <div class="config-group-head">
+                                <span>03</span>
+                                <strong>安全边界</strong>
+                            </div>
+                            <div class="config-options" role="radiogroup" aria-label="安全边界">
+                                <button class="config-option is-active" type="button" data-config-option="guard" data-value="review" aria-pressed="true">
+                                    <span>发送前确认</span>
+                                    <small>适合个人和敏感内容</small>
+                                </button>
+                                <button class="config-option" type="button" data-config-option="guard" data-value="auto" aria-pressed="false">
+                                    <span>低风险自动</span>
+                                    <small>白名单任务自动执行</small>
+                                </button>
+                                <button class="config-option" type="button" data-config-option="guard" data-value="audit" aria-pressed="false">
+                                    <span>审计优先</span>
+                                    <small>日志、回放、权限分层</small>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="config-output" aria-live="polite">
+                        <div class="config-output-header">
+                            <span class="screen-dot red"></span>
+                            <span class="screen-dot yellow"></span>
+                            <span class="screen-dot green"></span>
+                            <strong>faroai.config.recommend</strong>
+                            <em id="configScore">Fit 91%</em>
+                        </div>
+                        <div class="config-route-map" aria-hidden="true">
+                            <span id="configRouteChannel">Weixin</span>
+                            <i></i>
+                            <span>Gateway</span>
+                            <i></i>
+                            <span id="configRouteModel">Local Model</span>
+                            <i></i>
+                            <span id="configRouteGuard">Confirm</span>
+                        </div>
+                        <article class="config-recommendation">
+                            <span>推荐方案</span>
+                            <h3 id="configTitle">微信入口 + 本地模型 + 发送前确认</h3>
+                            <p id="configSummary">适合个人日常任务：微信负责入口，OpenClaw Gateway 负责任务路由，本地模型先生成草稿，涉及发送、外部调用或敏感内容时保留人工确认。</p>
+                        </article>
+                        <div class="config-kpi-grid">
+                            <article>
+                                <span>可用性</span>
+                                <strong id="configAvailability">高</strong>
+                            </article>
+                            <article>
+                                <span>维护成本</span>
+                                <strong id="configCost">中</strong>
+                            </article>
+                            <article>
+                                <span>安全边界</span>
+                                <strong id="configBoundary">强</strong>
+                            </article>
+                        </div>
+                        <div class="config-checklist">
+                            <span>下一步检查</span>
+                            <ul id="configChecklist"></ul>
+                        </div>
                     </div>
                 </div>
             </div>

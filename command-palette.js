@@ -23,6 +23,7 @@
             { label: '联系我们', detail: '邮件、微信与反馈入口', href: 'contact.html', group: '项目', keywords: 'contact 联系 邮件 微信' },
             { label: '项目简介', detail: '发起人经历与实践方向', href: '个人概况_2026_v3.html', group: '项目', keywords: 'about 简介 关于我 发起人' },
             { label: '运行态势', detail: '查看当前运行状态与边界', href: 'index.html#ops-radar', group: '首页模块', keywords: 'status 运行 状态 网关' },
+            { label: '配置诊断台', detail: '按入口、模型和安全边界生成部署建议', href: 'index.html#config-lab', group: '首页模块', keywords: 'config 配置 诊断 部署 模型 微信 安全' },
             { label: 'AI 指挥台', detail: '查看任务路由与安全边界', href: 'index.html#command-deck', group: '首页模块', keywords: 'command ai 指挥台 路由' },
             { label: '工作流演示', detail: '切换真实自动化场景', href: 'index.html#workflow-lab', group: '首页模块', keywords: 'workflow 工作流 演示 自动化' },
             { label: '快速开始', detail: '从安装到首个任务', href: 'index.html#quickstart', group: '首页模块', keywords: 'quickstart 快速开始 安装' },

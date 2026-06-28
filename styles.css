@@ -2599,6 +2599,363 @@ section[id] {
     font-size: 0.92rem;
 }
 
+/* 配置诊断台 */
+.config-lab {
+    position: relative;
+    overflow: hidden;
+    padding: 104px 0;
+    background:
+        radial-gradient(circle at 15% 22%, rgba(37, 99, 235, 0.16), transparent 28%),
+        radial-gradient(circle at 84% 16%, rgba(94, 234, 212, 0.18), transparent 24%),
+        linear-gradient(180deg, #f8fbff 0%, #ffffff 52%, #eef7ff 100%);
+}
+
+.config-lab::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+        linear-gradient(rgba(37, 99, 235, 0.055) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(20, 184, 166, 0.045) 1px, transparent 1px);
+    background-size: 38px 38px;
+    mask-image: radial-gradient(circle at 50% 44%, #000 0%, transparent 74%);
+    pointer-events: none;
+}
+
+.config-lab::after {
+    content: '';
+    position: absolute;
+    left: 10%;
+    right: 10%;
+    bottom: 9%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(37, 99, 235, 0.28), rgba(94, 234, 212, 0.24), transparent);
+    pointer-events: none;
+}
+
+.config-lab .container {
+    position: relative;
+    z-index: 1;
+}
+
+.config-lab-shell {
+    display: grid;
+    grid-template-columns: minmax(310px, 0.86fr) minmax(0, 1.14fr);
+    gap: 1.25rem;
+    align-items: start;
+}
+
+.config-selector {
+    display: grid;
+    gap: 0.95rem;
+}
+
+.config-group {
+    position: relative;
+    overflow: hidden;
+    padding: 1rem;
+    border: 1px solid rgba(37, 99, 235, 0.14);
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.82);
+    box-shadow: 0 18px 42px rgba(15, 23, 42, 0.06);
+}
+
+.config-group::before {
+    content: '';
+    position: absolute;
+    inset: 0 auto 0 0;
+    width: 3px;
+    background: linear-gradient(180deg, #2563eb, #14b8a6, #5eead4);
+}
+
+.config-group-head {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    margin-bottom: 0.85rem;
+}
+
+.config-group-head span {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.1rem;
+    height: 2.1rem;
+    border-radius: 8px;
+    background: rgba(37, 99, 235, 0.1);
+    color: var(--primary-color);
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 0.76rem;
+    font-weight: 900;
+}
+
+.config-group-head strong {
+    color: var(--text-primary);
+    font-size: 1rem;
+}
+
+.config-options {
+    display: grid;
+    gap: 0.65rem;
+}
+
+.config-option {
+    position: relative;
+    width: 100%;
+    min-height: 68px;
+    padding: 0.82rem 0.92rem 0.82rem 2.45rem;
+    border: 1px solid rgba(148, 163, 184, 0.22);
+    border-radius: 8px;
+    background: rgba(248, 250, 252, 0.9);
+    color: var(--text-primary);
+    text-align: left;
+    font: inherit;
+    cursor: pointer;
+    transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+}
+
+.config-option::before {
+    content: '';
+    position: absolute;
+    left: 0.9rem;
+    top: 50%;
+    width: 13px;
+    height: 13px;
+    border: 1px solid rgba(37, 99, 235, 0.34);
+    border-radius: 50%;
+    transform: translateY(-50%);
+    background: #fff;
+    box-shadow: inset 0 0 0 3px #fff;
+}
+
+.config-option span,
+.config-option small {
+    display: block;
+}
+
+.config-option span {
+    margin-bottom: 0.24rem;
+    font-weight: 850;
+    line-height: 1.35;
+}
+
+.config-option small {
+    color: var(--text-secondary);
+    font-size: 0.82rem;
+    line-height: 1.45;
+}
+
+.config-option:hover,
+.config-option:focus-visible,
+.config-option.is-active {
+    transform: translateY(-2px);
+    border-color: rgba(37, 99, 235, 0.36);
+    background: #fff;
+    box-shadow: 0 16px 34px rgba(15, 23, 42, 0.09);
+    outline: none;
+}
+
+.config-option.is-active::before {
+    background: var(--primary-color);
+    box-shadow: inset 0 0 0 3px #fff, 0 0 0 6px rgba(37, 99, 235, 0.12), 0 0 18px rgba(37, 99, 235, 0.32);
+}
+
+.config-output {
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(37, 99, 235, 0.2);
+    border-radius: 8px;
+    background:
+        linear-gradient(rgba(147, 197, 253, 0.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(94, 234, 212, 0.032) 1px, transparent 1px),
+        radial-gradient(circle at 22% 18%, rgba(37, 99, 235, 0.22), transparent 30%),
+        radial-gradient(circle at 76% 82%, rgba(94, 234, 212, 0.16), transparent 34%),
+        linear-gradient(145deg, #0f172a 0%, #082f49 54%, #062f2f 100%);
+    background-size: 28px 28px, 28px 28px, auto, auto, auto;
+    color: #e2e8f0;
+    box-shadow: 0 28px 76px rgba(15, 23, 42, 0.22);
+}
+
+.config-output::before {
+    content: '';
+    position: absolute;
+    inset: -60% -20% auto;
+    height: 56%;
+    background: linear-gradient(180deg, transparent, rgba(94, 234, 212, 0.1), transparent);
+    animation: commandPanelSweep 6.4s ease-in-out infinite;
+    pointer-events: none;
+}
+
+.config-output-header {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+    padding: 1rem 1.15rem;
+    border-bottom: 1px solid rgba(226, 232, 240, 0.12);
+    background: rgba(2, 6, 23, 0.3);
+}
+
+.config-output-header strong {
+    margin-left: 0.4rem;
+    min-width: 0;
+    color: #f8fafc;
+    font-size: 0.94rem;
+    overflow-wrap: anywhere;
+}
+
+.config-output-header em {
+    flex-shrink: 0;
+    margin-left: auto;
+    color: #5eead4;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 0.76rem;
+    font-style: normal;
+    font-weight: 900;
+    white-space: nowrap;
+}
+
+.config-route-map {
+    position: relative;
+    display: grid;
+    grid-template-columns: minmax(70px, 1fr) 28px minmax(80px, 1fr) 28px minmax(86px, 1fr) 28px minmax(76px, 1fr);
+    gap: 0.35rem;
+    align-items: center;
+    padding: 1.2rem 1.15rem 0;
+}
+
+.config-route-map span {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 38px;
+    padding: 0.36rem 0.5rem;
+    border: 1px solid rgba(94, 234, 212, 0.2);
+    border-radius: 999px;
+    background: rgba(15, 23, 42, 0.56);
+    color: #dbeafe;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 0.74rem;
+    font-weight: 900;
+    text-align: center;
+}
+
+.config-route-map i {
+    display: block;
+    position: relative;
+    height: 2px;
+    overflow: hidden;
+    border-radius: 999px;
+    background: rgba(147, 197, 253, 0.2);
+}
+
+.config-route-map i::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    width: 48%;
+    border-radius: inherit;
+    background: linear-gradient(90deg, transparent, #5eead4, #60a5fa);
+    animation: pulseFlow 1.9s ease-in-out infinite;
+}
+
+.config-recommendation {
+    position: relative;
+    margin: 1.15rem;
+    padding: 1.2rem;
+    border: 1px solid rgba(94, 234, 212, 0.18);
+    border-radius: 8px;
+    background: rgba(15, 23, 42, 0.58);
+}
+
+.config-recommendation span,
+.config-checklist span {
+    display: inline-flex;
+    margin-bottom: 0.62rem;
+    color: #5eead4;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 0.72rem;
+    font-weight: 900;
+    text-transform: uppercase;
+}
+
+.config-recommendation h3 {
+    margin: 0 0 0.7rem;
+    color: #f8fafc;
+    font-size: clamp(1.35rem, 2.4vw, 2rem);
+    line-height: 1.22;
+}
+
+.config-recommendation p {
+    margin: 0;
+    color: #cbd5e1;
+    line-height: 1.72;
+}
+
+.config-kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.75rem;
+    padding: 0 1.15rem 1.15rem;
+}
+
+.config-kpi-grid article {
+    min-height: 92px;
+    padding: 0.9rem;
+    border: 1px solid rgba(147, 197, 253, 0.15);
+    border-radius: 8px;
+    background: rgba(2, 6, 23, 0.28);
+}
+
+.config-kpi-grid span {
+    display: block;
+    margin-bottom: 0.42rem;
+    color: #93c5fd;
+    font-size: 0.76rem;
+    font-weight: 850;
+}
+
+.config-kpi-grid strong {
+    color: #f8fafc;
+    font-size: 1.15rem;
+}
+
+.config-checklist {
+    margin: 0 1.15rem 1.15rem;
+    padding: 1rem;
+    border: 1px solid rgba(94, 234, 212, 0.15);
+    border-radius: 8px;
+    background: rgba(94, 234, 212, 0.07);
+}
+
+.config-checklist ul {
+    display: grid;
+    gap: 0.72rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.config-checklist li {
+    position: relative;
+    padding-left: 1.2rem;
+    color: #e2e8f0;
+    line-height: 1.58;
+    animation: configItemIn 0.36s ease both;
+}
+
+.config-checklist li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.7em;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #5eead4;
+    box-shadow: 0 0 14px rgba(94, 234, 212, 0.72);
+}
+
 /* 智能体能力矩阵 */
 .agent-matrix {
     position: relative;
@@ -3713,6 +4070,17 @@ section[id] {
     }
 }
 
+@keyframes configItemIn {
+    from {
+        opacity: 0;
+        transform: translateX(-8px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
 @keyframes founderAvatarAura {
     0%, 100% {
         opacity: 0.42;
@@ -4571,6 +4939,7 @@ section[id] {
     .quickstart-layout,
     .mission-shell,
     .ops-shell,
+    .config-lab-shell,
     .agent-matrix-shell,
     .command-deck-shell {
         grid-template-columns: 1fr;
@@ -4810,6 +5179,45 @@ section[id] {
 
     .workflow-lab {
         padding: 72px 0;
+    }
+
+    .config-lab {
+        padding: 72px 0;
+    }
+
+    .config-output-header {
+        gap: 0.42rem;
+    }
+
+    .config-output-header strong {
+        margin-left: 0.2rem;
+        font-size: 0.78rem;
+    }
+
+    .config-output-header em {
+        font-size: 0.66rem;
+    }
+
+    .config-route-map {
+        grid-template-columns: 1fr;
+        gap: 0.5rem;
+    }
+
+    .config-route-map i {
+        width: 2px;
+        height: 22px;
+        justify-self: center;
+    }
+
+    .config-route-map i::after {
+        width: 100%;
+        height: 45%;
+        background: linear-gradient(180deg, transparent, #5eead4, #60a5fa);
+        animation-name: pulseFlowVertical;
+    }
+
+    .config-kpi-grid {
+        grid-template-columns: 1fr;
     }
 
     .command-deck {
@@ -5229,6 +5637,8 @@ main > section:not(.hero) {
     .workflow-screen,
     .metric-card,
     .mission-card,
+    .config-group,
+    .config-output,
     .agent-matrix-shell,
     .matrix-panel,
     .feature-card,
@@ -6672,6 +7082,9 @@ body.intro-active {
     .hero-logo-word .brand-word > span,
     .hero-logo-orb,
     .telemetry-item::after,
+    .config-output::before,
+    .config-route-map i::after,
+    .config-checklist li,
     .orbit-ring,
     .orbit-core,
     .command-signal-grid::before,

@@ -874,6 +874,170 @@ document.head.appendChild(style);
             }, 1000);
         }
 
+        const configState = {
+            channel: 'wechat',
+            model: 'local',
+            guard: 'review'
+        };
+
+        const configData = {
+            channel: {
+                wechat: {
+                    label: '微信入口',
+                    route: 'Weixin',
+                    summary: '微信负责日常入口，适合把消息、提醒、简报和确认动作放在同一个会话里。',
+                    checks: ['确认 openclaw-weixin 插件为 enabled / running', '为外发消息设置人工确认或白名单规则'],
+                    availability: 92,
+                    cost: 68
+                },
+                web: {
+                    label: '网页工作台',
+                    route: 'Web UI',
+                    summary: '网页负责公开展示、文档检索和配置说明，适合把能力边界讲清楚。',
+                    checks: ['确认站内搜索、文档入口和联系表单路径可访问', '未接入后端的按钮必须明确提示状态'],
+                    availability: 88,
+                    cost: 56
+                },
+                cli: {
+                    label: 'CLI / Cron',
+                    route: 'CLI Cron',
+                    summary: 'CLI 和定时任务适合批处理、日报、巡检和固定时间触发的工作流。',
+                    checks: ['给 cron 任务设置超时、重试和失败通知', '为外部接口准备备用源或降级提示'],
+                    availability: 84,
+                    cost: 72
+                }
+            },
+            model: {
+                local: {
+                    label: '本地模型',
+                    route: 'Local Model',
+                    summary: '本地模型优先保护数据边界，也更适合长期沉淀个人知识和内部流程。',
+                    checks: ['验证 Ollama provider 与默认模型可正常回复', '保留模型质量、速度和内存占用的复测记录'],
+                    availability: 86,
+                    cost: 74
+                },
+                hybrid: {
+                    label: '混合模型',
+                    route: 'Hybrid Model',
+                    summary: '混合策略把常规任务留在本地，把高难度推理、长上下文或联网能力交给云端。',
+                    checks: ['区分本地任务和云端任务的路由条件', '云端调用需记录模型、费用和敏感信息边界'],
+                    availability: 90,
+                    cost: 82
+                },
+                cloud: {
+                    label: '云端模型',
+                    route: 'Cloud API',
+                    summary: '云端模型适合追求兼容性、速度和复杂能力，但必须把 API 密钥、授权和费用控制做扎实。',
+                    checks: ['确认 API token 只放在后端或 Cloudflare 环境变量', '为失败、限流和费用异常设置降级提示'],
+                    availability: 94,
+                    cost: 62
+                }
+            },
+            guard: {
+                review: {
+                    label: '发送前确认',
+                    route: 'Confirm',
+                    summary: '关键输出先生成草稿，再由人工确认，适合个人工作流和敏感内容。',
+                    checks: ['给“发送、转发、删除、改配置”等动作加确认门槛', '页面文案避免暗示未接入能力已经全自动运行'],
+                    safety: 92
+                },
+                auto: {
+                    label: '低风险自动',
+                    route: 'Auto Safe',
+                    summary: '低风险、可回滚、白名单内的任务可以自动执行，高风险动作仍需确认。',
+                    checks: ['建立任务白名单和黑名单', '自动任务必须写入日志并提供失败通知'],
+                    safety: 78
+                },
+                audit: {
+                    label: '审计优先',
+                    route: 'Audit Log',
+                    summary: '优先记录输入、工具调用、模型输出和人工确认，适合多人协作或管理场景。',
+                    checks: ['记录任务来源、触发人、工具输出和最终动作', '对配置变更和外部发送保留可回放记录'],
+                    safety: 96
+                }
+            }
+        };
+
+        const configOptions = document.querySelectorAll('.config-option[data-config-option]');
+        const configTitle = document.getElementById('configTitle');
+        const configSummary = document.getElementById('configSummary');
+        const configScore = document.getElementById('configScore');
+        const configRouteChannel = document.getElementById('configRouteChannel');
+        const configRouteModel = document.getElementById('configRouteModel');
+        const configRouteGuard = document.getElementById('configRouteGuard');
+        const configAvailability = document.getElementById('configAvailability');
+        const configCost = document.getElementById('configCost');
+        const configBoundary = document.getElementById('configBoundary');
+        const configChecklist = document.getElementById('configChecklist');
+
+        function grade(value, type) {
+            if (type === 'cost') {
+                if (value >= 78) return '较高';
+                if (value >= 66) return '中';
+                return '低';
+            }
+            if (value >= 92) return '强';
+            if (value >= 86) return '高';
+            if (value >= 78) return '中高';
+            return '中';
+        }
+
+        function renderConfig() {
+            const channel = configData.channel[configState.channel];
+            const model = configData.model[configState.model];
+            const guard = configData.guard[configState.guard];
+            if (!channel || !model || !guard) return;
+
+            const fit = Math.round((channel.availability + model.availability + guard.safety) / 3);
+            const cost = Math.round((channel.cost + model.cost) / 2);
+            const titleText = `${channel.label} + ${model.label} + ${guard.label}`;
+            const summaryText = `${channel.summary}${model.summary}${guard.summary}`;
+            const checks = [
+                ...channel.checks,
+                ...model.checks,
+                ...guard.checks
+            ].slice(0, 5);
+
+            if (configTitle) configTitle.textContent = titleText;
+            if (configSummary) configSummary.textContent = summaryText;
+            if (configScore) configScore.textContent = `Fit ${fit}%`;
+            if (configRouteChannel) configRouteChannel.textContent = channel.route;
+            if (configRouteModel) configRouteModel.textContent = model.route;
+            if (configRouteGuard) configRouteGuard.textContent = guard.route;
+            if (configAvailability) configAvailability.textContent = grade(Math.round((channel.availability + model.availability) / 2));
+            if (configCost) configCost.textContent = grade(cost, 'cost');
+            if (configBoundary) configBoundary.textContent = grade(guard.safety);
+
+            if (configChecklist) {
+                configChecklist.innerHTML = '';
+                checks.forEach((text, index) => {
+                    const item = document.createElement('li');
+                    item.textContent = text;
+                    item.style.animationDelay = `${index * 60}ms`;
+                    configChecklist.appendChild(item);
+                });
+            }
+
+            window.FaroAIGsap?.animateConfig?.();
+        }
+
+        configOptions.forEach(option => {
+            option.addEventListener('click', () => {
+                const group = option.dataset.configOption;
+                const value = option.dataset.value;
+                if (!group || !value) return;
+                configState[group] = value;
+                document.querySelectorAll(`.config-option[data-config-option="${group}"]`).forEach(item => {
+                    const isActive = item === option;
+                    item.classList.toggle('is-active', isActive);
+                    item.setAttribute('aria-pressed', String(isActive));
+                });
+                renderConfig();
+            });
+        });
+
+        renderConfig();
+
         const matrixItems = {
             wechat: {
                 title: '微信入口层',
@@ -980,7 +1144,8 @@ document.head.appendChild(style);
         window.FaroAIGsap = {
             animateWorkflow() {},
             animateCommandDeck() {},
-            animateMatrix() {}
+            animateMatrix() {},
+            animateConfig() {}
         };
 
         if (!gsap || prefersReducedMotion) return;
@@ -1075,6 +1240,9 @@ document.head.appendChild(style);
                 '.workflow-stage',
                 '.workflow-metrics',
                 '.mission-card',
+                '.config-lab .section-header',
+                '.config-group',
+                '.config-output',
                 '.agent-matrix .section-header',
                 '.matrix-orb',
                 '.matrix-panel',
@@ -1124,7 +1292,7 @@ document.head.appendChild(style);
             });
         }
 
-        addPointerLift('.hero-actions .btn, .command-chip, .workflow-tab, .matrix-chip, .matrix-mini-grid article, .feature-card, .blog-preview-card');
+        addPointerLift('.hero-actions .btn, .command-chip, .workflow-tab, .config-option, .matrix-chip, .matrix-mini-grid article, .feature-card, .blog-preview-card');
 
         window.FaroAIGsap.animateWorkflow = function animateWorkflow() {
             gsap.fromTo('.workflow-step', {
@@ -1186,9 +1354,23 @@ document.head.appendChild(style);
             });
         };
 
+        window.FaroAIGsap.animateConfig = function animateConfig() {
+            gsap.fromTo('.config-recommendation, .config-kpi-grid article, .config-checklist li', {
+                autoAlpha: 0.58,
+                y: 8
+            }, {
+                autoAlpha: 1,
+                y: 0,
+                duration: 0.36,
+                stagger: 0.045,
+                clearProps: 'opacity,visibility,transform'
+            });
+        };
+
         window.FaroAIGsap.animateWorkflow();
         window.FaroAIGsap.animateCommandDeck();
         window.FaroAIGsap.animateMatrix();
+        window.FaroAIGsap.animateConfig();
     });
 })();
 
