@@ -16,6 +16,7 @@
             { label: '功能特性', detail: '模型、微信、知识库与自动化', href: 'features.html', group: '页面', keywords: 'feature 功能 模型 微信 知识库' },
             { label: '文档中心', detail: '安装、配置与使用指南', href: 'docs.html', group: '页面', keywords: 'docs 文档 安装 配置 教程' },
             { label: '技术博客', detail: 'OpenClaw、OpenAI 与实践记录', href: 'blog.html', group: '内容', keywords: 'blog 博客 文章 新闻 教程' },
+            { label: '投资研究', detail: '7月投资标的筛选逻辑视频', href: 'investment.html', group: '内容', keywords: 'investment 投资 股票 筛选 视频 7月' },
             { label: '站内搜索', detail: '检索全站公开内容', href: 'search.html', group: '内容', keywords: 'search 搜索 查找' },
             { label: '使用场景', detail: '个人与小团队工作流案例', href: 'usecases.html', group: '页面', keywords: 'use case 场景 案例' },
             { label: 'API 参考', detail: '接口能力与调用边界', href: 'api.html', group: '开发', keywords: 'api 接口 开发' },

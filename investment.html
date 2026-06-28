@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+    <title>FaroAI 投资 - 7月投资标的筛选逻辑</title>
+    <meta name="description" content="FaroAI 投资模块：以 AI 视频形式复盘 7 月投资标的筛选逻辑、演变过程和风险边界。">
+    <meta name="keywords" content="FaroAI 投资, 投资研究, AI 视频, 股票筛选, 7月投资逻辑">
+    <meta name="author" content="FaroAI Team">
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#0f172a">
+    <link rel="canonical" href="https://www.faroai.net/investment.html">
+    <meta property="og:title" content="FaroAI 投资 - 7月投资标的筛选逻辑">
+    <meta property="og:description" content="用 AI 工作流呈现下阶段投资标的筛选逻辑、演变过程和风险边界。">
+    <meta property="og:type" content="video.other">
+    <meta property="og:url" content="https://www.faroai.net/investment.html">
+    <meta property="og:image" content="https://www.faroai.net/assets/video/july-screening-logic-v7-poster.jpg">
+    <meta property="og:video" content="https://www.faroai.net/assets/video/july-screening-logic-v7.mp4">
+    <meta property="og:video:type" content="video/mp4">
+    <link rel="stylesheet" href="styles.css?v=20260620a">
+    <style>
+        body.investment-body {
+            background: #07111f;
+            color: #e5eefc;
+        }
+
+        .investment-body .header {
+            background: rgba(7, 17, 31, 0.86);
+            border-bottom: 1px solid rgba(148, 163, 184, 0.16);
+            backdrop-filter: blur(18px);
+        }
+
+        .investment-body .nav-menu a,
+        .investment-body .logo-text {
+            color: #e5eefc;
+        }
+
+        .investment-body .nav-menu a:hover,
+        .investment-body .nav-menu a.active {
+            color: #7dd3fc;
+        }
+
+        .investment-body .nav-actions .btn-outline {
+            color: #e0f2fe;
+            border-color: rgba(125, 211, 252, 0.44);
+            background: rgba(15, 23, 42, 0.38);
+        }
+
+        .investment-body .nav-actions .btn-outline:hover {
+            color: #f8fafc;
+            border-color: rgba(125, 211, 252, 0.72);
+            background: rgba(14, 165, 233, 0.18);
+        }
+
+        .investment-hero {
+            position: relative;
+            overflow: hidden;
+            min-height: 100vh;
+            padding: 142px 0 72px;
+            background:
+                linear-gradient(135deg, rgba(10, 20, 36, 0.92), rgba(12, 18, 32, 0.88)),
+                radial-gradient(circle at 20% 18%, rgba(59, 130, 246, 0.22), transparent 34%),
+                radial-gradient(circle at 78% 22%, rgba(244, 63, 94, 0.17), transparent 30%),
+                #07111f;
+        }
+
+        .investment-hero::before,
+        .investment-hero::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+        }
+
+        .investment-hero::before {
+            background-image:
+                linear-gradient(rgba(125, 211, 252, 0.08) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(125, 211, 252, 0.08) 1px, transparent 1px);
+            background-size: 52px 52px;
+            mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.75), transparent 88%);
+        }
+
+        .investment-hero::after {
+            background:
+                linear-gradient(120deg, transparent 0 26%, rgba(125, 211, 252, 0.12) 26.4%, transparent 27% 58%, rgba(244, 63, 94, 0.1) 58.4%, transparent 59%);
+            opacity: 0.8;
+        }
+
+        .investment-hero-grid {
+            position: relative;
+            z-index: 1;
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) minmax(300px, 390px);
+            gap: clamp(2rem, 6vw, 5rem);
+            align-items: center;
+        }
+
+        .investment-kicker {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1.25rem;
+            padding: 0.45rem 0.75rem;
+            border: 1px solid rgba(125, 211, 252, 0.3);
+            border-radius: 8px;
+            background: rgba(15, 23, 42, 0.6);
+            color: #bae6fd;
+            font-size: 0.78rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .investment-kicker::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            border-radius: 999px;
+            background: #22c55e;
+            box-shadow: 0 0 18px rgba(34, 197, 94, 0.8);
+        }
+
+        .investment-title {
+            margin: 0;
+            max-width: 820px;
+            color: #f8fafc;
+            font-size: clamp(2.45rem, 6vw, 5.25rem);
+            font-weight: 700;
+            line-height: 1.04;
+            letter-spacing: 0;
+        }
+
+        .investment-title span {
+            display: block;
+            color: transparent;
+            background: linear-gradient(90deg, #7dd3fc, #e0f2fe 48%, #fb7185);
+            -webkit-background-clip: text;
+            background-clip: text;
+        }
+
+        .investment-lead {
+            max-width: 700px;
+            margin: 1.5rem 0 0;
+            color: #bfd0e7;
+            font-size: 1.08rem;
+            line-height: 1.85;
+        }
+
+        .investment-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.9rem;
+            margin-top: 2rem;
+        }
+
+        .investment-actions .btn-outline {
+            color: #e0f2fe;
+            border-color: rgba(125, 211, 252, 0.42);
+            background: rgba(15, 23, 42, 0.42);
+        }
+
+        .investment-actions .btn-outline:hover {
+            background: rgba(14, 165, 233, 0.18);
+            border-color: rgba(125, 211, 252, 0.72);
+        }
+
+        .investment-metrics {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 0.8rem;
+            max-width: 720px;
+            margin-top: 2rem;
+        }
+
+        .investment-metric {
+            min-height: 92px;
+            padding: 1rem;
+            border: 1px solid rgba(148, 163, 184, 0.18);
+            border-radius: 8px;
+            background: rgba(15, 23, 42, 0.52);
+        }
+
+        .investment-metric strong {
+            display: block;
+            margin-bottom: 0.25rem;
+            color: #f8fafc;
+            font-size: 1.25rem;
+            font-weight: 700;
+        }
+
+        .investment-metric span {
+            color: #9fb2cb;
+            font-size: 0.85rem;
+            line-height: 1.5;
+        }
+
+        .investment-video-panel {
+            position: relative;
+            justify-self: center;
+            width: min(100%, 390px);
+        }
+
+        .investment-video-panel::before {
+            content: '';
+            position: absolute;
+            inset: -18px;
+            border: 1px solid rgba(125, 211, 252, 0.16);
+            border-radius: 8px;
+            background:
+                linear-gradient(140deg, rgba(14, 165, 233, 0.22), transparent 35%),
+                linear-gradient(320deg, rgba(244, 63, 94, 0.14), transparent 38%);
+            filter: blur(0.2px);
+        }
+
+        .investment-video-frame {
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(226, 232, 240, 0.22);
+            border-radius: 8px;
+            background: #020617;
+            box-shadow: 0 26px 80px rgba(2, 6, 23, 0.46);
+        }
+
+        .investment-video-frame video {
+            display: block;
+            width: 100%;
+            aspect-ratio: 9 / 16;
+            background: #020617;
+        }
+
+        .investment-video-caption {
+            position: absolute;
+            right: 12px;
+            bottom: 12px;
+            left: 12px;
+            display: flex;
+            justify-content: space-between;
+            gap: 0.75rem;
+            padding: 0.75rem;
+            border: 1px solid rgba(226, 232, 240, 0.18);
+            border-radius: 8px;
+            background: rgba(2, 6, 23, 0.72);
+            color: #dbeafe;
+            font-size: 0.78rem;
+            backdrop-filter: blur(12px);
+        }
+
+        .investment-section {
+            position: relative;
+            padding: 84px 0;
+            background: #0b1526;
+        }
+
+        .investment-section:nth-of-type(odd) {
+            background: #07111f;
+        }
+
+        .investment-section-header {
+            max-width: 760px;
+            margin-bottom: 2rem;
+        }
+
+        .investment-section-label {
+            display: inline-flex;
+            margin-bottom: 0.8rem;
+            color: #7dd3fc;
+            font-size: 0.78rem;
+            font-weight: 800;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+        }
+
+        .investment-section h2 {
+            margin: 0;
+            color: #f8fafc;
+            font-size: clamp(1.85rem, 4vw, 3rem);
+            font-weight: 700;
+            line-height: 1.16;
+            letter-spacing: 0;
+        }
+
+        .investment-section-header p {
+            margin: 1rem 0 0;
+            color: #a8bad4;
+            line-height: 1.8;
+        }
+
+        .investment-logic-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 1rem;
+        }
+
+        .investment-logic-card,
+        .investment-warning,
+        .investment-timeline-item {
+            border: 1px solid rgba(148, 163, 184, 0.18);
+            border-radius: 8px;
+            background: rgba(15, 23, 42, 0.64);
+        }
+
+        .investment-logic-card {
+            padding: 1.25rem;
+        }
+
+        .investment-logic-card small {
+            display: inline-flex;
+            margin-bottom: 0.8rem;
+            color: #93c5fd;
+            font-size: 0.75rem;
+            font-weight: 800;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        .investment-logic-card h3 {
+            margin: 0 0 0.75rem;
+            color: #f8fafc;
+            font-size: 1.18rem;
+            font-weight: 700;
+        }
+
+        .investment-logic-card p {
+            margin: 0;
+            color: #a8bad4;
+            line-height: 1.75;
+            font-size: 0.96rem;
+        }
+
+        .investment-timeline {
+            display: grid;
+            gap: 0.9rem;
+        }
+
+        .investment-timeline-item {
+            display: grid;
+            grid-template-columns: 96px minmax(0, 1fr);
+            gap: 1rem;
+            padding: 1rem;
+            align-items: start;
+        }
+
+        .investment-timeline-mark {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 44px;
+            border: 1px solid rgba(125, 211, 252, 0.32);
+            border-radius: 8px;
+            color: #bae6fd;
+            background: rgba(14, 165, 233, 0.12);
+            font-size: 0.86rem;
+            font-weight: 800;
+        }
+
+        .investment-timeline-item h3 {
+            margin: 0 0 0.45rem;
+            color: #f8fafc;
+            font-size: 1.05rem;
+            font-weight: 700;
+        }
+
+        .investment-timeline-item p {
+            margin: 0;
+            color: #a8bad4;
+            line-height: 1.75;
+        }
+
+        .investment-warning {
+            margin-top: 2rem;
+            padding: 1.25rem;
+            color: #fecdd3;
+            background:
+                linear-gradient(90deg, rgba(244, 63, 94, 0.16), rgba(15, 23, 42, 0.72)),
+                rgba(15, 23, 42, 0.64);
+        }
+
+        .investment-warning strong {
+            display: block;
+            margin-bottom: 0.35rem;
+            color: #fff1f2;
+            font-weight: 700;
+        }
+
+        @media (max-width: 1040px) {
+            .investment-hero {
+                min-height: auto;
+            }
+
+            .investment-hero-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .investment-video-panel {
+                width: min(100%, 430px);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .investment-hero {
+                padding: 118px 0 56px;
+            }
+
+            .investment-logic-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .investment-metrics {
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+                gap: 0.45rem;
+                margin-top: 1.4rem;
+            }
+
+            .investment-metric {
+                min-height: 70px;
+                padding: 0.72rem 0.55rem;
+            }
+
+            .investment-metric strong {
+                font-size: 1.05rem;
+            }
+
+            .investment-metric span {
+                font-size: 0.68rem;
+                line-height: 1.35;
+            }
+
+            .investment-timeline-item {
+                grid-template-columns: 1fr;
+            }
+
+            .investment-actions .btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body class="investment-body">
+    <a href="#main" class="sr-only skip-link">跳转到主要内容</a>
+
+    <header class="header" role="banner">
+        <div class="container">
+            <nav class="navbar" role="navigation" aria-label="主导航">
+                <a href="index.html" class="logo" aria-label="FaroAI 首页">
+                    <svg class="logo-icon logo-icon-flow" viewBox="0 0 24 24" aria-hidden="true"><path class="logo-flow-red" d="M4.5 14.5c3 4.5 11.25 4.5 15 0"/><path class="logo-flow-blue" d="M4.5 9.5c3-4.5 11.25-4.5 15 0"/><circle class="logo-flow-core" cx="12" cy="12" r="2.8"/><path class="logo-flow-cross" d="M9.8 12h4.4M12 9.8v4.4"/></svg>
+                    <span class="logo-text"><span class="brand-red">F</span><span class="brand-grad brand-grad-a">a</span><span class="brand-grad brand-grad-r">r</span><span class="brand-grad brand-grad-o">o</span><span class="brand-red">A</span><span class="brand-grad brand-grad-i">I</span></span>
+                </a>
+                <ul class="nav-menu">
+                    <li><a href="index.html#home">首页</a></li>
+                    <li><a href="features.html">功能</a></li>
+                    <li><a href="docs.html">文档</a></li>
+                    <li><a href="blog.html">博客</a></li>
+                    <li><a href="investment.html" class="active">投资</a></li>
+                    <li><a href="个人概况_2026_v3.html">关于我</a></li>
+                </ul>
+                <div class="nav-actions">
+                    <a href="contact.html" class="btn btn-outline">联系站长</a>
+                    <a href="#investment-video" class="btn btn-primary">观看视频</a>
+                </div>
+                <button class="mobile-menu-btn" aria-label="菜单" aria-expanded="false" aria-controls="mobile-menu">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <main id="main">
+        <section class="investment-hero" aria-label="投资模块">
+            <div class="container investment-hero-grid">
+                <div>
+                    <span class="investment-kicker">FaroAI Investment Lab</span>
+                    <h1 class="investment-title">投资研究 <span>7月筛选逻辑</span></h1>
+                    <p class="investment-lead">用 AI 工作流把下阶段投资标的筛选过程做成可视化复盘：从市场结构、业绩兑现到买点纪律，呈现逻辑如何收敛到更清晰的 7 月观察目标。</p>
+                    <div class="investment-actions">
+                        <a href="#investment-video" class="btn btn-primary">播放复盘视频</a>
+                        <a href="assets/video/july-screening-logic-v7.mp4" class="btn btn-outline" download>下载站内版视频</a>
+                    </div>
+                    <div class="investment-metrics" aria-label="视频摘要">
+                        <div class="investment-metric">
+                            <strong>73s</strong>
+                            <span>竖屏动画，适合观看和转发</span>
+                        </div>
+                        <div class="investment-metric">
+                            <strong>3层</strong>
+                            <span>产业逻辑、兑现节奏、交易纪律</span>
+                        </div>
+                        <div class="investment-metric">
+                            <strong>7月</strong>
+                            <span>下阶段投资目标观察窗口</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="investment-video-panel" id="investment-video">
+                    <div class="investment-video-frame">
+                        <video controls playsinline preload="metadata" poster="assets/video/july-screening-logic-v7-poster.jpg">
+                            <source src="assets/video/july-screening-logic-v7.mp4" type="video/mp4">
+                            当前浏览器不支持 HTML5 视频播放。
+                        </video>
+                        <div class="investment-video-caption" aria-hidden="true">
+                            <span>AI Research Video</span>
+                            <span>9:16</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="investment-section" aria-label="筛选逻辑">
+            <div class="container">
+                <div class="investment-section-header">
+                    <span class="investment-section-label">Screening Logic</span>
+                    <h2>把“想法”压缩成可执行的筛选框架</h2>
+                    <p>视频中的核心不是单点结论，而是把多个候选方向放进同一套约束里比较：先判断产业阶段，再看业绩能否兑现，最后回到价格和节奏。</p>
+                </div>
+                <div class="investment-logic-grid">
+                    <article class="investment-logic-card">
+                        <small>01 / Structure</small>
+                        <h3>结构供给</h3>
+                        <p>优先观察供需关系正在改善、行业叙事有真实订单或政策支撑的方向，过滤只靠情绪推高的短期热点。</p>
+                    </article>
+                    <article class="investment-logic-card">
+                        <small>02 / Evidence</small>
+                        <h3>兑现证据</h3>
+                        <p>用财报、订单、产能、价格和机构预期交叉验证，避免把“可能发生”当成“已经发生”。</p>
+                    </article>
+                    <article class="investment-logic-card">
+                        <small>03 / Timing</small>
+                        <h3>买点纪律</h3>
+                        <p>把目标分成观察、等待和执行三层，只有在风险收益比重新变好时才进入下一步。</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="investment-section" aria-label="演变过程">
+            <div class="container">
+                <div class="investment-section-header">
+                    <span class="investment-section-label">Evolution</span>
+                    <h2>从候选方向到 7 月观察目标</h2>
+                    <p>筛选演变的重点，是把“看起来都不错”的方向逐步收敛成少数可跟踪变量，方便后续复盘时判断自己错在哪里、对在哪里。</p>
+                </div>
+                <div class="investment-timeline">
+                    <article class="investment-timeline-item">
+                        <span class="investment-timeline-mark">Step 01</span>
+                        <div>
+                            <h3>先做宽口径扫描</h3>
+                            <p>从景气度、资金关注度和政策催化出发，建立候选池，不急于给出结论。</p>
+                        </div>
+                    </article>
+                    <article class="investment-timeline-item">
+                        <span class="investment-timeline-mark">Step 02</span>
+                        <div>
+                            <h3>再做证据链压缩</h3>
+                            <p>把候选方向放到同一张表里比较，关注业绩弹性、估值位置、筹码压力和兑现时间。</p>
+                        </div>
+                    </article>
+                    <article class="investment-timeline-item">
+                        <span class="investment-timeline-mark">Step 03</span>
+                        <div>
+                            <h3>最后确定跟踪边界</h3>
+                            <p>把 7 月目标拆成观察指标和触发条件，后续只根据证据变化更新判断。</p>
+                        </div>
+                    </article>
+                </div>
+                <div class="investment-warning">
+                    <strong>风险提示</strong>
+                    本页面为个人研究复盘与 AI 运用展示，不构成任何投资建议、买卖依据或收益承诺。市场有风险，决策需独立判断。
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer" role="contentinfo">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <a href="index.html" class="logo" aria-label="FaroAI 首页">
+                        <svg class="logo-icon logo-icon-flow" viewBox="0 0 24 24" aria-hidden="true"><path class="logo-flow-red" d="M4.5 14.5c3 4.5 11.25 4.5 15 0"/><path class="logo-flow-blue" d="M4.5 9.5c3-4.5 11.25-4.5 15 0"/><circle class="logo-flow-core" cx="12" cy="12" r="2.8"/><path class="logo-flow-cross" d="M9.8 12h4.4M12 9.8v4.4"/></svg>
+                        <span class="logo-text"><span class="brand-word"><span class="brand-red">F</span><span class="brand-grad brand-grad-a">a</span><span class="brand-grad brand-grad-r">r</span><span class="brand-grad brand-grad-o">o</span><span class="brand-red">A</span><span class="brand-grad brand-grad-i">I</span></span></span>
+                    </a>
+                    <p class="footer-description">本地优先的 AI 助手工作台，连接微信、模型、知识库和自动化任务。</p>
+                </div>
+                <div class="footer-links">
+                    <h4>产品</h4>
+                    <ul>
+                        <li><a href="features.html">功能特性</a></li>
+                        <li><a href="investment.html">投资研究</a></li>
+                        <li><a href="docs.html">文档中心</a></li>
+                        <li><a href="changelog.html">Changelog</a></li>
+                        <li><a href="roadmap.html">Roadmap</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>资源</h4>
+                    <ul>
+                        <li><a href="docs.html">文档</a></li>
+                        <li><a href="search.html">站内搜索</a></li>
+                        <li><a href="api.html">API 参考</a></li>
+                        <li><a href="community.html">社区</a></li>
+                        <li><a href="contact.html">帮助支持</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>公司</h4>
+                    <ul>
+                        <li><a href="个人概况_2026_v3.html">关于我</a></li>
+                        <li><a href="blog.html">博客</a></li>
+                        <li><a href="contact.html">联系方式</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-copyright">
+                    <span>&copy; 2026 <span class="brand-word"><span class="brand-red">F</span><span class="brand-grad brand-grad-a">a</span><span class="brand-grad brand-grad-r">r</span><span class="brand-grad brand-grad-o">o</span><span class="brand-red">A</span><span class="brand-grad brand-grad-i">I</span></span>. All rights reserved.</span>
+                    <a href="privacy.html">隐私政策</a>
+                    <a href="terms.html">服务条款</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="command-palette.js?v=20260620c" defer></script>
+</body>
+</html>
