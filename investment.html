@@ -220,6 +220,7 @@
             border-radius: 8px;
             background: #020617;
             box-shadow: 0 26px 80px rgba(2, 6, 23, 0.46);
+            isolation: isolate;
         }
 
         .investment-video-frame video {
@@ -244,6 +245,94 @@
             color: #dbeafe;
             font-size: 0.78rem;
             backdrop-filter: blur(12px);
+        }
+
+        .investment-video-tools {
+            position: relative;
+            margin-top: 1rem;
+            padding: 1rem;
+            border: 1px solid rgba(125, 211, 252, 0.2);
+            border-radius: 8px;
+            background: rgba(15, 23, 42, 0.74);
+            box-shadow: 0 18px 48px rgba(2, 6, 23, 0.24);
+        }
+
+        .investment-video-status {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 0.8rem;
+            color: #c7d2fe;
+            font-size: 0.8rem;
+            font-weight: 700;
+        }
+
+        .investment-video-status strong {
+            color: #f8fafc;
+            font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+            font-size: 0.78rem;
+        }
+
+        .investment-progress {
+            overflow: hidden;
+            height: 6px;
+            margin: 0.85rem 0;
+            border-radius: 999px;
+            background: rgba(148, 163, 184, 0.18);
+        }
+
+        .investment-progress span {
+            display: block;
+            width: 0%;
+            height: 100%;
+            border-radius: inherit;
+            background: linear-gradient(90deg, #38bdf8, #5eead4, #fb7185);
+            box-shadow: 0 0 18px rgba(94, 234, 212, 0.45);
+            transition: width 0.18s linear;
+        }
+
+        .investment-chapters {
+            display: grid;
+            gap: 0.55rem;
+        }
+
+        .investment-chapter {
+            display: grid;
+            grid-template-columns: 52px minmax(0, 1fr);
+            gap: 0.7rem;
+            align-items: center;
+            min-height: 44px;
+            padding: 0.58rem 0.7rem;
+            border: 1px solid rgba(148, 163, 184, 0.2);
+            border-radius: 8px;
+            background: rgba(2, 6, 23, 0.38);
+            color: #dbeafe;
+            cursor: pointer;
+            font: inherit;
+            text-align: left;
+            transition: transform 0.18s ease, border-color 0.18s ease, background 0.18s ease;
+        }
+
+        .investment-chapter span {
+            color: #7dd3fc;
+            font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+            font-size: 0.76rem;
+            font-weight: 900;
+        }
+
+        .investment-chapter strong {
+            color: inherit;
+            font-size: 0.86rem;
+            line-height: 1.38;
+        }
+
+        .investment-chapter:hover,
+        .investment-chapter:focus-visible,
+        .investment-chapter.is-active {
+            transform: translateY(-1px);
+            border-color: rgba(125, 211, 252, 0.52);
+            background: rgba(14, 165, 233, 0.18);
+            outline: none;
         }
 
         .investment-section {
@@ -328,6 +417,57 @@
             font-size: 0.96rem;
         }
 
+        .investment-decision-board {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .investment-decision-card {
+            position: relative;
+            overflow: hidden;
+            min-height: 152px;
+            padding: 1.2rem;
+            border: 1px solid rgba(125, 211, 252, 0.18);
+            border-radius: 8px;
+            background:
+                linear-gradient(135deg, rgba(14, 165, 233, 0.12), rgba(15, 23, 42, 0.66)),
+                rgba(15, 23, 42, 0.64);
+        }
+
+        .investment-decision-card::before {
+            content: '';
+            position: absolute;
+            inset: 0 auto 0 0;
+            width: 3px;
+            background: linear-gradient(180deg, #38bdf8, #5eead4, #fb7185);
+        }
+
+        .investment-decision-card span {
+            display: inline-flex;
+            margin-bottom: 0.7rem;
+            color: #7dd3fc;
+            font-size: 0.74rem;
+            font-weight: 900;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+        }
+
+        .investment-decision-card h3 {
+            margin: 0 0 0.55rem;
+            color: #f8fafc;
+            font-size: 1.08rem;
+            line-height: 1.35;
+        }
+
+        .investment-decision-card p {
+            margin: 0;
+            color: #a8bad4;
+            line-height: 1.72;
+            font-size: 0.94rem;
+        }
+
         .investment-timeline {
             display: grid;
             gap: 0.9rem;
@@ -406,6 +546,10 @@
                 grid-template-columns: 1fr;
             }
 
+            .investment-decision-board {
+                grid-template-columns: 1fr;
+            }
+
             .investment-metrics {
                 grid-template-columns: repeat(3, minmax(0, 1fr));
                 gap: 0.45rem;
@@ -432,6 +576,60 @@
 
             .investment-actions .btn {
                 width: 100%;
+                justify-content: center;
+            }
+
+            .investment-body .mobile-menu-btn {
+                color: #e5eefc;
+                border: 1px solid rgba(125, 211, 252, 0.18);
+                border-radius: 999px;
+                background: rgba(15, 23, 42, 0.78);
+            }
+
+            .investment-body .nav-menu,
+            .investment-body .nav-actions {
+                left: auto;
+                right: 1rem;
+                width: min(280px, calc(100vw - 2rem));
+                border: 1px solid rgba(125, 211, 252, 0.24);
+                border-radius: 12px;
+                background:
+                    linear-gradient(135deg, rgba(15, 23, 42, 0.96), rgba(8, 47, 73, 0.9)),
+                    #07111f;
+                box-shadow: 0 24px 60px rgba(2, 6, 23, 0.44);
+                backdrop-filter: blur(18px);
+            }
+
+            .investment-body .nav-menu {
+                top: 76px;
+                gap: 0.42rem;
+                padding: 0.62rem;
+            }
+
+            .investment-body .nav-menu a {
+                padding: 0.62rem 0.78rem;
+                border: 1px solid rgba(148, 163, 184, 0.12);
+                border-radius: 8px;
+                background: rgba(2, 6, 23, 0.32);
+                color: #e5eefc;
+                font-size: 0.96rem;
+            }
+
+            .investment-body .nav-menu a:hover,
+            .investment-body .nav-menu a.active {
+                border-color: rgba(125, 211, 252, 0.38);
+                background: rgba(14, 165, 233, 0.14);
+                color: #7dd3fc;
+            }
+
+            .investment-body .nav-actions {
+                top: 424px;
+                gap: 0.55rem;
+                padding: 0.72rem;
+            }
+
+            .investment-body .nav-actions .btn {
+                min-height: 44px;
                 justify-content: center;
             }
         }
@@ -479,7 +677,7 @@
                     </div>
                     <div class="investment-metrics" aria-label="视频摘要">
                         <div class="investment-metric">
-                            <strong>73s</strong>
+                            <strong>72s</strong>
                             <span>竖屏动画，适合观看和转发</span>
                         </div>
                         <div class="investment-metric">
@@ -495,13 +693,40 @@
 
                 <div class="investment-video-panel" id="investment-video">
                     <div class="investment-video-frame">
-                        <video controls playsinline preload="metadata" poster="assets/video/july-screening-logic-v8-douyin-safe-poster.jpg">
+                        <video id="investmentVideo" controls playsinline preload="auto" poster="assets/video/july-screening-logic-v8-douyin-safe-poster.jpg" aria-label="7月投资观察逻辑复盘视频">
                             <source src="assets/video/july-screening-logic-v8-douyin-safe.mp4" type="video/mp4">
                             当前浏览器不支持 HTML5 视频播放。
                         </video>
                         <div class="investment-video-caption" aria-hidden="true">
                             <span>AI Research Video</span>
                             <span>9:16</span>
+                        </div>
+                    </div>
+                    <div class="investment-video-tools" aria-label="视频章节控制">
+                        <div class="investment-video-status">
+                            <span>Timeline Sync</span>
+                            <strong id="investmentVideoTime">00:00 / 01:12</strong>
+                        </div>
+                        <div class="investment-progress" aria-hidden="true">
+                            <span id="investmentVideoProgress"></span>
+                        </div>
+                        <div class="investment-chapters">
+                            <button class="investment-chapter is-active" type="button" data-video-time="0" aria-current="true">
+                                <span>00:00</span>
+                                <strong>研究前提：先定义观察窗口</strong>
+                            </button>
+                            <button class="investment-chapter" type="button" data-video-time="16">
+                                <span>00:16</span>
+                                <strong>筛选框架：产业、证据、位置</strong>
+                            </button>
+                            <button class="investment-chapter" type="button" data-video-time="36">
+                                <span>00:36</span>
+                                <strong>执行纪律：等待触发条件</strong>
+                            </button>
+                            <button class="investment-chapter" type="button" data-video-time="55">
+                                <span>00:55</span>
+                                <strong>风险边界：不把复盘当建议</strong>
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -530,6 +755,23 @@
                         <small>03 / Timing</small>
                         <h3>位置纪律</h3>
                         <p>把目标分成观察、等待和执行三层，只有在风险收益比重新变好时才进入下一步。</p>
+                    </article>
+                </div>
+                <div class="investment-decision-board" aria-label="投资观察决策板">
+                    <article class="investment-decision-card">
+                        <span>Track</span>
+                        <h3>跟踪变量</h3>
+                        <p>产业催化、业绩兑现、成交结构和价格位置分开记录，避免只用单一信号做判断。</p>
+                    </article>
+                    <article class="investment-decision-card">
+                        <span>Trigger</span>
+                        <h3>触发条件</h3>
+                        <p>只有当基本面证据和交易节奏同时改善，才进入更高优先级观察。</p>
+                    </article>
+                    <article class="investment-decision-card">
+                        <span>Exit</span>
+                        <h3>退出条件</h3>
+                        <p>若证据链被证伪、预期兑现延后或价格提前透支，应及时降级或移出观察池。</p>
                     </article>
                 </div>
             </div>
@@ -621,6 +863,165 @@
             </div>
         </div>
     </footer>
+    <script>
+        (function bindInvestmentMobileMenu() {
+            const button = document.querySelector('.mobile-menu-btn');
+            const navMenu = document.querySelector('.nav-menu');
+            const navActions = document.querySelector('.nav-actions');
+            if (!button || !navMenu) return;
+
+            button.addEventListener('click', () => {
+                const expanded = button.getAttribute('aria-expanded') === 'true';
+                button.setAttribute('aria-expanded', String(!expanded));
+                navMenu.classList.toggle('active', !expanded);
+                navActions?.classList.toggle('active', !expanded);
+            });
+
+            navMenu.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    button.setAttribute('aria-expanded', 'false');
+                    navMenu.classList.remove('active');
+                    navActions?.classList.remove('active');
+                });
+            });
+        })();
+
+        (function bindInvestmentVideoChapters() {
+            const video = document.getElementById('investmentVideo');
+            const progress = document.getElementById('investmentVideoProgress');
+            const timeLabel = document.getElementById('investmentVideoTime');
+            const chapters = Array.from(document.querySelectorAll('.investment-chapter[data-video-time]'));
+            if (!video || !chapters.length) return;
+            let pendingSeek = null;
+
+            function formatTime(value) {
+                if (!Number.isFinite(value) || value < 0) return '00:00';
+                const total = Math.floor(value);
+                const minutes = String(Math.floor(total / 60)).padStart(2, '0');
+                const seconds = String(total % 60).padStart(2, '0');
+                return `${minutes}:${seconds}`;
+            }
+
+            function getDuration() {
+                return Number.isFinite(video.duration) && video.duration > 0 ? video.duration : 72;
+            }
+
+            function clampTime(value) {
+                const parsed = Number(value);
+                return Math.max(0, Math.min(Number.isFinite(parsed) ? parsed : 0, getDuration()));
+            }
+
+            function setActiveChapter(current) {
+                let active = chapters[0];
+                chapters.forEach(chapter => {
+                    const time = Number(chapter.dataset.videoTime || 0);
+                    if (current >= time) active = chapter;
+                });
+                activateChapter(active);
+            }
+
+            function activateChapter(active) {
+                chapters.forEach(chapter => {
+                    chapter.classList.toggle('is-active', chapter === active);
+                    if (chapter === active) {
+                        chapter.setAttribute('aria-current', 'true');
+                    } else {
+                        chapter.removeAttribute('aria-current');
+                    }
+                });
+            }
+
+            function setProgress(current) {
+                const duration = getDuration();
+                const safeCurrent = Math.min(current || 0, duration);
+                const ratio = Math.max(0, Math.min(100, (safeCurrent / duration) * 100));
+                if (progress) progress.style.width = `${ratio}%`;
+                if (timeLabel) timeLabel.textContent = `${formatTime(safeCurrent)} / ${formatTime(duration)}`;
+            }
+
+            function updateProgress() {
+                const current = Math.min(video.currentTime || 0, getDuration());
+                setProgress(current);
+                setActiveChapter(current);
+            }
+
+            function canSeekTo(targetTime) {
+                if (targetTime <= 0) return true;
+                for (let index = 0; index < video.seekable.length; index += 1) {
+                    if (targetTime >= video.seekable.start(index) && targetTime <= video.seekable.end(index)) {
+                        return true;
+                    }
+                }
+                for (let index = 0; index < video.buffered.length; index += 1) {
+                    if (targetTime >= video.buffered.start(index) && targetTime <= video.buffered.end(index) + 0.5) {
+                        return true;
+                    }
+                }
+                return video.currentSrc.startsWith('file:');
+            }
+
+            window.seekInvestmentVideo = function seekInvestmentVideo(time, chapter) {
+                const targetTime = clampTime(time);
+                if (chapter) activateChapter(chapter);
+                setProgress(targetTime);
+
+                if (video.readyState === 0) {
+                    pendingSeek = { time: targetTime, chapter };
+                    video.load();
+                    return;
+                }
+
+                if (!canSeekTo(targetTime)) {
+                    pendingSeek = { time: targetTime, chapter };
+                    video.preload = 'auto';
+                    video.load();
+                    return;
+                }
+
+                pendingSeek = null;
+                video.pause();
+                video.currentTime = targetTime;
+                setProgress(targetTime);
+                video.play().catch(() => {});
+            };
+
+            document.addEventListener('click', event => {
+                const chapter = event.target.closest('.investment-chapter[data-video-time]');
+                if (!chapter) return;
+                window.seekInvestmentVideo(Number(chapter.dataset.videoTime || 0), chapter);
+            });
+
+            video.addEventListener('loadedmetadata', () => {
+                if (pendingSeek) {
+                    if (canSeekTo(pendingSeek.time)) {
+                        const { time, chapter } = pendingSeek;
+                        pendingSeek = null;
+                        window.seekInvestmentVideo(time, chapter);
+                        return;
+                    }
+                    if (pendingSeek.chapter) activateChapter(pendingSeek.chapter);
+                    setProgress(pendingSeek.time);
+                    return;
+                }
+                updateProgress();
+            });
+            video.addEventListener('progress', () => {
+                if (!pendingSeek) return;
+                if (canSeekTo(pendingSeek.time)) {
+                    const { time, chapter } = pendingSeek;
+                    pendingSeek = null;
+                    window.seekInvestmentVideo(time, chapter);
+                    return;
+                }
+                if (pendingSeek.chapter) activateChapter(pendingSeek.chapter);
+                setProgress(pendingSeek.time);
+            });
+            video.addEventListener('timeupdate', updateProgress);
+            video.addEventListener('seeked', updateProgress);
+            video.addEventListener('ended', updateProgress);
+            updateProgress();
+        })();
+    </script>
     <script src="command-palette.js?v=20260620c" defer></script>
 </body>
 </html>
