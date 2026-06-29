@@ -18,7 +18,7 @@
     <meta property="og:image" content="https://www.faroai.net/assets/video/july-screening-logic-v8-douyin-safe-poster.jpg">
     <meta property="og:video" content="https://www.faroai.net/assets/video/july-screening-logic-v8-douyin-safe.mp4">
     <meta property="og:video:type" content="video/mp4">
-    <link rel="stylesheet" href="styles.css?v=20260620a">
+    <link rel="stylesheet" href="styles.css?v=20260629a">
     <style>
         body.investment-body {
             background: #07111f;
@@ -152,6 +152,49 @@
             flex-wrap: wrap;
             gap: 0.9rem;
             margin-top: 2rem;
+        }
+
+        .investment-companion {
+            display: grid;
+            grid-template-columns: 64px minmax(0, 1fr);
+            gap: 0.82rem;
+            align-items: center;
+            max-width: 620px;
+            margin-top: 1.35rem;
+            padding: 0.64rem 0.84rem 0.64rem 0.64rem;
+            border: 1px solid rgba(125, 211, 252, 0.14);
+            border-radius: 999px;
+            background:
+                linear-gradient(135deg, rgba(14, 165, 233, 0.1), rgba(15, 23, 42, 0.36)),
+                rgba(15, 23, 42, 0.42);
+            box-shadow: 0 16px 38px rgba(2, 6, 23, 0.18);
+            backdrop-filter: blur(14px);
+        }
+
+        .investment-companion img {
+            width: 64px;
+            height: 64px;
+            border-radius: 999px;
+            object-fit: cover;
+            border: 1px solid rgba(125, 211, 252, 0.22);
+            box-shadow: 0 12px 26px rgba(2, 6, 23, 0.28);
+        }
+
+        .investment-companion span {
+            display: block;
+            color: #7dd3fc;
+            font-size: 0.8rem;
+            font-weight: 750;
+            letter-spacing: 0;
+            text-transform: none;
+        }
+
+        .investment-companion strong {
+            display: block;
+            margin-top: 0.18rem;
+            color: #f8fafc;
+            font-size: 0.92rem;
+            line-height: 1.5;
         }
 
         .investment-actions .btn-outline {
@@ -579,6 +622,15 @@
                 justify-content: center;
             }
 
+            .investment-companion {
+                grid-template-columns: 52px minmax(0, 1fr);
+            }
+
+            .investment-companion img {
+                width: 52px;
+                height: 52px;
+            }
+
             .investment-body .mobile-menu-btn {
                 color: #e5eefc;
                 border: 1px solid rgba(125, 211, 252, 0.18);
@@ -671,6 +723,13 @@
                     <span class="investment-kicker">FaroAI Investment Lab</span>
                     <h1 class="investment-title">投资研究 <span>7月观察逻辑</span></h1>
                     <p class="investment-lead">用 AI 工作流把下阶段投资观察过程做成可视化复盘：从市场结构、业绩兑现到位置纪律，呈现逻辑如何收敛到更清晰的 7 月观察框架。</p>
+                    <div class="investment-companion" aria-label="FaroAI 投资观察员">
+                        <img src="assets/character/fa-piglet-buddy-avatar-sm.webp" alt="FaroAI 的 Fa 研究伙伴形象" width="192" height="192" loading="lazy" decoding="async">
+                        <div>
+                            <span>Fa 在旁边看</span>
+                            <strong>我只站在旁边整理框架、证据和风险边界。</strong>
+                        </div>
+                    </div>
                     <div class="investment-actions">
                         <a href="#investment-video" class="btn btn-primary">播放复盘视频</a>
                         <a href="#risk-note" class="btn btn-outline">查看风险提示</a>
@@ -824,6 +883,13 @@
                         <span class="logo-text"><span class="brand-word"><span class="brand-red">F</span><span class="brand-grad brand-grad-a">a</span><span class="brand-grad brand-grad-r">r</span><span class="brand-grad brand-grad-o">o</span><span class="brand-red">A</span><span class="brand-grad brand-grad-i">I</span></span></span>
                     </a>
                     <p class="footer-description">本地优先的 AI 助手工作台，连接微信、模型、知识库和自动化任务。</p>
+                    <div class="footer-companion" aria-label="FaroAI 研究伙伴">
+                        <img class="companion-avatar" src="assets/character/fa-piglet-buddy-avatar-sm.webp" alt="" width="192" height="192" loading="lazy" decoding="async">
+                        <div class="companion-copy">
+                            <span>Fa 在这里</span>
+                            <strong>把研究、视频和自动化收在一起。</strong>
+                        </div>
+                    </div>
                 </div>
                 <div class="footer-links">
                     <h4>产品</h4>
