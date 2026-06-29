@@ -14,6 +14,13 @@ document.addEventListener('DOMContentLoaded', function() {
         const count = Array.from(articles).filter(article => article.style.display !== 'none').length;
         visibleCount.textContent = `${count} 篇`;
     };
+
+    const setTargetSourceCard = () => {
+        const currentHash = window.location.hash;
+        document.querySelectorAll('.source-ledger-card').forEach(card => {
+            card.classList.toggle('is-targeted', card.getAttribute('href') === currentHash);
+        });
+    };
     
     filterBtns.forEach(btn => {
         btn.addEventListener('click', function() {
@@ -100,6 +107,7 @@ document.addEventListener('DOMContentLoaded', function() {
             if (window.location.hash !== hash) {
                 history.replaceState(null, '', hash);
                 setTargetArticle();
+                setTargetSourceCard();
             }
         });
     });
@@ -142,7 +150,11 @@ document.addEventListener('DOMContentLoaded', function() {
     };
 
     setTargetArticle();
-    window.addEventListener('hashchange', setTargetArticle);
+    setTargetSourceCard();
+    window.addEventListener('hashchange', () => {
+        setTargetArticle();
+        setTargetSourceCard();
+    });
 });
 
 /* ─────────── P2 #14: 自动生成博客目录 ─────────── */

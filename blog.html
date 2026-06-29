@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
     <title>FaroAI 日志 - OpenClaw、Codex 自动化与本地模型周报</title>
-    <meta name="description" content="FaroAI 工作流日志：跟踪 OpenClaw 最新版本、OpenAI Codex 自动化更新、AI Agent 实践与本地模型运行时变化。">
-    <meta name="keywords" content="FaroAI 日志, AI 工作流日志, OpenClaw 新闻, Codex 自动化, OpenAI 技术资料, AI Agent, 微信机器人, Ollama 0.30">
+    <meta name="description" content="FaroAI 工作流日志：跟踪 OpenClaw 最新版本、OpenAI Codex 长任务实践、AI Agent 工程更新与本地模型运行时变化。">
+    <meta name="keywords" content="FaroAI 日志, AI 工作流日志, OpenClaw 2026.6.10, Codex 自动化, OpenAI 技术资料, AI Agent, 微信机器人, Ollama 0.30.11">
     <link rel="canonical" href="https://www.faroai.net/blog.html">
     <link rel="stylesheet" href="styles.css?v=20260620a">
     <link rel="stylesheet" href="blog.css">
@@ -54,14 +54,14 @@
                     <aside class="blog-hero-panel" aria-label="日志更新摘要">
                         <div class="blog-hero-panel-head">
                             <span>Latest update</span>
-                            <strong>2026-06-22</strong>
+                            <strong>2026-06-29</strong>
                         </div>
-                        <p class="blog-freshness">本轮仅保留 2026-06-15 至 2026-06-22 能交叉核验的公开资料；OpenAI 以官方新闻页为准，OpenClaw 与 Ollama 以 GitHub Releases 和官方发布页为准。</p>
+                        <p class="blog-freshness">本轮仅保留 2026-06-22 至 2026-06-29 能交叉核验的公开资料；OpenAI 以官方新闻页为准，OpenClaw 与 Ollama 以 GitHub Releases 和官方发布页为准，未看到可核验的 openclaw-weixin 单独新版本则不写入。</p>
                         <div class="blog-hero-metrics" aria-label="当前关注主题">
-                            <span>OpenClaw 2026.6.9</span>
-                            <span>OpenAI 2026-06-18</span>
-                            <span>Agents SDK 0.16.1</span>
-                            <span>Ollama 0.30.10</span>
+                            <span>OpenClaw 2026.6.10</span>
+                            <span>Codex 2026-06-22</span>
+                            <span>Agents SDK 0.17.0</span>
+                            <span>Ollama 0.30.11</span>
                         </div>
                     </aside>
                 </div>
@@ -109,33 +109,34 @@
                 <div class="source-ledger" aria-label="本周资料核验">
                     <div class="source-ledger-head">
                         <span>Verified sources</span>
-                        <strong>2026-06-22 本周核验</strong>
+                        <strong>2026-06-29 本周核验</strong>
                     </div>
+                    <p class="source-ledger-note">核验口径：只写本周能直接落到官方页面或官方仓库的事实；对本地模型部分，如近一周无独立新公告，会明确写成“截至本周最新仍为某版本”。</p>
                     <div class="source-ledger-grid">
-                        <a class="source-ledger-card" href="#article-openclaw-2026-6-9-stable">
+                        <a class="source-ledger-card" href="#article-openclaw-2026-6-10-latest">
                             <small>OpenClaw</small>
-                            <strong>2026.6.9 已于 06-21 发布为最新稳定版</strong>
-                            <p>GitHub Release 与 npm latest 均指向 2026.6.9，重点落在 Telegram 富文本投递、Agent 恢复和 Codex 集成增强。</p>
+                            <strong>截至 06-29，GitHub Releases 与本机 CLI 均已指向 2026.6.10</strong>
+                            <p>本轮可以确认的事实是：最新稳定版已经切到 2026.6.10，本机 `openclaw --version` 与 npm latest 也已对齐。</p>
                         </a>
-                        <a class="source-ledger-card" href="#article-openai-enterprise-controls-2026-06-18">
+                        <a class="source-ledger-card" href="#article-openai-codex-maxxing-2026-06-22">
                             <small>OpenAI / Codex</small>
-                            <strong>06-18 官方补上用量分析与预算控制</strong>
-                            <p>ChatGPT Enterprise 与 Codex 的信用消耗被放进统一管理台，说明组织级自动化开始强调审计、限额和复核。</p>
+                            <strong>06-22 官方把长任务工作方式写成公开方法论</strong>
+                            <p>Codex 的重点不再只是“写一段代码”，而是如何计划、等待、继续执行和收口长任务。</p>
                         </a>
-                        <a class="source-ledger-card" href="#article-codex-governance-checklist-2026-06-22">
+                        <a class="source-ledger-card" href="#article-long-running-workflow-checklist-2026-06-29">
                             <small>自动化工作流</small>
-                            <strong>06-18 到 06-21 的官方信号都指向“先治理再放量”</strong>
-                            <p>预算、权限和企业级部署案例被连续公开，自动化工作流不再只是会跑，还要能解释谁在用、花了多少、是否可控。</p>
+                            <strong>微信机器人与定时任务要先补 4 个检查点</strong>
+                            <p>计划、检查点、审批和恢复这四层，本周已经能从 OpenAI、Cloudflare 和 OpenClaw 的官方更新里拼出一条清晰路线。</p>
                         </a>
-                        <a class="source-ledger-card" href="#article-agents-sdk-v0161-2026-06-16">
+                        <a class="source-ledger-card" href="#article-agents-sdk-v0170-2026-06-26">
                             <small>AI Agent</small>
-                            <strong>Agents SDK 0.16.1 于 06-16 强化 browser、code 和 recovery</strong>
-                            <p>Cloudflare 把 Browser Run、Code Mode、Think 子代理工具和中断恢复放进同一轮更新，长期运行 Agent 的工程味更重了。</p>
+                            <strong>Agents SDK 0.17.0 于 06-26 把远程 MCP、Agent debugger 与恢复继续做深</strong>
+                            <p>远程 MCP、Durable Objects 支持和调试工具同时前进，说明 Agent 的落地方向更偏长连接和可排障系统。</p>
                         </a>
-                        <a class="source-ledger-card" href="#article-ollama-0-30-10-2026-06-17">
+                        <a class="source-ledger-card" href="#article-ollama-0-30-11-2026-06-25">
                             <small>本地模型</small>
-                            <strong>Ollama 0.30.10 于 06-17 更新到最新 MLX/llama.cpp 组合</strong>
-                            <p>官方 Release 补上 Apple Silicon 模型支持、底层 llama.cpp 更新和 MLX 构建修复，本地维护重点回到实际 agent 负载表现。</p>
+                            <strong>Ollama 0.30.11 于 06-25 成为最新版本</strong>
+                            <p>本周本地模型侧有明确新发版，Apple Silicon 与 llama.cpp 相关维护仍在持续，升级后更该跑真实 agent 任务回归。</p>
                         </a>
                     </div>
                 </div>
@@ -146,120 +147,120 @@
                 <!-- 文章列表 -->
                 <div class="articles" id="articles">
                     <!-- 置顶文章：OpenClaw 与 OpenAI 最新资料 -->
-                    <article id="article-openclaw-2026-6-9-stable" class="article-card featured" data-category="product">
+                    <article id="article-openclaw-2026-6-10-latest" class="article-card featured" data-category="product">
                         <div class="article-content">
                             <div class="article-header">
-                                <a href="https://github.com/openclaw/openclaw/releases/tag/v2026.6.9" target="_blank" rel="noopener noreferrer" class="article-title">OpenClaw 2026.6.9 稳定版：Telegram 投递更完整，Agent 恢复与 Codex 集成继续收紧</a>
+                                <a href="https://github.com/openclaw/openclaw/releases/tag/v2026.6.10" target="_blank" rel="noopener noreferrer" class="article-title">OpenClaw 2026.6.10 已成当前最新稳定版：本周重点回到命令可靠性、会话续跑与工程细节收口</a>
                                 <span class="article-category category-product">产品更新</span>
                             </div>
                             <p class="article-excerpt">
-                                OpenClaw 2026.6.9 于 2026-06-21 发布，GitHub Releases 与 npm latest 已对齐到同一版本。官方把重点放在三块：Telegram 富文本与命令输出投递更完整，Agent 中断后的重试、历史修复和回复对账更可靠，以及 Codex 集成新增自动插件审批、OAuth 路由和远程节点执行能力。对 FaroAI 这类把消息入口、自动化和本地模型绑在一起的工作台，升级关注点应落在“恢复后能否继续完成任务”和“通道输出是否仍然干净可读”，而不只是 CLI 版本号。
+                                截至 2026-06-29 核验，OpenClaw GitHub Releases、仓库 appcast、本机 CLI 和 npm latest 都已经切到 2026.6.10。和上周相比，这次更值得注意的不是单一大功能，而是“能不能更稳地把任务跑完”：命令执行、输出同步、会话恢复和边缘场景修复持续累积，这类更新对把 OpenClaw 接进微信入口、定时任务和多步资料整理尤其重要。对 FaroAI 这类本地优先工作台，判断是否值得跟进升级，重点应落在长任务是否更容易续跑、工具输出是否更一致，以及升级后 doctor、gateway 与通道验证是否仍然通过。
                             </p>
-                            <p class="article-source">资料来源：<a href="https://github.com/openclaw/openclaw/releases/tag/v2026.6.9" target="_blank" rel="noopener noreferrer">OpenClaw GitHub Release v2026.6.9</a>、<a href="https://www.npmjs.com/package/openclaw/v/2026.6.9" target="_blank" rel="noopener noreferrer">npm 2026.6.9</a></p>
+                            <p class="article-source">资料来源：<a href="https://github.com/openclaw/openclaw/releases/tag/v2026.6.10" target="_blank" rel="noopener noreferrer">OpenClaw GitHub Release v2026.6.10</a>、<a href="https://github.com/openclaw/openclaw/blob/main/appcast.xml" target="_blank" rel="noopener noreferrer">OpenClaw appcast.xml</a>、<a href="https://www.npmjs.com/package/openclaw/v/2026.6.10" target="_blank" rel="noopener noreferrer">npm 2026.6.10</a></p>
                             <div class="article-meta">
                                 <a href="个人概况_2026_v3.html" class="article-author">炜哥</a>
-                                <span class="article-date">2026-06-22</span>
+                                <span class="article-date">2026-06-29</span>
                                 <span class="article-note">稳定版核验</span>
                                 <div class="article-tags">
                                     <span class="tag">OpenClaw</span>
-                                    <span class="tag">2026.6.9</span>
-                                    <span class="tag">Agent recovery</span>
-                                    <span class="tag">Codex integration</span>
+                                    <span class="tag">2026.6.10</span>
+                                    <span class="tag">CLI reliability</span>
+                                    <span class="tag">Task recovery</span>
                                 </div>
                             </div>
                         </div>
                     </article>
 
-                    <article id="article-openai-enterprise-controls-2026-06-18" class="article-card featured" data-category="technical">
+                    <article id="article-openai-codex-maxxing-2026-06-22" class="article-card featured" data-category="technical">
                         <div class="article-content">
                             <div class="article-header">
-                                <a href="https://openai.com/index/chatgpt-enterprise-spend-controls/" target="_blank" rel="noopener noreferrer" class="article-title">OpenAI 06-18 补上用量分析与预算控制：Codex 自动化开始进入“可审计阶段”</a>
+                                <a href="https://openai.com/index/codex-maxxing-long-running-work/" target="_blank" rel="noopener noreferrer" class="article-title">OpenAI 06-22 发布 Codex 长任务方法论：能拆解、会等待、可恢复，比“秒回”更重要</a>
                                 <span class="article-category category-technical">技术文章</span>
                             </div>
                             <p class="article-excerpt">
-                                OpenAI 在 2026-06-18 发布的新管理能力把 ChatGPT 与 Codex 的信用消耗放进统一管理台，管理员可以按用户、产品和模型拆分消耗趋势，也可以设置默认预算、分组上限和个人覆盖额度。这条更新对实际部署比“又多了一个功能按钮”更重要，因为它意味着 Codex 不再只是个人效率工具，而是开始要求组织级的预算边界、使用透明度和审批路径。对 FaroAI 这类持续跑站点更新、消息发送和资料整理的工作流，后续扩展到多人使用时，最先要补的不是 prompt，而是可观测的成本与权限控制。
+                                OpenAI 在 2026-06-22 发布的《Codex-maxxing for long-running work》没有再把重点放在“更快写一段代码”，而是直接讨论长时间任务如何规划、并行、等待工具结果、处理中断和回看产出。这对 FaroAI 很有参考价值，因为周报更新、资料整理、微信机器人串联检索与改写，本质上都不是一条 prompt 能解决的瞬时任务。官方给出的方向很明确：把任务拆成可检查的子阶段，让模型在明确边界内前进，必要时保存中间状态并允许人工介入，这比追求单次回答的华丽程度更接近真实生产环境。
                             </p>
-                            <p class="article-source">资料来源：<a href="https://openai.com/index/chatgpt-enterprise-spend-controls/" target="_blank" rel="noopener noreferrer">OpenAI: New usage analytics and updated spend controls for enterprises</a></p>
+                            <p class="article-source">资料来源：<a href="https://openai.com/index/codex-maxxing-long-running-work/" target="_blank" rel="noopener noreferrer">OpenAI: Codex-maxxing for long-running work</a></p>
                             <div class="article-meta">
                                 <a href="个人概况_2026_v3.html" class="article-author">炜哥</a>
-                                <span class="article-date">2026-06-22</span>
-                                <span class="article-note">治理能力</span>
+                                <span class="article-date">2026-06-29</span>
+                                <span class="article-note">长任务设计</span>
                                 <div class="article-tags">
                                     <span class="tag">OpenAI</span>
                                     <span class="tag">Codex</span>
-                                    <span class="tag">Usage analytics</span>
-                                    <span class="tag">Spend controls</span>
+                                    <span class="tag">Long-running work</span>
+                                    <span class="tag">Task planning</span>
                                 </div>
                             </div>
                         </div>
                     </article>
 
-                    <article id="article-codex-governance-checklist-2026-06-22" class="article-card featured" data-category="tutorial">
+                    <article id="article-long-running-workflow-checklist-2026-06-29" class="article-card featured" data-category="tutorial">
                         <div class="article-content">
                             <div class="article-header">
-                                <a href="https://openai.com/index/samsung-electronics-chatgpt-codex-deployment/" target="_blank" rel="noopener noreferrer" class="article-title">教程：把 Codex 自动化从个人实验推进到团队使用，先补预算、权限和审计三层控制</a>
+                                <a href="docs.html#workflows" class="article-title">教程：把长任务接进微信机器人或定时工作流，先补计划、检查点、审批与恢复四层结构</a>
                                 <span class="article-category category-tutorial">教程</span>
                             </div>
                             <p class="article-excerpt">
-                                这周 OpenAI 连续给出两个实操信号。其一，06-18 的企业管理更新说明自动化要能看见谁在用、消耗了多少、是否需要追加额度；其二，06-21 的三星部署案例说明 Codex 已被用于研发、制造、营销和内部工具，覆盖技术与非技术团队。把这两条合在一起看，团队化落地至少要先做三件事：给不同人群设默认预算和单独上限；把消息发送、文件修改、外部系统写入这类动作分成必须审批的层级；为每条自动化保留来源、执行结果和异常记录。做到这三层，才有资格把“能跑”升级成“可用、可追责、可扩展”。
+                                2026-06-22 到 2026-06-26 这一周的官方资料可以拼出一条很实用的落地线索。OpenAI 说 Codex 长任务要先拆成可管理阶段；Cloudflare 说 Agent 要有 debugger、remote MCP 和恢复能力；OpenClaw 最新版继续把命令可靠性和续跑体验往前推。如果把这些信号翻译成微信机器人或定时工作流实践，至少要先做四件事：在入口层写清任务目标与退出条件；在执行层保存阶段性检查点而不是只保留最终答案；把发消息、改文件、调用外部系统分成需要审批的动作；出现中断时允许从上一步继续，而不是整条工作流重跑。这样做的价值在于，出了问题能知道卡在哪，恢复时也不必把上下文全部重算。
                             </p>
-                            <p class="article-source">资料来源：<a href="https://openai.com/index/chatgpt-enterprise-spend-controls/" target="_blank" rel="noopener noreferrer">OpenAI: New usage analytics and updated spend controls for enterprises</a>、<a href="https://openai.com/index/samsung-electronics-chatgpt-codex-deployment/" target="_blank" rel="noopener noreferrer">OpenAI: Samsung Electronics brings ChatGPT and Codex to employees</a></p>
+                            <p class="article-source">资料来源：<a href="https://openai.com/index/codex-maxxing-long-running-work/" target="_blank" rel="noopener noreferrer">OpenAI: Codex-maxxing for long-running work</a>、<a href="https://developers.cloudflare.com/changelog/post/2026-06-26-agents-sdk-v0170/" target="_blank" rel="noopener noreferrer">Cloudflare: Agents SDK v0.17.0</a>、<a href="https://github.com/openclaw/openclaw/releases/tag/v2026.6.10" target="_blank" rel="noopener noreferrer">OpenClaw GitHub Release v2026.6.10</a></p>
                             <div class="article-meta">
                                 <a href="个人概况_2026_v3.html" class="article-author">炜哥</a>
-                                <span class="article-date">2026-06-22</span>
+                                <span class="article-date">2026-06-29</span>
                                 <span class="article-note">落地清单</span>
                                 <div class="article-tags">
-                                    <span class="tag">Codex</span>
                                     <span class="tag">Automation</span>
-                                    <span class="tag">Governance</span>
-                                    <span class="tag">Enterprise rollout</span>
-                                </div>
-                            </div>
-                        </div>
-                    </article>
-
-                    <article id="article-agents-sdk-v0161-2026-06-16" class="article-card featured" data-category="technical">
-                        <div class="article-content">
-                            <div class="article-header">
-                                <a href="https://developers.cloudflare.com/changelog/post/2026-06-16-agents-sdk-v0161/" target="_blank" rel="noopener noreferrer" class="article-title">Agents SDK 0.16.1：Browser Run、Code Mode 和恢复能力被收进同一套 Agent 工程面</a>
-                                <span class="article-category category-technical">技术文章</span>
-                            </div>
-                            <p class="article-excerpt">
-                                Cloudflare 在 2026-06-16 的 changelog 里，把 durable `browser_execute`、可恢复的 Code Mode、Think 子代理可用的 client tools，以及针对 deploy、Durable Object 驱逐和连接抖动的恢复逻辑放进同一版 Agents SDK。这个版本值得关注，不是因为“又能多调一个工具”，而是它把现实系统交互的三个痛点放到明面上处理了：浏览器动作不能只靠固定按钮；代码执行要能在审批后继续；长任务必须能从中断处恢复。对于微信机器人、周报巡检和多步资料整理，这类能力比纯聊天更接近真正可运行的 Agent 基座。
-                            </p>
-                            <p class="article-source">资料来源：<a href="https://developers.cloudflare.com/changelog/post/2026-06-16-agents-sdk-v0161/" target="_blank" rel="noopener noreferrer">Cloudflare Changelog: Agents SDK improves browser automation, code execution, and recovery</a></p>
-                            <div class="article-meta">
-                                <a href="个人概况_2026_v3.html" class="article-author">炜哥</a>
-                                <span class="article-date">2026-06-22</span>
-                                <span class="article-note">Agent 工程化</span>
-                                <div class="article-tags">
-                                    <span class="tag">AI Agent</span>
-                                    <span class="tag">Browser Run</span>
-                                    <span class="tag">Code Mode</span>
+                                    <span class="tag">WeChat workflow</span>
+                                    <span class="tag">Checkpoint</span>
                                     <span class="tag">Recovery</span>
                                 </div>
                             </div>
                         </div>
                     </article>
 
-                    <article id="article-ollama-0-30-10-2026-06-17" class="article-card featured" data-category="news">
+                    <article id="article-agents-sdk-v0170-2026-06-26" class="article-card featured" data-category="technical">
                         <div class="article-content">
                             <div class="article-header">
-                                <a href="https://github.com/ollama/ollama/releases/tag/v0.30.10" target="_blank" rel="noopener noreferrer" class="article-title">Ollama 0.30.10 成为最新稳定版：本地模型维护重点回到 MLX、llama.cpp 与真实 agent 负载</a>
+                                <a href="https://developers.cloudflare.com/changelog/post/2026-06-26-agents-sdk-v0170/" target="_blank" rel="noopener noreferrer" class="article-title">Agents SDK 0.17.0：remote MCP、Agent debugger 与恢复能力继续前移，长期运行 Agent 更像真实系统</a>
+                                <span class="article-category category-technical">技术文章</span>
+                            </div>
+                            <p class="article-excerpt">
+                                Cloudflare 在 2026-06-26 的 changelog 里继续推进 Agents SDK 的工程化方向：新增或强化 remote MCP、Agent debugger、Durable Objects 兼容以及多项恢复相关能力。这个版本真正重要的地方，不是“多了几个开发者工具名词”，而是它进一步承认了 Agent 应用会长期在线、会被打断、会连外部系统、也会需要回看执行状态。对于 FaroAI 这种把本地模型、网页入口和微信通道串在一起的工作台，这类更新说明 Agent 架构正在从 demo 代码走向可排障、可接管、可恢复的服务形态。
+                            </p>
+                            <p class="article-source">资料来源：<a href="https://developers.cloudflare.com/changelog/post/2026-06-26-agents-sdk-v0170/" target="_blank" rel="noopener noreferrer">Cloudflare Changelog: Agents SDK v0.17.0</a></p>
+                            <div class="article-meta">
+                                <a href="个人概况_2026_v3.html" class="article-author">炜哥</a>
+                                <span class="article-date">2026-06-29</span>
+                                <span class="article-note">Agent 工程化</span>
+                                <div class="article-tags">
+                                    <span class="tag">AI Agent</span>
+                                    <span class="tag">Remote MCP</span>
+                                    <span class="tag">Debugger</span>
+                                    <span class="tag">Recovery</span>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article id="article-ollama-0-30-11-2026-06-25" class="article-card featured" data-category="news">
+                        <div class="article-content">
+                            <div class="article-header">
+                                <a href="https://github.com/ollama/ollama/releases/tag/v0.30.11" target="_blank" rel="noopener noreferrer" class="article-title">Ollama 0.30.11 于 06-25 成为最新版本：本地模型维护继续围绕 Apple Silicon、llama.cpp 与真实工作流回归</a>
                                 <span class="article-category category-news">行业动态</span>
                             </div>
                             <p class="article-excerpt">
-                                Ollama 的最新 GitHub Release v0.30.10 发布于 2026-06-17，重点是让更多模型在 Apple Silicon 上走 MLX 引擎、同步更新底层 llama.cpp，并修复 MLX 构建产物。结合 06-11 官方博客对 MLX 引擎的说明，可以看出本地模型维护正在从“有没有 0.30”转向“0.30 之后的哪一版更适合真实 agent 负载”。如果你的链路包含 OpenClaw、子代理、思维模型或长上下文重发，这类底层改动会直接影响首 token 延迟、缓存命中和多轮稳定性，因此每次更新后都值得重新验证实际任务而不是只看 changelog。
+                                Ollama 的最新 GitHub Release 已在 2026-06-25 切到 v0.30.11。对本地模型用户来说，这类版本最容易被忽略，因为更新说明经常落在底层依赖和平台兼容，但真正受影响的是上层工作流是否稳定。只要你的链路里有 OpenClaw、本地模型路由、长上下文或多轮 agent 调用，就不应把升级判断停留在“能不能启动”，而应该继续验证首轮响应、连续多轮、工具调用和异常回退。和上周相比，本周至少能明确一件事：Ollama 的最新基线已经前进到 0.30.11，站内相关文案也应同步。
                             </p>
-                            <p class="article-source">资料来源：<a href="https://github.com/ollama/ollama/releases/tag/v0.30.10" target="_blank" rel="noopener noreferrer">Ollama GitHub Release v0.30.10</a>、<a href="https://ollama.com/blog/mlx-performance" target="_blank" rel="noopener noreferrer">Ollama Blog: highest performance on Apple Silicon yet with MLX</a></p>
+                            <p class="article-source">资料来源：<a href="https://github.com/ollama/ollama/releases/tag/v0.30.11" target="_blank" rel="noopener noreferrer">Ollama GitHub Release v0.30.11</a>、<a href="https://ollama.com/blog/mlx-performance" target="_blank" rel="noopener noreferrer">Ollama Blog: highest performance on Apple Silicon yet with MLX</a></p>
                             <div class="article-meta">
                                 <a href="个人概况_2026_v3.html" class="article-author">炜哥</a>
-                                <span class="article-date">2026-06-22</span>
+                                <span class="article-date">2026-06-29</span>
                                 <span class="article-note">本地运行时</span>
                                 <div class="article-tags">
                                     <span class="tag">Ollama</span>
-                                    <span class="tag">0.30.10</span>
-                                    <span class="tag">MLX</span>
+                                    <span class="tag">0.30.11</span>
+                                    <span class="tag">Apple Silicon</span>
                                     <span class="tag">llama.cpp</span>
                                 </div>
                             </div>

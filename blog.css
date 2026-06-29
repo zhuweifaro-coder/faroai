@@ -212,6 +212,13 @@
     font-size: 1rem;
 }
 
+.source-ledger-note {
+    margin: 0.9rem 0 0;
+    color: rgba(226, 232, 240, 0.92);
+    font-size: 0.88rem;
+    line-height: 1.7;
+}
+
 .source-ledger-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
@@ -237,6 +244,12 @@
     border-color: rgba(190, 242, 100, 0.34);
     background: rgba(255, 255, 255, 0.1);
     outline: none;
+}
+
+.source-ledger-card.is-targeted {
+    border-color: rgba(125, 211, 252, 0.8);
+    background: rgba(59, 130, 246, 0.14);
+    box-shadow: 0 0 0 1px rgba(125, 211, 252, 0.28);
 }
 
 .source-ledger-grid small {
