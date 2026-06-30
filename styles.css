@@ -1482,11 +1482,11 @@ section[id] {
 
 .hero-companion-stage {
     position: absolute;
-    left: -60px;
-    bottom: -24px;
-    z-index: 3;
-    width: clamp(194px, 19.4vw, 264px);
-    height: clamp(258px, 29vw, 372px);
+    right: -92px;
+    bottom: -54px;
+    z-index: 0;
+    width: clamp(150px, 14vw, 196px);
+    height: clamp(204px, 22vw, 292px);
     isolation: isolate;
     pointer-events: none;
     perspective: 760px;
