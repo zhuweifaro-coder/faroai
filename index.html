@@ -35,7 +35,7 @@
     <!-- Styles -->
     <link rel="preload" as="image" href="assets/character/fa-piglet-buddy-portal.webp" type="image/webp">
     <link rel="modulepreload" href="https://cdn.jsdelivr.net/npm/three@0.185.0/build/three.module.js">
-    <link rel="stylesheet" href="styles.css?v=20260630b">
+    <link rel="stylesheet" href="styles.css?v=20260630c">
     
     <!-- Critical CSS Inline -->
     <style>
@@ -270,6 +270,10 @@
                             </svg>
                             <span>运作原理</span>
                         </button>
+                        <div class="hero-companion-stage" data-fa-character-shell aria-hidden="true">
+                            <canvas class="fa-character-canvas hero-character-canvas" data-fa-3d-character data-character-variant="hero"></canvas>
+                            <img class="hero-character-fallback" src="assets/character/fa-piglet-buddy-portal.webp" alt="" width="360" height="562" loading="lazy" decoding="async">
+                        </div>
                     </div>
                     <div class="hero-proof" aria-label="核心能力">
                         <div class="proof-item">OpenClaw 2026.6.10</div>
@@ -292,10 +296,6 @@
                     </div>
                 </div>
                 <div class="hero-visual" aria-label="FaroAI 研究伙伴与网关状态预览">
-                    <div class="hero-companion-stage" data-fa-character-shell aria-hidden="true">
-                        <canvas class="fa-character-canvas hero-character-canvas" data-fa-3d-character data-character-variant="hero"></canvas>
-                        <img class="hero-character-fallback" src="assets/character/fa-piglet-buddy-portal.webp" alt="" width="360" height="562" loading="lazy" decoding="async">
-                    </div>
                     <div class="dashboard-preview">
                         <div class="dashboard-orbit-layer">
                             <span class="orbit-ring orbit-ring-a"></span>
