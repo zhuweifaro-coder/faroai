@@ -1399,9 +1399,7 @@ section[id] {
     line-height: 1.35;
 }
 
-.hero-companion-chip,
 .page-companion,
-.dashboard-companion,
 .docs-companion-card,
 .footer-companion,
 .footer-mini-companion {
@@ -1409,26 +1407,7 @@ section[id] {
     isolation: isolate;
 }
 
-.hero-companion-chip {
-    display: inline-grid;
-    grid-template-columns: 54px minmax(0, 1fr);
-    align-items: center;
-    gap: 0.75rem;
-    max-width: 480px;
-    margin: -0.35rem 0 1.35rem;
-    padding: 0.56rem 0.72rem 0.56rem 0.56rem;
-    border: 1px solid rgba(37, 99, 235, 0.09);
-    border-radius: 999px;
-    background:
-        linear-gradient(135deg, rgba(255, 255, 255, 0.78), rgba(239, 246, 255, 0.5)),
-        rgba(255, 255, 255, 0.56);
-    box-shadow: 0 14px 30px rgba(15, 23, 42, 0.055);
-    backdrop-filter: blur(14px);
-}
-
-.hero-companion-chip::before,
 .page-companion::before,
-.dashboard-companion::before,
 .docs-companion-card::before,
 .footer-companion::before,
 .footer-mini-companion::before {
@@ -1442,9 +1421,7 @@ section[id] {
     transition: opacity 0.22s ease;
 }
 
-.hero-companion-chip:hover::before,
 .page-companion:hover::before,
-.dashboard-companion:hover::before,
 .docs-companion-card:hover::before,
 .footer-companion:hover::before,
 .footer-mini-companion:hover::before {
@@ -1501,24 +1478,6 @@ section[id] {
     font-size: 0.78rem;
     font-style: normal;
     line-height: 1.45;
-}
-
-.dashboard-companion {
-    display: grid;
-    grid-template-columns: 72px minmax(0, 1fr);
-    gap: 0.8rem;
-    align-items: center;
-    margin: 0 0 1rem;
-    padding: 0.76rem;
-    border: 1px solid rgba(37, 99, 235, 0.09);
-    border-radius: 20px;
-    background:
-        linear-gradient(135deg, rgba(255, 255, 255, 0.72), rgba(240, 253, 250, 0.5)),
-        rgba(255, 255, 255, 0.48);
-}
-
-.dashboard-companion .companion-copy strong {
-    font-size: 0.86rem;
 }
 
 .hero-companion-stage {
@@ -1703,11 +1662,6 @@ section[id] {
     background: #f87171;
     box-shadow: 0 0 12px rgba(248, 113, 113, 0.68);
     animation: companionSpark 4.15s ease-in-out 1.45s infinite;
-}
-
-.hero-companion-chip .companion-avatar {
-    transform-origin: 50% 88%;
-    animation: companionAvatarHop 3.2s ease-in-out infinite;
 }
 
 .page-companion {
@@ -1978,9 +1932,7 @@ section[id] {
 }
 
 @media (max-width: 768px) {
-    .hero-companion-chip,
     .page-companion,
-    .dashboard-companion,
     .docs-companion-card,
     .footer-companion,
     .footer-mini-companion {
@@ -1994,12 +1946,6 @@ section[id] {
         width: 48px;
         height: 48px;
         border-radius: 999px;
-    }
-
-    .dashboard-companion .companion-bust {
-        width: 58px;
-        height: 58px;
-        border-radius: 15px;
     }
 
     .companion-copy strong {
@@ -3938,39 +3884,58 @@ section[id] {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 132px;
-    height: 132px;
+    width: 138px;
+    height: 138px;
     border-radius: 50%;
     transform: translate(-50%, -50%);
     background:
-        radial-gradient(circle at 30% 22%, rgba(255, 255, 255, 0.96), rgba(153, 246, 228, 0.42) 26%, rgba(37, 99, 235, 0.82) 62%, rgba(15, 23, 42, 0.98) 100%);
+        radial-gradient(circle at 50% 42%, rgba(255, 255, 255, 0.2), transparent 28%),
+        radial-gradient(circle at 50% 50%, rgba(94, 234, 212, 0.28), rgba(37, 99, 235, 0.28) 48%, rgba(15, 23, 42, 0.9) 100%);
     box-shadow:
-        inset 0 8px 22px rgba(255, 255, 255, 0.26),
-        0 0 0 14px rgba(94, 234, 212, 0.08),
-        0 0 0 32px rgba(37, 99, 235, 0.05),
+        inset 0 0 0 1px rgba(191, 219, 254, 0.24),
+        inset 0 10px 26px rgba(255, 255, 255, 0.12),
+        0 0 0 12px rgba(94, 234, 212, 0.08),
+        0 0 0 30px rgba(37, 99, 235, 0.05),
         0 24px 80px rgba(37, 99, 235, 0.42);
-    color: rgba(255, 255, 255, 0.88);
-    font-family: ui-rounded, "SF Pro Rounded", "Nunito Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-    font-size: 1.04rem;
-    font-weight: 900;
-    letter-spacing: 0;
     animation: matrixCorePulse 3.8s ease-in-out infinite;
     z-index: 2;
+    overflow: hidden;
 }
 
-.matrix-core span {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 74%;
-    height: 74%;
-    border: 1px solid rgba(191, 219, 254, 0.18);
+.matrix-core::before {
+    content: '';
+    position: absolute;
+    inset: 9px;
+    z-index: 1;
     border-radius: 50%;
-    background: radial-gradient(circle at 50% 50%, rgba(15, 23, 42, 0.12), rgba(2, 6, 23, 0.28));
-    color: rgba(255, 255, 255, 0.76);
-    text-shadow:
-        0 0 16px rgba(191, 219, 254, 0.68),
-        0 0 28px rgba(94, 234, 212, 0.34);
+    border: 1px solid rgba(125, 211, 252, 0.32);
+    box-shadow:
+        inset 0 0 18px rgba(14, 165, 233, 0.22),
+        0 0 18px rgba(94, 234, 212, 0.18);
+    pointer-events: none;
+}
+
+.matrix-core::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+    background: linear-gradient(115deg, transparent 12%, rgba(255, 255, 255, 0.22) 44%, transparent 58%);
+    transform: translateX(-120%) rotate(12deg);
+    animation: matrixAvatarScan 3.8s ease-in-out infinite;
+    pointer-events: none;
+}
+
+.matrix-core img {
+    position: relative;
+    z-index: 2;
+    display: block;
+    width: 104px;
+    height: 104px;
+    border: 1px solid rgba(191, 219, 254, 0.32);
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow: 0 0 26px rgba(14, 165, 233, 0.28);
 }
 
 .matrix-node {
@@ -4875,6 +4840,24 @@ section[id] {
     50% {
         transform: translate(-50%, -50%) scale(1.045);
         filter: saturate(1.18);
+    }
+}
+
+@keyframes matrixAvatarScan {
+    0%,
+    28%,
+    100% {
+        transform: translateX(-126%) rotate(12deg);
+        opacity: 0;
+    }
+
+    48% {
+        opacity: 0.85;
+    }
+
+    68% {
+        transform: translateX(124%) rotate(12deg);
+        opacity: 0;
     }
 }
 
@@ -5873,6 +5856,15 @@ section[id] {
     .matrix-core {
         width: 88px;
         height: 88px;
+    }
+
+    .matrix-core::before {
+        inset: 6px;
+    }
+
+    .matrix-core img {
+        width: 66px;
+        height: 66px;
     }
 
     .matrix-sweep {

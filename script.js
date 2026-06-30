@@ -1164,7 +1164,6 @@ document.head.appendChild(style);
             '.hero-title',
             '.hero-description',
             '.hero-audience-chip',
-            '.hero-companion-chip',
             '.hero-actions .btn',
             '.proof-item'
         ].join(','));
