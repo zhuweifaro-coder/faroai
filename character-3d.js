@@ -46,13 +46,25 @@ function createFaroCharacterScene(THREE, canvas, prefersReducedMotion) {
     renderer.setClearColor(0x000000, 0);
     renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
     renderer.outputColorSpace = THREE.SRGBColorSpace;
+    renderer.shadowMap.enabled = true;
+    renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 
-    const cameraZ = variant === 'matrix' ? 5.1 : 6.35;
-    camera.position.set(0, 0.78, cameraZ);
+    const cameraZ = variant === 'matrix' ? 4.8 : 5.95;
+    camera.position.set(0, 0.7, cameraZ);
+    camera.lookAt(0, 0.06, 0);
 
     const ambient = new THREE.AmbientLight(0xdbeafe, 1.42);
     const key = new THREE.DirectionalLight(0xffffff, 2.3);
     key.position.set(2.4, 4.2, 3.6);
+    key.castShadow = true;
+    key.shadow.mapSize.width = 1024;
+    key.shadow.mapSize.height = 1024;
+    key.shadow.camera.near = 0.5;
+    key.shadow.camera.far = 9;
+    key.shadow.camera.left = -2.5;
+    key.shadow.camera.right = 2.5;
+    key.shadow.camera.top = 3;
+    key.shadow.camera.bottom = -2.5;
     const rim = new THREE.PointLight(0x5eead4, 4.8, 8);
     rim.position.set(-2.4, 1.2, 2.5);
     const blueFill = new THREE.PointLight(0x2563eb, 3.1, 8);
@@ -61,6 +73,15 @@ function createFaroCharacterScene(THREE, canvas, prefersReducedMotion) {
 
     const refs = buildCharacter(THREE, variant);
     scene.add(refs.root);
+    refs.root.traverse((node) => {
+        if (!node.isMesh) return;
+        node.castShadow = true;
+        node.receiveShadow = true;
+    });
+
+    const shadowCatcher = createShadowCatcher(THREE, variant);
+    scene.add(shadowCatcher);
+    refs.shadowCatcher = shadowCatcher;
 
     const clock = new THREE.Clock();
     let isVisible = true;
@@ -119,6 +140,12 @@ function buildCharacter(THREE, variant) {
     body.position.set(0, -0.06, 0);
     character.add(body);
 
+    const sideShell = mesh(THREE, new THREE.TorusGeometry(0.44, 0.018, 12, 80), materials.darkTrim);
+    sideShell.position.set(0, -0.03, 0.12);
+    sideShell.rotation.x = Math.PI / 2;
+    sideShell.scale.set(1, 0.68, 1);
+    character.add(sideShell);
+
     const torsoPlate = mesh(THREE, new THREE.CapsuleGeometry(0.2, 0.34, 8, 24), materials.torsoPanel);
     torsoPlate.scale.set(1.1, 1, 0.18);
     torsoPlate.position.set(0, 0.03, 0.53);
@@ -157,6 +184,11 @@ function buildCharacter(THREE, variant) {
     helmet.position.set(0, 0, 0.08);
     head.add(helmet);
 
+    const visorGlow = mesh(THREE, new THREE.PlaneGeometry(0.48, 0.13), materials.visorGlow);
+    visorGlow.position.set(-0.17, 0.18, 0.64);
+    visorGlow.rotation.z = -0.18;
+    head.add(visorGlow);
+
     const rim = mesh(THREE, new THREE.TorusGeometry(0.54, 0.025, 18, 96), materials.cyan);
     rim.position.set(0, 0, 0.47);
     rim.scale.set(1.08, 0.78, 1);
@@ -166,6 +198,18 @@ function buildCharacter(THREE, variant) {
     visorBand.position.set(0, -0.02, 0.49);
     visorBand.scale.set(1.08, 0.78, 1);
     head.add(visorBand);
+
+    const haloA = mesh(THREE, new THREE.TorusGeometry(0.72, 0.009, 10, 120), materials.ringDim);
+    haloA.position.set(0, 0.02, 0.02);
+    haloA.rotation.x = Math.PI / 2.25;
+    haloA.rotation.z = -0.38;
+    head.add(haloA);
+
+    const haloB = mesh(THREE, new THREE.TorusGeometry(0.66, 0.008, 10, 120), materials.ring);
+    haloB.position.set(0, -0.02, 0.03);
+    haloB.rotation.x = Math.PI / 2.1;
+    haloB.rotation.z = 0.55;
+    head.add(haloB);
 
     const snout = mesh(THREE, new THREE.SphereGeometry(0.16, 32, 18), materials.snout);
     snout.scale.set(1.28, 0.72, 0.46);
@@ -277,12 +321,14 @@ function buildCharacter(THREE, variant) {
     root.add(sparks);
 
     if (variant === 'matrix') {
-        character.scale.setScalar(1.34);
-        character.position.set(0, -0.48, 0);
+        character.scale.setScalar(1.42);
+        character.position.set(0, -0.52, 0);
+        character.rotation.y = -0.18;
         platform.visible = false;
         sparks.visible = false;
     } else {
-        character.position.set(-0.18, 0.06, 0);
+        character.position.set(-0.2, 0.05, 0);
+        character.rotation.y = -0.3;
     }
 
     return {
@@ -290,7 +336,10 @@ function buildCharacter(THREE, variant) {
         character,
         characterBaseY: character.position.y,
         characterBaseScale: character.scale.clone(),
+        characterBaseRotationY: character.rotation.y,
         head,
+        haloA,
+        haloB,
         waveArm,
         steadyArm,
         legs,
@@ -318,6 +367,7 @@ function createMaterials(THREE) {
         shoe: new THREE.MeshStandardMaterial({ color: 0x165b9f, roughness: 0.4, metalness: 0.18 }),
         blueTrim: new THREE.MeshStandardMaterial({ color: 0x0f6abf, roughness: 0.34, metalness: 0.28 }),
         darkTrim: new THREE.MeshStandardMaterial({ color: 0x0f172a, emissive: 0x0ea5e9, emissiveIntensity: 0.12, roughness: 0.22, metalness: 0.36 }),
+        visorGlow: new THREE.MeshBasicMaterial({ color: 0xffffff, transparent: true, opacity: 0.3, depthWrite: false }),
         cyan: new THREE.MeshStandardMaterial({ color: 0x5eead4, emissive: 0x0ea5e9, emissiveIntensity: 0.55, roughness: 0.18, metalness: 0.22 }),
         ring: new THREE.MeshBasicMaterial({ color: 0x5eead4, transparent: true, opacity: 0.56 }),
         ringDim: new THREE.MeshBasicMaterial({ color: 0x60a5fa, transparent: true, opacity: 0.38 }),
@@ -332,6 +382,18 @@ function createMaterials(THREE) {
             thickness: 0.24,
         }),
     };
+}
+
+function createShadowCatcher(THREE, variant) {
+    const shadow = mesh(
+        THREE,
+        new THREE.PlaneGeometry(variant === 'matrix' ? 1.55 : 2.25, variant === 'matrix' ? 0.72 : 1.05),
+        new THREE.ShadowMaterial({ color: 0x0f172a, opacity: variant === 'matrix' ? 0.18 : 0.23, transparent: true }),
+    );
+    shadow.rotation.x = -Math.PI / 2;
+    shadow.position.set(variant === 'matrix' ? 0 : -0.04, -1.16, 0.12);
+    shadow.receiveShadow = true;
+    return shadow;
 }
 
 function createArm(THREE, materials, side) {
@@ -396,22 +458,27 @@ function createSparks(THREE, materials) {
 
 function animateCharacter(THREE, refs, elapsed, variant, prefersReducedMotion) {
     const t = prefersReducedMotion ? 0.62 : elapsed;
-    const hop = Math.sin(t * 2.3);
-    const softHop = Math.max(0, hop) * 0.08;
-    const breath = Math.sin(t * 1.8) * 0.015;
+    const hop = Math.sin(t * 2.55);
+    const softHop = Math.max(0, hop) * (variant === 'matrix' ? 0.06 : 0.14);
+    const landingSquash = Math.max(0, -hop) * (variant === 'matrix' ? 0.018 : 0.035);
+    const breath = Math.sin(t * 1.8) * 0.014;
+    const turn = Math.sin(t * 0.82);
 
     refs.character.position.y = refs.characterBaseY + softHop + Math.sin(t * 1.35) * 0.018;
     refs.character.scale.set(
-        refs.characterBaseScale.x * (1 - breath * 0.32),
-        refs.characterBaseScale.y * (1 + breath),
-        refs.characterBaseScale.z * (1 - breath * 0.18),
+        refs.characterBaseScale.x * (1 + landingSquash - breath * 0.28),
+        refs.characterBaseScale.y * (1 - landingSquash * 0.9 + breath),
+        refs.characterBaseScale.z * (1 + landingSquash * 0.7 - breath * 0.14),
     );
-    refs.character.rotation.y = Math.sin(t * 0.72) * (variant === 'matrix' ? 0.34 : 0.26);
-    refs.character.rotation.z = Math.sin(t * 1.4) * 0.025;
+    refs.character.rotation.y = refs.characterBaseRotationY + turn * (variant === 'matrix' ? 0.58 : 0.48);
+    refs.character.rotation.z = Math.sin(t * 1.4) * (variant === 'matrix' ? 0.022 : 0.04);
+    refs.character.rotation.x = Math.sin(t * 0.9) * 0.026;
     refs.head.rotation.x = Math.sin(t * 1.25) * 0.055;
-    refs.head.rotation.y = Math.sin(t * 0.92) * 0.16;
-    refs.waveArm.rotation.z = 0.72 + Math.sin(t * 3.4) * 0.28;
-    refs.waveArm.rotation.x = Math.sin(t * 2.2) * 0.12;
+    refs.head.rotation.y = Math.sin(t * 0.92) * 0.22 - turn * 0.08;
+    refs.haloA.rotation.z = -0.38 + t * 0.38;
+    refs.haloB.rotation.z = 0.55 - t * 0.5;
+    refs.waveArm.rotation.z = 0.76 + Math.sin(t * 3.4) * 0.34;
+    refs.waveArm.rotation.x = Math.sin(t * 2.2) * 0.16;
     refs.steadyArm.rotation.z = -0.42 + Math.sin(t * 1.7) * 0.05;
     refs.tailRig.rotation.y = Math.sin(t * 3.2) * 0.28;
     refs.tailRig.rotation.z = Math.sin(t * 2.4) * 0.12;
@@ -428,6 +495,10 @@ function animateCharacter(THREE, refs, elapsed, variant, prefersReducedMotion) {
     refs.ringA.rotation.z = t * 0.62;
     refs.ringB.rotation.z = -t * 0.9;
     refs.platform.scale.setScalar(1 + Math.sin(t * 2.1) * 0.02);
+    if (refs.shadowCatcher) {
+        refs.shadowCatcher.scale.setScalar(1 + softHop * 0.45);
+        refs.shadowCatcher.material.opacity = (variant === 'matrix' ? 0.15 : 0.2) - softHop * 0.22;
+    }
     refs.sparks.children.forEach((spark, index) => {
         spark.position.y += Math.sin(t * 1.7 + index) * 0.0015;
         spark.scale.setScalar(0.8 + Math.sin(t * 2.4 + index) * 0.22);

@@ -1115,6 +1115,7 @@ section[id] {
     padding: 0.06em 0.1em 0.11em;
     isolation: isolate;
     transform: translateZ(0);
+    animation: heroLogoFloat 5.2s ease-in-out infinite;
 }
 
 .hero-logo-word::before {
@@ -1164,6 +1165,85 @@ section[id] {
 .hero-logo-word .brand-word > span {
     display: inline-block;
     transform-origin: center;
+    animation: heroLetterMorph 10.8s cubic-bezier(0.76, 0, 0.24, 1) 3s infinite;
+    will-change: transform, opacity, filter;
+}
+
+.hero-logo-word .brand-word > span:nth-child(1) { --hero-morph-x: 2.2em; --hero-morph-y: 0.02em; --hero-morph-rotate: -18deg; }
+.hero-logo-word .brand-word > span:nth-child(2) { --hero-morph-x: 1.32em; --hero-morph-y: -0.03em; --hero-morph-rotate: 12deg; }
+.hero-logo-word .brand-word > span:nth-child(3) { --hero-morph-x: 0.52em; --hero-morph-y: 0.04em; --hero-morph-rotate: -10deg; }
+.hero-logo-word .brand-word > span:nth-child(4) { --hero-morph-x: -0.28em; --hero-morph-y: -0.04em; --hero-morph-rotate: 14deg; }
+.hero-logo-word .brand-word > span:nth-child(5) { --hero-morph-x: -1.16em; --hero-morph-y: 0.03em; --hero-morph-rotate: -12deg; }
+.hero-logo-word .brand-word > span:nth-child(6) { --hero-morph-x: -1.72em; --hero-morph-y: -0.02em; --hero-morph-rotate: 18deg; }
+
+.hero-logo-orb {
+    position: absolute;
+    left: 50%;
+    top: 48%;
+    z-index: 2;
+    width: 1.02em;
+    height: 1.02em;
+    border-radius: 50%;
+    border: 1px solid rgba(191, 219, 254, 0.34);
+    background:
+        radial-gradient(circle at 31% 23%, rgba(255, 255, 255, 0.98) 0 6%, rgba(191, 219, 254, 0.72) 7% 16%, transparent 30%),
+        radial-gradient(circle at 44% 38%, rgba(103, 232, 249, 0.66) 0 16%, rgba(37, 99, 235, 0.72) 36%, rgba(8, 47, 73, 0.9) 68%, rgba(2, 6, 23, 0.98) 100%),
+        linear-gradient(135deg, rgba(94, 234, 212, 0.5), rgba(37, 99, 235, 0.46) 48%, rgba(231, 76, 60, 0.24));
+    box-shadow:
+        0 18px 38px rgba(15, 23, 42, 0.24),
+        0 0 38px rgba(45, 212, 191, 0.42),
+        0 0 70px rgba(37, 99, 235, 0.24),
+        inset -0.14em -0.18em 0.3em rgba(2, 6, 23, 0.64),
+        inset 0.1em 0.08em 0.22em rgba(255, 255, 255, 0.18);
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.38);
+    animation: heroOrbMorph 10.8s cubic-bezier(0.76, 0, 0.24, 1) 3s infinite;
+    will-change: transform, opacity;
+    pointer-events: none;
+}
+
+.hero-logo-orb::before,
+.hero-logo-orb::after {
+    content: '';
+    position: absolute;
+    inset: -0.2em;
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+.hero-logo-orb::before {
+    background:
+        repeating-radial-gradient(ellipse at center, transparent 0 0.08em, rgba(147, 197, 253, 0.26) 0.09em 0.1em, transparent 0.11em 0.18em),
+        linear-gradient(90deg, transparent 0 46%, rgba(191, 219, 254, 0.34) 47% 48%, transparent 49% 100%);
+    mix-blend-mode: screen;
+    opacity: 0.88;
+    border: 1px solid rgba(125, 211, 252, 0.38);
+    box-shadow: 0 0 14px rgba(94, 234, 212, 0.2);
+    transform: rotateX(62deg) rotateZ(-12deg);
+    animation: heroOrbRing 3.4s linear infinite;
+}
+
+.hero-logo-orb::after {
+    inset: -0.3em;
+    background: conic-gradient(from 20deg, transparent 0deg 38deg, rgba(94, 234, 212, 0.62) 54deg 68deg, transparent 84deg 190deg, rgba(96, 165, 250, 0.48) 206deg 218deg, transparent 235deg 360deg);
+    -webkit-mask: radial-gradient(circle, transparent 0 50%, #000 52% 58%, transparent 60%);
+    mask: radial-gradient(circle, transparent 0 50%, #000 52% 58%, transparent 60%);
+    animation: heroOrbArc 4.8s linear infinite reverse;
+}
+
+.hero-orb-monogram {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    color: rgba(255, 255, 255, 0.92);
+    -webkit-text-fill-color: rgba(255, 255, 255, 0.92);
+    font-family: ui-rounded, "SF Pro Rounded", "Nunito Sans", sans-serif;
+    font-size: 0.25em;
+    font-weight: 850;
+    line-height: 1;
+    text-shadow: 0 0 12px rgba(191, 219, 254, 0.82);
+    transform: translateY(-0.01em);
 }
 
 .hero-logo-word .brand-word::before {
@@ -1402,11 +1482,11 @@ section[id] {
 
 .hero-companion-stage {
     position: absolute;
-    left: -164px;
+    left: -60px;
     bottom: -24px;
     z-index: 3;
-    width: clamp(210px, 21vw, 286px);
-    height: clamp(276px, 31vw, 390px);
+    width: clamp(194px, 19.4vw, 264px);
+    height: clamp(258px, 29vw, 372px);
     isolation: isolate;
     pointer-events: none;
     perspective: 760px;
@@ -4548,6 +4628,15 @@ section[id] {
     }
 }
 
+@keyframes heroLogoFloat {
+    0%, 100% {
+        transform: translateY(0) rotateX(0deg);
+    }
+    50% {
+        transform: translateY(-11px) rotateX(2.4deg);
+    }
+}
+
 @keyframes heroLogoScan {
     0%, 18%, 100% {
         opacity: 0;
@@ -4561,6 +4650,38 @@ section[id] {
         opacity: 0;
         transform: translateY(0.38em) scaleX(0.7);
     }
+}
+
+@keyframes heroLetterMorph {
+    0%, 34%, 74%, 100% {
+        opacity: 1;
+        filter: blur(0);
+        transform: translate3d(0, 0, 0) rotate(0deg) scale(1);
+    }
+    44%, 64% {
+        opacity: 0.02;
+        filter: blur(1.4px);
+        transform: translate3d(var(--hero-morph-x), var(--hero-morph-y), 0) rotate(var(--hero-morph-rotate)) scale(0.12);
+    }
+}
+
+@keyframes heroOrbMorph {
+    0%, 34%, 74%, 100% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.26) rotate(-10deg);
+    }
+    45%, 63% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1) rotate(4deg);
+    }
+}
+
+@keyframes heroOrbRing {
+    to { transform: rotateX(62deg) rotateZ(348deg); }
+}
+
+@keyframes heroOrbArc {
+    to { transform: rotate(360deg); }
 }
 
 @keyframes matrixGlow {
@@ -5481,6 +5602,11 @@ section[id] {
         inset: 0.12em 0.02em 0.06em;
         border-radius: 0.46em;
         filter: blur(11px);
+    }
+
+    .hero-logo-orb {
+        width: 0.72em;
+        height: 0.72em;
     }
 
     .hero-title .subtitle {
@@ -7463,6 +7589,7 @@ body.intro-active {
     .hero-logo-word,
     .hero-logo-word .brand-word::after,
     .hero-logo-word .brand-word > span,
+    .hero-logo-orb,
     .telemetry-item::after,
     .config-output::before,
     .config-route-map i::after,
