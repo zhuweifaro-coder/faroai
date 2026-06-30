@@ -34,6 +34,7 @@
     <!-- Preconnect & Preload -->
     <!-- Styles -->
     <link rel="preload" as="image" href="assets/character/fa-piglet-buddy-portal.webp" type="image/webp">
+    <link rel="modulepreload" href="https://cdn.jsdelivr.net/npm/three@0.185.0/build/three.module.js">
     <link rel="stylesheet" href="styles.css?v=20260629a">
     
     <!-- Critical CSS Inline -->
@@ -245,7 +246,7 @@
                         <span>OpenClaw 本机与 npm 最新版本已对齐，微信链路按网关状态验证</span>
                     </div>
                     <h1 class="hero-title">
-                        <span class="gradient-text hero-logo-word"><span class="hero-logo-orb" aria-hidden="true"><span class="hero-orb-monogram">Fa</span></span><span class="brand-word"><span class="brand-red">F</span><span class="brand-grad brand-grad-a">a</span><span class="brand-grad brand-grad-r">r</span><span class="brand-grad brand-grad-o">o</span><span class="brand-red">A</span><span class="brand-grad brand-grad-i">I</span></span></span>
+                        <span class="gradient-text hero-logo-word"><span class="brand-word"><span class="brand-red">F</span><span class="brand-grad brand-grad-a">a</span><span class="brand-grad brand-grad-r">r</span><span class="brand-grad brand-grad-o">o</span><span class="brand-red">A</span><span class="brand-grad brand-grad-i">I</span></span></span>
                         <span class="subtitle">把 AI 接进你的微信、知识库和自动化工作流</span>
                     </h1>
                     <p class="hero-description">
@@ -291,17 +292,9 @@
                     </div>
                 </div>
                 <div class="hero-visual" aria-label="FaroAI 研究伙伴与网关状态预览">
-                    <div class="hero-companion-stage" aria-hidden="true">
-                        <span class="hero-companion-orbit hero-companion-orbit-a"></span>
-                        <span class="hero-companion-orbit hero-companion-orbit-b"></span>
-                        <span class="hero-companion-trail hero-companion-trail-a"></span>
-                        <span class="hero-companion-trail hero-companion-trail-b"></span>
-                        <span class="hero-companion-trail hero-companion-trail-c"></span>
-                        <span class="hero-companion-spark hero-companion-spark-a"></span>
-                        <span class="hero-companion-spark hero-companion-spark-b"></span>
-                        <span class="hero-companion-spark hero-companion-spark-c"></span>
-                        <img class="hero-companion-figure" src="assets/character/fa-piglet-buddy-portal.webp" alt="" width="360" height="562" loading="lazy" decoding="async">
-                        <span class="hero-companion-shadow"></span>
+                    <div class="hero-companion-stage" data-fa-character-shell aria-hidden="true">
+                        <canvas class="fa-character-canvas hero-character-canvas" data-fa-3d-character data-character-variant="hero"></canvas>
+                        <img class="hero-character-fallback" src="assets/character/fa-piglet-buddy-portal.webp" alt="" width="360" height="562" loading="lazy" decoding="async">
                     </div>
                     <div class="dashboard-preview">
                         <div class="dashboard-orbit-layer">
@@ -817,8 +810,9 @@
                         <span class="matrix-ring matrix-ring-a"></span>
                         <span class="matrix-ring matrix-ring-b"></span>
                         <span class="matrix-ring matrix-ring-c"></span>
-                        <span class="matrix-core">
-                            <img src="assets/character/fa-piglet-buddy-avatar-sm.webp" alt="" width="192" height="192" loading="lazy" decoding="async">
+                        <span class="matrix-core" data-fa-character-shell>
+                            <canvas class="fa-character-canvas matrix-character-canvas" data-fa-3d-character data-character-variant="matrix"></canvas>
+                            <img class="matrix-character-fallback" src="assets/character/fa-piglet-buddy-avatar-sm.webp" alt="" width="192" height="192" loading="lazy" decoding="async">
                         </span>
                         <span class="matrix-node node-wechat is-active" data-node="wechat">微信</span>
                         <span class="matrix-node node-gateway" data-node="automation">Gateway</span>
@@ -1443,8 +1437,8 @@
                     <div class="footer-companion" aria-label="FaroAI 研究伙伴">
                         <img class="companion-avatar" src="assets/character/fa-piglet-buddy-avatar-sm.webp" alt="" width="192" height="192" loading="lazy" decoding="async">
                         <div class="companion-copy">
-                            <span>Fa 在这里</span>
-                            <strong>把研究、视频和自动化收在一起。</strong>
+                            <span>FaroAI Studio</span>
+                            <strong>研究、视频和自动化的个人工作台。</strong>
                         </div>
                     </div>
                     <div class="social-links" role="navigation" aria-label="社交媒体链接">
@@ -1589,6 +1583,7 @@
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" defer></script>
     <script src="script.js?v=20260625a" defer></script>
+    <script type="module" src="character-3d.js?v=20260630a"></script>
     
     <!-- Performance Optimization -->
     <script>
