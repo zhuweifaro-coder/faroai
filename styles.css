@@ -1569,10 +1569,7 @@ section[id] {
     opacity: 1;
 }
 
-.hero-companion-stage.is-3d-ready .hero-character-fallback {
-    opacity: 0.72;
-}
-
+.is-3d-ready .hero-character-fallback,
 .is-3d-ready .matrix-character-fallback {
     opacity: 0;
 }
