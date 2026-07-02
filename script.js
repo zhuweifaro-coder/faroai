@@ -1,3 +1,21 @@
+function showSiteToast(message, tone = 'info') {
+    const existing = document.querySelector('.site-toast');
+    if (existing) existing.remove();
+
+    const toast = document.createElement('div');
+    toast.className = `site-toast site-toast-${tone}`;
+    toast.setAttribute('role', tone === 'error' ? 'alert' : 'status');
+    toast.setAttribute('aria-live', tone === 'error' ? 'assertive' : 'polite');
+    toast.textContent = message;
+    document.body.appendChild(toast);
+
+    window.requestAnimationFrame(() => toast.classList.add('is-visible'));
+    window.setTimeout(() => {
+        toast.classList.remove('is-visible');
+        window.setTimeout(() => toast.remove(), 260);
+    }, 3200);
+}
+
 // 打开视频弹窗功能
 function openVideo(url, event) {
     if (event && event.preventDefault) {
@@ -5,7 +23,7 @@ function openVideo(url, event) {
     }
     
     if (!url) {
-        alert('视频链接无效');
+        showSiteToast('视频链接无效。', 'error');
         return;
     }
     
@@ -313,7 +331,7 @@ document.head.appendChild(style);
                 errorEl.hidden = false;
                 errorEl.style.color = 'var(--primary-color, #2563eb)';
             } else {
-                alert(message);
+                showSiteToast(message, 'info');
             }
         });
     });
@@ -332,7 +350,7 @@ document.head.appendChild(style);
         const message = form.querySelector('#contactMessage')?.value.trim();
 
         if (!name || !email || !message) {
-            alert('请填写姓名、邮箱和内容。');
+            showSiteToast('请填写姓名、邮箱和内容。', 'error');
             return;
         }
 
@@ -1490,6 +1508,46 @@ document.head.appendChild(style);
                     button.textContent = original;
                     button.classList.remove('is-copied');
                 }, 2200);
+            });
+        });
+    });
+})();
+
+/* ─────────── 全站高级 hover 光标反馈 ─────────── */
+(function bindSurfaceSpotlight() {
+    function onReady(callback) {
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', callback);
+            return;
+        }
+        callback();
+    }
+
+    onReady(() => {
+        const targets = document.querySelectorAll([
+            '.credibility-item',
+            '.fit-card',
+            '.launch-lane',
+            '.ops-status-card',
+            '.command-chip',
+            '.workflow-tab',
+            '.metric-card',
+            '.mission-card',
+            '.config-option',
+            '.feature-card',
+            '.quickstart-step',
+            '.status-card',
+            '.use-case-card',
+            '.blog-preview-card',
+            '.team-card'
+        ].join(','));
+
+        targets.forEach(target => {
+            target.classList.add('surface-spotlight');
+            target.addEventListener('pointermove', event => {
+                const rect = target.getBoundingClientRect();
+                target.style.setProperty('--spot-x', `${event.clientX - rect.left}px`);
+                target.style.setProperty('--spot-y', `${event.clientY - rect.top}px`);
             });
         });
     });
