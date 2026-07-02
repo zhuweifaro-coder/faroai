@@ -1454,12 +1454,10 @@ section[id] {
     border-radius: 999px;
 }
 
-.companion-avatar[src$="fa-tech-piglet.svg"],
-.companion-bust[src$="fa-tech-piglet.svg"] {
-    object-fit: contain;
-    padding: 4px;
-    background:
-        radial-gradient(circle at 48% 42%, rgba(224, 242, 254, 0.92), rgba(37, 99, 235, 0.16) 62%, rgba(15, 23, 42, 0.92));
+.companion-avatar[src$="fa-piglet-buddy-avatar-sm.webp"],
+.companion-bust[src$="fa-piglet-buddy-avatar-sm.webp"] {
+    object-fit: cover;
+    background: #07111f;
 }
 
 .companion-bust {
@@ -1548,7 +1546,7 @@ section[id] {
     animation: companionPortalBreath 4.8s ease-in-out infinite;
 }
 
-.fa-tech-companion {
+.fa-video-companion {
     position: absolute;
     inset: 0;
     z-index: 3;
@@ -1557,8 +1555,8 @@ section[id] {
     pointer-events: none;
 }
 
-.fa-tech-companion::before,
-.fa-tech-companion::after {
+.fa-video-companion::before,
+.fa-video-companion::after {
     content: '';
     position: absolute;
     left: 50%;
@@ -1569,10 +1567,10 @@ section[id] {
     border: 1px solid rgba(125, 211, 252, 0.26);
     border-radius: 50%;
     transform: translate(-50%, -50%) rotateX(68deg) rotateZ(-18deg);
-    animation: faTechOrbit 7.4s linear infinite;
+    animation: faVideoOrbit 7.4s linear infinite;
 }
 
-.fa-tech-companion::after {
+.fa-video-companion::after {
     width: 62%;
     height: 62%;
     border-style: dashed;
@@ -1581,21 +1579,21 @@ section[id] {
     animation-direction: reverse;
 }
 
-.fa-tech-piglet {
+.fa-video-mascot {
     position: relative;
     z-index: 2;
     display: block;
-    width: min(112%, 132px);
-    height: min(112%, 132px);
+    width: min(118%, 148px);
+    height: auto;
     object-fit: contain;
     filter:
         drop-shadow(0 18px 24px rgba(15, 23, 42, 0.22))
         drop-shadow(0 0 18px rgba(14, 165, 233, 0.24));
     transform-origin: 50% 74%;
-    animation: faTechFloat 4.2s ease-in-out infinite;
+    animation: faVideoFloat 4.2s ease-in-out infinite;
 }
 
-.fa-tech-scan {
+.fa-video-scan {
     position: absolute;
     left: 16%;
     right: 16%;
@@ -1606,7 +1604,7 @@ section[id] {
     background: linear-gradient(90deg, transparent, rgba(248, 250, 252, 0.88), rgba(94, 234, 212, 0.82), transparent);
     box-shadow: 0 0 14px rgba(94, 234, 212, 0.56);
     opacity: 0;
-    animation: faTechScan 4.2s ease-in-out infinite;
+    animation: faVideoScan 4.2s ease-in-out infinite;
 }
 
 .fa-character-canvas {
@@ -1837,7 +1835,7 @@ section[id] {
     }
 }
 
-@keyframes faTechFloat {
+@keyframes faVideoFloat {
     0%,
     100% {
         transform: translate3d(0, 0, 0) rotate(-1.2deg) scale(1);
@@ -1852,7 +1850,7 @@ section[id] {
     }
 }
 
-@keyframes faTechOrbit {
+@keyframes faVideoOrbit {
     0% {
         transform: translate(-50%, -50%) rotateX(68deg) rotateZ(0deg);
     }
@@ -1862,7 +1860,7 @@ section[id] {
     }
 }
 
-@keyframes faTechScan {
+@keyframes faVideoScan {
     0%,
     100% {
         opacity: 0;
@@ -3960,13 +3958,12 @@ section[id] {
     height: 106px;
     border: 1px solid rgba(191, 219, 254, 0.32);
     border-radius: 50%;
-    object-fit: contain;
-    padding: 5px;
-    background:
-        radial-gradient(circle at 50% 42%, rgba(224, 242, 254, 0.86), rgba(37, 99, 235, 0.2) 64%, rgba(15, 23, 42, 0.9));
+    object-fit: cover;
+    padding: 0;
+    background: #07111f;
     box-shadow: 0 0 26px rgba(14, 165, 233, 0.28);
     transition: opacity 0.24s ease;
-    animation: faTechFloat 4.4s ease-in-out infinite;
+    animation: faVideoFloat 4.4s ease-in-out infinite;
 }
 
 .matrix-node {
