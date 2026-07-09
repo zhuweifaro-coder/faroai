@@ -389,6 +389,10 @@ document.head.appendChild(style);
         const loginTriggers = document.querySelectorAll('.btn-login-trigger');
         const modalSubtitle = document.querySelector('#loginModal .modal-subtitle');
         const isHttpPage = window.location.protocol === 'http:' || window.location.protocol === 'https:';
+        const isLocalStaticPreview = isHttpPage
+            && ['127.0.0.1', 'localhost', '0.0.0.0'].includes(window.location.hostname)
+            && !['8787', '8788'].includes(window.location.port);
+        const canUseOAuth = isHttpPage && !isLocalStaticPreview;
 
         function setStatus(message, tone = 'info') {
             if (!status) return;
@@ -443,6 +447,10 @@ document.head.appendChild(style);
                 setStatus('OAuth 后端已接入；请通过 Cloudflare Pages 或本地 Pages Functions 预览使用。');
                 return;
             }
+            if (isLocalStaticPreview) {
+                setStatus('当前是本地静态预览，不加载 Pages Functions 会话接口；线上环境可使用 OAuth。');
+                return;
+            }
 
             fetch('/api/auth/session', {
                 credentials: 'include',
@@ -461,12 +469,12 @@ document.head.appendChild(style);
         }
 
         oauthButtons.forEach(btn => {
-            btn.disabled = !isHttpPage;
+            btn.disabled = !canUseOAuth;
             btn.addEventListener('click', e => {
                 e.preventDefault();
                 const provider = btn.dataset.oauthProvider;
-                if (!provider || !isHttpPage) {
-                    setStatus('请在 Cloudflare Pages 线上环境中使用 OAuth。', 'error');
+                if (!provider || !canUseOAuth) {
+                    setStatus(isLocalStaticPreview ? '本地静态预览不包含 OAuth 后端，请在线上环境或 Pages Functions 预览中使用。' : '请在 Cloudflare Pages 线上环境中使用 OAuth。', 'error');
                     return;
                 }
 
@@ -1310,7 +1318,7 @@ document.head.appendChild(style);
             });
         }
 
-        addPointerLift('.hero-actions .btn, .command-chip, .workflow-tab, .config-option, .matrix-chip, .matrix-mini-grid article, .feature-card, .blog-preview-card');
+        addPointerLift('.hero-actions .btn, .command-chip, .workflow-tab, .skill-card, .config-option, .matrix-chip, .matrix-mini-grid article, .feature-card, .blog-preview-card');
 
         window.FaroAIGsap.animateWorkflow = function animateWorkflow() {
             gsap.fromTo('.workflow-step', {
@@ -1533,6 +1541,8 @@ document.head.appendChild(style);
             '.workflow-tab',
             '.metric-card',
             '.mission-card',
+            '.skill-card',
+            '.skill-flow-step',
             '.config-option',
             '.feature-card',
             '.quickstart-step',

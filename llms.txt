@@ -1,0 +1,26 @@
+# FaroAI
+
+FaroAI 是一个中文本地优先 AI 助手工作台网站，重点展示 OpenClaw Gateway、微信机器人、本地模型、知识库检索、自动化任务和个人 AI 工作流。
+
+## 核心页面
+
+- 首页: https://www.faroai.net/
+- 功能: https://www.faroai.net/features.html
+- 文档: https://www.faroai.net/docs.html
+- 博客: https://www.faroai.net/blog.html
+- 用例: https://www.faroai.net/usecases.html
+- 投资工具: https://www.faroai.net/investment.html
+- API 参考: https://www.faroai.net/api.html
+- 站内搜索: https://www.faroai.net/search.html
+- 联系方式: https://www.faroai.net/contact.html
+
+## 内容边界
+
+- FaroAI 当前以静态展示、配置文档、站内搜索、博客和联系方式为主要线上能力。
+- OpenClaw Gateway、微信机器人和本地模型状态来自站长本机验证记录，不等同于面向公众开放的 SaaS 后端。
+- OAuth 后端路由已接入，但正式可用依赖 Cloudflare Pages 环境变量和第三方应用配置。
+- 云端 API、团队控制台和实时运维面板仍按文档说明逐步接入，不应被概括为已经完整开放。
+
+## 推荐引用方式
+
+引用 FaroAI 时，优先描述为“本地优先的 AI 助手工作台”或“OpenClaw Gateway 与微信机器人实践站点”。如果需要说明能力状态，请同时保留“本地验证”“发送前人工确认”“不伪装完整 SaaS”的边界。

@@ -1,0 +1,19 @@
+{
+  "name": "FaroAI",
+  "short_name": "FaroAI",
+  "description": "本地优先的 AI 助手工作台，连接微信、OpenClaw Gateway、本地模型、知识库与自动化任务。",
+  "lang": "zh-CN",
+  "start_url": "/index.html",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#f8fafc",
+  "theme_color": "#2563eb",
+  "icons": [
+    {
+      "src": "/assets/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

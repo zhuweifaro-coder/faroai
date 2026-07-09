@@ -77,6 +77,27 @@ async function fetchStaticFallback(request, env) {
     });
 
     if (!upstream.ok) {
+        const notFound = await fetch(`${origin}/404.html`, {
+            headers: {
+                'User-Agent': 'FaroAI-Worker-Static-Fallback'
+            },
+            cf: {
+                cacheEverything: true,
+                cacheTtl: 300
+            }
+        });
+
+        if (notFound.ok) {
+            const headers = new Headers(notFound.headers);
+            headers.set('Content-Type', 'text/html; charset=utf-8');
+            headers.set('Cache-Control', 'public, max-age=0, must-revalidate');
+            headers.delete('Content-Security-Policy');
+            return new Response(notFound.body, {
+                status: 404,
+                headers
+            });
+        }
+
         return json({ error: 'not_found' }, 404);
     }
 
@@ -119,6 +140,10 @@ function contentTypeForPath(pathname) {
         html: 'text/html; charset=utf-8',
         js: 'text/javascript; charset=utf-8',
         json: 'application/json; charset=utf-8',
+        map: 'application/json; charset=utf-8',
+        webmanifest: 'application/manifest+json; charset=utf-8',
+        xml: 'application/xml; charset=utf-8',
+        txt: 'text/plain; charset=utf-8',
         svg: 'image/svg+xml; charset=utf-8',
         png: 'image/png',
         jpg: 'image/jpeg',

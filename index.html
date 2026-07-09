@@ -5,9 +5,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+    <link rel="manifest" href="site.webmanifest">
     <meta name="description" content="FaroAI 是面向个人与小团队的本地优先 AI 助手工作台，连接微信、Ollama、知识库与自动化任务，让你的 AI 真正接入日常工作。">
     <meta name="keywords" content="FaroAI, OpenClaw, AI 助手, 微信机器人, Ollama, 自动化工作流, 本地 AI, 多模态 AI">
     <meta name="author" content="FaroAI Team">
+    <meta name="application-name" content="FaroAI">
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
     
     <!-- Open Graph / Facebook -->
@@ -24,6 +26,7 @@
     <meta property="twitter:description" content="连接微信、Ollama、知识库与自动化任务，让 AI 能听、能看、能执行。">
     <meta property="twitter:image" content="https://www.faroai.net/assets/og-image.svg">
     <link rel="canonical" href="https://www.faroai.net/">
+    <link rel="sitemap" type="application/xml" href="https://www.faroai.net/sitemap.xml">
     
     <!-- 主题色 -->
     <meta name="theme-color" content="#2563eb">
@@ -34,7 +37,7 @@
     <!-- Preconnect & Preload -->
     <!-- Styles -->
     <link rel="preload" as="image" href="assets/character/fa-piglet-buddy-portal.webp" type="image/webp">
-    <link rel="stylesheet" href="styles.css?v=20260703a">
+    <link rel="stylesheet" href="styles.css?v=20260710a">
     
     <!-- Critical CSS Inline -->
     <style>
@@ -84,7 +87,7 @@
         "name": "FaroAI",
         "url": "https://www.faroai.net/",
         "inLanguage": "zh-CN",
-        "dateModified": "2026-07-03",
+        "dateModified": "2026-07-10",
         "description": "本地优先的 AI 助手工作台",
         "publisher": {
             "@type": "Organization",
@@ -233,11 +236,12 @@
         <span class="section-rail-title">NAV</span>
         <a href="#home" class="is-active" data-step="01" aria-label="返回顶部">顶部</a>
         <a href="#ops-radar" data-step="02" aria-label="运行状态">状态</a>
-        <a href="#config-lab" data-step="03" aria-label="配置诊断">诊断</a>
-        <a href="#agent-matrix" data-step="04" aria-label="系统矩阵">矩阵</a>
-        <a href="#workflow-lab" data-step="05" aria-label="工作流演示">演示</a>
-        <a href="#features" data-step="06" aria-label="核心能力">能力</a>
-        <a href="#blog" data-step="07" aria-label="最新博客">博客</a>
+        <a href="#command-deck" data-step="03" aria-label="任务指挥台">指挥</a>
+        <a href="#skill-stack" data-step="04" aria-label="技能闭环">技能</a>
+        <a href="#config-lab" data-step="05" aria-label="配置诊断">诊断</a>
+        <a href="#agent-matrix" data-step="06" aria-label="系统矩阵">矩阵</a>
+        <a href="#features" data-step="07" aria-label="核心能力">能力</a>
+        <a href="#blog" data-step="08" aria-label="最新博客">博客</a>
     </nav>
 
     <main id="main">
@@ -357,8 +361,8 @@
                 <div class="credibility-grid">
                     <div class="credibility-item">
                         <span class="credibility-label">内容更新时间</span>
-                        <strong>2026-06-29</strong>
-                        <p>本机当前运行 OpenClaw 2026.6.10；2026-06-29 复核 npm latest 同为 2026.6.10，后续升级前后仍应重新执行 doctor 与链路验证。</p>
+                        <strong>2026-07-10</strong>
+                        <p>已完成界面、SEO/AI 可发现性与浏览器回归优化；OpenClaw 版本口径仍以 2026-06-29 复核结果为准，后续升级前后仍应重新执行 doctor 与链路验证。</p>
                     </div>
                     <div class="credibility-item">
                         <span class="credibility-label">事实边界</span>
@@ -661,6 +665,53 @@
                             <span>Search</span>
                             <strong>站内搜索已接入</strong>
                             <p>可搜索文档、博客、功能、用例、集成和联系方式。</p>
+                        </article>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="skill-stack" class="skill-stack" aria-label="FaroAI 技能闭环">
+            <div class="container">
+                <div class="skill-stack-shell">
+                    <div class="skill-stack-copy">
+                        <span class="section-label">Skill Loop</span>
+                        <h2 class="section-title">把设计、内容、测试和发布接成一条维护链</h2>
+                        <p class="section-description">
+                            网站现在不只靠静态页面展示，而是把视觉审校、SEO/AI 可发现性、浏览器回归和上线证明纳入同一套维护节奏。每次优化都尽量留下可复核的页面、文件和发布证据。
+                        </p>
+                        <div class="skill-flow" aria-label="维护流程">
+                            <span class="skill-flow-step">Scan</span>
+                            <span class="skill-flow-step">Refine</span>
+                            <span class="skill-flow-step">Verify</span>
+                            <span class="skill-flow-step">Publish</span>
+                        </div>
+                    </div>
+                    <div class="skill-stack-board">
+                        <article class="skill-card is-wide">
+                            <span>01 / Interface</span>
+                            <h3>视觉审校与动效收敛</h3>
+                            <p>保留当前科技感方向，但避免无意义装饰；重点修正层级、间距、动效幅度和移动端可读性。</p>
+                        </article>
+                        <article class="skill-card">
+                            <span>02 / Content</span>
+                            <h3>真实内容边界</h3>
+                            <p>运行版本、OAuth、API、微信链路分别标注，避免把未接入能力包装成已完成 SaaS。</p>
+                        </article>
+                        <article class="skill-card">
+                            <span>03 / SEO + AI</span>
+                            <h3>搜索与 AI 抓取入口</h3>
+                            <p>新增 sitemap、robots、llms 和 manifest，让搜索引擎与 AI 摘要工具更容易理解站点结构。</p>
+                        </article>
+                        <article class="skill-card">
+                            <span>04 / Regression</span>
+                            <h3>浏览器回归验证</h3>
+                            <p>用桌面与移动视口检查首页、博客、文档、搜索和 404 页面，优先排除空白、遮挡和链接失效。</p>
+                        </article>
+                        <article class="skill-card is-accent">
+                            <span>05 / Deploy</span>
+                            <h3>上线证据</h3>
+                            <p>提交前看 diff，提交后推送，再通过线上 HTTP 与页面关键字确认 Cloudflare Pages 已拿到最新版本。</p>
                         </article>
                     </div>
                 </div>
@@ -1588,7 +1639,7 @@
     <!-- Optimized Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" defer></script>
-    <script src="script.js?v=20260625a" defer></script>
+    <script src="script.js?v=20260710a" defer></script>
     
     <!-- Performance Optimization -->
     <script>

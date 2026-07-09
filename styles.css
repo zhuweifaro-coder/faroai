@@ -3295,6 +3295,199 @@ section[id] {
     font-size: 0.92rem;
 }
 
+/* 技能闭环 */
+.skill-stack {
+    position: relative;
+    overflow: hidden;
+    padding: 104px 0;
+    background:
+        radial-gradient(circle at 18% 18%, rgba(37, 99, 235, 0.14), transparent 26%),
+        radial-gradient(circle at 86% 34%, rgba(20, 184, 166, 0.16), transparent 28%),
+        linear-gradient(180deg, #f8fafc 0%, #eef6ff 100%);
+}
+
+.skill-stack::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+        linear-gradient(rgba(37, 99, 235, 0.055) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(20, 184, 166, 0.045) 1px, transparent 1px);
+    background-size: 34px 34px;
+    mask-image: radial-gradient(circle at 52% 46%, #000 0%, transparent 78%);
+    pointer-events: none;
+}
+
+.skill-stack::after {
+    content: '';
+    position: absolute;
+    inset: auto -8% -44% 42%;
+    height: 62%;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(94, 234, 212, 0.18), transparent 68%);
+    filter: blur(18px);
+    pointer-events: none;
+}
+
+.skill-stack .container {
+    position: relative;
+    z-index: 1;
+}
+
+.skill-stack-shell {
+    display: grid;
+    grid-template-columns: minmax(0, 0.78fr) minmax(0, 1.22fr);
+    gap: 2.5rem;
+    align-items: center;
+}
+
+.skill-stack-copy {
+    text-align: left;
+}
+
+.skill-stack-copy .section-title,
+.skill-stack-copy .section-description {
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.skill-flow {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 0.65rem;
+    margin-top: 1.6rem;
+}
+
+.skill-flow-step {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 42px;
+    border: 1px solid rgba(37, 99, 235, 0.16);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.8);
+    color: #1d4ed8;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 0.78rem;
+    font-weight: 900;
+    box-shadow: 0 16px 36px rgba(37, 99, 235, 0.08);
+}
+
+.skill-flow-step:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    right: -0.68rem;
+    top: 50%;
+    width: 0.7rem;
+    height: 2px;
+    border-radius: 999px;
+    background: linear-gradient(90deg, #60a5fa, #5eead4);
+    transform: translateY(-50%);
+    opacity: 0.72;
+}
+
+.skill-stack-board {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.95rem;
+    padding: 1rem;
+    border: 1px solid rgba(37, 99, 235, 0.16);
+    border-radius: 24px;
+    background:
+        linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(239, 246, 255, 0.72)),
+        rgba(255, 255, 255, 0.84);
+    box-shadow: var(--shadow-tech);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+}
+
+.skill-stack-board::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background:
+        linear-gradient(120deg, transparent 0 38%, rgba(255, 255, 255, 0.8) 48%, transparent 58% 100%),
+        radial-gradient(circle at 78% 18%, rgba(94, 234, 212, 0.18), transparent 30%);
+    opacity: 0.68;
+    pointer-events: none;
+}
+
+.skill-card {
+    position: relative;
+    min-height: 184px;
+    overflow: hidden;
+    padding: 1.15rem;
+    border: 1px solid rgba(15, 23, 42, 0.08);
+    border-radius: 18px;
+    background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(248, 250, 252, 0.78)),
+        #fff;
+    box-shadow: 0 18px 48px rgba(15, 23, 42, 0.08);
+}
+
+.skill-card.is-wide {
+    grid-column: span 2;
+    min-height: 156px;
+}
+
+.skill-card.is-accent {
+    background:
+        radial-gradient(circle at 100% 0%, rgba(94, 234, 212, 0.18), transparent 38%),
+        linear-gradient(145deg, #0f172a 0%, #12363f 100%);
+    color: #e2e8f0;
+}
+
+.skill-card::before {
+    content: '';
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: #5eead4;
+    box-shadow: 0 0 0 6px rgba(94, 234, 212, 0.12), 0 0 18px rgba(94, 234, 212, 0.62);
+}
+
+.skill-card span {
+    display: inline-flex;
+    margin-bottom: 0.9rem;
+    color: #2563eb;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 0.72rem;
+    font-weight: 900;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+
+.skill-card.is-accent span {
+    color: #5eead4;
+}
+
+.skill-card h3 {
+    margin: 0;
+    color: var(--text-primary);
+    font-size: 1.12rem;
+    line-height: 1.35;
+}
+
+.skill-card.is-accent h3 {
+    color: #fff;
+}
+
+.skill-card p {
+    margin: 0.72rem 0 0;
+    color: var(--text-secondary);
+    line-height: 1.72;
+}
+
+.skill-card.is-accent p {
+    color: #cbd5e1;
+}
+
 /* 配置诊断台 */
 .config-lab {
     position: relative;
@@ -5680,6 +5873,7 @@ section[id] {
     .quickstart-layout,
     .mission-shell,
     .ops-shell,
+    .skill-stack-shell,
     .config-lab-shell,
     .agent-matrix-shell,
     .command-deck-shell {
@@ -5926,6 +6120,23 @@ section[id] {
 
     .config-lab {
         padding: 72px 0;
+    }
+
+    .skill-stack {
+        padding: 72px 0;
+    }
+
+    .skill-flow,
+    .skill-stack-board {
+        grid-template-columns: 1fr;
+    }
+
+    .skill-card.is-wide {
+        grid-column: auto;
+    }
+
+    .skill-flow-step:not(:last-child)::after {
+        display: none;
     }
 
     .config-output-header {
@@ -6452,11 +6663,6 @@ section[id] {
     text-wrap: pretty;
 }
 
-main > section:not(.hero) {
-    content-visibility: auto;
-    contain-intrinsic-size: auto 760px;
-}
-
 :where(
     .telemetry-item,
     .credibility-item,
@@ -6468,6 +6674,9 @@ main > section:not(.hero) {
     .workflow-screen,
     .metric-card,
     .mission-card,
+    .skill-card,
+    .skill-stack-board,
+    .skill-flow-step,
     .config-group,
     .config-output,
     .agent-matrix-shell,
@@ -6854,6 +7063,115 @@ body.modal-open { overflow: hidden; }
     text-align: center;
     margin-top: 3rem;
 }
+
+.not-found-page {
+    min-height: 100vh;
+    background:
+        radial-gradient(circle at 12% 18%, rgba(37, 99, 235, 0.12), transparent 30%),
+        radial-gradient(circle at 82% 12%, rgba(20, 184, 166, 0.12), transparent 28%),
+        #f8fafc;
+}
+
+.not-found-hero {
+    position: relative;
+    min-height: calc(100vh - 72px);
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+    padding: 112px 0;
+    background:
+        linear-gradient(rgba(37, 99, 235, 0.045) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(20, 184, 166, 0.04) 1px, transparent 1px);
+    background-size: 42px 42px;
+}
+
+.not-found-card {
+    position: relative;
+    z-index: 1;
+    width: min(760px, 100%);
+    margin: 0 auto;
+    overflow: hidden;
+    padding: clamp(2rem, 5vw, 4rem);
+    border: 1px solid rgba(37, 99, 235, 0.16);
+    border-radius: 28px;
+    background:
+        radial-gradient(circle at 88% 14%, rgba(94, 234, 212, 0.18), transparent 32%),
+        linear-gradient(145deg, rgba(255, 255, 255, 0.94), rgba(239, 246, 255, 0.84));
+    box-shadow: var(--shadow-tech-strong);
+    text-align: center;
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+}
+
+.not-found-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+        linear-gradient(120deg, transparent 0 42%, rgba(255, 255, 255, 0.66) 50%, transparent 58% 100%),
+        repeating-linear-gradient(180deg, transparent 0 12px, rgba(37, 99, 235, 0.035) 13px, transparent 14px);
+    opacity: 0.66;
+    pointer-events: none;
+}
+
+.not-found-code {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 34px;
+    padding: 0.35rem 0.78rem;
+    border: 1px solid rgba(37, 99, 235, 0.18);
+    border-radius: 999px;
+    background: rgba(219, 234, 254, 0.72);
+    color: #1d4ed8;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 0.74rem;
+    font-weight: 900;
+}
+
+.not-found-card h1 {
+    position: relative;
+    margin: 1.2rem 0 0.8rem;
+    color: var(--text-primary);
+    font-size: clamp(2rem, 4vw, 3.3rem);
+    line-height: 1.12;
+}
+
+.not-found-card p {
+    position: relative;
+    max-width: 560px;
+    margin: 0 auto;
+    color: var(--text-secondary);
+    line-height: 1.8;
+}
+
+.not-found-actions {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.85rem;
+    margin-top: 2rem;
+}
+
+.not-found-links {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1.25rem;
+}
+
+.not-found-links a {
+    color: var(--text-secondary);
+    font-weight: 750;
+}
+
+.not-found-links a:hover {
+    color: var(--primary-color);
+}
+
 @media (max-width: 900px) {
     .blog-preview-grid { grid-template-columns: 1fr; }
     .status-grid { grid-template-columns: 1fr; }
