@@ -4,5 +4,10 @@ compatibility_date = "2026-06-25"
 
 routes = [
   { pattern = "www.faroai.net/api/auth/*", zone_name = "faroai.net" },
-  { pattern = "faroai.net/api/auth/*", zone_name = "faroai.net" }
+  { pattern = "faroai.net/api/auth/*", zone_name = "faroai.net" },
+  { pattern = "www.faroai.net/api/visits", zone_name = "faroai.net" },
+  { pattern = "faroai.net/api/visits", zone_name = "faroai.net" }
 ]
+
+# For durable visitor counters, bind a Cloudflare KV namespace named VISIT_COUNTERS.
+# Without the KV binding, the API falls back to Cloudflare Cache or worker memory.

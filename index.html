@@ -37,7 +37,7 @@
     <!-- Preconnect & Preload -->
     <!-- Styles -->
     <link rel="preload" as="image" href="assets/character/fa-piglet-buddy-portal.webp" type="image/webp">
-    <link rel="stylesheet" href="styles.css?v=20260710a">
+    <link rel="stylesheet" href="styles.css?v=20260712a">
     
     <!-- Critical CSS Inline -->
     <style>
@@ -87,7 +87,7 @@
         "name": "FaroAI",
         "url": "https://www.faroai.net/",
         "inLanguage": "zh-CN",
-        "dateModified": "2026-07-10",
+        "dateModified": "2026-07-12",
         "description": "本地优先的 AI 助手工作台",
         "publisher": {
             "@type": "Organization",
@@ -291,6 +291,17 @@
                         <div class="proof-item">本机版本已对齐 npm latest</div>
                         <div class="proof-item">微信插件 2.4.4</div>
                     </div>
+                    <div class="visitor-stats" id="visitorStats" aria-label="网站访问量统计">
+                        <article class="visitor-stat-card">
+                            <span>累计访问量</span>
+                            <strong id="visitTotal">--</strong>
+                        </article>
+                        <article class="visitor-stat-card">
+                            <span>今日访问量</span>
+                            <strong id="visitToday">--</strong>
+                        </article>
+                        <p id="visitStatus">正在同步访问统计。</p>
+                    </div>
                     <div class="hero-telemetry" aria-label="系统遥测">
                         <div class="telemetry-item">
                             <span>ROUTE</span>
@@ -361,8 +372,8 @@
                 <div class="credibility-grid">
                     <div class="credibility-item">
                         <span class="credibility-label">内容更新时间</span>
-                        <strong>2026-07-10</strong>
-                        <p>已完成界面、SEO/AI 可发现性与浏览器回归优化；OpenClaw 版本口径仍以 2026-06-29 复核结果为准，后续升级前后仍应重新执行 doctor 与链路验证。</p>
+                        <strong>2026-07-12</strong>
+                        <p>已加入累计访问量和当日访问量统计；OpenClaw 版本口径仍以 2026-06-29 复核结果为准，后续升级前后仍应重新执行 doctor 与链路验证。</p>
                     </div>
                     <div class="credibility-item">
                         <span class="credibility-label">事实边界</span>
@@ -1639,7 +1650,7 @@
     <!-- Optimized Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" defer></script>
-    <script src="script.js?v=20260710a" defer></script>
+    <script src="script.js?v=20260712a" defer></script>
     
     <!-- Performance Optimization -->
     <script>

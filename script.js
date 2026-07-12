@@ -489,6 +489,93 @@ document.head.appendChild(style);
     });
 })();
 
+/* ─────────── 网站访问量统计：累计访问 + 今日访问 ─────────── */
+(function bindVisitStats() {
+    function onReady(callback) {
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', callback);
+            return;
+        }
+        callback();
+    }
+
+    onReady(() => {
+        const root = document.getElementById('visitorStats');
+        if (!root) return;
+
+        const totalEl = document.getElementById('visitTotal');
+        const todayEl = document.getElementById('visitToday');
+        const statusEl = document.getElementById('visitStatus');
+        const isHttpPage = window.location.protocol === 'http:' || window.location.protocol === 'https:';
+        const isLocalStaticPreview = isHttpPage
+            && ['127.0.0.1', 'localhost', '0.0.0.0'].includes(window.location.hostname)
+            && !['8787', '8788'].includes(window.location.port);
+        root.dataset.visitState = 'loading';
+
+        function formatCount(value) {
+            const number = Number(value || 0);
+            if (!Number.isFinite(number) || number < 0) return '--';
+            return new Intl.NumberFormat('zh-CN').format(Math.floor(number));
+        }
+
+        function setStatus(message) {
+            if (statusEl) statusEl.textContent = message;
+        }
+
+        function render(data, message, state = 'ready') {
+            if (totalEl) totalEl.textContent = formatCount(data.total);
+            if (todayEl) todayEl.textContent = formatCount(data.today);
+            root.dataset.visitState = state;
+            setStatus(message);
+        }
+
+        function localPreviewCount() {
+            const today = new Date(Date.now() + 8 * 60 * 60 * 1000).toISOString().slice(0, 10);
+            const totalKey = 'faroai.visit.preview.total';
+            const todayKey = `faroai.visit.preview.day.${today}`;
+            const total = Number(localStorage.getItem(totalKey) || 0) + 1;
+            const todayCount = Number(localStorage.getItem(todayKey) || 0) + 1;
+            localStorage.setItem(totalKey, String(total));
+            localStorage.setItem(todayKey, String(todayCount));
+            render({ total, today: todayCount }, '本地预览统计；线上将使用 /api/visits 同步。', 'preview');
+        }
+
+        if (!isHttpPage || isLocalStaticPreview) {
+            localPreviewCount();
+            return;
+        }
+
+        const controller = new AbortController();
+        const timeout = window.setTimeout(() => controller.abort(), 4200);
+
+        fetch('/api/visits', {
+            method: 'POST',
+            credentials: 'same-origin',
+            keepalive: true,
+            signal: controller.signal,
+            headers: {
+                'Content-Type': 'application/json',
+                Accept: 'application/json'
+            },
+            body: JSON.stringify({
+                path: window.location.pathname || '/index.html'
+            })
+        })
+            .then(response => (response.ok ? response.json() : Promise.reject(new Error(`visit_api_${response.status}`))))
+            .then(data => {
+                const sourceText = data.durable ? 'KV 持久统计' : '边缘缓存统计';
+                render(data, `按页面访问量统计，今日口径为 UTC+8；${sourceText}。`, 'ready');
+            })
+            .catch(() => {
+                root.dataset.visitState = 'offline';
+                setStatus('访问统计接口暂不可用，稍后会自动恢复显示。');
+            })
+            .finally(() => {
+                window.clearTimeout(timeout);
+            });
+    });
+})();
+
 /* ─────────── 首页背景音乐：Mixkit Close Up ─────────── */
 (function bindHomeBgm() {
     function onReady(callback) {

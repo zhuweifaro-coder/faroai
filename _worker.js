@@ -1,3 +1,5 @@
+import { handleVisitRequest } from './functions/_shared/visits.js';
+
 const STATE_COOKIE = 'faro_oauth_state';
 const SESSION_COOKIE = 'faro_session';
 const STATE_MAX_AGE = 10 * 60;
@@ -25,6 +27,10 @@ export default {
     async fetch(request, env) {
         const url = new URL(request.url);
         const pathname = url.pathname.replace(/\/+$/, '') || '/';
+
+        if (pathname === '/api/visits') {
+            return handleVisitRequest(request, env);
+        }
 
         if (pathname === '/api/auth/session') {
             return handleSession(request, env);
