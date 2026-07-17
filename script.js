@@ -1514,7 +1514,13 @@ document.head.appendChild(style);
 
         function setActive(id) {
             links.forEach(link => {
-                link.classList.toggle('is-active', link.getAttribute('href') === `#${id}`);
+                const isActive = link.getAttribute('href') === `#${id}`;
+                link.classList.toggle('is-active', isActive);
+                if (isActive) {
+                    link.setAttribute('aria-current', 'true');
+                } else {
+                    link.removeAttribute('aria-current');
+                }
             });
         }
 
@@ -1574,6 +1580,7 @@ document.head.appendChild(style);
     }
 
     onReady(() => {
+        const status = document.getElementById('copyCommandStatus');
         document.querySelectorAll('.copy-command').forEach(button => {
             button.addEventListener('click', async () => {
                 const value = button.dataset.copy || '';
@@ -1598,10 +1605,18 @@ document.head.appendChild(style);
 
                 button.textContent = copied ? '已复制' : '复制失败';
                 button.classList.toggle('is-copied', copied);
+                if (status) {
+                    status.textContent = copied
+                        ? `已复制命令：${value}`
+                        : '复制失败，请手动选择命令文本。';
+                }
 
                 window.setTimeout(() => {
                     button.textContent = original;
                     button.classList.remove('is-copied');
+                    if (status) {
+                        status.textContent = '先确认网关可访问，再接入模型和微信通道。命令以你本机实际配置为准。';
+                    }
                 }, 2200);
             });
         });

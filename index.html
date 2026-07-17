@@ -37,7 +37,7 @@
     <!-- Preconnect & Preload -->
     <!-- Styles -->
     <link rel="preload" as="image" href="assets/character/fa-piglet-buddy-portal.webp" type="image/webp">
-    <link rel="stylesheet" href="styles.css?v=20260712a">
+    <link rel="stylesheet" href="styles.css?v=20260717a">
     
     <!-- Critical CSS Inline -->
     <style>
@@ -87,7 +87,7 @@
         "name": "FaroAI",
         "url": "https://www.faroai.net/",
         "inLanguage": "zh-CN",
-        "dateModified": "2026-07-12",
+        "dateModified": "2026-07-17",
         "description": "本地优先的 AI 助手工作台",
         "publisher": {
             "@type": "Organization",
@@ -234,7 +234,7 @@
 
     <nav class="section-rail" aria-label="首页快速导航">
         <span class="section-rail-title">NAV</span>
-        <a href="#home" class="is-active" data-step="01" aria-label="返回顶部">顶部</a>
+        <a href="#home" class="is-active" data-step="01" aria-label="返回顶部" aria-current="true">顶部</a>
         <a href="#ops-radar" data-step="02" aria-label="运行状态">状态</a>
         <a href="#command-deck" data-step="03" aria-label="任务指挥台">指挥</a>
         <a href="#skill-stack" data-step="04" aria-label="技能闭环">技能</a>
@@ -255,7 +255,7 @@
                         <span>OpenClaw 本机与 npm 最新版本已对齐，微信链路按网关状态验证</span>
                     </div>
                     <h1 class="hero-title">
-                        <span class="gradient-text hero-logo-word"><span class="hero-logo-orb" aria-hidden="true"><span class="hero-orb-monogram">Fa</span></span><span class="brand-word"><span class="brand-red">F</span><span class="brand-grad brand-grad-a">a</span><span class="brand-grad brand-grad-r">r</span><span class="brand-grad brand-grad-o">o</span><span class="brand-red">A</span><span class="brand-grad brand-grad-i">I</span></span></span>
+                        <span class="gradient-text hero-logo-word"><span class="hero-logo-orb" aria-hidden="true"><span class="hero-orb-monogram"></span></span><span class="brand-word"><span class="brand-red">F</span><span class="brand-grad brand-grad-a">a</span><span class="brand-grad brand-grad-r">r</span><span class="brand-grad brand-grad-o">o</span><span class="brand-red">A</span><span class="brand-grad brand-grad-i">I</span></span></span>
                         <span class="subtitle">把 AI 接进你的微信、知识库和自动化工作流</span>
                     </h1>
                     <p class="hero-description">
@@ -372,8 +372,8 @@
                 <div class="credibility-grid">
                     <div class="credibility-item">
                         <span class="credibility-label">内容更新时间</span>
-                        <strong>2026-07-12</strong>
-                        <p>已加入累计访问量和当日访问量统计；OpenClaw 版本口径仍以 2026-06-29 复核结果为准，后续升级前后仍应重新执行 doctor 与链路验证。</p>
+                        <strong>2026-07-17</strong>
+                        <p>已优化快速开始验收路径、复制反馈和页面导航可访问性；OpenClaw 版本口径仍以 2026-06-29 复核结果为准，后续升级前后仍应重新执行 doctor 与链路验证。</p>
                     </div>
                     <div class="credibility-item">
                         <span class="credibility-label">事实边界</span>
@@ -1073,7 +1073,22 @@
                                 <code>curl http://127.0.0.1:18789/health</code>
                                 <button type="button" class="copy-command" data-copy="curl http://127.0.0.1:18789/health">复制</button>
                             </div>
-                            <p>先确认网关可访问，再接入模型和微信通道。命令以你本机实际配置为准。</p>
+                            <p id="copyCommandStatus" aria-live="polite">先确认网关可访问，再接入模型和微信通道。命令以你本机实际配置为准。</p>
+                        </div>
+                        <div class="quickstart-acceptance" aria-label="部署验收顺序">
+                            <span class="acceptance-kicker">验收顺序</span>
+                            <div class="quickstart-check">
+                                <strong>Gateway health</strong>
+                                <span>先看本机网关是否返回 200 OK。</span>
+                            </div>
+                            <div class="quickstart-check">
+                                <strong>Model reply</strong>
+                                <span>再确认本地或云端模型能稳定返回。</span>
+                            </div>
+                            <div class="quickstart-check">
+                                <strong>Weixin delivery</strong>
+                                <span>最后验证微信机器人能收到并投递回复。</span>
+                            </div>
                         </div>
                     </div>
                     <div class="quickstart-steps">
@@ -1650,7 +1665,7 @@
     <!-- Optimized Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" defer></script>
-    <script src="script.js?v=20260712a" defer></script>
+    <script src="script.js?v=20260717a" defer></script>
     
     <!-- Performance Optimization -->
     <script>
