@@ -973,7 +973,12 @@ document.head.appendChild(style);
         const demoButton = document.getElementById('workflowDemoButton');
         const lab = document.getElementById('workflow-lab');
         demoButton?.addEventListener('click', () => {
-            lab?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            if (document.body.dataset.homeView === 'focus') {
+                document.querySelector('[data-home-view-button="full"]')?.click();
+            }
+            window.requestAnimationFrame(() => {
+                lab?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            });
         });
 
         const opsSync = document.getElementById('opsSync');
@@ -1484,6 +1489,86 @@ document.head.appendChild(style);
         window.FaroAIGsap.animateCommandDeck();
         window.FaroAIGsap.animateMatrix();
         window.FaroAIGsap.animateConfig();
+    });
+})();
+
+/* ─────────── 首页浏览密度：核心路径 / 完整系统 ─────────── */
+(function bindHomeViewMode() {
+    function onReady(callback) {
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', callback);
+            return;
+        }
+        callback();
+    }
+
+    onReady(() => {
+        const buttons = Array.from(document.querySelectorAll('[data-home-view-button]'));
+        const status = document.getElementById('homeViewStatus');
+        if (!buttons.length || !status) return;
+
+        const storageKey = 'faroai.home.view';
+        const viewLabels = {
+            focus: '核心路径 · 9 个模块',
+            full: '完整系统 · 16 个模块'
+        };
+
+        function hasAdvancedHashTarget() {
+            if (!window.location.hash) return false;
+            try {
+                const id = decodeURIComponent(window.location.hash.slice(1));
+                const target = document.getElementById(id);
+                return Boolean(target?.closest('[data-home-view="advanced"]'));
+            } catch (error) {
+                return false;
+            }
+        }
+
+        function readSavedView() {
+            try {
+                const saved = window.localStorage.getItem(storageKey);
+                return saved === 'full' ? 'full' : 'focus';
+            } catch (error) {
+                return 'focus';
+            }
+        }
+
+        function saveView(view) {
+            try {
+                window.localStorage.setItem(storageKey, view);
+            } catch (error) {
+                // Storage may be unavailable in strict privacy modes.
+            }
+        }
+
+        function applyView(view, persist = true) {
+            const nextView = view === 'full' ? 'full' : 'focus';
+            document.body.dataset.homeView = nextView;
+            status.textContent = viewLabels[nextView];
+
+            buttons.forEach(button => {
+                const isActive = button.dataset.homeViewButton === nextView;
+                button.classList.toggle('is-active', isActive);
+                button.setAttribute('aria-pressed', String(isActive));
+            });
+
+            if (persist) saveView(nextView);
+
+            window.requestAnimationFrame(() => {
+                window.ScrollTrigger?.refresh?.();
+                window.dispatchEvent(new Event('resize'));
+            });
+        }
+
+        buttons.forEach(button => {
+            button.addEventListener('click', () => applyView(button.dataset.homeViewButton));
+        });
+
+        window.addEventListener('hashchange', () => {
+            if (hasAdvancedHashTarget()) applyView('full');
+        });
+
+        applyView(hasAdvancedHashTarget() ? 'full' : readSavedView(), false);
     });
 })();
 

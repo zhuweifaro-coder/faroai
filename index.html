@@ -37,7 +37,7 @@
     <!-- Preconnect & Preload -->
     <!-- Styles -->
     <link rel="preload" as="image" href="assets/character/fa-piglet-buddy-portal.webp" type="image/webp">
-    <link rel="stylesheet" href="styles.css?v=20260717a">
+    <link rel="stylesheet" href="styles.css?v=20260808a">
     
     <!-- Critical CSS Inline -->
     <style>
@@ -87,7 +87,7 @@
         "name": "FaroAI",
         "url": "https://www.faroai.net/",
         "inLanguage": "zh-CN",
-        "dateModified": "2026-07-17",
+        "dateModified": "2026-08-08",
         "description": "本地优先的 AI 助手工作台",
         "publisher": {
             "@type": "Organization",
@@ -113,7 +113,7 @@
         "applicationCategory": "ProductivityApplication",
         "operatingSystem": "Web, macOS, Linux",
         "description": "FaroAI 通过 OpenClaw Gateway 连接微信入口、本地模型、知识库和自动化任务，适合个人与小团队先本地验证再扩展部署。",
-        "softwareVersion": "OpenClaw 2026.6.10 integration profile",
+        "softwareVersion": "OpenClaw integration profile verified 2026-06-29",
         "isAccessibleForFree": true,
         "featureList": [
             "OpenClaw Gateway 本地连接",
@@ -129,7 +129,8 @@
     }
     </script>
 </head>
-<body>
+<body data-home-view="focus">
+    <noscript><style>.home-view-switch{display:none!important}body[data-home-view="focus"] [data-home-view="advanced"]{display:block!important}</style></noscript>
     <!-- Skip to main content for accessibility -->
     <a href="#main" class="sr-only skip-link">跳转到主要内容</a>
 
@@ -235,10 +236,10 @@
     <nav class="section-rail" aria-label="首页快速导航">
         <span class="section-rail-title">NAV</span>
         <a href="#home" class="is-active" data-step="01" aria-label="返回顶部" aria-current="true">顶部</a>
-        <a href="#ops-radar" data-step="02" aria-label="运行状态">状态</a>
+        <a href="#ops-radar" data-step="02" data-home-view-link="advanced" aria-label="运行状态">状态</a>
         <a href="#command-deck" data-step="03" aria-label="任务指挥台">指挥</a>
-        <a href="#skill-stack" data-step="04" aria-label="技能闭环">技能</a>
-        <a href="#config-lab" data-step="05" aria-label="配置诊断">诊断</a>
+        <a href="#skill-stack" data-step="04" data-home-view-link="advanced" aria-label="技能闭环">技能</a>
+        <a href="#config-lab" data-step="05" data-home-view-link="advanced" aria-label="配置诊断">诊断</a>
         <a href="#agent-matrix" data-step="06" aria-label="系统矩阵">矩阵</a>
         <a href="#features" data-step="07" aria-label="核心能力">能力</a>
         <a href="#blog" data-step="08" aria-label="最新博客">博客</a>
@@ -251,8 +252,8 @@
             <div class="container">
                 <div class="hero-content">
                     <div class="hero-badge">
-                        <span class="badge-icon">2026.6.10</span>
-                        <span>OpenClaw 本机与 npm 最新版本已对齐，微信链路按网关状态验证</span>
+                        <span class="badge-icon">运行快照</span>
+                        <span>OpenClaw 与微信链路最近核验：2026-06-29</span>
                     </div>
                     <h1 class="hero-title">
                         <span class="gradient-text hero-logo-word"><span class="hero-logo-orb" aria-hidden="true"><span class="hero-orb-monogram"></span></span><span class="brand-word"><span class="brand-red">F</span><span class="brand-grad brand-grad-a">a</span><span class="brand-grad brand-grad-r">r</span><span class="brand-grad brand-grad-o">o</span><span class="brand-red">A</span><span class="brand-grad brand-grad-i">I</span></span></span>
@@ -287,8 +288,8 @@
                         </div>
                     </div>
                     <div class="hero-proof" aria-label="核心能力">
-                        <div class="proof-item">OpenClaw 2026.6.10</div>
-                        <div class="proof-item">本机版本已对齐 npm latest</div>
+                        <div class="proof-item">OpenClaw 2026.6.10 · 历史快照</div>
+                        <div class="proof-item">版本口径核验于 2026-06-29</div>
                         <div class="proof-item">微信插件 2.4.4</div>
                     </div>
                     <div class="visitor-stats" id="visitorStats" aria-label="网站访问量统计">
@@ -369,11 +370,21 @@
 
         <section class="credibility-strip" aria-label="网站可信信息">
             <div class="container">
+                <div class="home-view-switch" aria-label="首页浏览密度">
+                    <div class="home-view-copy">
+                        <span>浏览模式</span>
+                        <strong id="homeViewStatus">核心路径 · 9 个模块</strong>
+                    </div>
+                    <div class="home-view-segment" role="group" aria-label="切换首页浏览模式">
+                        <button type="button" class="is-active" data-home-view-button="focus" aria-pressed="true">核心路径</button>
+                        <button type="button" data-home-view-button="full" aria-pressed="false">完整系统</button>
+                    </div>
+                </div>
                 <div class="credibility-grid">
                     <div class="credibility-item">
                         <span class="credibility-label">内容更新时间</span>
-                        <strong>2026-07-17</strong>
-                        <p>已优化快速开始验收路径、复制反馈和页面导航可访问性；OpenClaw 版本口径仍以 2026-06-29 复核结果为准，后续升级前后仍应重新执行 doctor 与链路验证。</p>
+                        <strong>2026-08-08</strong>
+                        <p>已增加核心路径与完整系统两种浏览模式，并优化首页层级、移动端节奏和状态表述；运行版本仍以 2026-06-29 的核验快照为准。</p>
                     </div>
                     <div class="credibility-item">
                         <span class="credibility-label">事实边界</span>
@@ -383,7 +394,7 @@
                     <div class="credibility-item">
                         <span class="credibility-label">验证方式</span>
                         <strong>先网关，再通道，再模型</strong>
-                        <p>本次已验证：Gateway 健康、openclaw-weixin running、本地 Ollama 模型回复并成功投递微信。</p>
+                        <p>最近一次运行核验（2026-06-29）：Gateway 健康、openclaw-weixin running、本地 Ollama 模型回复并成功投递微信。</p>
                     </div>
                 </div>
             </div>
@@ -462,7 +473,7 @@
             </div>
         </section>
 
-        <section id="ops-radar" class="ops-radar" aria-label="FaroAI 运行态势">
+        <section id="ops-radar" class="ops-radar" data-home-view="advanced" aria-label="FaroAI 运行态势">
             <div class="container">
                 <div class="ops-shell">
                     <div class="ops-copy">
@@ -484,7 +495,7 @@
                             <article class="ops-status-card is-ok">
                                 <span class="ops-status-dot" aria-hidden="true"></span>
                                 <small>Gateway</small>
-                            <strong>OpenClaw 2026.6.10</strong>
+                                <strong>OpenClaw 2026.6.10 · 核验快照</strong>
                                 <p>127.0.0.1:18789 health live</p>
                             </article>
                             <article class="ops-status-card is-ok">
@@ -587,7 +598,7 @@
         </section>
 
         <!-- 动态工作流演示 -->
-        <section id="workflow-lab" class="workflow-lab" aria-label="FaroAI 动态工作流演示">
+        <section id="workflow-lab" class="workflow-lab" data-home-view="advanced" aria-label="FaroAI 动态工作流演示">
             <div class="container">
                 <div class="section-header">
                     <span class="section-label">实时演示</span>
@@ -646,7 +657,7 @@
         </section>
 
         <!-- 运行控制台 -->
-        <section id="mission-control" class="mission-control" aria-label="FaroAI 运行控制台">
+        <section id="mission-control" class="mission-control" data-home-view="advanced" aria-label="FaroAI 运行控制台">
             <div class="container">
                 <div class="mission-shell">
                     <div class="mission-copy">
@@ -659,7 +670,7 @@
                     <div class="mission-grid">
                         <article class="mission-card is-green">
                             <span>Gateway</span>
-                            <strong>OpenClaw 2026.6.10 正在运行</strong>
+                            <strong>最近核验：OpenClaw 2026.6.10</strong>
                             <p>Gateway 健康探针返回 live，CLI 与 npm latest 已对齐；后续版本升级需重新做网关、微信与模型链路复测。</p>
                         </article>
                         <article class="mission-card is-blue">
@@ -682,7 +693,7 @@
             </div>
         </section>
 
-        <section id="skill-stack" class="skill-stack" aria-label="FaroAI 技能闭环">
+        <section id="skill-stack" class="skill-stack" data-home-view="advanced" aria-label="FaroAI 技能闭环">
             <div class="container">
                 <div class="skill-stack-shell">
                     <div class="skill-stack-copy">
@@ -729,7 +740,7 @@
             </div>
         </section>
 
-        <section id="config-lab" class="config-lab" aria-label="FaroAI 配置诊断台">
+        <section id="config-lab" class="config-lab" data-home-view="advanced" aria-label="FaroAI 配置诊断台">
             <div class="container">
                 <div class="section-header">
                     <span class="section-label">Config Lab</span>
@@ -934,7 +945,7 @@
                         <div class="matrix-mini-grid" aria-label="当前矩阵摘要">
                             <article>
                                 <span>Runtime</span>
-                                <strong>OpenClaw 2026.6.10</strong>
+                                <strong>OpenClaw 2026.6.10 · 2026-06-29</strong>
                             </article>
                             <article>
                                 <span>Channel</span>
@@ -1119,7 +1130,7 @@
         </section>
 
         <!-- 当前状态 -->
-        <section id="site-status" class="site-status" aria-label="当前功能状态">
+        <section id="site-status" class="site-status" data-home-view="advanced" aria-label="当前功能状态">
             <div class="container">
                 <div class="section-header">
                     <span class="section-label">当前状态</span>
@@ -1137,7 +1148,7 @@
                     <article class="status-card is-config">
                         <span class="status-badge">已实测</span>
                         <h3>OpenClaw Gateway、微信机器人与本地模型</h3>
-                        <p>本机当前运行 OpenClaw 2026.6.10，Gateway 探针正常；微信插件 2.4.4 已加载，本地 Ollama 模型提供方可用。2026-06-29 复核 npm latest 同为 2026.6.10。</p>
+                        <p>2026-06-29 核验快照：本机运行 OpenClaw 2026.6.10，Gateway 探针正常；微信插件 2.4.4 已加载，本地 Ollama 模型提供方可用。该状态不是持续在线监控结果。</p>
                     </article>
                     <article class="status-card is-pending">
                         <span class="status-badge">可配置</span>
@@ -1149,7 +1160,7 @@
         </section>
 
         <!-- 使用场景 -->
-        <section class="use-cases" aria-label="使用场景">
+        <section class="use-cases" data-home-view="advanced" aria-label="使用场景">
             <div class="container">
                 <div class="section-header">
                     <span class="section-label">使用场景</span>
@@ -1213,7 +1224,7 @@
                             <time class="blog-preview-date">2026-06-29</time>
                         </div>
                         <h3 class="blog-preview-title">
-                            <a href="blog.html#article-openclaw-2026-6-10-latest">OpenClaw 2026.6.10 已成当前最新稳定版：本周重点回到命令可靠性、会话续跑与工程细节收口</a>
+                            <a href="blog.html#article-openclaw-2026-6-10-latest">截至 2026-06-29：OpenClaw 2026.6.10 的命令可靠性、会话续跑与工程细节收口</a>
                         </h3>
                         <p class="blog-preview-excerpt">
                             截至 06-29，GitHub Releases、本机 CLI 与 npm latest 已统一到 2026.6.10。
@@ -1665,7 +1676,7 @@
     <!-- Optimized Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" defer></script>
-    <script src="script.js?v=20260717a" defer></script>
+    <script src="script.js?v=20260808a" defer></script>
     
     <!-- Performance Optimization -->
     <script>

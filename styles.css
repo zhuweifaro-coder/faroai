@@ -2344,6 +2344,74 @@ section[id] {
     border-bottom: 1px solid rgba(226, 232, 240, 0.9);
 }
 
+.home-view-switch {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.25rem;
+    margin-bottom: 1.35rem;
+    padding: 0 0 1.1rem;
+    border-bottom: 1px solid rgba(148, 163, 184, 0.24);
+}
+
+.home-view-copy {
+    display: grid;
+    gap: 0.2rem;
+}
+
+.home-view-copy span {
+    color: #64748b;
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.home-view-copy strong {
+    color: #0f172a;
+    font-size: 0.95rem;
+}
+
+.home-view-segment {
+    display: inline-grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    min-width: 244px;
+    padding: 3px;
+    border: 1px solid rgba(148, 163, 184, 0.26);
+    border-radius: 8px;
+    background: rgba(226, 232, 240, 0.58);
+}
+
+.home-view-segment button {
+    min-height: 38px;
+    padding: 0.55rem 0.9rem;
+    border: 0;
+    border-radius: 6px;
+    background: transparent;
+    color: #64748b;
+    cursor: pointer;
+    font: inherit;
+    font-size: 0.82rem;
+    font-weight: 800;
+    transition: color var(--transition-fast), background var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.home-view-segment button:hover,
+.home-view-segment button:focus-visible {
+    color: #1d4ed8;
+}
+
+.home-view-segment button.is-active {
+    background: #ffffff;
+    color: #0f766e;
+    box-shadow: 0 4px 14px rgba(15, 23, 42, 0.1);
+}
+
+body[data-home-view="focus"] [data-home-view="advanced"],
+body[data-home-view="focus"] .section-rail [data-home-view-link="advanced"] {
+    display: none;
+}
+
 .credibility-grid {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -6083,6 +6151,10 @@ section[id] {
         grid-template-columns: 1fr;
     }
 
+    .home-view-switch {
+        align-items: flex-start;
+    }
+
     .hero .container,
     .quickstart-layout,
     .mission-shell,
@@ -6134,6 +6206,16 @@ section[id] {
 }
 
 @media (max-width: 768px) {
+    .home-view-switch {
+        flex-direction: column;
+        gap: 0.85rem;
+    }
+
+    .home-view-segment {
+        width: 100%;
+        min-width: 0;
+    }
+
     .nav-menu,
     .nav-actions {
         display: none;
