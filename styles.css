@@ -1330,6 +1330,7 @@ section[id] {
         inset -0.14em -0.18em 0.3em rgba(2, 6, 23, 0.64),
         inset 0.1em 0.08em 0.22em rgba(255, 255, 255, 0.18);
     opacity: 0;
+    visibility: hidden;
     transform: translate(-50%, -50%) scale(0.38);
     animation: heroOrbMorph 10.8s cubic-bezier(0.76, 0, 0.24, 1) 3s infinite;
     will-change: transform, opacity;
@@ -5320,10 +5321,12 @@ body[data-home-view="focus"] .section-rail [data-home-view-link="advanced"] {
 @keyframes heroOrbMorph {
     0%, 34%, 74%, 100% {
         opacity: 0;
+        visibility: hidden;
         transform: translate(-50%, -50%) scale(0.26) rotate(-10deg);
     }
     45%, 63% {
         opacity: 1;
+        visibility: visible;
         transform: translate(-50%, -50%) scale(1) rotate(4deg);
     }
 }
@@ -7626,16 +7629,42 @@ a.use-case-card:hover .use-case-title {
 
 @media (max-width: 640px) {
     .music-toggle {
-        right: 16px;
-        bottom: 16px;
-        padding-inline: 0.78rem;
-        font-size: 0.82rem;
+        right: 12px;
+        bottom: calc(12px + env(safe-area-inset-bottom));
+        width: 44px;
+        min-width: 44px;
+        height: 44px;
+        min-height: 44px;
+        padding: 0;
+        justify-content: center;
+        border-radius: 50%;
+    }
+
+    .music-toggle-text {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0 0 0 0);
+        white-space: nowrap;
+        border: 0;
     }
 }
 
 /* ─────────── 每次进入首页播放技术流开场动画 ─────────── */
 body.intro-active {
     overflow: hidden;
+}
+
+body.intro-active .hero-logo-word,
+body.intro-active .hero-logo-word .brand-word::after,
+body.intro-active .hero-logo-word .brand-word > span,
+body.intro-active .hero-logo-orb,
+body.intro-active .hero-logo-orb::before,
+body.intro-active .hero-logo-orb::after {
+    animation-play-state: paused !important;
 }
 
 .tech-intro {

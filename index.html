@@ -37,7 +37,7 @@
     <!-- Preconnect & Preload -->
     <!-- Styles -->
     <link rel="preload" as="image" href="assets/character/fa-piglet-buddy-portal.webp" type="image/webp">
-    <link rel="stylesheet" href="styles.css?v=20260808b">
+    <link rel="stylesheet" href="styles.css?v=20260814a">
     
     <!-- Critical CSS Inline -->
     <style>
@@ -87,7 +87,7 @@
         "name": "FaroAI",
         "url": "https://www.faroai.net/",
         "inLanguage": "zh-CN",
-        "dateModified": "2026-08-08",
+        "dateModified": "2026-08-14",
         "description": "本地优先的 AI 助手工作台",
         "publisher": {
             "@type": "Organization",
@@ -113,7 +113,7 @@
         "applicationCategory": "ProductivityApplication",
         "operatingSystem": "Web, macOS, Linux",
         "description": "FaroAI 通过 OpenClaw Gateway 连接微信入口、本地模型、知识库和自动化任务，适合个人与小团队先本地验证再扩展部署。",
-        "softwareVersion": "OpenClaw 2026.7.1-2 integration profile verified 2026-08-08",
+        "softwareVersion": "OpenClaw 2026.7.1-2 integration profile verified 2026-08-14",
         "isAccessibleForFree": true,
         "featureList": [
             "OpenClaw Gateway 本地连接",
@@ -253,7 +253,7 @@
                 <div class="hero-content">
                     <div class="hero-badge">
                         <span class="badge-icon">运行快照</span>
-                        <span>OpenClaw 与微信链路最近核验：2026-08-08</span>
+                        <span>OpenClaw 与微信链路最近核验：2026-08-14</span>
                     </div>
                     <h1 class="hero-title">
                         <span class="gradient-text hero-logo-word"><span class="hero-logo-orb" aria-hidden="true"><span class="hero-orb-monogram"></span></span><span class="brand-word"><span class="brand-red">F</span><span class="brand-grad brand-grad-a">a</span><span class="brand-grad brand-grad-r">r</span><span class="brand-grad brand-grad-o">o</span><span class="brand-red">A</span><span class="brand-grad brand-grad-i">I</span></span></span>
@@ -383,8 +383,8 @@
                 <div class="credibility-grid">
                     <div class="credibility-item">
                         <span class="credibility-label">内容更新时间</span>
-                        <strong>2026-08-08</strong>
-                        <p>已增加核心路径与完整系统两种浏览模式，并优化首页层级、移动端节奏和状态表述；运行版本与插件口径已于 2026-08-08 重新核验。</p>
+                        <strong>2026-08-14</strong>
+                        <p>已修正首页开场与 Logo 动画衔接、移动端音乐控制遮挡及 OAuth 架构说明；运行版本、网关与微信插件状态已于 2026-08-14 重新核验。</p>
                     </div>
                     <div class="credibility-item">
                         <span class="credibility-label">事实边界</span>
@@ -394,7 +394,7 @@
                     <div class="credibility-item">
                         <span class="credibility-label">验证方式</span>
                         <strong>先网关，再通道，再模型</strong>
-                        <p>2026-08-08 核验：Gateway reachable，openclaw-weixin configured / enabled / running；实际消息投递仍需在有效微信会话中单独验收。</p>
+                        <p>2026-08-14 核验：Gateway reachable，openclaw-weixin configured / enabled / running；实际消息投递仍需在有效微信会话中单独验收。</p>
                     </div>
                 </div>
             </div>
@@ -733,7 +733,7 @@
                         <article class="skill-card is-accent">
                             <span>05 / Deploy</span>
                             <h3>上线证据</h3>
-                            <p>提交前看 diff，提交后推送，再通过线上 HTTP 与页面关键字确认 Cloudflare Pages 已拿到最新版本。</p>
+                            <p>提交前看 diff，提交后推送，再通过线上 HTTP 与页面关键字确认 GitHub Pages 已发布最新版本。</p>
                         </article>
                     </div>
                 </div>
@@ -945,7 +945,7 @@
                         <div class="matrix-mini-grid" aria-label="当前矩阵摘要">
                             <article>
                                 <span>Runtime</span>
-                                <strong>OpenClaw 2026.7.1-2 · 2026-08-08</strong>
+                                <strong>OpenClaw 2026.7.1-2 · 2026-08-14</strong>
                             </article>
                             <article>
                                 <span>Channel</span>
@@ -1148,12 +1148,12 @@
                     <article class="status-card is-config">
                         <span class="status-badge">已实测</span>
                         <h3>OpenClaw Gateway、微信机器人与本地模型</h3>
-                        <p>2026-08-08 核验快照：本机运行 OpenClaw 2026.7.1-2，与 npm stable latest 一致；Gateway reachable，微信插件 2.4.6 已加载且通道 running。该状态不是持续在线监控结果。</p>
+                        <p>2026-08-14 核验快照：本机运行 OpenClaw 2026.7.1-2，与 npm stable latest 一致；Gateway reachable，微信插件 2.4.6 已加载且通道 running。该状态不是持续在线监控结果。</p>
                     </article>
                     <article class="status-card is-pending">
                         <span class="status-badge">可配置</span>
                         <h3>Google/GitHub OAuth、云端 API 与控制台</h3>
-                        <p>OAuth 后端已接入 Cloudflare Pages Functions；正式可用需配置第三方应用和环境变量。云端 API 与控制台仍不伪装成完整 SaaS。</p>
+                        <p>OAuth 后端已接入 Cloudflare Worker；正式可用需配置第三方应用回调地址和 Worker 密钥。云端 API 与控制台仍不伪装成完整 SaaS。</p>
                     </article>
                 </div>
             </div>
@@ -1396,7 +1396,7 @@
                     Google 登录
                 </button>
             </div>
-            <p id="authStatus" class="auth-status" role="status">OAuth 后端已接入。上线后需在 Cloudflare Pages 配置 Google/GitHub client id、client secret 和 cookie secret。</p>
+            <p id="authStatus" class="auth-status" role="status">OAuth 后端已接入 Cloudflare Worker。正式使用前需配置 Google/GitHub client id、client secret、回调地址和 cookie secret。</p>
             
             <div class="modal-footer">
                 <p class="footer-text">想了解更多？ <a href="docs.html" class="link-signup">查看配置文档 →</a></p>
@@ -1676,7 +1676,7 @@
     <!-- Optimized Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" defer></script>
-    <script src="script.js?v=20260808b" defer></script>
+    <script src="script.js?v=20260814a" defer></script>
     
     <!-- Performance Optimization -->
     <script>

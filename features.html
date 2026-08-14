@@ -13,7 +13,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css?v=20260712a">
+    <link rel="stylesheet" href="styles.css?v=20260814a">
     <style>
         .page-hero {
             padding: 160px 0 80px;
@@ -420,9 +420,9 @@
                         <p>当前重点支持 OpenClaw Gateway、本地模型、微信入口、脚本自动化和 Google/GitHub OAuth。云端控制台与公开 REST API 会在后端能力完善后再开放。</p>
                         <ul class="feature-detail-list">
                             <li>已验证路径：OpenClaw Gateway、Ollama、本地文件、微信机器人</li>
-                            <li>OAuth 路径：Cloudflare Pages Functions 发起授权、回调换取资料、HttpOnly cookie 保存会话</li>
+                            <li>OAuth 路径：Cloudflare Worker 发起授权、回调换取资料、HttpOnly cookie 保存会话</li>
                             <li>Webhook 可作为自部署方案，由你的服务端按需实现</li>
-                            <li>Google/GitHub OAuth 需要在 Cloudflare Pages 配置 client id、client secret 和 cookie secret</li>
+                            <li>Google/GitHub OAuth 需要在 Cloudflare Worker 配置 client id、client secret 和 cookie secret</li>
                             <li>推荐使用 OpenAI 官方 Python/Node SDK 与本地 Gateway 组合</li>
                         </ul>
                     </div>

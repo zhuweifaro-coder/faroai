@@ -11,7 +11,7 @@
     <meta name="theme-color" content="#2563eb">
     <link rel="canonical" href="https://www.faroai.net/docs.html">
     <title>FaroAI 文档中心 - 安装、网关、微信机器人与本地模型配置</title>
-    <link rel="stylesheet" href="styles.css?v=20260712a">
+    <link rel="stylesheet" href="styles.css?v=20260814a">
     <style>
         .docs-hero {
             padding: 132px 0 72px;
@@ -649,7 +649,7 @@ openclaw models list</code></pre>
                                 </div>
                                 <div class="faq-item">
                                     <h3>页面登录需要怎样配置？</h3>
-                                    <p>Google/GitHub OAuth 后端已接入 Cloudflare Pages Functions。正式可用前，需要在第三方控制台配置回调地址，并在 Cloudflare Pages 环境变量中设置 <code>GOOGLE_CLIENT_ID</code>、<code>GOOGLE_CLIENT_SECRET</code>、<code>GITHUB_CLIENT_ID</code>、<code>GITHUB_CLIENT_SECRET</code>、<code>OAUTH_COOKIE_SECRET</code>。如果线上点击后提示 missing_env，说明环境变量还未配置完整。</p>
+                                    <p>Google/GitHub OAuth 后端已接入 Cloudflare Worker。正式可用前，需要在第三方控制台配置回调地址，并在 Worker 的变量与密钥中设置 <code>GOOGLE_CLIENT_ID</code>、<code>GOOGLE_CLIENT_SECRET</code>、<code>GITHUB_CLIENT_ID</code>、<code>GITHUB_CLIENT_SECRET</code>、<code>OAUTH_COOKIE_SECRET</code>。如果线上点击后提示 <code>missing_env</code>，说明密钥还未配置完整。</p>
                                 </div>
                             </div>
                         </section>
@@ -723,7 +723,7 @@ openclaw models list</code></pre>
         </div>
     </footer>
 
-    <script src="script.js?v=20260712a" defer></script>
+    <script src="script.js?v=20260814a" defer></script>
     <script>
         (function () {
             const search = document.getElementById('docSearch');

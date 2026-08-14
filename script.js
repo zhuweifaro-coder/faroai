@@ -173,7 +173,7 @@ class SmoothScroll {
 
         var desc = document.createElement('p');
         desc.style.cssText = 'color: #64748b; margin-bottom: 1.5rem;';
-        desc.textContent = 'Google/GitHub OAuth 已接入；正式可用前请确认 Cloudflare Pages 环境变量已配置完整。';
+        desc.textContent = 'Google/GitHub OAuth 已接入 Cloudflare Worker；正式使用前请确认 Worker 密钥与第三方回调地址配置完整。';
 
         var closeBtn = document.createElement('button');
         closeBtn.style.cssText = 'background: #6366f1; color: white; border: none; padding: 0.75rem 1.5rem; border-radius: 0.5rem; cursor: pointer; font-weight: 600;';
@@ -444,11 +444,11 @@ document.head.appendChild(style);
 
         function loadSession() {
             if (!isHttpPage) {
-                setStatus('OAuth 后端已接入；请通过 Cloudflare Pages 或本地 Pages Functions 预览使用。');
+                setStatus('OAuth 后端已接入 Cloudflare Worker；请通过线上 HTTPS 地址使用。');
                 return;
             }
             if (isLocalStaticPreview) {
-                setStatus('当前是本地静态预览，不加载 Pages Functions 会话接口；线上环境可使用 OAuth。');
+                setStatus('当前是本地静态预览，不经过 Cloudflare Worker 会话接口；线上环境可使用 OAuth。');
                 return;
             }
 
@@ -474,7 +474,7 @@ document.head.appendChild(style);
                 e.preventDefault();
                 const provider = btn.dataset.oauthProvider;
                 if (!provider || !canUseOAuth) {
-                    setStatus(isLocalStaticPreview ? '本地静态预览不包含 OAuth 后端，请在线上环境或 Pages Functions 预览中使用。' : '请在 Cloudflare Pages 线上环境中使用 OAuth。', 'error');
+                    setStatus(isLocalStaticPreview ? '本地静态预览不包含 OAuth 后端，请通过线上 HTTPS 地址使用。' : '请通过 FaroAI 线上站点使用 OAuth。', 'error');
                     return;
                 }
 
