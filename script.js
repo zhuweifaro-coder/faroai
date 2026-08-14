@@ -576,7 +576,7 @@ document.head.appendChild(style);
     });
 })();
 
-/* ─────────── 首页背景音乐：Mixkit Close Up ─────────── */
+/* ─────────── 首页背景音乐：Mixkit Ode to Synths ─────────── */
 (function bindHomeBgm() {
     function onReady(callback) {
         if (document.readyState === 'loading') {
@@ -631,7 +631,7 @@ document.head.appendChild(style);
             if (reset) audio.currentTime = 0;
             visitorPaused = false;
             audio.loop = false;
-            audio.volume = 0.30;
+            audio.volume = 0.26;
 
             try {
                 await audio.play();
