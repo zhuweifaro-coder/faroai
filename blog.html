@@ -6,9 +6,9 @@
     <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
     <title>FaroAI 日志 - OpenClaw、Codex 自动化与本地模型周报</title>
     <meta name="description" content="FaroAI 工作流日志：跟踪 OpenClaw 最新版本、OpenAI Codex 长任务实践、AI Agent 工程更新与本地模型运行时变化。">
-    <meta name="keywords" content="FaroAI 日志, AI 工作流日志, OpenClaw 2026.6.10, Codex 自动化, OpenAI 技术资料, AI Agent, 微信机器人, Ollama 0.30.11">
+    <meta name="keywords" content="FaroAI 日志, AI 工作流日志, OpenClaw 2026.7.1-2, Codex 自动化, OpenAI 技术资料, AI Agent, 微信机器人, qwen3.8 本地模型">
     <link rel="canonical" href="https://www.faroai.net/blog.html">
-    <link rel="stylesheet" href="styles.css?v=20260712a">
+    <link rel="stylesheet" href="styles.css?v=20260820a">
     <link rel="stylesheet" href="blog.css">
 </head>
 <body>
@@ -54,14 +54,14 @@
                     <aside class="blog-hero-panel" aria-label="日志更新摘要">
                         <div class="blog-hero-panel-head">
                             <span>Latest update</span>
-                            <strong>2026-06-29</strong>
+                            <strong>2026-08-20</strong>
                         </div>
-                        <p class="blog-freshness">本轮仅保留 2026-06-22 至 2026-06-29 能交叉核验的公开资料；OpenAI 以官方新闻页为准，OpenClaw 与 Ollama 以 GitHub Releases 和官方发布页为准，未看到可核验的 openclaw-weixin 单独新版本则不写入。</p>
+                        <p class="blog-freshness">本轮加入 2026-08-20 本机运行核验：版本、网关、微信插件和默认模型分别记录，在线状态与真实消息投递分开表述；历史文章保留其原始核验日期。</p>
                         <div class="blog-hero-metrics" aria-label="当前关注主题">
-                            <span>OpenClaw 2026.6.10</span>
-                            <span>Codex 2026-06-22</span>
-                            <span>Agents SDK 0.17.0</span>
-                            <span>Ollama 0.30.11</span>
+                            <span>OpenClaw 2026.7.1-2</span>
+                            <span>Weixin 2.4.6</span>
+                            <span>Gateway reachable</span>
+                            <span>qwen3.8 local</span>
                         </div>
                         <div class="page-companion blog-companion-card" aria-label="FaroAI 日志研究伙伴">
                             <img class="companion-avatar" src="assets/character/fa-piglet-buddy-avatar-sm.webp" alt="FaroAI 的 Fa 研究伙伴形象" width="192" height="192" loading="lazy" decoding="async">
@@ -116,14 +116,14 @@
                 <div class="source-ledger" aria-label="本周资料核验">
                     <div class="source-ledger-head">
                         <span>Verified sources</span>
-                        <strong>2026-06-29 本周核验</strong>
+                        <strong>2026-08-20 运行核验</strong>
                     </div>
-                    <p class="source-ledger-note">核验口径：只写本周能直接落到官方页面或官方仓库的事实；对本地模型部分，如近一周无独立新公告，会明确写成“截至本周最新仍为某版本”。</p>
+                    <p class="source-ledger-note">核验口径：公开版本以 npm 与官方文档为准，本机状态以 CLI、Gateway 和插件状态输出为准；configured / running 不等于消息已经成功送达。</p>
                     <div class="source-ledger-grid">
-                        <a class="source-ledger-card" href="#article-openclaw-2026-6-10-latest">
+                        <a class="source-ledger-card" href="#article-openclaw-2026-7-1-2-maintenance">
                             <small>OpenClaw</small>
-                            <strong>截至 06-29，GitHub Releases 与本机 CLI 均已指向 2026.6.10</strong>
-                            <p>本轮可以确认的事实是：最新稳定版已经切到 2026.6.10，本机 `openclaw --version` 与 npm latest 也已对齐。</p>
+                            <strong>本机 CLI 与 npm latest 已对齐到 2026.7.1-2</strong>
+                            <p>Gateway 可达，微信插件 2.4.6 处于 configured / enabled / running；实际送达仍需一次有效微信会话验收。</p>
                         </a>
                         <a class="source-ledger-card" href="#article-openai-codex-maxxing-2026-06-22">
                             <small>OpenAI / Codex</small>
@@ -154,6 +154,30 @@
                 <!-- 文章列表 -->
                 <div class="articles" id="articles">
                     <!-- 置顶文章：OpenClaw 与 OpenAI 最新资料 -->
+                    <article id="article-openclaw-2026-7-1-2-maintenance" class="article-card featured" data-category="product">
+                        <div class="article-content">
+                            <div class="article-header">
+                                <a href="https://www.npmjs.com/package/openclaw/v/2026.7.1-2" target="_blank" rel="noopener noreferrer" class="article-title">OpenClaw 2026.7.1-2：版本对齐之后，完成网关、微信与本地模型三段验证</a>
+                                <span class="article-category category-product">产品更新</span>
+                            </div>
+                            <p class="article-excerpt">
+                                2026-08-20 现场核验显示，本机 <code>openclaw --version</code> 与 npm <code>latest</code> 均为 2026.7.1-2，Gateway 健康检查可达；openclaw-weixin 2.4.6 已加载，状态为 configured / enabled / running；默认本地模型为 qwen3.8:27b-q8_0。这里刻意把三层结果分开：版本一致只说明程序已对齐，通道 running 只说明连接器正在运行，真正的微信送达仍要在有效会话中看到 delivery succeeded。对本地优先工作流来说，这种“版本、通道、投递”分层验收，比只看一个绿色状态更可靠。
+                            </p>
+                            <p class="article-source">资料来源：<a href="https://www.npmjs.com/package/openclaw/v/2026.7.1-2" target="_blank" rel="noopener noreferrer">npm: openclaw 2026.7.1-2</a>、<a href="https://docs.openclaw.ai/cli/update" target="_blank" rel="noopener noreferrer">OpenClaw Update 文档</a>；运行状态来自 FaroAI 本机 2026-08-20 核验。</p>
+                            <div class="article-meta">
+                                <a href="个人概况_2026_v3.html" class="article-author">炜哥</a>
+                                <span class="article-date">2026-08-20</span>
+                                <span class="article-note">运行链路核验</span>
+                                <div class="article-tags">
+                                    <span class="tag">OpenClaw</span>
+                                    <span class="tag">2026.7.1-2</span>
+                                    <span class="tag">Weixin 2.4.6</span>
+                                    <span class="tag">qwen3.8</span>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
                     <article id="article-openclaw-2026-6-10-latest" class="article-card featured" data-category="product">
                         <div class="article-content">
                             <div class="article-header">
