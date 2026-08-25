@@ -318,6 +318,7 @@
 }
 
 .filter-btn {
+    min-height: 44px;
     padding: 0.5rem 1rem;
     border: 1px solid var(--border-color);
     background: var(--bg-primary);
@@ -353,6 +354,7 @@
 }
 
 .sort-select {
+    min-height: 44px;
     padding: 0.5rem 1rem;
     border: 1px solid var(--border-color);
     border-radius: 4px;

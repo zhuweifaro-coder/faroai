@@ -37,7 +37,7 @@
     <!-- Preconnect & Preload -->
     <!-- Styles -->
     <link rel="preload" as="image" href="assets/character/fa-piglet-buddy-portal.webp" type="image/webp">
-    <link rel="stylesheet" href="styles.css?v=20260820a">
+    <link rel="stylesheet" href="styles.css?v=20260826a">
     
     <!-- Critical CSS Inline -->
     <style>
@@ -87,7 +87,7 @@
         "name": "FaroAI",
         "url": "https://www.faroai.net/",
         "inLanguage": "zh-CN",
-        "dateModified": "2026-08-20",
+        "dateModified": "2026-08-26",
         "description": "本地优先的 AI 助手工作台",
         "publisher": {
             "@type": "Organization",
@@ -113,7 +113,7 @@
         "applicationCategory": "ProductivityApplication",
         "operatingSystem": "Web, macOS, Linux",
         "description": "FaroAI 通过 OpenClaw Gateway 连接微信入口、本地模型、知识库和自动化任务，适合个人与小团队先本地验证再扩展部署。",
-        "softwareVersion": "OpenClaw 2026.7.1-2 integration profile verified 2026-08-20",
+        "softwareVersion": "OpenClaw 2026.8.1-beta.2 local profile verified 2026-08-26",
         "isAccessibleForFree": true,
         "featureList": [
             "OpenClaw Gateway 本地连接",
@@ -253,7 +253,7 @@
                 <div class="hero-content">
                     <div class="hero-badge">
                         <span class="badge-icon">运行快照</span>
-                        <span>OpenClaw 与微信链路最近核验：2026-08-20</span>
+                        <span>OpenClaw 与微信链路最近核验：2026-08-26</span>
                     </div>
                     <h1 class="hero-title">
                         <span class="gradient-text hero-logo-word"><span class="hero-logo-orb" aria-hidden="true"><span class="hero-orb-monogram"></span></span><span class="brand-word"><span class="brand-red">F</span><span class="brand-grad brand-grad-a">a</span><span class="brand-grad brand-grad-r">r</span><span class="brand-grad brand-grad-o">o</span><span class="brand-red">A</span><span class="brand-grad brand-grad-i">I</span></span></span>
@@ -288,9 +288,9 @@
                         </div>
                     </div>
                     <div class="hero-proof" aria-label="核心能力">
-                        <div class="proof-item">OpenClaw 2026.7.1-2</div>
-                        <div class="proof-item">本机与 npm stable latest 已对齐</div>
-                        <div class="proof-item">微信插件 2.4.6</div>
+                        <div class="proof-item proof-item-current">本机 Beta · 2026.8.1-beta.2</div>
+                        <div class="proof-item proof-item-stable">npm Stable · 2026.7.1-2</div>
+                        <div class="proof-item">微信插件 · 2.4.6</div>
                     </div>
                     <div class="visitor-stats" id="visitorStats" aria-label="网站访问量统计">
                         <article class="visitor-stat-card">
@@ -383,8 +383,8 @@
                 <div class="credibility-grid">
                     <div class="credibility-item">
                         <span class="credibility-label">内容更新时间</span>
-                        <strong>2026-08-20</strong>
-                        <p>已同步 OpenClaw、微信插件与本地模型运行快照，更新博客和配置文档，并增强全站键盘操作与移动端触控体验。</p>
+                        <strong>2026-08-26</strong>
+                        <p>已拆分本机 Beta、npm Stable 与 npm Beta 三种版本口径，更新运行快照、技术日志和关键交互尺寸。</p>
                     </div>
                     <div class="credibility-item">
                         <span class="credibility-label">事实边界</span>
@@ -394,7 +394,7 @@
                     <div class="credibility-item">
                         <span class="credibility-label">验证方式</span>
                         <strong>先网关，再通道，再模型</strong>
-                        <p>2026-08-20 核验：Gateway reachable，openclaw-weixin configured / enabled / running；实际消息投递仍需在有效微信会话中单独验收。</p>
+                        <p>2026-08-26 核验：Gateway reachable，openclaw-weixin configured / enabled / running；8 月 25 日真实微信短测曾返回 delivery succeeded。</p>
                     </div>
                 </div>
             </div>
@@ -495,7 +495,7 @@
                             <article class="ops-status-card is-ok">
                                 <span class="ops-status-dot" aria-hidden="true"></span>
                                 <small>Gateway</small>
-                                <strong>OpenClaw 2026.7.1-2</strong>
+                                <strong>OpenClaw 2026.8.1-beta.2</strong>
                                 <p>127.0.0.1:18789 health live</p>
                             </article>
                             <article class="ops-status-card is-ok">
@@ -670,8 +670,8 @@
                     <div class="mission-grid">
                         <article class="mission-card is-green">
                             <span>Gateway</span>
-                            <strong>最近核验：OpenClaw 2026.7.1-2</strong>
-                            <p>Gateway 健康探针返回 live，CLI 与 npm latest 已对齐；后续版本升级需重新做网关、微信与模型链路复测。</p>
+                            <strong>最近核验：OpenClaw 2026.8.1-beta.2</strong>
+                            <p>Gateway 健康探针返回 live；本机 Beta、npm Beta 与 npm Stable 分层记录，后续任何版本升级都需重新完成网关、微信与模型链路复测。</p>
                         </article>
                         <article class="mission-card is-blue">
                             <span>Weixin</span>
@@ -945,7 +945,7 @@
                         <div class="matrix-mini-grid" aria-label="当前矩阵摘要">
                             <article>
                                 <span>Runtime</span>
-                                <strong>OpenClaw 2026.7.1-2 · 2026-08-20</strong>
+                                <strong>OpenClaw 2026.8.1-beta.2 · 2026-08-26</strong>
                             </article>
                             <article>
                                 <span>Channel</span>
@@ -1148,7 +1148,7 @@
                     <article class="status-card is-config">
                         <span class="status-badge">已实测</span>
                         <h3>OpenClaw Gateway、微信机器人与本地模型</h3>
-                        <p>2026-08-20 核验快照：本机运行 OpenClaw 2026.7.1-2，与 npm stable latest 一致；Gateway reachable，微信插件 2.4.6 已加载且通道 running，默认本地模型为 qwen3.8:27b-q8_0。该状态不是持续在线监控结果。</p>
+                        <p>2026-08-26 核验快照：本机运行 OpenClaw 2026.8.1-beta.2；npm Stable 为 2026.7.1-2，npm Beta 为 2026.8.1-beta.3。Gateway reachable，微信插件 2.4.6 通道 running，默认本地模型为 qwen3.8:27b-q8_0。该状态不是持续在线监控结果。</p>
                     </article>
                     <article class="status-card is-pending">
                         <span class="status-badge">可配置</span>
@@ -1221,15 +1221,15 @@
                     <article class="blog-preview-card">
                         <div class="blog-preview-meta-top">
                             <span class="blog-preview-tag">产品更新</span>
-                            <time class="blog-preview-date">2026-08-20</time>
+                            <time class="blog-preview-date">2026-08-26</time>
                         </div>
                         <h3 class="blog-preview-title">
-                            <a href="blog.html#article-openclaw-2026-7-1-2-maintenance">OpenClaw 2026.7.1-2：版本对齐之后，完成网关、微信与本地模型三段验证</a>
+                            <a href="blog.html#article-openclaw-stable-beta-2026-08-26">OpenClaw Stable 与 Beta 如何并行判断：版本新，不等于链路已经验收</a>
                         </h3>
                         <p class="blog-preview-excerpt">
-                            08-20 实测本机 CLI 与 npm latest 已对齐，并记录 Gateway、微信插件和默认本地模型的真实边界。
+                            08-26 实测本机 beta.2、npm beta.3 与 stable 2026.7.1-2，分别记录版本、通道和真实投递证据。
                         </p>
-                        <a href="blog.html#article-openclaw-2026-7-1-2-maintenance" class="blog-preview-readmore">阅读全文 →</a>
+                        <a href="blog.html#article-openclaw-stable-beta-2026-08-26" class="blog-preview-readmore">阅读全文 →</a>
                     </article>
                     <article class="blog-preview-card">
                         <div class="blog-preview-meta-top">

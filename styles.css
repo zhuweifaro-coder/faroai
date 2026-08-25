@@ -317,6 +317,7 @@ li {
 .logo {
     display: flex;
     align-items: center;
+    min-height: 44px;
     gap: 0.75rem;
     text-decoration: none;
     color: var(--text-primary);
@@ -858,6 +859,7 @@ body.command-palette-active {
 
 .command-search-input {
     width: 100%;
+    min-height: 44px;
     border: 0;
     outline: 0;
     background: transparent;
@@ -1036,7 +1038,7 @@ body.command-palette-active {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    min-height: 32px;
+    min-height: 44px;
     padding: 0;
     border: 1px solid transparent;
     border-radius: 50%;
@@ -1454,8 +1456,8 @@ section[id] {
     position: relative;
     width: max-content;
     max-width: 100%;
-    padding-right: clamp(86px, 7.4vw, 112px);
-    margin-bottom: 2rem;
+    padding-right: clamp(76px, 6.6vw, 96px);
+    margin-bottom: 2.75rem;
 }
 
 .hero-actions .btn {
@@ -1487,6 +1489,18 @@ section[id] {
     color: var(--text-secondary);
     font-size: 0.9rem;
     font-weight: 600;
+}
+
+.proof-item-current {
+    border-color: rgba(15, 118, 110, 0.28);
+    background: rgba(204, 251, 241, 0.62);
+    color: #0f766e;
+}
+
+.proof-item-stable {
+    border-color: rgba(37, 99, 235, 0.24);
+    background: rgba(219, 234, 254, 0.62);
+    color: #1d4ed8;
 }
 
 .visitor-stats {
@@ -1760,11 +1774,11 @@ section[id] {
 }
 
 .hero-companion-stage {
-    --companion-action-width: clamp(78px, 6.4vw, 104px);
-    --companion-action-height: clamp(98px, 8.2vw, 128px);
+    --companion-action-width: clamp(70px, 5.6vw, 88px);
+    --companion-action-height: clamp(96px, 7.2vw, 112px);
     position: absolute;
     top: 50%;
-    left: calc(100% - var(--companion-action-width) + 0.12rem);
+    left: calc(100% - var(--companion-action-width) + 0.6rem);
     flex: none;
     z-index: 1;
     width: var(--companion-action-width);
@@ -1774,7 +1788,7 @@ section[id] {
     pointer-events: none;
     perspective: 620px;
     opacity: 0.94;
-    transform: translateY(-66%);
+    transform: translateY(-62%);
 }
 
 .hero-companion-stage::before {
@@ -1847,8 +1861,10 @@ section[id] {
     position: relative;
     z-index: 2;
     display: block;
-    width: min(112%, 132px);
+    width: auto;
+    max-width: 100%;
     height: auto;
+    max-height: 116px;
     object-fit: contain;
     filter:
         drop-shadow(0 18px 24px rgba(15, 23, 42, 0.22))
@@ -6910,6 +6926,7 @@ body[data-home-view="focus"] .section-rail [data-home-view-link="advanced"] {
 }
 
 .btn-small {
+    min-height: 44px;
     padding: 0.5rem 1rem;
     font-size: 0.9rem;
 }
