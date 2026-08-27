@@ -564,7 +564,9 @@ document.head.appendChild(style);
             .then(response => (response.ok ? response.json() : Promise.reject(new Error(`visit_api_${response.status}`))))
             .then(data => {
                 const sourceText = data.durable ? 'KV 持久统计' : '边缘缓存统计';
-                render(data, `按页面访问量统计，今日口径为 UTC+8；${sourceText}。`, 'ready');
+                const state = data.durable ? 'ready' : 'ephemeral';
+                const boundary = data.durable ? '' : '，非持久审计数据';
+                render(data, `按页面访问量统计，今日口径为 UTC+8；${sourceText}${boundary}。`, state);
             })
             .catch(() => {
                 root.dataset.visitState = 'offline';
@@ -812,6 +814,44 @@ document.head.appendChild(style);
             }
         };
 
+        function bindRovingTabs(items, panel, prefix) {
+            const controls = Array.from(items);
+            if (!controls.length) return;
+
+            if (panel) {
+                panel.id ||= `${prefix}Panel`;
+                panel.setAttribute('role', 'tabpanel');
+                panel.setAttribute('tabindex', '0');
+            }
+
+            const sync = active => {
+                controls.forEach((control, index) => {
+                    control.id ||= `${prefix}Tab${index + 1}`;
+                    control.tabIndex = control === active ? 0 : -1;
+                    if (panel) control.setAttribute('aria-controls', panel.id);
+                });
+                if (panel && active) panel.setAttribute('aria-labelledby', active.id);
+            };
+
+            controls.forEach((control, index) => {
+                control.addEventListener('click', () => sync(control));
+                control.addEventListener('keydown', event => {
+                    let targetIndex = index;
+                    if (event.key === 'ArrowRight' || event.key === 'ArrowDown') targetIndex = (index + 1) % controls.length;
+                    else if (event.key === 'ArrowLeft' || event.key === 'ArrowUp') targetIndex = (index - 1 + controls.length) % controls.length;
+                    else if (event.key === 'Home') targetIndex = 0;
+                    else if (event.key === 'End') targetIndex = controls.length - 1;
+                    else return;
+
+                    event.preventDefault();
+                    controls[targetIndex].click();
+                    controls[targetIndex].focus();
+                });
+            });
+
+            sync(controls.find(control => control.getAttribute('aria-selected') === 'true') || controls[0]);
+        }
+
         const tabs = document.querySelectorAll('.workflow-tab');
         const title = document.getElementById('workflowTitle');
         const command = document.getElementById('workflowCommand');
@@ -863,6 +903,7 @@ document.head.appendChild(style);
             });
         });
 
+        bindRovingTabs(tabs, document.querySelector('.workflow-stage'), 'workflow');
         renderFlow('briefing');
 
         const commandDeck = {
@@ -968,6 +1009,7 @@ document.head.appendChild(style);
             });
         });
 
+        bindRovingTabs(commandChips, document.querySelector('.command-holo'), 'command');
         renderCommandDeck('wechat');
 
         const demoButton = document.getElementById('workflowDemoButton');
@@ -980,17 +1022,6 @@ document.head.appendChild(style);
                 lab?.scrollIntoView({ behavior: 'smooth', block: 'start' });
             });
         });
-
-        const opsSync = document.getElementById('opsSync');
-        if (opsSync) {
-            const startedAt = Date.now();
-            window.setInterval(() => {
-                const elapsed = Math.floor((Date.now() - startedAt) / 1000);
-                const minutes = String(Math.floor(elapsed / 60)).padStart(2, '0');
-                const seconds = String(elapsed % 60).padStart(2, '0');
-                opsSync.textContent = `SYNC ${minutes}:${seconds}`;
-            }, 1000);
-        }
 
         const configState = {
             channel: 'wechat',
@@ -1240,6 +1271,7 @@ document.head.appendChild(style);
             });
         });
 
+        bindRovingTabs(matrixChips, document.querySelector('.matrix-panel'), 'matrix');
         renderMatrix('wechat');
     });
 })();

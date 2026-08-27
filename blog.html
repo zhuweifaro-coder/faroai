@@ -8,8 +8,8 @@
     <meta name="description" content="FaroAI 工作流日志：跟踪 OpenClaw 最新版本、OpenAI Codex 长任务实践、AI Agent 工程更新与本地模型运行时变化。">
     <meta name="keywords" content="FaroAI 日志, AI 工作流日志, OpenClaw Stable, OpenClaw Beta, Codex 自动化, OpenAI 技术资料, AI Agent, 微信机器人, qwen3.8 本地模型">
     <link rel="canonical" href="https://www.faroai.net/blog.html">
-    <link rel="stylesheet" href="styles.css?v=20260826a">
-    <link rel="stylesheet" href="blog.css?v=20260826a">
+    <link rel="stylesheet" href="styles.css?v=20260828a">
+    <link rel="stylesheet" href="blog.css?v=20260828a">
 </head>
 <body>
     <!-- 导航栏 -->
@@ -54,9 +54,9 @@
                     <aside class="blog-hero-panel" aria-label="日志更新摘要">
                         <div class="blog-hero-panel-head">
                             <span>Latest update</span>
-                            <strong>2026-08-26</strong>
+                            <strong>2026-08-28</strong>
                         </div>
-                        <p class="blog-freshness">本轮把 Stable、Beta、本机运行版和真实消息投递拆开核验：版本号说明软件层级，Gateway 与通道状态说明运行层级，delivery succeeded 才说明消息送达。</p>
+                        <p class="blog-freshness">本轮继续收紧事实边界：版本号、最近成功快照与实时在线状态分别表达，静态页面不再用计时器和绿灯暗示本机 Gateway 持续在线。</p>
                         <div class="blog-hero-metrics" aria-label="当前关注主题">
                             <span>Local beta.2</span>
                             <span>npm beta.3</span>
@@ -116,14 +116,14 @@
                 <div class="source-ledger" aria-label="本周资料核验">
                     <div class="source-ledger-head">
                         <span>Verified sources</span>
-                        <strong>2026-08-26 运行核验</strong>
+                        <strong>2026-08-28 状态口径复核</strong>
                     </div>
-                    <p class="source-ledger-note">核验口径：公开版本以 npm 与官方文档为准，本机状态以 CLI、Gateway 和插件状态输出为准；configured / running 不等于消息已经成功送达。</p>
+                    <p class="source-ledger-note">核验口径：公开版本以 npm 与官方文档为准；本机状态必须重新执行探针，静态页仅展示带日期的成功快照；configured / running 不等于消息已经成功送达。</p>
                     <div class="source-ledger-grid">
-                        <a class="source-ledger-card" href="#article-openclaw-stable-beta-2026-08-26">
-                            <small>OpenClaw</small>
-                            <strong>本机 beta.2、npm beta.3 与 Stable 2026.7.1-2 分层记录</strong>
-                            <p>Gateway 可达，微信插件 2.4.6 处于 configured / enabled / running；8 月 25 日真实短测曾返回 delivery succeeded。</p>
+                        <a class="source-ledger-card" href="#article-static-site-runtime-snapshot-2026-08-28">
+                            <small>架构与可观测性</small>
+                            <strong>静态官网只展示成功快照，不再冒充本地实时监控</strong>
+                            <p>OpenClaw 默认使用 loopback；公开网页无法可靠读取本机当前状态，历史绿灯必须带上验收日期。</p>
                         </a>
                         <a class="source-ledger-card" href="#article-openai-codex-maxxing-2026-06-22">
                             <small>OpenAI / Codex</small>
@@ -154,6 +154,30 @@
                 <!-- 文章列表 -->
                 <div class="articles" id="articles">
                     <!-- 置顶文章：OpenClaw 与 OpenAI 最新资料 -->
+                    <article id="article-static-site-runtime-snapshot-2026-08-28" class="article-card featured" data-category="technical">
+                        <div class="article-content">
+                            <div class="article-header">
+                                <a href="https://docs.openclaw.ai/gateway/remote" target="_blank" rel="noopener noreferrer" class="article-title">静态官网为什么不能冒充本地 Gateway 实时监控台</a>
+                                <span class="article-category category-technical">技术文章</span>
+                            </div>
+                            <p class="article-excerpt">
+                                2026-08-28 维护时，FaroAI 把首页“Live Stack”改成了带日期的“Verified Stack”。原因很直接：OpenClaw Gateway 默认绑定 loopback，通常运行在本机 <code>127.0.0.1:18789</code>；公开部署在 GitHub Pages 的静态网页既没有受保护的状态后端，也不应把本地端口暴露给互联网。页面里的版本号只能说明软件层，本机探针只能说明执行检查那一刻，微信 delivery succeeded 也只证明对应会话曾送达。可靠的展示方式是保留“版本复核日期、最近成功验收日期、证据类型”三项；若以后需要实时状态，再通过带鉴权的后端采集器、Tailscale 或 SSH 安全链路接入，而不是用前端计时器制造在线感。
+                            </p>
+                            <p class="article-source">资料来源：<a href="https://docs.openclaw.ai/gateway/configuration-reference" target="_blank" rel="noopener noreferrer">OpenClaw Gateway 配置参考</a>、<a href="https://docs.openclaw.ai/gateway/remote" target="_blank" rel="noopener noreferrer">OpenClaw Remote Access</a>、<a href="https://developer.mozilla.org/en-US/docs/Web/Security/Defenses/Local_network_access" target="_blank" rel="noopener noreferrer">MDN Local Network Access</a>；站点状态口径于 2026-08-28 复核。</p>
+                            <div class="article-meta">
+                                <a href="个人概况_2026_v3.html" class="article-author">炜哥</a>
+                                <span class="article-date">2026-08-28</span>
+                                <span class="article-note">状态边界与可观测性</span>
+                                <div class="article-tags">
+                                    <span class="tag">Gateway</span>
+                                    <span class="tag">Loopback</span>
+                                    <span class="tag">Observability</span>
+                                    <span class="tag">Security</span>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
                     <article id="article-openclaw-stable-beta-2026-08-26" class="article-card featured" data-category="product">
                         <div class="article-content">
                             <div class="article-header">

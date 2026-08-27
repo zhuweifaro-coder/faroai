@@ -1038,6 +1038,7 @@ body.command-palette-active {
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    min-width: 44px;
     min-height: 44px;
     padding: 0;
     border: 1px solid transparent;
@@ -1554,6 +1555,11 @@ section[id] {
     background: #14b8a6;
     box-shadow: 0 0 0 4px rgba(20, 184, 166, 0.14), 0 0 18px rgba(20, 184, 166, 0.58);
     animation: visitorStatusPulse 1.9s ease-in-out infinite;
+}
+
+.visitor-stats[data-visit-state="ephemeral"]::after {
+    background: #f59e0b;
+    box-shadow: 0 0 0 4px rgba(245, 158, 11, 0.14), 0 0 16px rgba(245, 158, 11, 0.34);
 }
 
 .visitor-stats[data-visit-state="offline"]::after {
@@ -5530,7 +5536,7 @@ body[data-home-view="focus"] .section-rail [data-home-view-link="advanced"] {
 }
 
 .copy-command {
-    min-height: 34px;
+    min-height: 44px;
     padding: 0 0.75rem;
     border: 1px solid rgba(147, 197, 253, 0.2);
     border-radius: 10px;
@@ -6108,10 +6114,14 @@ body[data-home-view="focus"] .section-rail [data-home-view-link="advanced"] {
 }
 
 .footer-links li {
-    margin-bottom: 0.75rem;
+    margin-bottom: 0.25rem;
 }
 
 .footer-links a {
+    display: inline-flex;
+    align-items: center;
+    min-width: 44px;
+    min-height: 44px;
     color: var(--text-secondary);
     transition: color var(--transition-fast);
 }
@@ -7361,6 +7371,12 @@ body.modal-open { overflow: hidden; }
     margin: 0 0 0.75rem;
     line-height: 1.5;
 }
+
+.footer-copyright a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+}
 .blog-preview-title a {
     color: var(--text-primary);
     text-decoration: none;
@@ -7378,7 +7394,9 @@ body.modal-open { overflow: hidden; }
     overflow: hidden;
 }
 .blog-preview-readmore {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
     color: var(--primary-color);
     font-weight: 600;
     font-size: 0.9rem;
@@ -7646,8 +7664,9 @@ a.use-case-card:hover .use-case-title {
 
 @media (max-width: 640px) {
     .music-toggle {
-        right: 12px;
-        bottom: calc(12px + env(safe-area-inset-bottom));
+        top: 12px;
+        right: 64px;
+        bottom: auto;
         width: 44px;
         min-width: 44px;
         height: 44px;
@@ -7655,6 +7674,8 @@ a.use-case-card:hover .use-case-title {
         padding: 0;
         justify-content: center;
         border-radius: 50%;
+        background: rgba(255, 255, 255, 0.94);
+        box-shadow: 0 8px 24px rgba(15, 23, 42, 0.12);
     }
 
     .music-toggle-text {
