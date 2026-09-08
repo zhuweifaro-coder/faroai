@@ -9,7 +9,7 @@
     <meta name="keywords" content="FaroAI 日志, AI 工作流日志, OpenClaw Stable, OpenClaw Beta, Codex 自动化, OpenAI 技术资料, AI Agent, 微信机器人, qwen3.8 本地模型">
     <link rel="canonical" href="https://www.faroai.net/blog.html">
     <link rel="stylesheet" href="styles.css?v=20260828a">
-    <link rel="stylesheet" href="blog.css?v=20260828a">
+    <link rel="stylesheet" href="blog.css?v=20260908a">
 </head>
 <body>
     <!-- 导航栏 -->
@@ -20,11 +20,11 @@
                     <svg class="logo-icon logo-icon-flow" viewBox="0 0 24 24" aria-hidden="true"><path class="logo-flow-red" d="M4.5 14.5c3 4.5 11.25 4.5 15 0"/><path class="logo-flow-blue" d="M4.5 9.5c3-4.5 11.25-4.5 15 0"/><circle class="logo-flow-core" cx="12" cy="12" r="2.8"/><path class="logo-flow-cross" d="M9.8 12h4.4M12 9.8v4.4"/></svg>
                     <span class="logo-text"><span class="brand-red">F</span><span class="brand-grad brand-grad-a">a</span><span class="brand-grad brand-grad-r">r</span><span class="brand-grad brand-grad-o">o</span><span class="brand-red">A</span><span class="brand-grad brand-grad-i">I</span></span>
                 </a>
-                <ul class="nav-menu">
+                <ul class="nav-menu" id="mobile-menu">
                     <li><a href="index.html#home">首页</a></li>
                     <li><a href="features.html">功能</a></li>
                     <li><a href="docs.html">文档</a></li>
-                    <li><a href="blog.html">博客</a></li>
+                    <li><a href="blog.html" aria-current="page">博客</a></li>
                     <li><a href="investment.html">投资</a></li>
                     <li><a href="个人概况_2026_v3.html">关于我</a></li>
                 </ul>
@@ -49,14 +49,14 @@
                     <div class="blog-hero-copy">
                         <span class="blog-kicker"><span class="brand-word"><span class="brand-red">F</span><span class="brand-grad brand-grad-a">a</span><span class="brand-grad brand-grad-r">r</span><span class="brand-grad brand-grad-o">o</span><span class="brand-red">A</span><span class="brand-grad brand-grad-i">I</span></span> Notes</span>
                         <h1 class="blog-title">AI 工作流日志</h1>
-                        <p class="blog-description">跟踪 OpenClaw 最新动态、OpenAI 官方技术资料，以及把 AI 接入微信、本地模型和自动化工作流的实践记录。</p>
+                        <p class="blog-description">OpenClaw、OpenAI 与本地模型的技术笔记。从接口选型，到微信与知识库的实际应用。</p>
                     </div>
                     <aside class="blog-hero-panel" aria-label="日志更新摘要">
                         <div class="blog-hero-panel-head">
-                            <span>Latest update</span>
+                            <span>最近内容核验</span>
                             <strong>2026-08-28</strong>
                         </div>
-                        <p class="blog-freshness">本轮继续收紧事实边界：版本号、最近成功快照与实时在线状态分别表达，静态页面不再用计时器和绿灯暗示本机 Gateway 持续在线。</p>
+                        <p class="blog-freshness">运行与版本记录截至 2026-08-28。文章保留发布时的验证日期，部署前请查阅文中官方来源。</p>
                         <div class="blog-hero-metrics" aria-label="当前关注主题">
                             <span>Local beta.3</span>
                             <span>Gateway 08-28</span>
@@ -79,22 +79,37 @@
         <section class="blog-list">
             <div class="container">
                 <!-- 筛选和排序 -->
-                <div class="blog-filters">
-                    <div class="filter-group">
-                        <button class="filter-btn active" data-category="all">全部</button>
-                        <button class="filter-btn" data-category="product">产品更新</button>
-                        <button class="filter-btn" data-category="technical">技术文章</button>
-                        <button class="filter-btn" data-category="tutorial">教程</button>
-                        <button class="filter-btn" data-category="news">行业动态</button>
+                <div class="blog-filters" id="blogFilters" hidden>
+                    <div class="blog-search-row">
+                        <div class="blog-search-field" role="search" aria-label="博客检索">
+                            <label for="blogSearch">搜索文章</label>
+                            <div class="blog-search-control">
+                                <input type="search" id="blogSearch" placeholder="搜索标题、正文或标签" autocomplete="off" maxlength="200" aria-controls="articles" aria-describedby="blogResultCount">
+                                <button type="button" class="blog-search-clear" id="clearBlogSearch" aria-label="清空关键词" title="清空关键词" hidden>×</button>
+                            </div>
+                        </div>
+                        <div class="sort-group">
+                            <label class="sort-label" for="blogSort">排序</label>
+                            <select class="sort-select" id="blogSort">
+                                <option value="date">最新优先</option>
+                                <option value="oldest">最早优先</option>
+                            </select>
+                        </div>
                     </div>
-                    <div class="sort-group">
-                        <span class="sort-label">排序:</span>
-                        <select class="sort-select">
-                            <option value="date">最新优先</option>
-                        </select>
+                    <div class="blog-filter-row">
+                        <div class="filter-group" role="group" aria-label="文章分类">
+                            <button type="button" class="filter-btn active" data-category="all" aria-pressed="true">全部</button>
+                            <button type="button" class="filter-btn" data-category="product" aria-pressed="false">产品更新</button>
+                            <button type="button" class="filter-btn" data-category="technical" aria-pressed="false">技术文章</button>
+                            <button type="button" class="filter-btn" data-category="tutorial" aria-pressed="false">教程</button>
+                            <button type="button" class="filter-btn" data-category="news" aria-pressed="false">行业动态</button>
+                        </div>
+                        <p id="blogResultCount" class="blog-result-count" role="status" aria-live="polite" aria-atomic="true"></p>
                     </div>
                 </div>
 
+                <details class="blog-context">
+                    <summary>专题导读</summary>
                 <div class="category-briefs" aria-label="博客分类说明">
                     <article class="category-brief">
                         <span class="article-category category-technical">技术文章</span>
@@ -112,8 +127,11 @@
                         <p>关注本地优先、多模态、通道化入口和 Agent 工作流演进，尽量把外部变化转化为实际部署建议。</p>
                     </article>
                 </div>
+                </details>
 
-                <div class="source-ledger" aria-label="本周资料核验">
+                <details class="blog-context">
+                    <summary>资料来源与核验记录 <span>截至 2026-08-28</span></summary>
+                <div class="source-ledger" aria-label="资料核验记录">
                     <div class="source-ledger-head">
                         <span>Verified sources</span>
                         <strong>2026-08-28 状态口径复核</strong>
@@ -133,7 +151,7 @@
                         <a class="source-ledger-card" href="#article-long-running-workflow-checklist-2026-06-29">
                             <small>自动化工作流</small>
                             <strong>微信机器人与定时任务要先补 4 个检查点</strong>
-                            <p>计划、检查点、审批和恢复这四层，本周已经能从 OpenAI、Cloudflare 和 OpenClaw 的官方更新里拼出一条清晰路线。</p>
+                            <p>计划、检查点、审批和恢复：结合文章发布时的官方资料梳理落地路线。</p>
                         </a>
                         <a class="source-ledger-card" href="#article-agents-sdk-v0170-2026-06-26">
                             <small>AI Agent</small>
@@ -142,15 +160,25 @@
                         </a>
                         <a class="source-ledger-card" href="#article-ollama-0-30-11-2026-06-25">
                             <small>本地模型</small>
-                            <strong>Ollama 0.30.11 于 06-25 成为最新版本</strong>
-                            <p>本周本地模型侧有明确新发版，Apple Silicon 与 llama.cpp 相关维护仍在持续，升级后更该跑真实 agent 任务回归。</p>
+                            <strong>Ollama 0.30.11：06-25 版本记录</strong>
+                            <p>回顾当时的 Apple Silicon 与 llama.cpp 维护变化；升级前以当前官方发行记录为准。</p>
                         </a>
                     </div>
                 </div>
+                </details>
 
                 <!-- P2 #14: 博客主体 + 侧边目录 -->
                 <div class="blog-layout">
                   <div class="articles-wrap">
+                    <div class="blog-results-heading">
+                        <h2 id="blogResultsTitle" tabindex="-1">文章索引</h2>
+                        <span id="blogPageSummary"></span>
+                    </div>
+                    <div class="blog-empty" id="blogEmpty" hidden>
+                        <h3>没有找到相关文章</h3>
+                        <p>试试更短的关键词，或查看所有分类。</p>
+                        <button type="button" class="btn btn-outline" id="resetBlogFilters">重置筛选</button>
+                    </div>
                 <!-- 文章列表 -->
                 <div class="articles" id="articles">
                     <!-- 置顶文章：OpenClaw 与 OpenAI 最新资料 -->
@@ -954,20 +982,12 @@
                 </div>
 
                 <!-- 分页 -->
-                <div class="blog-pagination">
-                    <button class="page-btn prev" disabled>上一页</button>
-                    <button class="page-btn active">1</button>
-                    <button class="page-btn">2</button>
-                    <button class="page-btn">3</button>
-                    <span class="page-ellipsis">...</span>
-                    <button class="page-btn">10</button>
-                    <button class="page-btn next">下一页</button>
-                </div>
+                <nav class="blog-pagination" id="blogPagination" aria-label="文章分页" hidden></nav>
                   </div><!-- /.articles-wrap -->
                   <aside class="blog-toc" aria-label="文章目录">
                     <div class="blog-toc-inner">
-                      <h3 class="blog-toc-title">📑 文章目录</h3>
-                      <nav id="tocNav" class="blog-toc-nav"></nav>
+                      <h3 class="blog-toc-title">当前结果目录</h3>
+                      <nav id="tocNav" class="blog-toc-nav" aria-label="当前结果目录"></nav>
                     </div>
                   </aside>
                 </div><!-- /.blog-layout -->
@@ -1071,7 +1091,7 @@
     </footer>
 
     <!-- 博客脚本 -->
-    <script src="blog.js" defer></script>
+    <script src="blog.js?v=20260908a" defer></script>
     <script src="command-palette.js?v=20260620c" defer></script>
 </body>
 </html>
