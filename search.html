@@ -9,6 +9,13 @@
     <link rel="canonical" href="https://www.faroai.net/search.html">
     <title>FaroAI 站内搜索 - 文档、博客、功能与联系方式</title>
     <link rel="stylesheet" href="styles.css?v=20260828a">
+    <style>
+        .site-search-form input { min-width: 0; }
+        .search-hero .search-help { margin: 0.75rem auto 0; font-size: 0.9rem; }
+        .search-summary, .search-empty { overflow-wrap: anywhere; }
+        .search-empty { grid-column: 1 / -1; }
+        .search-empty .btn { margin-top: 1rem; }
+    </style>
 </head>
 <body>
     <a href="#main" class="sr-only skip-link">跳转到主要内容</a>
@@ -43,9 +50,10 @@
                 <p>搜索文档、博客、功能、用例和联系方式。本站是静态站，搜索在浏览器本地完成，不上传关键词。</p>
                 <form class="site-search-form" id="siteSearchForm" role="search">
                     <label class="sr-only" for="siteSearchInput">搜索关键词</label>
-                    <input id="siteSearchInput" name="q" type="search" placeholder="输入 OpenClaw、微信机器人、知识库、股票日报..." autocomplete="off">
+                    <input id="siteSearchInput" name="q" type="search" placeholder="输入 OpenClaw、微信机器人、知识库、股票日报..." autocomplete="off" maxlength="200" aria-describedby="searchHelp" aria-controls="searchResults">
                     <button type="submit" class="btn btn-primary">搜索</button>
                 </form>
+                <p class="search-help" id="searchHelp">多个关键词用空格分开，例如“OpenClaw 微信”。结果按相关度排列，可复制当前网址分享。</p>
                 <div class="page-companion" aria-label="FaroAI 搜索助手">
                     <img class="companion-avatar" src="assets/character/fa-piglet-buddy-avatar-sm.webp" alt="FaroAI 的 Fa 研究伙伴形象" width="192" height="192" loading="lazy" decoding="async">
                     <div class="companion-copy">
@@ -58,8 +66,8 @@
 
         <section class="search-results-section">
             <div class="container">
-                <div class="search-summary" id="searchSummary">输入关键词开始搜索，或点击下方常用入口。</div>
-                <div class="search-results" id="searchResults" aria-live="polite"></div>
+                <div class="search-summary" id="searchSummary" role="status" aria-live="polite" aria-atomic="true">输入关键词开始搜索，或点击下方常用入口。</div>
+                <div class="search-results" id="searchResults"></div>
             </div>
         </section>
     </main>
@@ -107,11 +115,27 @@
             const input = document.getElementById('siteSearchInput');
             const results = document.getElementById('searchResults');
             const summary = document.getElementById('searchSummary');
+            const normalize = value => value.normalize('NFKC').toLocaleLowerCase('zh-CN');
+            const cleanQuery = value => value.slice(0, 200).trim().replace(/\s+/g, ' ');
+            let searchTimer;
+            let composing = false;
+            let editing = false;
 
             function render(query) {
-                const q = query.trim().toLowerCase();
-                const matched = q
-                    ? pages.filter(item => `${item.title} ${item.type} ${item.text}`.toLowerCase().includes(q))
+                const q = normalize(query);
+                const words = [...new Set(q.split(/\s+/).filter(Boolean))];
+                const matched = words.length
+                    ? pages.map((item, index) => {
+                        const title = normalize(item.title);
+                        const text = normalize(`${item.title} ${item.type} ${item.text}`);
+                        const score = words.every(word => text.includes(word))
+                            ? words.reduce((total, word) => total + (title.includes(word) ? 10 : 1), 0)
+                                + (title === q ? 100 : 0)
+                            : 0;
+                        return { item, index, score };
+                    }).filter(result => result.score > 0)
+                        .sort((a, b) => b.score - a.score || a.index - b.index)
+                        .map(result => result.item)
                     : pages.slice(0, 8);
 
                 summary.textContent = q ? `找到 ${matched.length} 个结果：${query}` : '常用入口';
@@ -121,23 +145,86 @@
                         <strong>${item.title}</strong>
                         <p>${item.text}</p>
                     </a>
-                `).join('') || '<p class="search-empty">没有找到结果。可以尝试搜索“OpenClaw”“微信机器人”“知识库”“股票日报”。</p>';
+                `).join('');
+                if (!matched.length) {
+                    const empty = document.createElement('div');
+                    empty.className = 'search-empty';
+                    const message = document.createElement('p');
+                    message.textContent = '没有找到结果。试试减少关键词，或搜索“OpenClaw”“微信机器人”“知识库”“股票日报”。';
+                    const reset = document.createElement('button');
+                    reset.type = 'button';
+                    reset.className = 'btn btn-outline';
+                    reset.textContent = '清空搜索，查看常用入口';
+                    reset.addEventListener('click', () => {
+                        input.value = '';
+                        editing = false;
+                        update(true);
+                        input.focus();
+                    });
+                    empty.append(message, reset);
+                    results.append(empty);
+                }
+            }
+
+            function writeUrl(q) {
+                const url = new URL(window.location.href);
+                if (q) url.searchParams.set('q', q);
+                else url.searchParams.delete('q');
+                if (url.href !== window.location.href) {
+                    // Keep one history entry per edit, not one per keystroke.
+                    window.history[editing ? 'replaceState' : 'pushState']({}, '', url);
+                    editing = true;
+                }
+            }
+
+            function update(commit = false) {
+                clearTimeout(searchTimer);
+                const q = cleanQuery(input.value);
+                writeUrl(q);
+                render(q);
+                if (commit) {
+                    input.value = q;
+                    editing = false;
+                }
+            }
+
+            function restore() {
+                clearTimeout(searchTimer);
+                composing = false;
+                editing = false;
+                input.value = cleanQuery(new URLSearchParams(window.location.search).get('q') || '');
+                render(input.value);
+            }
+
+            function scheduleSearch() {
+                clearTimeout(searchTimer);
+                if (!composing) searchTimer = setTimeout(() => update(), 180);
             }
 
             form.addEventListener('submit', event => {
                 event.preventDefault();
-                const q = input.value.trim();
-                const url = new URL(window.location.href);
-                if (q) url.searchParams.set('q', q);
-                else url.searchParams.delete('q');
-                window.history.replaceState({}, '', url);
-                render(q);
+                if (!composing) update(true);
             });
+            input.addEventListener('input', scheduleSearch);
+            input.addEventListener('compositionstart', () => {
+                composing = true;
+                clearTimeout(searchTimer);
+            });
+            input.addEventListener('compositionend', () => {
+                composing = false;
+                scheduleSearch();
+            });
+            // Flush a pending edit before following a result, so Back restores it.
+            results.addEventListener('click', event => {
+                if (event.target.closest('a')) {
+                    clearTimeout(searchTimer);
+                    writeUrl(cleanQuery(input.value));
+                    editing = false;
+                }
+            });
+            window.addEventListener('popstate', restore);
 
-            input.addEventListener('input', () => render(input.value));
-            const initial = new URLSearchParams(window.location.search).get('q') || '';
-            input.value = initial;
-            render(initial);
+            restore();
         })();
     </script>
     <script src="command-palette.js?v=20260620c" defer></script>
