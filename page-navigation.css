@@ -1,0 +1,10 @@
+.content-mobile-link { display: none; }
+
+@media (max-width: 768px) {
+    .content-mobile-link { display: block; }
+    .content-navigation .nav-menu {
+        max-height: calc(100dvh - 80px);
+        overflow-y: auto;
+        overscroll-behavior: contain;
+    }
+}

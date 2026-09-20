@@ -8,7 +8,9 @@
          <meta name="author" content="FaroAI Team">
          <meta name="theme-color" content="#667eea">
          <title>FaroAI 更新日志 - 版本更新记录</title>
+         <link rel="canonical" href="https://www.faroai.net/changelog.html">
     <link rel="stylesheet" href="styles.css?v=20260828a">
+    <link rel="stylesheet" href="page-navigation.css?v=20260920a">
          <style>
              .page-hero { padding: 160px 0 80px; background: var(--gradient-primary); color: white; text-align: center; position: relative; overflow: hidden; }
              .page-hero::before { content: ''; position: absolute; top: -50%; left: -25%; width: 150%; height: 200%; background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 60%); z-index: 0; }
@@ -21,7 +23,10 @@
              .version { position: relative; margin-bottom: 3rem; }
              .version::before { content: ''; position: absolute; left: -3rem; top: 0.5rem; width: 26px; height: 26px; border-radius: 50%; background: var(--bg-primary); border: 3px solid var(--primary-color); z-index: 1; }
              .version.latest::before { background: var(--primary-color); box-shadow: 0 0 0 4px var(--primary-light); }
-             .version-header { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem; }
+             .version-header { display: flex; flex-wrap: wrap; align-items: center; gap: 0.75rem; margin-bottom: 1.5rem; }
+             .legacy-log { margin-top: 2rem; }
+             .legacy-log summary { min-height: 44px; padding: 0.75rem; cursor: pointer; font-weight: 700; color: var(--text-secondary); }
+             .legacy-note { padding: 1rem; margin: 0 0 2rem; background: #fffbeb; color: #92400e; border-radius: 8px; line-height: 1.7; }
              .version-tag { padding: 0.25rem 0.75rem; border-radius: var(--radius-full); font-size: 0.8rem; font-weight: 700; }
              .tag-newest { background: #d1fae5; color: #059669; }
              .tag-stable { background: var(--primary-light); color: var(--primary-color); }
@@ -75,9 +80,60 @@
              <section class="changelog">
                  <div class="container">
                      <div class="timeline">
-                         <div class="version latest">
+                         <article class="version latest" id="update-2026-09-20">
                              <div class="version-header">
                                  <span class="version-tag tag-newest">最新</span>
+                                 <span class="version-title">文档与联系入口</span>
+                                 <time class="version-date" datetime="2026-09-20">2026 年 9 月 20 日</time>
+                             </div>
+                             <div class="version-content">
+                                 <div class="change-group change-improve">
+                                     <div class="change-group-title">更容易找到、复制和使用</div>
+                                     <div class="change-item">文档搜索支持组合关键词、章节计数、空结果重置；目录与筛选同步，锚点能打开目标章节</div>
+                                     <div class="change-item">增加命令复制按钮；完善文档与本页手机菜单的关闭、键盘和跨屏幕切换行为</div>
+                                     <div class="change-item">联系表单恢复邮箱格式校验，按钮明确为“打开邮件草稿”，实际发送由访客在邮件客户端确认</div>
+                                 </div>
+                                 <div class="change-group change-add">
+                                     <div class="change-group-title">补充实用文档</div>
+                                     <div class="change-item"><a href="docs.html#model-performance">Ollama 加载、输入处理与生成耗时排查</a></div>
+                                     <div class="change-item"><a href="docs.html#deployment">GitHub Pages 发布与 Cloudflare 缓存检查</a></div>
+                                     <div class="change-item">内容附官方来源及资料核对日；本轮不更新历史运行快照或宣称性能提升</div>
+                                 </div>
+                             </div>
+                         </article>
+                         <article class="version" id="update-2026-09-13">
+                             <div class="version-header">
+                                 <span class="version-tag tag-stable">已发布</span>
+                                 <span class="version-title">站内搜索</span>
+                                 <time class="version-date" datetime="2026-09-13">2026 年 9 月 13 日</time>
+                             </div>
+                             <div class="version-content">
+                                 <div class="change-group change-improve">
+                                     <div class="change-group-title">检索与查询恢复</div>
+                                     <div class="change-item">支持多关键词、全角输入归一化和标题相关度排序</div>
+                                     <div class="change-item">查询与网址同步，刷新及前进后退恢复状态，增加空结果重置</div>
+                                     <div class="change-item">桌面、手机与正式域名完成验证。<a href="https://github.com/zhuweifaro-coder/faroai/commit/a7d06094501608c31231c43225487533fe2a71c0" target="_blank" rel="noopener noreferrer">查看对应提交 a7d0609</a></div>
+                                 </div>
+                             </div>
+                         </article>
+                         <article class="version" id="update-2026-09-08">
+                             <div class="version-header">
+                                 <span class="version-tag tag-stable">已发布</span>
+                                 <span class="version-title">博客阅读与检索</span>
+                                 <time class="version-date" datetime="2026-09-08">2026 年 9 月 8 日</time>
+                             </div>
+                             <div class="version-content">
+                                 <div class="change-group change-improve">
+                                     <div class="change-group-title">搜索、分页与手机菜单</div>
+                                     <div class="change-item">保留 34 篇文章，新增正文搜索、分类计数、每页 8 篇的真实分页与时间排序</div>
+                                     <div class="change-item">修复目录、跨页锚点、误触跳转及手机菜单，网址保存筛选与页码</div>
+                                     <div class="change-item">桌面、手机与正式域名完成验证。<a href="https://github.com/zhuweifaro-coder/faroai/commit/1506aa18b60d798513bcf95a289802071b68451f" target="_blank" rel="noopener noreferrer">查看对应提交 1506aa1</a></div>
+                                 </div>
+                             </div>
+                         </article>
+                         <div class="version">
+                             <div class="version-header">
+                                 <span class="version-tag tag-stable">历史记录</span>
                                  <span class="version-title">v2026.8</span>
                                  <span class="version-date">2026 年 8 月 28 日</span>
                              </div>
@@ -102,9 +158,12 @@
                              </div>
                          </div>
 
+                         <details class="legacy-log">
+                             <summary>早期产品描述（尚未逐项核验）</summary>
+                             <p class="legacy-note">以下为早期页面留存的产品描述。插件数量、性能数字、SDK、工作流编辑器和团队后台等尚无本次核验依据，不作为当前官网已上线功能或性能承诺。当前能力请以文档及上方实际维护记录为准。</p>
                          <div class="version">
                              <div class="version-header">
-                                 <span class="version-tag tag-newest">最新</span>
+                                 <span class="version-tag tag-stable">待核验</span>
                                  <span class="version-title">v2026.5</span>
                                  <span class="version-date">2026 年 5 月</span>
                              </div>
@@ -130,7 +189,7 @@
 
                          <div class="version">
                              <div class="version-header">
-                                 <span class="version-tag tag-stable">稳定</span>
+                                 <span class="version-tag tag-stable">待核验</span>
                                  <span class="version-title">v2026.4</span>
                                  <span class="version-date">2026 年 4 月</span>
                              </div>
@@ -156,7 +215,7 @@
 
                          <div class="version">
                              <div class="version-header">
-                                 <span class="version-tag tag-stable">稳定</span>
+                                 <span class="version-tag tag-stable">待核验</span>
                                  <span class="version-title">v2026.3</span>
                                  <span class="version-date">2026 年 3 月</span>
                              </div>
@@ -182,7 +241,7 @@
 
                          <div class="version">
                              <div class="version-header">
-                                 <span class="version-tag tag-stable">稳定</span>
+                                 <span class="version-tag tag-stable">待核验</span>
                                  <span class="version-title">v2026.2</span>
                                  <span class="version-date">2026 年 2 月</span>
                              </div>
@@ -208,7 +267,7 @@
 
                          <div class="version">
                              <div class="version-header">
-                                 <span class="version-tag tag-stable">稳定</span>
+                                 <span class="version-tag tag-stable">待核验</span>
                                  <span class="version-title">v2026.1</span>
                                  <span class="version-date">2026 年 1 月</span>
                              </div>
@@ -231,6 +290,7 @@
                                  </div>
                              </div>
                          </div>
+                         </details>
                      </div>
                  </div>
              </section>
@@ -238,7 +298,7 @@
                  <div class="container">
                      <h2>体验最新版本</h2>
                      <p>当前可通过文档了解功能状态，或联系站长申请本地部署支持。</p>
-                     <a href="index.html" class="btn btn-large">联系站长</a>
+                     <a href="contact.html" class="btn btn-large">联系站长</a>
                  </div>
              </section>
          </main>
@@ -255,6 +315,7 @@
                  <div class="footer-bottom"><div class="footer-copyright"><span>&copy; 2026 <span class="brand-word"><span class="brand-red">F</span><span class="brand-grad brand-grad-a">a</span><span class="brand-grad brand-grad-r">r</span><span class="brand-grad brand-grad-o">o</span><span class="brand-red">A</span><span class="brand-grad brand-grad-i">I</span></span>. All rights reserved.</span><a href="privacy.html">隐私政策</a><a href="terms.html">服务条款</a></div></div>
              </div>
          </footer>
+         <script src="page-navigation.js?v=20260920a" defer></script>
          <script src="command-palette.js?v=20260620c" defer></script>
      </body>
      </html>

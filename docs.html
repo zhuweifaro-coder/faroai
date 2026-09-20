@@ -12,6 +12,7 @@
     <link rel="canonical" href="https://www.faroai.net/docs.html">
     <title>FaroAI 文档中心 - 安装、网关、微信机器人与本地模型配置</title>
     <link rel="stylesheet" href="styles.css?v=20260828a">
+    <link rel="stylesheet" href="page-navigation.css?v=20260920a">
     <style>
         .docs-hero {
             padding: 132px 0 72px;
@@ -334,8 +335,22 @@
             flex: 0 0 auto;
         }
 
-        .is-hidden {
-            display: none;
+        [hidden] { display: none !important; }
+        .docs-content, .doc-card, .step-item > div { min-width: 0; }
+        .docs-section { overflow-wrap: anywhere; }
+        .docs-nav a[aria-current="location"] { background: var(--primary-light); color: var(--primary-color); }
+        .docs-search-status { margin: 0.75rem 0; color: var(--text-secondary); font-size: 0.9rem; }
+        .docs-reset, .command-copy {
+            min-height: 44px; padding: 0.5rem 0.8rem; border: 1px solid var(--border-color);
+            border-radius: 6px; background: var(--bg-primary); color: var(--primary-color); font: inherit; cursor: pointer;
+        }
+        .docs-reset { width: 100%; margin-bottom: 0.75rem; }
+        .command-toolbar { display: flex; justify-content: flex-end; margin-top: 0.75rem; }
+        .command-toolbar + .command-block { margin-top: 0.25rem; }
+        .docs-sources { font-size: 0.9rem; }
+        .docs-empty { padding: 2rem; border: 1px solid var(--border-color); border-radius: var(--radius-lg); background: var(--bg-primary); }
+        @media (min-width: 981px) {
+            .docs-sidebar { max-height: calc(100dvh - 112px); overflow-y: auto; overscroll-behavior: contain; }
         }
 
         @media (max-width: 980px) {
@@ -366,10 +381,11 @@
                 padding: 1.25rem;
             }
 
-            .doc-grid,
-            .docs-nav {
+            .doc-grid {
                 grid-template-columns: 1fr;
             }
+            .docs-nav { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+            .docs-nav a { padding: 0.65rem; font-size: 0.9rem; }
 
             .step-item {
                 grid-template-columns: 1fr;
@@ -422,7 +438,7 @@
                     <span class="docs-eyebrow"><span class="brand-word"><span class="brand-red">F</span><span class="brand-grad brand-grad-a">a</span><span class="brand-grad brand-grad-r">r</span><span class="brand-grad brand-grad-o">o</span><span class="brand-red">A</span><span class="brand-grad brand-grad-i">I</span></span> Docs</span>
                     <h1>文档中心</h1>
                     <p>从安装 OpenClaw、启动本地网关、接入微信机器人，到配置 Ollama 模型、知识库和自动化任务流。这里按真实落地顺序整理 <span class="brand-word"><span class="brand-red">F</span><span class="brand-grad brand-grad-a">a</span><span class="brand-grad brand-grad-r">r</span><span class="brand-grad brand-grad-o">o</span><span class="brand-red">A</span><span class="brand-grad brand-grad-i">I</span></span> 的使用路径。</p>
-                    <p class="docs-freshness">最后校对：2026-08-28。本机版本与 npm Beta 均为 OpenClaw 2026.8.1-beta.3，npm Stable 为 2026.7.1-2。Gateway、微信插件 2.4.6 与默认本地模型 qwen3.8:27b-q8_0 的公开状态均为带日期的成功快照，不代表持续在线；执行前请重新运行探针，并以 <code>openclaw --help</code>、npm 和官方文档为准。</p>
+                    <p class="docs-freshness">文档更新：2026-09-20，补充本地模型耗时排查和网站发布检查。运行记录仍沿用 2026-08-28 的历史验收快照，本轮未重新验收本机版本、微信投递或模型性能。安装和升级前，请查询 npm 发布通道，并以当前 CLI 帮助和官方文档为准。</p>
                     <div class="docs-hero-actions">
                         <a href="#quickstart" class="btn btn-large">5 分钟快速上手</a>
                         <a href="#wechat" class="btn btn-secondary btn-large">配置微信机器人</a>
@@ -442,13 +458,15 @@
             <div class="container">
                 <div class="docs-layout">
                     <aside class="docs-sidebar" aria-label="文档导航">
-                        <div class="docs-search">
+                        <div class="docs-search" hidden>
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
                                 <circle cx="11" cy="11" r="8"/>
                                 <path d="M21 21l-4.35-4.35"/>
                             </svg>
-                            <input id="docSearch" type="search" placeholder="搜索文档内容..." aria-label="搜索文档内容">
+                            <input id="docSearch" type="search" placeholder="搜索文档内容，支持多个关键词" aria-label="搜索文档内容" maxlength="200" aria-controls="docsContent" aria-describedby="docSearchStatus" autocomplete="off">
                         </div>
+                        <p id="docSearchStatus" class="docs-search-status" role="status" aria-live="polite" hidden></p>
+                        <button type="button" id="docSearchReset" class="docs-reset" hidden>清空搜索</button>
                         <div class="docs-companion-card" aria-label="配置提示">
                             <img class="companion-avatar" src="assets/character/fa-piglet-buddy-avatar-sm.webp" alt="" width="192" height="192" loading="lazy" decoding="async">
                             <div class="companion-copy">
@@ -462,13 +480,21 @@
                             <a href="#gateway">网关 Gateway</a>
                             <a href="#wechat">微信机器人</a>
                             <a href="#models">模型配置</a>
+                            <a href="#model-performance">本地模型耗时排查</a>
                             <a href="#knowledge">知识库</a>
                             <a href="#workflows">自动化任务流</a>
                             <a href="#troubleshooting">故障排查</a>
+                            <a href="#deployment">网站发布与缓存</a>
                         </nav>
                     </aside>
 
-                    <div class="docs-content">
+                    <div class="docs-content" id="docsContent">
+                        <div id="docSearchEmpty" class="docs-empty" hidden>
+                            <h2>没有找到相关章节</h2>
+                            <p>试试减少关键词，或清空搜索后浏览完整目录。</p>
+                            <button type="button" id="docEmptyReset" class="btn btn-outline">显示全部章节</button>
+                        </div>
+                        <p id="docCopyStatus" class="sr-only" role="status" aria-live="polite"></p>
                         <section id="quickstart" class="docs-section" data-doc-section>
                             <h2>快速开始</h2>
                             <p><span class="brand-word"><span class="brand-red">F</span><span class="brand-grad brand-grad-a">a</span><span class="brand-grad brand-grad-r">r</span><span class="brand-grad brand-grad-o">o</span><span class="brand-red">A</span><span class="brand-grad brand-grad-i">I</span></span> 推荐从一个可运行的本地网关开始，再逐步接入模型、微信通道和自动化规则。这样每一步都能被验证，出问题时也容易定位。</p>
@@ -504,7 +530,9 @@ openclaw gateway status</code></pre>
 
                         <section id="install" class="docs-section" data-doc-section>
                             <h2>安装与升级</h2>
-                            <p>如果你通过 npm 安装 OpenClaw，生产使用优先安装 latest；需要试用预发布功能时再明确安装 beta。2026-08-28 复核 npm 后，latest 为 2026.7.1-2，beta 与本机版本均为 2026.8.1-beta.3。升级前先备份配置，升级后立即运行 doctor、重启 Gateway，并重新验证微信与本地模型链路。</p>
+                            <p>通过 npm 安装时，先查询发布通道，确认要使用稳定版还是预发布版；页面里的历史版本不作为今天的安装目标。升级前备份配置，升级后运行诊断、重启 Gateway，并重新验证微信与本地模型链路。</p>
+                            <pre class="command-block"><code>npm view openclaw dist-tags
+openclaw --version</code></pre>
                             <div class="doc-grid">
                                 <div class="doc-card">
                                     <h3>全局安装</h3>
@@ -593,6 +621,25 @@ openclaw models list</code></pre>
                             </div>
                         </section>
 
+                        <section id="model-performance" class="docs-section" data-doc-section>
+                            <h2>本地模型耗时排查</h2>
+                            <p>首次响应慢时，先区分模型加载、输入处理和输出生成。确认是哪一段耗时，再调整模型驻留或输入长度；单次请求慢不等于模型不可用。</p>
+                            <div class="doc-grid">
+                                <div class="doc-card">
+                                    <h3>先看模型是否驻留</h3>
+                                    <p><code>ollama list</code> 查看已安装模型；<code>ollama ps</code> 查看已加载模型及 CPU/GPU 分配。已下载并不等于正在内存中运行。</p>
+                                    <pre class="command-block"><code>ollama list
+ollama ps</code></pre>
+                                </div>
+                                <div class="doc-card">
+                                    <h3>对照请求耗时</h3>
+                                    <p>Generate API 的 <code>load_duration</code> 对应加载，<code>prompt_eval_duration</code> 对应未命中缓存的输入处理，<code>eval_duration</code> 对应输出生成，单位均为纳秒。比较时保持模型、输入和输出限制一致。</p>
+                                    <p>连续请求可按可用内存设置 <code>keep_alive</code>；延长驻留会占用内存，不保证所有任务加速。</p>
+                                </div>
+                            </div>
+                            <p class="docs-sources">资料核对：2026-09-20。依据 <a href="https://docs.ollama.com/faq" target="_blank" rel="noopener noreferrer">Ollama FAQ</a> 与 <a href="https://docs.ollama.com/api/generate" target="_blank" rel="noopener noreferrer">Generate API</a>；本节是排查方法，不是本机性能测试结果。</p>
+                        </section>
+
                         <section id="knowledge" class="docs-section" data-doc-section>
                             <h2>知识库与记忆</h2>
                             <p>知识库适合放长期稳定资料，例如项目文档、个人简历、产品说明、客户材料和常用 SOP。记忆则适合保存偏好、上下文和长期协作线索。</p>
@@ -652,6 +699,27 @@ openclaw models list</code></pre>
                                     <p>Google/GitHub OAuth 后端已接入 Cloudflare Worker。正式可用前，需要在第三方控制台配置回调地址，并在 Worker 的变量与密钥中设置 <code>GOOGLE_CLIENT_ID</code>、<code>GOOGLE_CLIENT_SECRET</code>、<code>GITHUB_CLIENT_ID</code>、<code>GITHUB_CLIENT_SECRET</code>、<code>OAUTH_COOKIE_SECRET</code>。如果线上点击后提示 <code>missing_env</code>，说明密钥还未配置完整。</p>
                                 </div>
                             </div>
+                        </section>
+
+                        <section id="deployment" class="docs-section" data-doc-section>
+                            <h2>网站发布与缓存</h2>
+                            <p>FaroAI 静态页面通过 GitHub Pages 发布，Cloudflare 位于域名前层并承接部分 API 路由。更新后按下列顺序检查，避免把推送成功当成页面已经生效。</p>
+                            <div class="step-list">
+                                <div class="step-item"><div>
+                                    <h3>对照提交与部署</h3>
+                                    <p>在 GitHub Actions 和 Deployments 查看触发提交、部署状态与日志，确认发布的是本次提交。失败时先查看对应步骤，不重复叠加发布。</p>
+                                    <a href="https://github.com/zhuweifaro-coder/faroai/actions/workflows/deploy-pages.yml" target="_blank" rel="noopener noreferrer">查看 FaroAI 发布记录</a>
+                                </div></div>
+                                <div class="step-item"><div>
+                                    <h3>核对正式页面与交互</h3>
+                                    <p>部署成功后，打开正式域名核对本次新增内容，并操作搜索、目录和手机菜单。页面返回 200 只能证明请求成功，不能证明功能正常。</p>
+                                </div></div>
+                                <div class="step-item"><div>
+                                    <h3>排除浏览器和 CDN 缓存</h3>
+                                    <p>先用禁用缓存的浏览器检查；源站已更新而 CDN 仍旧时，再按受影响 URL 清除缓存。若地址返回 301 或 302，跳转响应与最终目标页面应分别核对；自定义缓存键需按 Cloudflare 文档处理。</p>
+                                </div></div>
+                            </div>
+                            <p class="docs-sources">资料核对：2026-09-20。依据 <a href="https://docs.github.com/en/actions/how-tos/deploy/configure-and-manage-deployments/view-deployment-history" target="_blank" rel="noopener noreferrer">GitHub 部署历史</a> 与 <a href="https://developers.cloudflare.com/cache/how-to/purge-cache/purge-by-single-file/" target="_blank" rel="noopener noreferrer">Cloudflare 按 URL 清除缓存</a>。正式域名交互检查是本站采用的维护步骤。</p>
                         </section>
 
                         <section class="docs-cta">
@@ -723,22 +791,8 @@ openclaw models list</code></pre>
         </div>
     </footer>
 
-    <script src="script.js?v=20260828a" defer></script>
-    <script>
-        (function () {
-            const search = document.getElementById('docSearch');
-            const sections = Array.from(document.querySelectorAll('[data-doc-section]'));
-            if (!search) return;
-
-            search.addEventListener('input', function () {
-                const keyword = search.value.trim().toLowerCase();
-                sections.forEach(function (section) {
-                    const text = section.textContent.toLowerCase();
-                    section.classList.toggle('is-hidden', Boolean(keyword) && !text.includes(keyword));
-                });
-            });
-        })();
-    </script>
+    <script src="page-navigation.js?v=20260920a" defer></script>
+    <script src="docs.js?v=20260920a" defer></script>
     <script src="command-palette.js?v=20260620c" defer></script>
 </body>
 </html>

@@ -82,16 +82,16 @@
                             <div class="container">
                                 <div class="contact-grid">
                                     <div class="contact-form">
-                                        <h2>发送消息</h2>
-                                        <p class="subtitle">填写以下表单，我们会尽快回复你。</p>
-                                        <form id="contactForm" novalidate>
+                                        <h2>准备邮件</h2>
+                                        <p class="subtitle" id="contactMailHelp">填写后会尝试打开默认邮件客户端，并将内容带入草稿。请在邮件客户端中确认并发送；本页不会直接发送消息。</p>
+                                        <form id="contactForm" aria-describedby="contactMailHelp">
                                             <div class="form-group">
                                                 <label for="contactName">姓名 *</label>
-                                                <input type="text" id="contactName" name="name" placeholder="你的姓名" required>
+                                                <input type="text" id="contactName" name="name" placeholder="你的姓名" autocomplete="name" required>
                                             </div>
                                             <div class="form-group">
                                                 <label for="contactEmail">邮箱 *</label>
-                                                <input type="email" id="contactEmail" name="email" placeholder="your@email.com" required>
+                                                <input type="email" id="contactEmail" name="email" placeholder="your@email.com" autocomplete="email" required>
                                             </div>
                                             <div class="form-group">
                                                 <label for="contactSubject">主题</label>
@@ -108,7 +108,7 @@
                                                 <label for="contactMessage">内容 *</label>
                                                 <textarea id="contactMessage" name="message" placeholder="请详细描述你的问题或建议..." required></textarea>
                                             </div>
-                                            <button type="submit" class="btn btn-primary btn-full btn-large">发送消息</button>
+                                            <button type="submit" class="btn btn-primary btn-full btn-large">打开邮件草稿</button>
                                         </form>
                                     </div>
 
@@ -118,8 +118,8 @@
                                             <div class="contact-method-icon">📧</div>
                                             <div>
                                                 <h4>电子邮件</h4>
-                                                <p>faro@vip.163.com</p>
-                                                <p style="font-size:0.85rem;">工作日 24 小时内回复</p>
+                                                <p><a href="mailto:faro@vip.163.com">faro@vip.163.com</a></p>
+                                                <p style="font-size:0.85rem;">未配置邮件客户端时，可复制此地址到网页邮箱撰写邮件。</p>
                                             </div>
                                         </div>
                                         <div class="contact-method">
