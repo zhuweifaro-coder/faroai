@@ -19,6 +19,7 @@
     <meta property="og:video" content="https://www.faroai.net/assets/video/july-screening-logic-v8-douyin-safe.mp4">
     <meta property="og:video:type" content="video/mp4">
     <link rel="stylesheet" href="styles.css?v=20260828a">
+    <link rel="stylesheet" href="page-navigation.css?v=20261003a">
     <style>
         body.investment-body {
             background: #07111f;
@@ -930,28 +931,6 @@
         </div>
     </footer>
     <script>
-        (function bindInvestmentMobileMenu() {
-            const button = document.querySelector('.mobile-menu-btn');
-            const navMenu = document.querySelector('.nav-menu');
-            const navActions = document.querySelector('.nav-actions');
-            if (!button || !navMenu) return;
-
-            button.addEventListener('click', () => {
-                const expanded = button.getAttribute('aria-expanded') === 'true';
-                button.setAttribute('aria-expanded', String(!expanded));
-                navMenu.classList.toggle('active', !expanded);
-                navActions?.classList.toggle('active', !expanded);
-            });
-
-            navMenu.querySelectorAll('a').forEach(link => {
-                link.addEventListener('click', () => {
-                    button.setAttribute('aria-expanded', 'false');
-                    navMenu.classList.remove('active');
-                    navActions?.classList.remove('active');
-                });
-            });
-        })();
-
         (function bindInvestmentVideoChapters() {
             const video = document.getElementById('investmentVideo');
             const progress = document.getElementById('investmentVideoProgress');
@@ -1088,6 +1067,7 @@
             updateProgress();
         })();
     </script>
-    <script src="command-palette.js?v=20260620c" defer></script>
+    <script src="page-navigation.js?v=20261003a" defer></script>
+    <script src="command-palette.js?v=20261003a" defer></script>
 </body>
 </html>
