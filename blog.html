@@ -5,14 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
     <title>FaroAI 日志 - OpenClaw、Codex 自动化与本地模型周报</title>
-    <meta name="description" content="FaroAI 工作流日志：跟踪 OpenClaw 最新版本、OpenAI Codex 长任务实践、AI Agent 工程更新与本地模型运行时变化。">
-    <meta name="keywords" content="FaroAI 日志, AI 工作流日志, OpenClaw Stable, OpenClaw Beta, Codex 自动化, OpenAI 技术资料, AI Agent, 微信机器人, qwen3.8 本地模型">
+    <meta name="description" content="FaroAI 工作流日志：跟踪 OpenClaw 2026.9.8、Codex CLI 长任务实践、Ollama 决策模型与 AI Agent 工程更新。">
+    <meta name="keywords" content="FaroAI 日志, AI 工作流日志, OpenClaw 2026.9.8, Codex CLI 0.160.0, Ollama 0.35.1, 决策模型, AI Agent, 微信机器人, 本地模型">
     <link rel="canonical" href="https://www.faroai.net/blog.html">
     <meta property="og:locale" content="zh_CN">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="FaroAI">
     <meta property="og:title" content="FaroAI 日志 - OpenClaw、Codex 自动化与本地模型周报">
-    <meta property="og:description" content="FaroAI 工作流日志：跟踪 OpenClaw 最新版本、OpenAI Codex 长任务实践、AI Agent 工程更新与本地模型运行时变化。">
+    <meta property="og:description" content="FaroAI 工作流日志：跟踪 OpenClaw 2026.9.8、Codex CLI 长任务实践、Ollama 决策模型与 AI Agent 工程更新。">
     <meta property="og:url" content="https://www.faroai.net/blog.html">
     <meta name="twitter:card" content="summary">
     <link rel="stylesheet" href="styles.css?v=20260828a">
@@ -61,14 +61,14 @@
                     <aside class="blog-hero-panel" aria-label="日志更新摘要">
                         <div class="blog-hero-panel-head">
                             <span>最近内容核验</span>
-                            <strong>2026-08-28</strong>
+                            <strong>2026-10-04</strong>
                         </div>
-                        <p class="blog-freshness">运行与版本记录截至 2026-08-28。文章保留发布时的验证日期，部署前请查阅文中官方来源。</p>
+                        <p class="blog-freshness">官方资料核验至 2026-10-04。版本信息以发布记录为准；历史本机运行快照保留原验证日期，不代表当前链路状态。</p>
                         <div class="blog-hero-metrics" aria-label="当前关注主题">
-                            <span>Local beta.3</span>
-                            <span>Gateway 08-28</span>
-                            <span>Stable 2026.7.1-2</span>
-                            <span>Weixin 2.4.6</span>
+                            <span>OpenClaw 2026.9.8</span>
+                            <span>Codex CLI 0.160.0</span>
+                            <span>Ollama 0.35.1</span>
+                            <span>Cloudflare 10-02</span>
                         </div>
                         <div class="page-companion blog-companion-card" aria-label="FaroAI 日志研究伙伴">
                             <img class="companion-avatar" src="assets/character/fa-piglet-buddy-avatar-sm.webp" alt="FaroAI 的 Fa 研究伙伴形象" width="192" height="192" loading="lazy" decoding="async">
@@ -137,38 +137,33 @@
                 </details>
 
                 <details class="blog-context">
-                    <summary>资料来源与核验记录 <span>截至 2026-08-28</span></summary>
+                    <summary>资料来源与核验记录 <span>截至 2026-10-04</span></summary>
                 <div class="source-ledger" aria-label="资料核验记录">
                     <div class="source-ledger-head">
                         <span>Verified sources</span>
-                        <strong>2026-08-28 状态口径复核</strong>
+                        <strong>2026-10-04 官方资料复核</strong>
                     </div>
-                    <p class="source-ledger-note">核验口径：公开版本以 npm 与官方文档为准；2026-08-28 本机 Beta、Gateway、微信通道、本地模型与真实投递已分层复核，静态页仍只展示带日期的成功快照。</p>
+                    <p class="source-ledger-note">核验口径：本期以 OpenClaw、OpenAI、Ollama、Cloudflare 与 llama.cpp 官方发布记录为准；预发布或 Beta 能力单独标明。资料更新不等于本机 Gateway、微信通道或真实投递已重新验收。</p>
                     <div class="source-ledger-grid">
-                        <a class="source-ledger-card" href="#article-static-site-runtime-snapshot-2026-08-28">
-                            <small>架构与可观测性</small>
-                            <strong>静态官网只展示成功快照，不再冒充本地实时监控</strong>
-                            <p>OpenClaw 默认使用 loopback；公开网页无法可靠读取本机当前状态，历史绿灯必须带上验收日期。</p>
+                        <a class="source-ledger-card" href="#article-decision-models-systemone-2026-10-04">
+                            <small>本地模型 / 决策层</small>
+                            <strong>Ollama 与 Cloudflare 把结构化决策带进 Agent 工作流</strong>
+                            <p>从自由文本生成走向选择、评分和概率输出，适合路由、审批与风险控制。</p>
                         </a>
-                        <a class="source-ledger-card" href="#article-openai-codex-maxxing-2026-06-22">
-                            <small>OpenAI / Codex</small>
-                            <strong>06-22 官方把长任务工作方式写成公开方法论</strong>
-                            <p>Codex 的重点不再只是“写一段代码”，而是如何计划、等待、继续执行和收口长任务。</p>
+                        <a class="source-ledger-card" href="#article-openclaw-2026-9-8-reliability-2026-10-04">
+                            <small>OpenClaw / 可靠性</small>
+                            <strong>2026.9.8 聚焦更新恢复、Gateway 与后台任务</strong>
+                            <p>这是一版可靠性热修复，官方明确没有刻意加入新的产品能力。</p>
                         </a>
-                        <a class="source-ledger-card" href="#article-long-running-workflow-checklist-2026-06-29">
-                            <small>自动化工作流</small>
-                            <strong>微信机器人与定时任务要先补 4 个检查点</strong>
-                            <p>计划、检查点、审批和恢复：结合文章发布时的官方资料梳理落地路线。</p>
+                        <a class="source-ledger-card" href="#article-codex-cli-0-160-long-task-2026-10-04">
+                            <small>OpenAI / Codex CLI</small>
+                            <strong>0.159 与 0.160 连续修补续接、分叉和中途转向</strong>
+                            <p>长任务要保存草稿、核对发送状态，并让仍在启动的子任务完成或明确失败。</p>
                         </a>
-                        <a class="source-ledger-card" href="#article-agents-sdk-v0170-2026-06-26">
-                            <small>AI Agent</small>
-                            <strong>Agents SDK 0.17.0 于 06-26 把远程 MCP、Agent debugger 与恢复继续做深</strong>
-                            <p>远程 MCP、Durable Objects 支持和调试工具同时前进，说明 Agent 的落地方向更偏长连接和可排障系统。</p>
-                        </a>
-                        <a class="source-ledger-card" href="#article-ollama-0-30-11-2026-06-25">
-                            <small>本地模型</small>
-                            <strong>Ollama 0.30.11：06-25 版本记录</strong>
-                            <p>回顾当时的 Apple Silicon 与 llama.cpp 维护变化；升级前以当前官方发行记录为准。</p>
+                        <a class="source-ledger-card" href="#article-cloudflare-agent-search-durable-2026-10-04">
+                            <small>Cloudflare / Agent 基础设施</small>
+                            <strong>Web Search API 与 PiHarness 同日发布</strong>
+                            <p>搜索、日志、计费与中断恢复开始进入统一基础设施，但两项能力仍需分别验收。</p>
                         </a>
                     </div>
                 </div>
@@ -189,6 +184,102 @@
                 <!-- 文章列表 -->
                 <div class="articles" id="articles">
                     <!-- 置顶文章：OpenClaw 与 OpenAI 最新资料 -->
+                    <article id="article-decision-models-systemone-2026-10-04" class="article-card featured" data-category="technical">
+                        <div class="article-content">
+                            <div class="article-header">
+                                <a href="https://ollama.com/blog/ollama-now-supports-jev-style-decision-models" target="_blank" rel="noopener noreferrer" class="article-title">Agent 不只会生成：Ollama、Cloudflare 与 llama.cpp 正在补上“决策层”</a>
+                                <span class="article-category category-technical">技术文章</span>
+                            </div>
+                            <p class="article-excerpt">
+                                传统大模型擅长生成一段答案，Agent 在真实流程里却经常需要做更窄、更可校验的判断：从候选项中选择、给出置信度、为风险打分，再把结果交给后续工具。Ollama 0.35.1 已通过 <code>/v1/systemone</code> 支持 Clef 27B 与 Clef Flash 9B 这类决策模型，并把它们在能力列表中单独标为 <code>decision</code>；Cloudflare 的 Clef 发布说明则给出了二值、选择和评分三类结构化问题。这样一来，本地模型可承担初筛和路由，云端能力可处理更复杂判断，但结构化输出仍需结合业务阈值、人工复核和失败兜底。llama.cpp 也在预发布构建中加入了对应接口，现阶段适合测试兼容性，不应直接写成稳定生产能力。
+                            </p>
+                            <p class="article-source">资料来源：<a href="https://github.com/ollama/ollama/releases/tag/v0.35.1" target="_blank" rel="noopener noreferrer">Ollama 0.35.1</a>、<a href="https://ollama.com/blog/ollama-now-supports-jev-style-decision-models" target="_blank" rel="noopener noreferrer">Ollama 决策模型说明</a>、<a href="https://developers.cloudflare.com/changelog/post/2026-10-01-clef-workers-ai/" target="_blank" rel="noopener noreferrer">Cloudflare Clef</a>、<a href="https://github.com/ggml-org/llama.cpp/releases/tag/b11361" target="_blank" rel="noopener noreferrer">llama.cpp b11361（预发布）</a></p>
+                            <div class="article-meta">
+                                <a href="个人概况_2026_v3.html" class="article-author">炜哥</a>
+                                <span class="article-date">2026-10-04</span>
+                                <span class="article-note">决策模型与工作流路由</span>
+                                <div class="article-tags">
+                                    <span class="tag">Ollama 0.35.1</span>
+                                    <span class="tag">Decision Models</span>
+                                    <span class="tag">System One</span>
+                                    <span class="tag">Agent 路由</span>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article id="article-openclaw-2026-9-8-reliability-2026-10-04" class="article-card featured" data-category="product">
+                        <div class="article-content">
+                            <div class="article-header">
+                                <a href="https://github.com/openclaw/openclaw/releases/tag/v2026.9.8" target="_blank" rel="noopener noreferrer" class="article-title">OpenClaw 2026.9.8：这次不堆新功能，重点是更新恢复、Gateway 与长任务可靠性</a>
+                                <span class="article-category category-product">产品更新</span>
+                            </div>
+                            <p class="article-excerpt">
+                                OpenClaw 2026.9.8 是一次聚焦可靠性与恢复的热修复，官方明确说明没有刻意加入新的产品能力。更新与 Doctor 会尽量保留插件设置，并更稳妥地处理 SQLite 争用；容器环境可避免重复 Gateway；后台命令结束后卡住的会话得到修复；使用 API key 的 Codex Computer Use 在检查桌面应用访问时，也不再受无关的浏览器登录状态影响，同时降低大规模 Agent 运行时的内存压力。浏览器控制仍需自身登录。对 FaroAI 这类长期运行的本地工作台，升级后的验收顺序仍然是：确认版本，再测 Gateway、模型、通道和真实投递。该版本为后续模型支持做了准备，但不能据此宣称所有新模型都已完整支持。
+                            </p>
+                            <p class="article-source">资料来源：<a href="https://github.com/openclaw/openclaw/releases/tag/v2026.9.8" target="_blank" rel="noopener noreferrer">OpenClaw v2026.9.8 Release</a>、<a href="https://docs.openclaw.ai/releases/2026.9.8" target="_blank" rel="noopener noreferrer">OpenClaw 2026.9.8 发布说明</a></p>
+                            <div class="article-meta">
+                                <a href="个人概况_2026_v3.html" class="article-author">炜哥</a>
+                                <span class="article-date">2026-10-04</span>
+                                <span class="article-note">可靠性热修复</span>
+                                <div class="article-tags">
+                                    <span class="tag">OpenClaw 2026.9.8</span>
+                                    <span class="tag">Gateway</span>
+                                    <span class="tag">Doctor</span>
+                                    <span class="tag">恢复能力</span>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article id="article-codex-cli-0-160-long-task-2026-10-04" class="article-card featured" data-category="tutorial">
+                        <div class="article-content">
+                            <div class="article-header">
+                                <a href="https://developers.openai.com/codex/changelog" target="_blank" rel="noopener noreferrer" class="article-title">教程：把 Codex 长任务做成可续接流程——0.159/0.160 提醒我们检查这 4 件事</a>
+                                <span class="article-category category-tutorial">教程</span>
+                            </div>
+                            <p class="article-excerpt">
+                                Codex CLI 0.159.0 与 0.160.0 连续修补了长任务最容易断裂的环节。第一，网络重连后先核对未发送消息的状态，再决定是否重发，避免重复指令；第二，恢复或分叉任务时保留历史与 provider 设置；第三，子 Agent 的环境还在启动时不要提前丢弃，让准备过程完成或把失败原因明确回传；第四，把阶段结果写进文件或提交点，再使用 0.159.0 中可选的 <code>instant_interrupt</code> 在运行中转向。该中断能力需要主动开启，并不代表任务天然可恢复；关键资料、验证结果和下一步仍应留下可读取的检查点。
+                            </p>
+                            <p class="article-source">资料来源：<a href="https://developers.openai.com/codex/changelog" target="_blank" rel="noopener noreferrer">OpenAI Codex Changelog</a>（2026-09-29 与 2026-10-01 条目）</p>
+                            <div class="article-meta">
+                                <a href="个人概况_2026_v3.html" class="article-author">炜哥</a>
+                                <span class="article-date">2026-10-04</span>
+                                <span class="article-note">长任务续接清单</span>
+                                <div class="article-tags">
+                                    <span class="tag">Codex CLI 0.160.0</span>
+                                    <span class="tag">Long-running Tasks</span>
+                                    <span class="tag">Resume</span>
+                                    <span class="tag">Subagents</span>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article id="article-cloudflare-agent-search-durable-2026-10-04" class="article-card featured" data-category="news">
+                        <div class="article-content">
+                            <div class="article-header">
+                                <a href="https://developers.cloudflare.com/changelog/post/2026-10-02-introducing-web-search-api/" target="_blank" rel="noopener noreferrer" class="article-title">Cloudflare 同日补上 Web Search API 与 PiHarness：Agent 的搜索、日志和恢复开始基础设施化</a>
+                                <span class="article-category category-news">行业动态</span>
+                            </div>
+                            <p class="article-excerpt">
+                                Cloudflare 在 10 月 2 日同时发布 Web Search API Beta 与 PiHarness。前者可通过 REST 或 Workers AI 绑定调用 Ceramic.ai、Exa、Linkup；三家供应商均对经 Cloudflare 发起的请求支持零数据保留，请求可记录到 AI Gateway，并按供应商 API 标价计费或使用自带密钥。后者基于 Agents SDK 与 Pi Durable，让长任务在中断、重启或网络变化后继续执行。两项能力合起来，说明 Agent 的“先查资料、再执行、可恢复”正从应用代码下沉为基础设施。不过搜索结果不等于事实正确，仍需来源校验；PiHarness 处于 Beta，Pi Durable 还是实验能力，接口和行为可能继续变化。
+                            </p>
+                            <p class="article-source">资料来源：<a href="https://developers.cloudflare.com/changelog/post/2026-10-02-introducing-web-search-api/" target="_blank" rel="noopener noreferrer">Cloudflare Web Search API</a>、<a href="https://developers.cloudflare.com/changelog/post/2026-10-02-pi-harness/" target="_blank" rel="noopener noreferrer">Cloudflare PiHarness</a></p>
+                            <div class="article-meta">
+                                <a href="个人概况_2026_v3.html" class="article-author">炜哥</a>
+                                <span class="article-date">2026-10-04</span>
+                                <span class="article-note">Agent 基础设施观察</span>
+                                <div class="article-tags">
+                                    <span class="tag">Web Search API</span>
+                                    <span class="tag">PiHarness</span>
+                                    <span class="tag">Durable Tasks</span>
+                                    <span class="tag">Cloudflare</span>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
                     <article id="article-static-site-runtime-snapshot-2026-08-28" class="article-card featured" data-category="technical">
                         <div class="article-content">
                             <div class="article-header">
@@ -477,7 +568,7 @@
                         </div>
                     </article>
 
-                    <article class="article-card featured" data-category="tutorial">
+                    <article id="article-13" class="article-card featured" data-category="tutorial">
                         <div class="article-content">
                             <div class="article-header">
                                 <a href="docs.html#quickstart" class="article-title">把 OpenAI Responses API 接进 Agent 工作流：工具调用、文件检索与 MCP 的落地路线</a>
@@ -501,7 +592,7 @@
                         </div>
                     </article>
 
-                    <article class="article-card featured" data-category="technical">
+                    <article id="article-14" class="article-card featured" data-category="technical">
                         <div class="article-content">
                             <div class="article-header">
                                 <a href="https://platform.openai.com/docs/guides/realtime" target="_blank" rel="noopener noreferrer" class="article-title">OpenAI Realtime、语音转写与翻译：语音型 AI 助手的新接口组合</a>
@@ -803,7 +894,7 @@
 
 				<!-- 旧文章 -->
 
-                    <article class="article-card featured" data-category="product">
+                    <article id="article-27" class="article-card featured" data-category="product">
                         <div class="article-content">
                             <div class="article-header">
                                 <a href="docs.html#gateway" class="article-title">2026 年 4 月 OpenClaw 版本汇总：多提供者、Memory 与 Gateway 稳定性</a>
@@ -825,7 +916,7 @@
                             </div>
                         </div>
                     </article>
-                    <article class="article-card featured" data-category="product">
+                    <article id="article-28" class="article-card featured" data-category="product">
                         <div class="article-content">
                             <div class="article-header">
 	                                <a href="docs.html#workflows" class="article-title">OpenClaw v2026.4.28 更新观察：子智能体上下文继承与本地工作流</a>
@@ -849,7 +940,7 @@
                     </article>
 
                     <!-- 文章 2 -->
-                    <article class="article-card featured" data-category="news">
+                    <article id="article-29" class="article-card featured" data-category="news">
                         <div class="article-content">
                             <div class="article-header">
                                  <a href="https://platform.openai.com/docs/models" target="_blank" rel="noopener noreferrer" class="article-title">OpenAI 模型指南速读：如何为复杂任务、代码任务和日常回复选模型</a>
@@ -872,7 +963,7 @@
                     </article>
 
                     <!-- 文章 2 -->
-                    <article class="article-card featured" data-category="product">
+                    <article id="article-30" class="article-card featured" data-category="product">
                         <div class="article-content">
                             <div class="article-header">
                                   <a href="docs.html#models" class="article-title">OpenClaw v2026.4.23 回顾：图像、多模型提供者与本地模型路线</a>
@@ -895,7 +986,7 @@
                     </article>
 
                     <!-- 文章 3 -->
-                    <article class="article-card featured" data-category="technical">
+                    <article id="article-31" class="article-card featured" data-category="technical">
                         <div class="article-content">
                             <div class="article-header">
                                    <a href="https://platform.openai.com/docs/guides/migrate-to-responses" target="_blank" rel="noopener noreferrer" class="article-title">技术选型：为什么 Agent 应用越来越适合用 Responses API 做中枢</a>
@@ -918,7 +1009,7 @@
                     </article>
 
                     <!-- 文章 4 -->
-                    <article class="article-card" data-category="tutorial">
+                    <article id="article-32" class="article-card" data-category="tutorial">
                         <div class="article-content">
                             <div class="article-header">
                                 <a href="docs.html#models" class="article-title">本地 LLM 部署指南：Ollama、模型路由与隐私边界</a>
@@ -942,7 +1033,7 @@
                     </article>
 
                     <!-- 文章 5 -->
-                    <article class="article-card" data-category="product">
+                    <article id="article-33" class="article-card" data-category="product">
                         <div class="article-content">
                             <div class="article-header">
                                 <a href="docs.html#wechat" class="article-title"><span class="brand-word"><span class="brand-red">F</span><span class="brand-grad brand-grad-a">a</span><span class="brand-grad brand-grad-r">r</span><span class="brand-grad brand-grad-o">o</span><span class="brand-red">A</span><span class="brand-grad brand-grad-i">I</span></span> 实践：把微信机器人、本地模型和 OpenClaw Gateway 跑通</a>
@@ -965,7 +1056,7 @@
                     </article>
 
                     <!-- 文章 6 -->
-                    <article class="article-card" data-category="news">
+                    <article id="article-34" class="article-card" data-category="news">
                         <div class="article-content">
                             <div class="article-header">
                                 <a href="docs.html#knowledge" class="article-title">AI 助手趋势观察：本地优先、个人知识库和通道化入口</a>
