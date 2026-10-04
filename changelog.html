@@ -9,8 +9,15 @@
          <meta name="theme-color" content="#667eea">
          <title>FaroAI 更新日志 - 版本更新记录</title>
          <link rel="canonical" href="https://www.faroai.net/changelog.html">
+         <meta property="og:locale" content="zh_CN">
+         <meta property="og:type" content="website">
+         <meta property="og:site_name" content="FaroAI">
+         <meta property="og:title" content="FaroAI 更新日志 - 版本更新记录">
+         <meta property="og:description" content="FaroAI 更新日志 - 查看最新版本更新、功能改进和 Bug 修复。">
+         <meta property="og:url" content="https://www.faroai.net/changelog.html">
+         <meta name="twitter:card" content="summary">
     <link rel="stylesheet" href="styles.css?v=20260828a">
-    <link rel="stylesheet" href="page-navigation.css?v=20260920a">
+    <link rel="stylesheet" href="page-navigation.css?v=20261004a">
          <style>
              .page-hero { padding: 160px 0 80px; background: var(--gradient-primary); color: white; text-align: center; position: relative; overflow: hidden; }
              .page-hero::before { content: ''; position: absolute; top: -50%; left: -25%; width: 150%; height: 200%; background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 60%); z-index: 0; }
@@ -80,9 +87,29 @@
              <section class="changelog">
                  <div class="container">
                      <div class="timeline">
-                         <article class="version latest" id="update-2026-10-03">
+                         <article class="version latest" id="update-2026-10-04">
                              <div class="version-header">
                                  <span class="version-tag tag-newest">最新</span>
+                                 <span class="version-title">导航、社区问答与规范网址</span>
+                                 <time class="version-date" datetime="2026-10-04">2026 年 10 月 4 日</time>
+                             </div>
+                             <div class="version-content">
+                                 <div class="change-group change-fix">
+                                     <div class="change-group-title">修复可用性问题</div>
+                                     <div class="change-item">首页手机菜单改为单一可滚动面板，避免“投资”和“关于我”被登录操作区遮挡；支持 Escape、外部点击关闭和焦点返回</div>
+                                     <div class="change-item">修复社区 FAQ 点击时报错的问题；展开一项时同步关闭其他答案并更新辅助阅读状态</div>
+                                 </div>
+                                 <div class="change-group change-improve">
+                                     <div class="change-group-title">完善内容发现</div>
+                                     <div class="change-item">为 8 个公开页面补齐规范网址，站点地图移除重复首页地址，应用启动地址统一为站点根路径</div>
+                                     <div class="change-item">为 12 个主要内容页补齐页面标题、摘要和规范地址的分享元信息</div>
+                                     <div class="change-item">站内搜索新增路线图、社区、隐私政策和服务条款，并补充 10 月维护关键词</div>
+                                 </div>
+                             </div>
+                         </article>
+                         <article class="version" id="update-2026-10-03">
+                             <div class="version-header">
+                                 <span class="version-tag tag-stable">已发布</span>
                                  <span class="version-title">手机导航与键盘操作</span>
                                  <time class="version-date" datetime="2026-10-03">2026 年 10 月 3 日</time>
                              </div>

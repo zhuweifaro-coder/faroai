@@ -2,6 +2,13 @@
 
 @media (max-width: 768px) {
     .content-mobile-link { display: block; }
+    .content-mobile-link .btn {
+        width: 100%;
+        justify-content: center;
+    }
+    .content-mobile-link .btn-primary {
+        color: #fff;
+    }
     .content-navigation .nav-menu {
         max-height: calc(100dvh - 80px);
         overflow-y: auto;

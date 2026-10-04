@@ -8,11 +8,19 @@
                 <meta name="author" content="FaroAI Team">
                 <meta name="theme-color" content="#667eea">
                 <title>FaroAI 社区 - 加入我们</title>
+                <link rel="canonical" href="https://www.faroai.net/community.html">
+                <meta property="og:locale" content="zh_CN">
+                <meta property="og:type" content="website">
+                <meta property="og:site_name" content="FaroAI">
+                <meta property="og:title" content="FaroAI 社区 - 加入我们">
+                <meta property="og:description" content="FaroAI 社区 - 加入开发者社区，参与讨论、贡献代码、分享插件，共建开放生态。">
+                <meta property="og:url" content="https://www.faroai.net/community.html">
+                <meta name="twitter:card" content="summary">
                 <link rel="preconnect" href="https://fonts.googleapis.com">
                 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
                 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css?v=20260828a">
-    <link rel="stylesheet" href="page-navigation.css?v=20261003a">
+    <link rel="stylesheet" href="page-navigation.css?v=20261004a">
                 <style>
                     .page-hero { padding: 160px 0 80px; background: var(--gradient-primary); color: white; text-align: center; position: relative; overflow: hidden; }
                     .page-hero::before { content: ''; position: absolute; top: -50%; left: -25%; width: 150%; height: 200%; background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 60%); z-index: 0; }
@@ -188,20 +196,20 @@
                             </div>
                             <div class="faq-list">
                                 <div class="faq-item">
-                                    <button class="faq-question" aria-expanded="false">新手如何开始贡献？</button>
-                                    <div class="faq-answer"><p>建议从文档补充、问题复现和部署经验反馈开始。这些任务最贴近当前网站阶段，也能直接帮助后来者少走弯路。</p></div>
+                                    <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-1">新手如何开始贡献？</button>
+                                    <div class="faq-answer" id="faq-answer-1" aria-hidden="true"><p>建议从文档补充、问题复现和部署经验反馈开始。这些任务最贴近当前网站阶段，也能直接帮助后来者少走弯路。</p></div>
                                 </div>
                                 <div class="faq-item">
-                                    <button class="faq-question" aria-expanded="false">贡献代码有奖励吗？</button>
-                                    <div class="faq-answer"><p>我们对突出贡献者给予特殊认可和奖励，包括专属贡献者徽章、<span class="brand-word"><span class="brand-red">F</span><span class="brand-grad brand-grad-a">a</span><span class="brand-grad brand-grad-r">r</span><span class="brand-grad brand-grad-o">o</span><span class="brand-red">A</span><span class="brand-grad brand-grad-i">I</span></span> 文档署名、案例展示和优先试用资格。后续如开放插件市场或商业计划，会在网站公开说明。</p></div>
+                                    <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-2">贡献代码有奖励吗？</button>
+                                    <div class="faq-answer" id="faq-answer-2" aria-hidden="true"><p>我们对突出贡献者给予特殊认可和奖励，包括专属贡献者徽章、<span class="brand-word"><span class="brand-red">F</span><span class="brand-grad brand-grad-a">a</span><span class="brand-grad brand-grad-r">r</span><span class="brand-grad brand-grad-o">o</span><span class="brand-red">A</span><span class="brand-grad brand-grad-i">I</span></span> 文档署名、案例展示和优先试用资格。后续如开放插件市场或商业计划，会在网站公开说明。</p></div>
                                 </div>
                                 <div class="faq-item">
-                                    <button class="faq-question" aria-expanded="false">如何发布自己的插件？</button>
-                                    <div class="faq-answer"><p>目前先以 OpenClaw 官方插件机制为准。本站会记录已经验证过的插件和配置路径，后续如开放自己的插件市场，会在博客和文档中公开说明。</p></div>
+                                    <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-3">如何发布自己的插件？</button>
+                                    <div class="faq-answer" id="faq-answer-3" aria-hidden="true"><p>目前先以 OpenClaw 官方插件机制为准。本站会记录已经验证过的插件和配置路径，后续如开放自己的插件市场，会在博客和文档中公开说明。</p></div>
                                 </div>
                                 <div class="faq-item">
-                                    <button class="faq-question" aria-expanded="false">社区有行为准则吗？</button>
-                                    <div class="faq-answer"><p>有的。我们遵循开放的社区准则：尊重他人、保持友善、不歧视、不骚扰。所有社区成员都需要遵守这一准则，违反者可能会被暂时或永久禁止参与社区活动。</p></div>
+                                    <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-4">社区有行为准则吗？</button>
+                                    <div class="faq-answer" id="faq-answer-4" aria-hidden="true"><p>有的。我们遵循开放的社区准则：尊重他人、保持友善、不歧视、不骚扰。所有社区成员都需要遵守这一准则，违反者可能会被暂时或永久禁止参与社区活动。</p></div>
                                 </div>
                             </div>
                         </div>
@@ -230,13 +238,23 @@
                     </div>
                 </footer>
                 <script>
-                    document.querySelectorAll('.faq-question').forEach(btn => {
+                    const faqItems = Array.from(document.querySelectorAll('.faq-item'));
+                    faqItems.forEach(item => {
+                        const btn = item.querySelector('.faq-question');
+                        const answer = item.querySelector('.faq-answer');
+                        if (!btn || !answer) return;
                         btn.addEventListener('click', () => {
-                            const item = btn.parentElement;
                             const isOpen = item.classList.contains('open');
-                            document.querySelectorAll('.faq-item').forEach(i = i.classList.remove('open'));
-                            if (!isOpen) item.classList.add('open');
-                            btn.setAttribute('aria-expanded', !isOpen);
+                            faqItems.forEach(otherItem => {
+                                otherItem.classList.remove('open');
+                                otherItem.querySelector('.faq-question')?.setAttribute('aria-expanded', 'false');
+                                otherItem.querySelector('.faq-answer')?.setAttribute('aria-hidden', 'true');
+                            });
+                            if (!isOpen) {
+                                item.classList.add('open');
+                                btn.setAttribute('aria-expanded', 'true');
+                                answer.setAttribute('aria-hidden', 'false');
+                            }
                         });
                     });
                 </script>

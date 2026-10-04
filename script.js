@@ -197,26 +197,67 @@ class SmoothScroll {
 // 移动端菜单
 class MobileMenu {
     constructor() {
+        this.navbar = document.querySelector('.navbar');
         this.menuToggle = document.querySelector('.mobile-menu-btn');
         this.navMenu = document.querySelector('.nav-menu');
         this.navActions = document.querySelector('.nav-actions');
-        
-        if (this.menuToggle) {
-            this.menuToggle.addEventListener('click', this.toggle.bind(this));
-        }
+        if (!this.navbar || !this.menuToggle || !this.navMenu) return;
+
+        this.mobile = window.matchMedia('(max-width: 768px)');
+        this.navbar.classList.add('content-navigation');
+        this.navMenu.id ||= 'mobile-menu';
+        this.menuToggle.type = 'button';
+        this.menuToggle.setAttribute('aria-controls', this.navMenu.id);
+
+        // Keep every mobile destination inside one scrollable panel. Buttons
+        // proxy their existing desktop controls so login behaviour stays shared.
+        this.navActions?.querySelectorAll('a, button').forEach(control => {
+            if (control.matches('[data-command-launcher]')) return;
+            const item = document.createElement('li');
+            const clone = control.cloneNode(true);
+            item.className = 'content-mobile-link';
+            if (control.matches('button')) {
+                clone.addEventListener('click', event => {
+                    event.preventDefault();
+                    this.setOpen(false);
+                    control.click();
+                });
+            }
+            item.append(clone);
+            this.navMenu.append(item);
+        });
+
+        this.menuToggle.addEventListener('click', () => {
+            this.setOpen(this.menuToggle.getAttribute('aria-expanded') !== 'true');
+        });
+        this.navMenu.addEventListener('click', event => {
+            if (event.target.closest('a')) this.setOpen(false);
+        });
+        document.addEventListener('click', event => {
+            if (this.menuToggle.getAttribute('aria-expanded') === 'true' && !event.composedPath().includes(this.navbar)) {
+                this.setOpen(false);
+            }
+        });
+        document.addEventListener('keydown', event => {
+            if (event.key === 'Escape' && this.menuToggle.getAttribute('aria-expanded') === 'true') {
+                this.setOpen(false, true);
+            }
+        });
+        this.mobile.addEventListener('change', () => this.setOpen(false));
+        this.setOpen(false);
     }
 
-    toggle() {
-        this.navMenu.classList.toggle('active');
-        this.navActions.classList.toggle('active');
-        const isOpen = this.navMenu.classList.contains('active');
-        this.menuToggle.setAttribute('aria-expanded', String(isOpen));
-        
-        if (isOpen) {
-            this.menuToggle.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>';
-        } else {
-            this.menuToggle.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>';
-        }
+    setOpen(open, restoreFocus = false) {
+        open = this.mobile.matches && open;
+        this.navMenu.classList.toggle('active', open);
+        this.navActions?.classList.remove('active');
+        this.navMenu.inert = this.mobile.matches && !open;
+        this.menuToggle.setAttribute('aria-expanded', String(open));
+        this.menuToggle.setAttribute('aria-label', open ? '关闭菜单' : '打开菜单');
+        this.menuToggle.innerHTML = open
+            ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="m6 6 12 12M6 18 18 6"/></svg>'
+            : '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>';
+        if (restoreFocus) this.menuToggle.focus();
     }
 }
 
@@ -233,20 +274,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // 响应式导航优化
-    window.addEventListener('resize', function() {
-        if (window.innerWidth > 768) {
-            var navMenu = document.querySelector('.nav-menu');
-            var navActions = document.querySelector('.nav-actions');
-            if (navMenu) navMenu.classList.remove('active');
-            if (navActions) navActions.classList.remove('active');
-            var menuBtn = document.querySelector('.mobile-menu-btn');
-            if (menuBtn) {
-                menuBtn.setAttribute('aria-expanded', 'false');
-                menuBtn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>';
-            }
-        }
-    });
 });
 
 // 添加淡入淡出动画样式
@@ -386,7 +413,6 @@ document.head.appendChild(style);
     onReady(() => {
         const oauthButtons = document.querySelectorAll('.btn-social[data-oauth-provider]');
         const status = document.getElementById('authStatus');
-        const loginTriggers = document.querySelectorAll('.btn-login-trigger');
         const modalSubtitle = document.querySelector('#loginModal .modal-subtitle');
         const isHttpPage = window.location.protocol === 'http:' || window.location.protocol === 'https:';
         const isLocalStaticPreview = isHttpPage
@@ -409,7 +435,7 @@ document.head.appendChild(style);
         function updateLoggedInUser(user) {
             if (!user) return;
             const label = user.name || user.email || '已登录';
-            loginTriggers.forEach(trigger => {
+            document.querySelectorAll('.btn-login-trigger').forEach(trigger => {
                 const text = trigger.querySelector('span') || trigger;
                 text.textContent = label.length > 10 ? `${label.slice(0, 10)}...` : label;
                 trigger.setAttribute('aria-label', `已登录：${label}`);
