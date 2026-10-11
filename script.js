@@ -626,9 +626,6 @@ document.head.appendChild(style);
             return;
         }
 
-        let visitorPaused = false;
-        let attemptedAutoplay = false;
-
         function setState(state) {
             const isPlaying = state === 'playing';
             const unavailable = state === 'unavailable';
@@ -649,7 +646,6 @@ document.head.appendChild(style);
         }
 
         function pauseMusic() {
-            visitorPaused = true;
             audio.pause();
             setState('paused');
         }
@@ -657,7 +653,6 @@ document.head.appendChild(style);
         async function playMusic({ reset = false } = {}) {
             if (toggle.disabled) return;
             if (reset) audio.currentTime = 0;
-            visitorPaused = false;
             audio.loop = false;
             audio.volume = 0.26;
 
@@ -683,22 +678,6 @@ document.head.appendChild(style);
         });
 
         setState('paused');
-        attemptedAutoplay = true;
-        playMusic();
-
-        const unlockOnce = (event) => {
-            if (event?.target && toggle.contains(event.target)) {
-                return;
-            }
-
-            if (attemptedAutoplay && audio.paused && !audio.ended && !visitorPaused && !toggle.disabled) {
-                playMusic();
-            }
-            window.removeEventListener('pointerdown', unlockOnce);
-            window.removeEventListener('keydown', unlockOnce);
-        };
-        window.addEventListener('pointerdown', unlockOnce, { once: true });
-        window.addEventListener('keydown', unlockOnce, { once: true });
     });
 })();
 
@@ -715,14 +694,22 @@ document.head.appendChild(style);
     onReady(() => {
         const canvas = document.getElementById('heroParticles');
         const prefersReducedMotion = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
+        const prefersReducedData = navigator.connection?.saveData === true;
 
-        if (canvas && !prefersReducedMotion) {
+        document.addEventListener('visibilitychange', () => {
+            document.body.classList.toggle('hero-animation-paused', document.hidden);
+        });
+
+        if (canvas && !prefersReducedMotion && !prefersReducedData) {
             const ctx = canvas.getContext('2d');
             const particles = [];
-            const particleCount = window.innerWidth < 768 ? 36 : 72;
+            const connectionDistance = window.innerWidth < 768 ? 92 : 118;
             let width = 0;
             let height = 0;
             let animationFrame;
+            let running = false;
+            let isVisible = true;
+            let resizeTimer;
 
             function resizeCanvas() {
                 const rect = canvas.getBoundingClientRect();
@@ -734,26 +721,35 @@ document.head.appendChild(style);
                 ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
             }
 
-            function createParticle(index) {
-                const angle = (index / particleCount) * Math.PI * 2;
+            function getParticleCount() {
+                const areaCount = Math.round((width * height) / 18000);
+                const mobileCap = window.innerWidth < 768 ? 28 : 62;
+                const coreScale = (navigator.hardwareConcurrency || 4) <= 4 ? 0.72 : 1;
+                return Math.max(16, Math.min(mobileCap, Math.round(areaCount * coreScale)));
+            }
+
+            function createParticle(index, total) {
+                const angle = (index / Math.max(total, 1)) * Math.PI * 2;
                 return {
                     x: Math.random() * width,
                     y: Math.random() * height,
-                    vx: Math.cos(angle) * (0.18 + Math.random() * 0.34),
-                    vy: Math.sin(angle) * (0.18 + Math.random() * 0.34),
+                    vx: Math.cos(angle) * (0.13 + Math.random() * 0.24),
+                    vy: Math.sin(angle) * (0.13 + Math.random() * 0.24),
                     r: 1.2 + Math.random() * 2.2,
                     hue: Math.random() > 0.72 ? 5 : Math.random() > 0.42 ? 178 : 218
                 };
             }
 
             function resetParticles() {
+                const particleCount = getParticleCount();
                 particles.length = 0;
                 for (let i = 0; i < particleCount; i += 1) {
-                    particles.push(createParticle(i));
+                    particles.push(createParticle(i, particleCount));
                 }
             }
 
             function draw() {
+                if (!running) return;
                 ctx.clearRect(0, 0, width, height);
                 particles.forEach((p, i) => {
                     p.x += p.vx;
@@ -771,9 +767,9 @@ document.head.appendChild(style);
                         const dx = p.x - q.x;
                         const dy = p.y - q.y;
                         const distance = Math.sqrt(dx * dx + dy * dy);
-                        if (distance < 118) {
+                        if (distance < connectionDistance) {
                             ctx.beginPath();
-                            ctx.strokeStyle = `rgba(37, 99, 235, ${0.16 * (1 - distance / 118)})`;
+                            ctx.strokeStyle = `rgba(37, 99, 235, ${0.16 * (1 - distance / connectionDistance)})`;
                             ctx.lineWidth = 1;
                             ctx.moveTo(p.x, p.y);
                             ctx.lineTo(q.x, q.y);
@@ -784,15 +780,43 @@ document.head.appendChild(style);
                 animationFrame = window.requestAnimationFrame(draw);
             }
 
+            function startParticles() {
+                if (running || document.hidden || !isVisible) return;
+                running = true;
+                canvas.classList.add('is-running');
+                draw();
+            }
+
+            function stopParticles() {
+                running = false;
+                canvas.classList.remove('is-running');
+                if (animationFrame) window.cancelAnimationFrame(animationFrame);
+            }
+
             resizeCanvas();
             resetParticles();
-            draw();
+            startParticles();
             window.addEventListener('resize', () => {
-                window.cancelAnimationFrame(animationFrame);
-                resizeCanvas();
-                resetParticles();
-                draw();
+                window.clearTimeout(resizeTimer);
+                resizeTimer = window.setTimeout(() => {
+                    resizeCanvas();
+                    resetParticles();
+                }, 120);
             });
+
+            document.addEventListener('visibilitychange', () => {
+                if (document.hidden) stopParticles();
+                else startParticles();
+            });
+
+            if ('IntersectionObserver' in window) {
+                const particleObserver = new IntersectionObserver(entries => {
+                    isVisible = entries.some(entry => entry.isIntersecting);
+                    if (isVisible) startParticles();
+                    else stopParticles();
+                }, { threshold: 0.02 });
+                particleObserver.observe(canvas);
+            }
         }
 
         const flows = {
@@ -1316,6 +1340,7 @@ document.head.appendChild(style);
         const gsap = window.gsap;
         const ScrollTrigger = window.ScrollTrigger;
         const prefersReducedMotion = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
+        const prefersReducedData = navigator.connection?.saveData === true;
 
         window.FaroAIGsap = {
             animateWorkflow() {},
@@ -1324,7 +1349,7 @@ document.head.appendChild(style);
             animateConfig() {}
         };
 
-        if (!gsap || prefersReducedMotion) return;
+        if (!gsap || prefersReducedMotion || prefersReducedData) return;
 
         if (ScrollTrigger) {
             gsap.registerPlugin(ScrollTrigger);
@@ -1344,26 +1369,37 @@ document.head.appendChild(style);
             '.proof-item'
         ].join(','));
 
-        if (heroItems.length) {
-            gsap.from(heroItems, {
-                autoAlpha: 0,
-                y: 24,
-                duration: 0.82,
-                stagger: 0.055,
+        const heroTimeline = gsap.timeline({
+            defaults: {
+                ease: 'power3.out',
                 clearProps: 'opacity,visibility,transform'
+            }
+        });
+
+        if (heroItems.length) {
+            heroTimeline.from(heroItems, {
+                autoAlpha: 0,
+                y: 22,
+                duration: 0.72,
+                stagger: 0.045
             });
         }
 
-        gsap.from('.dashboard-preview', {
+        heroTimeline.from('.dashboard-preview', {
             autoAlpha: 0,
-            y: 34,
-            scale: 0.97,
-            rotateX: 4,
-            duration: 0.95,
-            delay: 0.12,
-            transformOrigin: '50% 60%',
-            clearProps: 'opacity,visibility,transform'
-        });
+            y: 28,
+            scale: 0.985,
+            rotateX: 2.5,
+            duration: 0.78,
+            transformOrigin: '50% 60%'
+        }, heroItems.length ? '-=0.34' : 0);
+
+        heroTimeline.from('.visitor-stats, .hero-telemetry', {
+            autoAlpha: 0,
+            y: 14,
+            duration: 0.58,
+            stagger: 0.08
+        }, '-=0.38');
 
         const chartBars = document.querySelectorAll('.preview-chart .chart-bar');
         if (chartBars.length) {
@@ -1824,6 +1860,8 @@ document.head.appendChild(style);
 
         const skipButton = document.getElementById('techIntroSkip');
         const prefersReducedMotion = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
+        const prefersReducedData = navigator.connection?.saveData === true;
+        const compactViewport = window.matchMedia?.('(max-width: 768px)').matches;
         let closeTimer;
 
         function shouldSkipIntroForInternalHomeClick() {
@@ -1861,10 +1899,13 @@ document.head.appendChild(style);
             return;
         }
 
+        const introDuration = prefersReducedMotion || prefersReducedData ? 900 : compactViewport ? 3600 : 4200;
+        intro.style.setProperty('--intro-progress-duration', `${Math.max(650, introDuration - 520)}ms`);
+
         document.body.classList.add('intro-active');
         intro.setAttribute('aria-hidden', 'false');
         window.requestAnimationFrame(() => intro.classList.add('is-visible'));
-        closeTimer = window.setTimeout(closeIntro, prefersReducedMotion ? 1800 : 5200);
+        closeTimer = window.setTimeout(closeIntro, introDuration);
 
         skipButton?.addEventListener('click', closeIntro);
         document.addEventListener('keydown', event => {

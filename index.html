@@ -37,7 +37,7 @@
     <!-- Preconnect & Preload -->
     <!-- Styles -->
     <link rel="preload" as="image" href="assets/character/fa-piglet-buddy-portal.webp" type="image/webp">
-    <link rel="stylesheet" href="styles.css?v=20260828a">
+    <link rel="stylesheet" href="styles.css?v=20261011a">
     <link rel="stylesheet" href="page-navigation.css?v=20261004a">
     
     <!-- Critical CSS Inline -->
@@ -190,7 +190,7 @@
         </div>
     </div>
 
-    <audio id="homeBgm" class="site-bgm" preload="auto" autoplay>
+    <audio id="homeBgm" class="site-bgm" preload="metadata">
         <source src="assets/audio/mixkit-ode-to-synths-164.mp3" type="audio/mpeg">
     </audio>
     <button type="button" class="music-toggle" id="musicToggle" aria-pressed="false" aria-controls="homeBgm" title="播放背景音乐：Ode to Synths">
@@ -208,7 +208,7 @@
                         <span class="brand-red">F</span><span class="brand-grad brand-grad-a">a</span><span class="brand-grad brand-grad-r">r</span><span class="brand-grad brand-grad-o">o</span><span class="brand-red">A</span><span class="brand-grad brand-grad-i">I</span>
                     </span>
                 </a>
-                <ul class="nav-menu">
+                <ul class="nav-menu" id="mobile-menu">
                     <li><a href="#home">首页</a></li>
                     <li><a href="features.html">功能</a></li>
                     <li><a href="docs.html">文档</a></li>
@@ -263,7 +263,7 @@
                     <p class="hero-description">
                         FaroAI 是一套本地优先 AI 工作台：用 OpenClaw Gateway 连接微信、知识库、本地模型和自动化任务，先在单机验证，再按需要扩展。
                     </p>
-                    <div class="hero-audience" aria-label="适用对象">
+                    <div class="hero-audience" role="group" aria-label="适用对象">
                         <span class="hero-audience-chip">微信任务入口</span>
                         <span class="hero-audience-chip">个人知识中枢</span>
                         <span class="hero-audience-chip">本地模型工作流</span>
@@ -288,12 +288,12 @@
                             </span>
                         </div>
                     </div>
-                    <div class="hero-proof" aria-label="核心能力">
+                    <div class="hero-proof" role="group" aria-label="核心能力">
                         <div class="proof-item proof-item-current">本机 Beta · 2026.8.1-beta.3</div>
                         <div class="proof-item proof-item-stable">npm Stable · 2026.7.1-2</div>
                         <div class="proof-item">微信插件 · 2.4.6</div>
                     </div>
-                    <div class="visitor-stats" id="visitorStats" aria-label="网站访问量统计">
+                    <div class="visitor-stats" id="visitorStats" role="group" aria-label="网站访问量统计">
                         <article class="visitor-stat-card">
                             <span>累计访问量</span>
                             <strong id="visitTotal">--</strong>
@@ -304,7 +304,7 @@
                         </article>
                         <p id="visitStatus">正在同步访问统计。</p>
                     </div>
-                    <div class="hero-telemetry" aria-label="系统遥测">
+                    <div class="hero-telemetry" role="group" aria-label="系统遥测">
                         <div class="telemetry-item">
                             <span>ROUTE</span>
                             <strong>local.gateway</strong>
@@ -319,7 +319,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="hero-visual" aria-label="FaroAI 研究伙伴与网关状态预览">
+                <div class="hero-visual" role="group" aria-label="FaroAI 研究伙伴与网关状态预览">
                     <div class="dashboard-preview">
                         <div class="dashboard-orbit-layer">
                             <span class="orbit-ring orbit-ring-a"></span>
@@ -371,7 +371,7 @@
 
         <section class="credibility-strip" aria-label="网站可信信息">
             <div class="container">
-                <div class="home-view-switch" aria-label="首页浏览密度">
+                <div class="home-view-switch" role="group" aria-label="首页浏览密度">
                     <div class="home-view-copy">
                         <span>浏览模式</span>
                         <strong id="homeViewStatus">核心路径 · 9 个模块</strong>
@@ -448,22 +448,22 @@
                         </ul>
                     </article>
                 </div>
-                <div class="launch-lanes" aria-label="落地路径">
-                    <article class="launch-lane">
+                <div class="launch-lanes" role="list" aria-label="落地路径">
+                    <article class="launch-lane" role="listitem">
                         <span class="launch-step">01</span>
                         <div>
                             <strong>本地验证</strong>
                             <p>先验证 Gateway、模型和微信入口能否串通。</p>
                         </div>
                     </article>
-                    <article class="launch-lane">
+                    <article class="launch-lane" role="listitem">
                         <span class="launch-step">02</span>
                         <div>
                             <strong>加入知识与任务</strong>
                             <p>再接入文档检索、日报、定时任务和人工确认节点。</p>
                         </div>
                     </article>
-                    <article class="launch-lane">
+                    <article class="launch-lane" role="listitem">
                         <span class="launch-step">03</span>
                         <div>
                             <strong>按团队扩展</strong>
@@ -909,7 +909,7 @@
                             <em id="matrixScore">Ready 92%</em>
                         </div>
                         <p id="matrixDescription">把微信消息变成可路由任务，区分闲聊、资料查询、自动化触发和需要人工确认的请求。</p>
-                        <div class="matrix-live-stack" aria-label="当前系统路径">
+                        <div class="matrix-live-stack" role="group" aria-label="当前系统路径">
                             <article>
                                 <span>Route</span>
                                 <strong id="matrixRoute">Weixin → Gateway → Model → Reply</strong>
@@ -923,7 +923,7 @@
                                 <strong id="matrixHandoff">人工复核 / 自动草稿</strong>
                             </article>
                         </div>
-                        <div class="matrix-bars" aria-label="能力评分">
+                        <div class="matrix-bars" role="group" aria-label="能力评分">
                             <div class="matrix-bar">
                                 <span>可用性</span>
                                 <strong><i id="matrixBarAvailability" style="width: 92%"></i></strong>
@@ -943,7 +943,7 @@
                             <button class="matrix-chip" type="button" data-matrix="automation" role="tab" aria-selected="false">自动任务</button>
                             <button class="matrix-chip" type="button" data-matrix="safety" role="tab" aria-selected="false">安全审计</button>
                         </div>
-                        <div class="matrix-mini-grid" aria-label="当前矩阵摘要">
+                        <div class="matrix-mini-grid" role="group" aria-label="当前矩阵摘要">
                             <article>
                                 <span>Runtime</span>
                                 <strong>OpenClaw 2026.8.1-beta.3 · 2026-08-28</strong>
@@ -1065,11 +1065,11 @@
                         <p class="section-description">
                             <span class="brand-word"><span class="brand-red">F</span><span class="brand-grad brand-grad-a">a</span><span class="brand-grad brand-grad-r">r</span><span class="brand-grad brand-grad-o">o</span><span class="brand-red">A</span><span class="brand-grad brand-grad-i">I</span></span> 的核心不是再做一个聊天页面，而是把 AI 网关放到你的真实工作入口：微信、终端、网页和自动任务。
                         </p>
-                        <div class="quickstart-actions" aria-label="快速开始入口">
+                        <div class="quickstart-actions" role="group" aria-label="快速开始入口">
                             <a class="btn btn-primary" href="docs.html#quickstart">打开配置文档</a>
                             <a class="btn btn-outline" href="contact.html">申请协助部署</a>
                         </div>
-                        <div class="quickstart-terminal" aria-label="本地启动命令示例">
+                        <div class="quickstart-terminal" role="group" aria-label="本地启动命令示例">
                             <div class="quickstart-terminal-head">
                                 <span class="screen-dot red"></span>
                                 <span class="screen-dot yellow"></span>
@@ -1087,17 +1087,17 @@
                             </div>
                             <p id="copyCommandStatus" aria-live="polite">先确认网关可访问，再接入模型和微信通道。命令以你本机实际配置为准。</p>
                         </div>
-                        <div class="quickstart-acceptance" aria-label="部署验收顺序">
+                        <div class="quickstart-acceptance" role="list" aria-label="部署验收顺序">
                             <span class="acceptance-kicker">验收顺序</span>
-                            <div class="quickstart-check">
+                            <div class="quickstart-check" role="listitem">
                                 <strong>Gateway health</strong>
                                 <span>先看本机网关是否返回 200 OK。</span>
                             </div>
-                            <div class="quickstart-check">
+                            <div class="quickstart-check" role="listitem">
                                 <strong>Model reply</strong>
                                 <span>再确认本地或云端模型能稳定返回。</span>
                             </div>
-                            <div class="quickstart-check">
+                            <div class="quickstart-check" role="listitem">
                                 <strong>Weixin delivery</strong>
                                 <span>最后验证微信机器人能收到并投递回复。</span>
                             </div>
@@ -1529,7 +1529,7 @@
                     <p class="footer-description">
                         本地优先的 AI 助手工作台，连接微信、模型、知识库和自动化任务。
                     </p>
-                    <div class="footer-companion" aria-label="FaroAI 研究伙伴">
+                    <div class="footer-companion" role="group" aria-label="FaroAI 研究伙伴">
                         <img class="companion-avatar" src="assets/character/fa-piglet-buddy-avatar-sm.webp" alt="" width="192" height="192" loading="lazy" decoding="async">
                         <div class="companion-copy">
                             <span>FaroAI Studio</span>
@@ -1677,7 +1677,7 @@
     <!-- Optimized Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" defer></script>
-    <script src="script.js?v=20261004a" defer></script>
+    <script src="script.js?v=20261011a" defer></script>
     
     <!-- Performance Optimization -->
     <script>

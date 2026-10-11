@@ -12,8 +12,8 @@
     --bg-primary: #ffffff;
     --bg-secondary: #f8fafc;
     --text-primary: #0f172a;
-    --text-secondary: #64748b;
-    --text-muted: #94a3b8;
+    --text-secondary: #475569;
+    --text-muted: #64748b;
     --border-color: #e2e8f0;
     
     /* 渐变 */
@@ -1145,9 +1145,14 @@ section[id] {
     inset: 0;
     width: 100%;
     height: 100%;
-    opacity: 0.62;
+    opacity: 0;
     pointer-events: none;
     z-index: 0;
+    transition: opacity 0.42s ease;
+}
+
+.hero-particles.is-running {
+    opacity: 0.48;
 }
 
 .hero::before {
@@ -1252,7 +1257,7 @@ section[id] {
     padding: 0.06em 0.1em 0.11em;
     isolation: isolate;
     transform: translateZ(0);
-    animation: heroLogoFloat 5.2s ease-in-out infinite;
+    animation: heroLogoFloat 7.2s ease-in-out infinite;
 }
 
 .hero-logo-word::before {
@@ -1302,7 +1307,7 @@ section[id] {
 .hero-logo-word .brand-word > span {
     display: inline-block;
     transform-origin: center;
-    animation: heroLetterMorph 10.8s cubic-bezier(0.76, 0, 0.24, 1) 3s infinite;
+    animation: heroLetterMorph 14.4s cubic-bezier(0.76, 0, 0.24, 1) 3.4s infinite;
     will-change: transform, opacity, filter;
 }
 
@@ -1335,7 +1340,7 @@ section[id] {
     opacity: 0;
     visibility: hidden;
     transform: translate(-50%, -50%) scale(0.38);
-    animation: heroOrbMorph 10.8s cubic-bezier(0.76, 0, 0.24, 1) 3s infinite;
+    animation: heroOrbMorph 14.4s cubic-bezier(0.76, 0, 0.24, 1) 3.4s infinite;
     will-change: transform, opacity;
     pointer-events: none;
 }
@@ -1358,7 +1363,7 @@ section[id] {
     border: 1px solid rgba(125, 211, 252, 0.38);
     box-shadow: 0 0 14px rgba(94, 234, 212, 0.2);
     transform: rotateX(62deg) rotateZ(-12deg);
-    animation: heroOrbRing 3.4s linear infinite;
+    animation: heroOrbRing 5.4s linear infinite;
 }
 
 .hero-logo-orb::after {
@@ -1366,7 +1371,7 @@ section[id] {
     background: conic-gradient(from 20deg, transparent 0deg 38deg, rgba(94, 234, 212, 0.62) 54deg 68deg, transparent 84deg 190deg, rgba(96, 165, 250, 0.48) 206deg 218deg, transparent 235deg 360deg);
     -webkit-mask: radial-gradient(circle, transparent 0 50%, #000 52% 58%, transparent 60%);
     mask: radial-gradient(circle, transparent 0 50%, #000 52% 58%, transparent 60%);
-    animation: heroOrbArc 4.8s linear infinite reverse;
+    animation: heroOrbArc 7.2s linear infinite reverse;
 }
 
 .hero-orb-monogram {
@@ -1410,7 +1415,7 @@ section[id] {
     height: 1px;
     background: linear-gradient(90deg, transparent, rgba(37, 99, 235, 0.18), rgba(94, 234, 212, 0.32), transparent);
     opacity: 0;
-    animation: heroLogoScan 4.6s ease-in-out infinite;
+    animation: heroLogoScan 6.8s ease-in-out infinite;
     pointer-events: none;
 }
 
@@ -1419,7 +1424,7 @@ section[id] {
     margin-top: 0.92rem;
     font-size: clamp(1.35rem, 2.3vw, 2rem);
     font-weight: 600;
-    color: var(--text-secondary);
+    color: #1e40af;
 }
 
 .hero-description {
@@ -2383,7 +2388,7 @@ section[id] {
 }
 
 .home-view-copy span {
-    color: #64748b;
+    color: #475569;
     font-size: 0.72rem;
     font-weight: 800;
     letter-spacing: 0.08em;
@@ -2411,7 +2416,7 @@ section[id] {
     border: 0;
     border-radius: 6px;
     background: transparent;
-    color: #64748b;
+    color: #334155;
     cursor: pointer;
     font: inherit;
     font-size: 0.82rem;
@@ -2428,6 +2433,20 @@ section[id] {
     background: #ffffff;
     color: #0f766e;
     box-shadow: 0 4px 14px rgba(15, 23, 42, 0.1);
+}
+
+body.hero-animation-paused .hero-logo-word,
+body.hero-animation-paused .hero-logo-word .brand-word::after,
+body.hero-animation-paused .hero-logo-word .brand-word > span,
+body.hero-animation-paused .hero-logo-orb,
+body.hero-animation-paused .hero-logo-orb::before,
+body.hero-animation-paused .hero-logo-orb::after,
+body.hero-animation-paused .hero-visual,
+body.hero-animation-paused .hero-visual::after,
+body.hero-animation-paused .telemetry-item::after,
+body.hero-animation-paused .orbit-ring,
+body.hero-animation-paused .orbit-core {
+    animation-play-state: paused;
 }
 
 body[data-home-view="focus"] [data-home-view="advanced"],
@@ -5263,7 +5282,7 @@ body[data-home-view="focus"] .section-rail [data-home-view-link="advanced"] {
         transform: translateY(0) rotate(0deg);
     }
     50% {
-        transform: translateY(-10px) rotate(0.6deg);
+        transform: translateY(-7px) rotate(0.35deg);
     }
 }
 
@@ -5308,7 +5327,7 @@ body[data-home-view="focus"] .section-rail [data-home-view-link="advanced"] {
         transform: translateY(0) rotateX(0deg);
     }
     50% {
-        transform: translateY(-11px) rotateX(2.4deg);
+        transform: translateY(-7px) rotateX(1.4deg);
     }
 }
 
@@ -5334,9 +5353,9 @@ body[data-home-view="focus"] .section-rail [data-home-view-link="advanced"] {
         transform: translate3d(0, 0, 0) rotate(0deg) scale(1);
     }
     44%, 64% {
-        opacity: 0.02;
-        filter: blur(1.4px);
-        transform: translate3d(var(--hero-morph-x), var(--hero-morph-y), 0) rotate(var(--hero-morph-rotate)) scale(0.12);
+        opacity: 0.12;
+        filter: blur(0.8px);
+        transform: translate3d(calc(var(--hero-morph-x) * 0.82), var(--hero-morph-y), 0) rotate(calc(var(--hero-morph-rotate) * 0.72)) scale(0.22);
     }
 }
 
@@ -5757,7 +5776,7 @@ body[data-home-view="focus"] .section-rail [data-home-view-link="advanced"] {
 .section-label {
     display: inline-block;
     background: var(--primary-light);
-    color: var(--primary-color);
+    color: #1e40af;
     padding: 0.5rem 1rem;
     border-radius: var(--radius-full);
     font-size: 0.9rem;
@@ -6045,7 +6064,7 @@ body[data-home-view="focus"] .section-rail [data-home-view-link="advanced"] {
 .footer-links a,
 .footer-copyright,
 .footer-copyright a {
-    color: #94a3b8;
+    color: #cbd5e1;
 }
 
 .footer-bottom {
@@ -6069,7 +6088,7 @@ body[data-home-view="focus"] .section-rail [data-home-view-link="advanced"] {
 }
 
 .footer-description {
-    color: var(--text-secondary);
+    color: #cbd5e1;
     margin-bottom: 2rem;
     max-width: 300px;
 }
@@ -6122,12 +6141,12 @@ body[data-home-view="focus"] .section-rail [data-home-view-link="advanced"] {
     align-items: center;
     min-width: 44px;
     min-height: 44px;
-    color: var(--text-secondary);
+    color: #cbd5e1;
     transition: color var(--transition-fast);
 }
 
 .footer-links a:hover {
-    color: var(--primary-color);
+    color: #93c5fd;
 }
 
 .footer-bottom {
@@ -6141,16 +6160,16 @@ body[data-home-view="focus"] .section-rail [data-home-view-link="advanced"] {
     align-items: center;
     justify-content: center;
     gap: 2rem;
-    color: var(--text-secondary);
+    color: #cbd5e1;
     font-size: 0.9rem;
 }
 
 .footer-copyright a {
-    color: var(--text-secondary);
+    color: #cbd5e1;
 }
 
 .footer-copyright a:hover {
-    color: var(--primary-color);
+    color: #93c5fd;
 }
 
 /* 响应式设计 */
@@ -7722,7 +7741,7 @@ body.intro-active .hero-logo-orb::after {
         linear-gradient(132deg, #020617 0%, #07111f 52%, #041d20 100%);
     opacity: 0;
     pointer-events: none;
-    transition: opacity 0.35s ease;
+    transition: opacity 0.32s ease;
 }
 
 .tech-intro.is-visible {
@@ -7798,12 +7817,17 @@ body.intro-active .hero-logo-orb::after {
         0 0 156px rgba(20, 184, 166, 0.08),
         inset 0 1px 0 rgba(255, 255, 255, 0.08);
     text-align: center;
-    transform: translateY(18px) scale(0.94);
-    transition: transform 0.45s ease;
+    transform: translateY(14px) scale(0.96);
+    transition: transform 0.38s ease, opacity 0.38s ease;
 }
 
 .tech-intro.is-visible .tech-intro-panel {
     transform: translateY(0) scale(1);
+}
+
+.tech-intro.is-closing .tech-intro-panel {
+    opacity: 0;
+    transform: translateY(-10px) scale(0.985);
 }
 
 .tech-intro-panel::before {
@@ -7816,7 +7840,7 @@ body.intro-active .hero-logo-orb::after {
         conic-gradient(from 0deg, transparent 0deg 42deg, rgba(96, 165, 250, 0.55) 48deg 55deg, transparent 64deg 156deg, rgba(248, 113, 113, 0.34) 164deg 170deg, transparent 179deg 274deg, rgba(45, 212, 191, 0.54) 282deg 290deg, transparent 300deg 360deg);
     -webkit-mask: radial-gradient(ellipse at center, transparent 0 54%, #000 57% 61%, transparent 64%);
     mask: radial-gradient(ellipse at center, transparent 0 54%, #000 57% 61%, transparent 64%);
-    animation: techSpin 10s linear infinite;
+    animation: techSpin 12s linear infinite;
     pointer-events: none;
 }
 
@@ -7830,7 +7854,7 @@ body.intro-active .hero-logo-orb::after {
         0 0 0 1px rgba(94, 234, 212, 0.06),
         inset 0 0 42px rgba(45, 212, 191, 0.06);
     pointer-events: none;
-    animation: techRingBreathe 3.8s ease-in-out infinite;
+    animation: techRingBreathe 4.8s ease-in-out infinite;
 }
 
 .tech-intro-orbit {
@@ -7869,7 +7893,7 @@ body.intro-active .hero-logo-orb::after {
     inset: 22% 26%;
     transform: rotateX(58deg) rotateZ(28deg);
     border-style: dashed;
-    animation: techOrbitTilt 5.8s ease-in-out infinite;
+    animation: techOrbitTilt 7.2s ease-in-out infinite;
 }
 
 .tech-intro-beam {
@@ -7884,7 +7908,7 @@ body.intro-active .hero-logo-orb::after {
         linear-gradient(180deg, transparent, rgba(255, 255, 255, 0.1), transparent);
     filter: blur(2px);
     opacity: 0.44;
-    animation: techBeam 2.8s ease-in-out infinite;
+    animation: techBeam 3.8s ease-in-out infinite;
 }
 
 .tech-intro-hud {
@@ -7959,7 +7983,7 @@ body.intro-active .hero-logo-orb::after {
     opacity: 0.94;
     mix-blend-mode: screen;
     transform: translate(-50%, -50%) translateZ(58px) rotate(-3deg);
-    animation: techBadgeFloat 4.2s ease-in-out infinite;
+    animation: techBadgeFloat 5.6s ease-in-out infinite;
     pointer-events: none;
 }
 
@@ -8035,7 +8059,7 @@ body.intro-active .hero-logo-orb::after {
         inset -24px -30px 46px rgba(2, 6, 23, 0.78),
         inset 18px 16px 32px rgba(191, 219, 254, 0.18);
     transform-style: preserve-3d;
-    animation: techSphereFloat 3.8s ease-in-out infinite, techSpherePulse 5.2s ease-in-out infinite;
+    animation: techSphereFloat 5.2s ease-in-out infinite, techSpherePulse 6.4s ease-in-out infinite;
 }
 
 .tech-intro-core::before,
@@ -8055,7 +8079,7 @@ body.intro-active .hero-logo-orb::after {
     mix-blend-mode: screen;
     opacity: 0.82;
     transform: rotateX(64deg) rotateZ(-8deg);
-    animation: techSphereLines 7.5s linear infinite;
+    animation: techSphereLines 10s linear infinite;
 }
 
 .tech-intro-core::after {
@@ -8065,7 +8089,7 @@ body.intro-active .hero-logo-orb::after {
     -webkit-mask: radial-gradient(circle, transparent 0 48%, #000 51% 55%, transparent 58%);
     mask: radial-gradient(circle, transparent 0 48%, #000 51% 55%, transparent 58%);
     filter: blur(0.2px);
-    animation: techSpin 5.6s linear infinite;
+    animation: techSpin 7.8s linear infinite;
 }
 
 .tech-intro-core > span {
@@ -8083,7 +8107,7 @@ body.intro-active .hero-logo-orb::after {
     inset: 0;
     z-index: 3;
     transform: translateZ(42px);
-    animation: techStackFloat 5.2s ease-in-out infinite;
+    animation: techStackFloat 6.6s ease-in-out infinite;
     pointer-events: none;
 }
 
@@ -8338,7 +8362,7 @@ body.intro-active .hero-logo-orb::after {
     height: 100%;
     border-radius: inherit;
     background: linear-gradient(90deg, #2563eb, #5eead4);
-    animation: techProgress 4.1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    animation: techProgress var(--intro-progress-duration, 3.68s) cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
 .tech-intro-skip {
@@ -8614,6 +8638,7 @@ body.intro-active .hero-logo-orb::after {
     .tech-intro-mark,
     .hero-visual,
     .hero-visual::after,
+    .hero-particles,
     .dashboard-preview::before,
     .chart-bar,
     .hero-logo-word,
@@ -8638,6 +8663,21 @@ body.intro-active .hero-logo-orb::after {
     .team-avatar::after {
         animation: none;
         transition: none;
+    }
+
+    .hero-particles {
+        opacity: 0;
+    }
+}
+
+@media (update: slow), (max-width: 480px) {
+    .hero-particles.is-running {
+        opacity: 0.28;
+    }
+
+    .hero-logo-word .brand-word > span,
+    .hero-logo-orb {
+        animation-duration: 18s;
     }
 }
 
