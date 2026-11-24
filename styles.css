@@ -731,7 +731,7 @@ li {
     min-height: 44px;
     padding: 0 0.58rem;
     border-radius: 999px;
-    color: var(--text-secondary);
+    color: #334155;
     font-weight: 500;
     transition: color var(--transition-fast), background var(--transition-fast), transform var(--transition-fast);
 }
@@ -2435,17 +2435,10 @@ section[id] {
     box-shadow: 0 4px 14px rgba(15, 23, 42, 0.1);
 }
 
-body.hero-animation-paused .hero-logo-word,
-body.hero-animation-paused .hero-logo-word .brand-word::after,
-body.hero-animation-paused .hero-logo-word .brand-word > span,
-body.hero-animation-paused .hero-logo-orb,
-body.hero-animation-paused .hero-logo-orb::before,
-body.hero-animation-paused .hero-logo-orb::after,
-body.hero-animation-paused .hero-visual,
-body.hero-animation-paused .hero-visual::after,
-body.hero-animation-paused .telemetry-item::after,
-body.hero-animation-paused .orbit-ring,
-body.hero-animation-paused .orbit-core {
+body.hero-animation-paused .hero,
+body.hero-animation-paused .hero *,
+body.hero-animation-paused .hero *::before,
+body.hero-animation-paused .hero *::after {
     animation-play-state: paused;
 }
 

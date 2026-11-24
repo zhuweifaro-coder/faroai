@@ -693,29 +693,47 @@ document.head.appendChild(style);
 
     onReady(() => {
         const canvas = document.getElementById('heroParticles');
-        const prefersReducedMotion = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
-        const prefersReducedData = navigator.connection?.saveData === true;
+        const motionPreference = window.matchMedia('(prefers-reduced-motion: reduce)');
+        const connection = navigator.connection;
+        const hero = canvas?.closest('.hero');
+        let heroVisible = !('IntersectionObserver' in window);
+        let syncParticles = () => {};
 
-        document.addEventListener('visibilitychange', () => {
-            document.body.classList.toggle('hero-animation-paused', document.hidden);
-        });
+        function syncHeroMotion() {
+            const paused = document.hidden || !heroVisible || motionPreference.matches
+                || connection?.saveData === true || Boolean(document.getElementById('techIntro'));
+            document.body.classList.toggle('hero-animation-paused', paused);
+            syncParticles(paused);
+        }
 
-        if (canvas && !prefersReducedMotion && !prefersReducedData) {
-            const ctx = canvas.getContext('2d');
+        document.addEventListener('visibilitychange', syncHeroMotion);
+        document.addEventListener('faro:intro-dismissed', syncHeroMotion);
+        motionPreference.addEventListener('change', syncHeroMotion);
+        connection?.addEventListener('change', syncHeroMotion);
+        if (hero && 'IntersectionObserver' in window) {
+            new IntersectionObserver(entries => {
+                heroVisible = entries.some(entry => entry.isIntersecting);
+                syncHeroMotion();
+            }, { threshold: 0 }).observe(hero);
+        }
+
+        const ctx = canvas?.getContext('2d');
+        if (ctx) {
             const particles = [];
-            const connectionDistance = window.innerWidth < 768 ? 92 : 118;
+            let connectionDistance;
             let width = 0;
             let height = 0;
             let animationFrame;
             let running = false;
-            let isVisible = true;
+            let lastFrame = 0;
             let resizeTimer;
 
             function resizeCanvas() {
                 const rect = canvas.getBoundingClientRect();
-                const ratio = window.devicePixelRatio || 1;
+                const ratio = Math.min(window.devicePixelRatio || 1, 2);
                 width = rect.width;
                 height = rect.height;
+                connectionDistance = window.innerWidth < 768 ? 92 : 118;
                 canvas.width = Math.max(1, Math.floor(width * ratio));
                 canvas.height = Math.max(1, Math.floor(height * ratio));
                 ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
@@ -748,12 +766,20 @@ document.head.appendChild(style);
                 }
             }
 
-            function draw() {
+            function draw(timestamp) {
                 if (!running) return;
+                const elapsed = timestamp - lastFrame;
+                // Cap drawing at 30 fps; keep the same speed on 60/120 Hz displays.
+                if (lastFrame && elapsed < 1000 / 30 - 1) {
+                    animationFrame = window.requestAnimationFrame(draw);
+                    return;
+                }
+                const step = lastFrame ? Math.min(elapsed, 50) / (1000 / 60) : 1;
+                lastFrame = timestamp;
                 ctx.clearRect(0, 0, width, height);
                 particles.forEach((p, i) => {
-                    p.x += p.vx;
-                    p.y += p.vy;
+                    p.x += p.vx * step;
+                    p.y += p.vy * step;
                     if (p.x < -20 || p.x > width + 20) p.vx *= -1;
                     if (p.y < -20 || p.y > height + 20) p.vy *= -1;
 
@@ -781,10 +807,11 @@ document.head.appendChild(style);
             }
 
             function startParticles() {
-                if (running || document.hidden || !isVisible) return;
+                if (running) return;
                 running = true;
+                lastFrame = 0;
                 canvas.classList.add('is-running');
-                draw();
+                animationFrame = window.requestAnimationFrame(draw);
             }
 
             function stopParticles() {
@@ -795,7 +822,7 @@ document.head.appendChild(style);
 
             resizeCanvas();
             resetParticles();
-            startParticles();
+            syncParticles = paused => paused ? stopParticles() : startParticles();
             window.addEventListener('resize', () => {
                 window.clearTimeout(resizeTimer);
                 resizeTimer = window.setTimeout(() => {
@@ -804,20 +831,8 @@ document.head.appendChild(style);
                 }, 120);
             });
 
-            document.addEventListener('visibilitychange', () => {
-                if (document.hidden) stopParticles();
-                else startParticles();
-            });
-
-            if ('IntersectionObserver' in window) {
-                const particleObserver = new IntersectionObserver(entries => {
-                    isVisible = entries.some(entry => entry.isIntersecting);
-                    if (isVisible) startParticles();
-                    else stopParticles();
-                }, { threshold: 0.02 });
-                particleObserver.observe(canvas);
-            }
         }
+        if (hero) syncHeroMotion();
 
         const flows = {
             briefing: {
@@ -1339,8 +1354,7 @@ document.head.appendChild(style);
     onReady(() => {
         const gsap = window.gsap;
         const ScrollTrigger = window.ScrollTrigger;
-        const prefersReducedMotion = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
-        const prefersReducedData = navigator.connection?.saveData === true;
+        const connection = navigator.connection;
 
         window.FaroAIGsap = {
             animateWorkflow() {},
@@ -1349,127 +1363,132 @@ document.head.appendChild(style);
             animateConfig() {}
         };
 
-        if (!gsap || prefersReducedMotion || prefersReducedData) return;
+        if (!gsap || !document.querySelector('.hero')) return;
 
         if (ScrollTrigger) {
             gsap.registerPlugin(ScrollTrigger);
         }
 
-        gsap.defaults({
-            ease: 'power3.out',
-            duration: 0.72
-        });
+        let media;
+        let savedDataPreference;
+        function syncAnimations() {
+            const saveData = connection?.saveData === true;
+            if (savedDataPreference === saveData) return;
+            savedDataPreference = saveData;
+            media?.revert();
+            media = null;
+            if (saveData) return;
 
-        const heroItems = document.querySelectorAll([
-            '.hero-badge',
-            '.hero-title',
-            '.hero-description',
-            '.hero-audience-chip',
-            '.hero-actions .btn',
-            '.proof-item'
-        ].join(','));
-
-        const heroTimeline = gsap.timeline({
-            defaults: {
-                ease: 'power3.out',
-                clearProps: 'opacity,visibility,transform'
-            }
-        });
-
-        if (heroItems.length) {
-            heroTimeline.from(heroItems, {
-                autoAlpha: 0,
-                y: 22,
-                duration: 0.72,
-                stagger: 0.045
-            });
+            media = gsap.matchMedia();
+            media.add('(prefers-reduced-motion: no-preference)', createAnimations);
         }
 
-        heroTimeline.from('.dashboard-preview', {
-            autoAlpha: 0,
-            y: 28,
-            scale: 0.985,
-            rotateX: 2.5,
-            duration: 0.78,
-            transformOrigin: '50% 60%'
-        }, heroItems.length ? '-=0.34' : 0);
+        function createAnimations(context) {
+            const cleanups = [];
 
-        heroTimeline.from('.visitor-stats, .hero-telemetry', {
-            autoAlpha: 0,
-            y: 14,
-            duration: 0.58,
-            stagger: 0.08
-        }, '-=0.38');
-
-        const chartBars = document.querySelectorAll('.preview-chart .chart-bar');
-        if (chartBars.length) {
-            gsap.from(chartBars, {
-                scaleY: 0.28,
-                transformOrigin: '50% 100%',
-                duration: 0.9,
-                delay: 0.42,
-                stagger: 0.06,
-                clearProps: 'transform'
-            });
-        }
-
-        if (ScrollTrigger) {
-            gsap.to('.dashboard-preview', {
-                y: -28,
-                rotateZ: -0.8,
-                ease: 'none',
-                scrollTrigger: {
-                    trigger: '.hero',
-                    start: 'top top',
-                    end: 'bottom top',
-                    scrub: 0.7
-                }
-            });
-
-            gsap.to('.hero-particles', {
-                y: 46,
-                opacity: 0.38,
-                ease: 'none',
-                scrollTrigger: {
-                    trigger: '.hero',
-                    start: 'top top',
-                    end: 'bottom top',
-                    scrub: true
-                }
-            });
-
-            const revealItems = gsap.utils.toArray([
-                '.credibility-item',
-                '.fit-card',
-                '.launch-lane',
-                '.ops-copy',
-                '.ops-console',
-                '.command-deck .section-header',
-                '.command-chip',
-                '.command-holo',
-                '.workflow-lab .section-header',
-                '.workflow-controls',
-                '.workflow-stage',
-                '.workflow-metrics',
-                '.mission-card',
-                '.config-lab .section-header',
-                '.config-group',
-                '.config-output',
-                '.agent-matrix .section-header',
-                '.matrix-orb',
-                '.matrix-panel',
-                '.feature-card',
-                '.quickstart-step',
-                '.status-card',
-                '.use-case-card',
-                '.blog-preview-card',
-                '.team-card'
+            const heroItems = document.querySelectorAll([
+                '.hero-badge',
+                '.hero-title',
+                '.hero-description',
+                '.hero-audience-chip',
+                '.hero-actions .btn',
+                '.proof-item'
             ].join(','));
 
-            ScrollTrigger.batch(revealItems, {
-                start: 'top 86%',
-                once: true,
-                onEnter(batch) {
+            const heroTimeline = gsap.timeline({
+                paused: true,
+                defaults: {
+                    ease: 'power3.out',
+                    clearProps: 'opacity,visibility,transform'
+                }
+            });
+
+            if (heroItems.length) {
+                heroTimeline.from(heroItems, {
+                    autoAlpha: 0,
+                    y: 22,
+                    duration: 0.72,
+                    stagger: 0.045
+                });
+            }
+
+            heroTimeline.from('.dashboard-preview', {
+                autoAlpha: 0,
+                y: 28,
+                scale: 0.985,
+                rotateX: 2.5,
+                duration: 0.78,
+                transformOrigin: '50% 60%'
+            }, heroItems.length ? '-=0.34' : 0);
+
+            heroTimeline.from('.visitor-stats, .hero-telemetry', {
+                autoAlpha: 0,
+                y: 14,
+                duration: 0.58,
+                stagger: 0.08
+            }, '-=0.38');
+
+            const chartBars = document.querySelectorAll('.preview-chart .chart-bar');
+            if (chartBars.length) {
+                heroTimeline.from(chartBars, {
+                    scaleY: 0.28,
+                    transformOrigin: '50% 100%',
+                    duration: 0.9,
+                    stagger: 0.06,
+                    clearProps: 'transform'
+                }, 0.42);
+            }
+
+            const playHero = () => heroTimeline.play();
+            if (document.getElementById('techIntro')) {
+                document.addEventListener('faro:intro-dismissed', playHero, { once: true });
+                cleanups.push(() => document.removeEventListener('faro:intro-dismissed', playHero));
+            } else {
+                playHero();
+            }
+
+            if (ScrollTrigger) {
+                gsap.to('.dashboard-preview', {
+                    y: -28,
+                    rotateZ: -0.8,
+                    ease: 'none',
+                    scrollTrigger: {
+                        trigger: '.hero',
+                        start: 'top top',
+                        end: 'bottom top',
+                        scrub: 0.7
+                    }
+                });
+
+                const revealItems = gsap.utils.toArray([
+                    '.credibility-item',
+                    '.fit-card',
+                    '.launch-lane',
+                    '.ops-copy',
+                    '.ops-console',
+                    '.command-deck .section-header',
+                    '.command-chip',
+                    '.command-holo',
+                    '.workflow-lab .section-header',
+                    '.workflow-controls',
+                    '.workflow-stage',
+                    '.workflow-metrics',
+                    '.mission-card',
+                    '.config-lab .section-header',
+                    '.config-group',
+                    '.config-output',
+                    '.agent-matrix .section-header',
+                    '.matrix-orb',
+                    '.matrix-panel',
+                    '.feature-card',
+                    '.quickstart-step',
+                    '.status-card',
+                    '.use-case-card',
+                    '.blog-preview-card',
+                    '.team-card'
+                ].join(','));
+
+                context.add('reveal', batch => {
                     gsap.fromTo(batch, {
                         autoAlpha: 0,
                         y: 28
@@ -1480,109 +1499,144 @@ document.head.appendChild(style);
                         stagger: 0.06,
                         clearProps: 'opacity,visibility,transform'
                     });
+                });
+                ScrollTrigger.batch(revealItems, {
+                    start: 'top 86%',
+                    once: true,
+                    onEnter: context.reveal
+                });
+
+                const orbit = gsap.to('.holo-orbit span', {
+                    rotate: 360,
+                    duration: 18,
+                    repeat: -1,
+                    paused: true,
+                    ease: 'none',
+                    transformOrigin: '50% 50%',
+                    stagger: 1.2
+                });
+                const holo = document.querySelector('.command-holo');
+                let holoVisible = !('IntersectionObserver' in window);
+                const syncOrbit = () => orbit.paused(document.hidden || !holoVisible);
+                document.addEventListener('visibilitychange', syncOrbit);
+                cleanups.push(() => document.removeEventListener('visibilitychange', syncOrbit));
+                if (holo && 'IntersectionObserver' in window) {
+                    const observer = new IntersectionObserver(entries => {
+                        holoVisible = entries.some(entry => entry.isIntersecting);
+                        syncOrbit();
+                    });
+                    observer.observe(holo);
+                    cleanups.push(() => observer.disconnect());
                 }
-            });
+                syncOrbit();
+            }
 
-            gsap.to('.holo-orbit span', {
-                rotate: 360,
-                duration: 18,
-                repeat: -1,
-                ease: 'none',
-                transformOrigin: '50% 50%',
-                stagger: 1.2
+            context.add('lift', (element, lifted) => {
+                gsap.to(element, { y: lifted ? -4 : 0, scale: lifted ? 1.012 : 1,
+                    duration: lifted ? 0.28 : 0.32, ease: 'power3.out', overwrite: 'auto' });
             });
-        }
-
-        function addPointerLift(selector) {
-            gsap.utils.toArray(selector).forEach(element => {
-                element.addEventListener('pointerenter', () => {
-                    gsap.to(element, { y: -4, scale: 1.012, duration: 0.28, overwrite: 'auto' });
+            function addPointerLift(selector) {
+                gsap.utils.toArray(selector).forEach(element => {
+                    const enter = event => { if (event.pointerType === 'mouse') context.lift(element, true); };
+                    const leave = () => context.lift(element, false);
+                    element.addEventListener('pointerenter', enter);
+                    element.addEventListener('pointerleave', leave);
+                    cleanups.push(() => {
+                        element.removeEventListener('pointerenter', enter);
+                        element.removeEventListener('pointerleave', leave);
+                    });
                 });
-                element.addEventListener('pointerleave', () => {
-                    gsap.to(element, { y: 0, scale: 1, duration: 0.32, overwrite: 'auto' });
+            }
+
+            addPointerLift('.hero-actions .btn, .command-chip, .workflow-tab, .skill-card, .config-option, .matrix-chip, .matrix-mini-grid article, .feature-card, .blog-preview-card');
+
+            context.add('animateWorkflow', () => {
+                gsap.fromTo('.workflow-step', {
+                    autoAlpha: 0,
+                    x: -18
+                }, {
+                    autoAlpha: 1,
+                    x: 0,
+                    duration: 0.42,
+                    stagger: 0.055,
+                    clearProps: 'opacity,visibility,transform'
+                });
+                gsap.fromTo('.workflow-output', {
+                    autoAlpha: 0.62,
+                    y: 8
+                }, {
+                    autoAlpha: 1,
+                    y: 0,
+                    duration: 0.4,
+                    clearProps: 'opacity,visibility,transform'
                 });
             });
+
+            context.add('animateCommandDeck', () => {
+                gsap.fromTo('.command-node', {
+                    autoAlpha: 0,
+                    y: 12,
+                    scale: 0.96
+                }, {
+                    autoAlpha: 1,
+                    y: 0,
+                    scale: 1,
+                    duration: 0.38,
+                    stagger: 0.05,
+                    clearProps: 'opacity,visibility,transform'
+                });
+                gsap.fromTo('.command-output-grid article', {
+                    autoAlpha: 0.58,
+                    y: 8
+                }, {
+                    autoAlpha: 1,
+                    y: 0,
+                    duration: 0.42,
+                    stagger: 0.045,
+                    clearProps: 'opacity,visibility,transform'
+                });
+            });
+
+            context.add('animateMatrix', () => {
+                gsap.fromTo('.matrix-panel p, .matrix-bar, .matrix-panel-header em, .matrix-mini-grid article', {
+                    autoAlpha: 0.62,
+                    y: 8
+                }, {
+                    autoAlpha: 1,
+                    y: 0,
+                    duration: 0.36,
+                    stagger: 0.045,
+                    clearProps: 'opacity,visibility,transform'
+                });
+            });
+
+            context.add('animateConfig', () => {
+                gsap.fromTo('.config-recommendation, .config-kpi-grid article, .config-checklist li', {
+                    autoAlpha: 0.58,
+                    y: 8
+                }, {
+                    autoAlpha: 1,
+                    y: 0,
+                    duration: 0.36,
+                    stagger: 0.045,
+                    clearProps: 'opacity,visibility,transform'
+                });
+            });
+
+            const methods = ['animateWorkflow', 'animateCommandDeck', 'animateMatrix', 'animateConfig'];
+            methods.forEach(name => { window.FaroAIGsap[name] = context[name]; });
+
+            window.FaroAIGsap.animateWorkflow();
+            window.FaroAIGsap.animateCommandDeck();
+            window.FaroAIGsap.animateMatrix();
+            window.FaroAIGsap.animateConfig();
+            return () => {
+                cleanups.forEach(cleanup => cleanup());
+                methods.forEach(name => { window.FaroAIGsap[name] = () => {}; });
+            };
         }
-
-        addPointerLift('.hero-actions .btn, .command-chip, .workflow-tab, .skill-card, .config-option, .matrix-chip, .matrix-mini-grid article, .feature-card, .blog-preview-card');
-
-        window.FaroAIGsap.animateWorkflow = function animateWorkflow() {
-            gsap.fromTo('.workflow-step', {
-                autoAlpha: 0,
-                x: -18
-            }, {
-                autoAlpha: 1,
-                x: 0,
-                duration: 0.42,
-                stagger: 0.055,
-                clearProps: 'opacity,visibility,transform'
-            });
-            gsap.fromTo('.workflow-output', {
-                autoAlpha: 0.62,
-                y: 8
-            }, {
-                autoAlpha: 1,
-                y: 0,
-                duration: 0.4,
-                clearProps: 'opacity,visibility,transform'
-            });
-        };
-
-        window.FaroAIGsap.animateCommandDeck = function animateCommandDeck() {
-            gsap.fromTo('.command-node', {
-                autoAlpha: 0,
-                y: 12,
-                scale: 0.96
-            }, {
-                autoAlpha: 1,
-                y: 0,
-                scale: 1,
-                duration: 0.38,
-                stagger: 0.05,
-                clearProps: 'opacity,visibility,transform'
-            });
-            gsap.fromTo('.command-output-grid article', {
-                autoAlpha: 0.58,
-                y: 8
-            }, {
-                autoAlpha: 1,
-                y: 0,
-                duration: 0.42,
-                stagger: 0.045,
-                clearProps: 'opacity,visibility,transform'
-            });
-        };
-
-        window.FaroAIGsap.animateMatrix = function animateMatrix() {
-            gsap.fromTo('.matrix-panel p, .matrix-bar, .matrix-panel-header em, .matrix-mini-grid article', {
-                autoAlpha: 0.62,
-                y: 8
-            }, {
-                autoAlpha: 1,
-                y: 0,
-                duration: 0.36,
-                stagger: 0.045,
-                clearProps: 'opacity,visibility,transform'
-            });
-        };
-
-        window.FaroAIGsap.animateConfig = function animateConfig() {
-            gsap.fromTo('.config-recommendation, .config-kpi-grid article, .config-checklist li', {
-                autoAlpha: 0.58,
-                y: 8
-            }, {
-                autoAlpha: 1,
-                y: 0,
-                duration: 0.36,
-                stagger: 0.045,
-                clearProps: 'opacity,visibility,transform'
-            });
-        };
-
-        window.FaroAIGsap.animateWorkflow();
-        window.FaroAIGsap.animateCommandDeck();
-        window.FaroAIGsap.animateMatrix();
-        window.FaroAIGsap.animateConfig();
+        connection?.addEventListener('change', syncAnimations);
+        syncAnimations();
     });
 })();
 
@@ -1859,8 +1913,8 @@ document.head.appendChild(style);
         if (!intro) return;
 
         const skipButton = document.getElementById('techIntroSkip');
-        const prefersReducedMotion = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
-        const prefersReducedData = navigator.connection?.saveData === true;
+        const motionPreference = window.matchMedia('(prefers-reduced-motion: reduce)');
+        const connection = navigator.connection;
         const compactViewport = window.matchMedia?.('(max-width: 768px)').matches;
         let closeTimer;
 
@@ -1880,26 +1934,51 @@ document.head.appendChild(style);
 
         function removeIntro() {
             if (intro.parentNode) {
+                window.clearTimeout(closeTimer);
+                if (intro.contains(document.activeElement)) focusMain();
+                document.body.classList.remove('intro-active');
                 intro.parentNode.removeChild(intro);
+                document.removeEventListener('keydown', handleIntroKey);
+                motionPreference.removeEventListener('change', handlePreferenceChange);
+                connection?.removeEventListener('change', handlePreferenceChange);
+                document.dispatchEvent(new Event('faro:intro-dismissed'));
             }
+        }
+
+        function focusMain() {
+            const main = document.getElementById('main');
+            main?.setAttribute('tabindex', '-1');
+            main?.focus({ preventScroll: true });
+        }
+
+        function handlePreferenceChange() {
+            if (motionPreference.matches || connection?.saveData === true) removeIntro();
+        }
+
+        function handleIntroKey(event) {
+            if (event.key === 'Escape' || event.key === 'Tab') closeIntro();
         }
 
         function closeIntro() {
             if (!intro.classList.contains('is-visible')) return;
+            const hadFocus = intro.contains(document.activeElement);
             window.clearTimeout(closeTimer);
             intro.classList.add('is-closing');
             intro.classList.remove('is-visible');
             intro.setAttribute('aria-hidden', 'true');
+            intro.inert = true;
             document.body.classList.remove('intro-active');
+            if (hadFocus) focusMain();
             window.setTimeout(removeIntro, 420);
         }
 
-        if (shouldSkipIntroForInternalHomeClick()) {
+        const hasSectionTarget = window.location.hash.length > 1;
+        if (hasSectionTarget || motionPreference.matches || connection?.saveData === true || shouldSkipIntroForInternalHomeClick()) {
             removeIntro();
             return;
         }
 
-        const introDuration = prefersReducedMotion || prefersReducedData ? 900 : compactViewport ? 3600 : 4200;
+        const introDuration = compactViewport ? 3600 : 4200;
         intro.style.setProperty('--intro-progress-duration', `${Math.max(650, introDuration - 520)}ms`);
 
         document.body.classList.add('intro-active');
@@ -1908,10 +1987,8 @@ document.head.appendChild(style);
         closeTimer = window.setTimeout(closeIntro, introDuration);
 
         skipButton?.addEventListener('click', closeIntro);
-        document.addEventListener('keydown', event => {
-            if (event.key === 'Escape') {
-                closeIntro();
-            }
-        });
+        document.addEventListener('keydown', handleIntroKey);
+        motionPreference.addEventListener('change', handlePreferenceChange);
+        connection?.addEventListener('change', handlePreferenceChange);
     });
 })();
